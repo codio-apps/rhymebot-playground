@@ -261,7 +261,7 @@ function receivedMessage(event) {
     // Pass the message into a case-insenstivie expression for comparison purposes
     // only. Use messageText for the original text when you need to print output.
     var lc_messageText = messageText.toLowerCase();
-    console.log("Message Test in lower case is now" + lc_messageText);
+    console.log("Message Test in lower case is now " + lc_messageText);
 
     switch (lc_messageText) {
       case 'image':
@@ -316,8 +316,9 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
-      case (['banana', 'lemon', 'mango', 'pineapple'].indexOf(lc_messageText) >= 0):
+      case (['banana', 'lemon', 'mango', 'pineapple']:
       console.log("We have some fruit");
+      sendTextMessage(senderID, "You get your five a day, good job!");
       break;
 
       //check to see if we have been greeted, and respond
