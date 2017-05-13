@@ -26,9 +26,6 @@ app.use(express.static('public'));
 
 var KEYWORD = "rhyme";
 
-//init string for first name
-var name = getUserInfo(senderID);
-
 /*
  * Be sure to setup your config values before running this code. You can
  * set them using environment variables or modifying the config file in /config.
@@ -196,6 +193,8 @@ function receivedAuthentication(event) {
   // a way to do account linking when the user clicks the 'Send to Messenger'
   // plugin.
   var passThroughParam = event.optin.ref;
+  //init string for first name
+  var name = getUserInfo(senderID);
 
   console.log("Received authentication for user %d and page %d with pass " +
     "through param '%s' at %d", senderID, recipientID, passThroughParam,
