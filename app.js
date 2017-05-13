@@ -333,7 +333,7 @@ function getUserInfo(senderID) {
       url: "https://graph.facebook.com/v2.6/" + senderID,
       qs: {
         access_token: PAGE_ACCESS_TOKEN,
-        fields: "first_name"
+        fields: "hometown"
       },
       method: "GET"
     }, function(error, response, body) {
@@ -342,7 +342,7 @@ function getUserInfo(senderID) {
         console.log("Error getting user's name: " +  error);
       } else {
         var bodyObj = JSON.parse(body);
-        var name = bodyObj.first_name;
+        var name = bodyObj.hometown;
         greeting = "Hi " + name + ", ya wank";
       }
       var message = greeting + "That's a very nice attachment. Send me some mooooore :)";
