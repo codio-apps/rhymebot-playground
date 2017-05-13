@@ -27,6 +27,10 @@ app.use(express.static('public'));
 var KEYWORD = "rhyme";
 var name = "";
 
+var fs = require("fs");
+var greetings_file = "./greetings.txt";
+
+
 /*
  * Be sure to setup your config values before running this code. You can
  * set them using environment variables or modifying the config file in /config.
@@ -223,6 +227,11 @@ function receivedMessage(event) {
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
+
+  fs.readFile(greetings_file, function(text){
+  var textByLine = text.split("\n");
+  console.log(textByLine);
+});
 
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
