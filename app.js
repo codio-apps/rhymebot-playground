@@ -316,7 +316,26 @@ function receivedMessage(event) {
         break;
 
       default:
-        sendTextMessage(senderID, messageText+"?");
+
+      var nString = messageText.startsWith("you're ");
+      console.log("StringParser: " + n);
+
+      if(n >= 0) {
+
+      var rhymeString = messageText.slice(n + 4);
+      console.log("StringParser: " + rhymeString);
+      var messageArray = "I'm "+rhymeString.split(" ");
+
+       console.log("StringParser: " + n);
+       console.log("StringParser: " + messageArray);
+
+       return messageArray;
+
+     } else {
+       sendTextMessage(senderID, messageText+"?");
+     }
+
+
     }
   } else if (messageAttachments) {
     getUserInfo(senderID);
