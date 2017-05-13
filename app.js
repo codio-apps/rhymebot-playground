@@ -316,6 +316,10 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
+      case (['banana', 'lemon', 'mango', 'pineapple'].indexOf(lc_messageText) >= 0):
+      console.log("We have some fruit");
+      break;
+
       //check to see if we have been greeted, and respond
       case 'hi':
       case 'hello':
@@ -326,7 +330,7 @@ function receivedMessage(event) {
       case 'yo':
       case 'sup':
         if (name=="") {
-          console.log("Name not retrieved from Facebook yet")
+          console.log("Name not retrieved from Facebook yet");
           name = getUserInfo(senderID);
           sendTextMessage("What's up?");
         } else {
