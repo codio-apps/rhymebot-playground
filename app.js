@@ -619,9 +619,9 @@ if (rhymeObject == messageText) {
 
 function checkKeyword(messageText){
 
-//changed this to only search for "rhyme" at the start of the string 
+//changed this to only search for "rhyme" at the start of the string
  var n = messageText.startsWith("rhyme");
- console.log("StringParser: " + n);
+ console.log("Rhyme command " + n);
 
  if(n) {
 
