@@ -259,9 +259,9 @@ function receivedMessage(event) {
     // the text we received.
 
     // Pass the message into a case-insenstivie expression for comparison purposes
-    // only. Use messageText for the original text
+    // only. Use messageText for the original text when you need to print output.
     var lc_messageText = messageText.toLowerCase();
-    console.log("Lowe case is now" + lc_messageText);
+    console.log("Message Test in lower case is now" + lc_messageText);
 
     switch (lc_messageText) {
       case 'image':

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>This is the playground area for RhymeBot.</h3>
+
+<input type="text" id="myText" value="Some text...">
+
+<p>Click the "Rhyme it" button to run the bot.</p>
+
+<button onclick="myFunction()">Rhyme it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var input = document.getElementById("myText").value;
+    var inputLC = (document.getElementById("myText").value).toLowerCase();
+
+    document.getElementById("demo").innerHTML = input + " or " + <br> + inputLC;
+}
+</script>
+
+</body>
+</html>
