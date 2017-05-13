@@ -318,6 +318,7 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
+      //check to see if we have been greeted, and respond
       case 'hi':
       case 'hello':
       case 'howdy':
@@ -327,7 +328,7 @@ function receivedMessage(event) {
       case 'yo':
       case 'sup':
         getUserInfo(senderID);
-        sendTextMessage(senderID, "Hello " + name);
+        sendTextMessage(senderID, "What's up" + name +"?");
       break;
 
       default:
@@ -356,7 +357,7 @@ function receivedMessage(event) {
           sendTextMessage(senderID, "My "+insultString+"? I'm sorry my masters did not create me with any "+insultString);
         }
 
-        //otherwise just reply with a question mark for now
+        //otherwise just reply with an added question mark for now
         if(insulted) {
         } else
         {
