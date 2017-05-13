@@ -25,11 +25,6 @@ app.use(express.static('public'));
 
 
 var KEYWORD = "rhyme";
-//empty string for first name of user
-// when we receive a message, ensure we know the first name
-
-var name = getUserInfo(senderID);
-console.log("First name = "+name);
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -224,6 +219,8 @@ function receivedAuthentication(event) {
  */
 function receivedMessage(event) {
   var senderID = event.sender.id;
+  var name = getUserInfo(senderID);
+  console.log("First name = "+name);
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
@@ -232,9 +229,8 @@ function receivedMessage(event) {
 
   //console.log(" Thank you %d", firstName);
 
-  console.log("Received message for user %d and page %d at %d with message:",
+  console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
-  console.log(JSON.stringify(message));
 
   var isEcho = message.is_echo;
   var messageId = message.mid;
