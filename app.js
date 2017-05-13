@@ -25,9 +25,12 @@ app.use(express.static('public'));
 
 
 var KEYWORD = "rhyme";
+var GREETINGS = "";
 var name = "";
 
+// Set up file parsing
 var fs = require("fs");
+// Parse greetings.txt into data object
 var greetings_file = "public/greetings.txt";
 
 
@@ -387,9 +390,11 @@ function receivedMessage(event) {
 // Read text file data and store it into local variables for string comparisons
 function setUpLocalVariables() {
 
+  console.log(GREETINGS);
   var temp = fs.readFileSync(greetings_file, "utf-8");
   var greetings_textByLine = temp.split("\n");
-  console.log(greetings_textByLine);
+  GREETINGS = greetings_textByLine;
+  console.log(GREETINGS);
 
 }
 
