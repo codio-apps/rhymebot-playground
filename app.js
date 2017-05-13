@@ -316,20 +316,16 @@ function receivedMessage(event) {
         break;
 
       default:
-
-      var insult = messageText.startsWith("you're ");
-      console.log("StringParser: " + insult);
-
-      if(n >= 0) {
-
-      var insultString = messageText.slice(insult + 4);
-      console.log("StringParser: " + rhymeString);
-      var messageArray = "I'm "+insultString.split(" ")+"?";
-      sendTextMessage(senderID, "I'm "+insultString+"?");
-
-     } else {
-       sendTextMessage(senderID, messageText+"?");
-     }
+        var insult = messageText.startsWith("you're ");
+        console.log("StringParser: " + insult);
+        if(insult >= 0) {
+          var insultString = messageText.slice(insult + 4);
+          console.log("StringParser: " + insultString);
+          var messageArray = "I'm "+insultString.split(" ")+"?";
+          sendTextMessage(senderID, "I'm "+insultString+"?");
+        } else {
+          sendTextMessage(senderID, messageText+"?");
+        }
 
 
     }
