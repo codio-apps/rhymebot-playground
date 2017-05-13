@@ -317,7 +317,7 @@ function receivedMessage(event) {
 
       default:
       //check to see if we have been injsulted
-        boolean insult =false;
+        var insult =false;
         insult = messageText.startsWith("you're ");
         console.log("StringParser: " + insult);
         if(insult = true) {
