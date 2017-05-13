@@ -27,7 +27,7 @@ app.use(express.static('public'));
 var KEYWORD = "rhyme";
 //empty string for first name of user
 var name = ""
-console.log("No name assigned");
+console.log("No name assigned yet");
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -196,9 +196,6 @@ function receivedAuthentication(event) {
   // a way to do account linking when the user clicks the 'Send to Messenger'
   // plugin.
   var passThroughParam = event.optin.ref;
-  //init string for first name
-name = getUserInfo(senderID);
-console.log("Name = " + name);
 
   console.log("Received authentication for user %d and page %d with pass " +
     "through param '%s' at %d", senderID, recipientID, passThroughParam,
@@ -330,7 +327,9 @@ function receivedMessage(event) {
       case 'heya':
       case 'yo':
       case 'sup':
-        getUserInfo(senderID);
+        if (name.equals("")) {
+          name = getUserInfo(senderID);
+        }
         sendTextMessage(senderID, "What's up " + name +"?");
       break;
 
@@ -394,6 +393,7 @@ function getUserInfo(senderID) {
       } else {
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
+        console.log("Name = " + name);
       }
     });
   }
