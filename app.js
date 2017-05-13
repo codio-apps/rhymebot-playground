@@ -336,7 +336,7 @@ function receivedMessage(event) {
         break;
 
       //check to see if we have been greeted, and respond
-      case 'wecome':
+      case 'welcome':
         if (name=="") {
           console.log("Name not retrieved from Facebook yet");
           name = getUserInfo(senderID);
