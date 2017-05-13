@@ -24,7 +24,7 @@ app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
 
-var KEYWORD = "rhyme";
+var KEYWORD = "you're";
 
 /*
  * Be sure to setup your config values before running this code. You can
