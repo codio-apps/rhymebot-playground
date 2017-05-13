@@ -228,7 +228,7 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  var text = fs.readFileSync("./mytext.txt", "utf-8");
+  var text = fs.readFileSync(greetings_file, "utf-8");
   var textByLine = text.split("\n");
   console.log(textByLine);
 }
