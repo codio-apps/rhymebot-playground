@@ -325,7 +325,13 @@ function receivedMessage(event) {
       case 'heya':
       case 'yo':
       case 'sup':
-        sendTextMessage(senderID, "What's up " + name +"?");
+        if (name=="") {
+          console.log("Name not retrieved from Facebook yet")
+          sendTextMessage("What's up?");
+        } else {
+          sendTextMessage(senderID, "What's up " + name +"?");
+        }
+
       break;
 
       default:
