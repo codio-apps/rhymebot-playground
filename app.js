@@ -26,8 +26,10 @@ app.use(express.static('public'));
 
 var KEYWORD = "rhyme";
 //empty string for first name of user
-var name = ""
-console.log("No name assigned yet");
+// when we receive a message, ensure we know the first name
+
+var name = getUserInfo(senderID);
+console.log("First name = "+name);
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -261,11 +263,6 @@ function receivedMessage(event) {
 
 
   if (messageText) {
-    // when we receive a message, ensure we know the first name
-    if (name=="") {
-      name = getUserInfo(senderID);
-    }
-
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
