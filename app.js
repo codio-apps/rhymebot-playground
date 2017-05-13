@@ -26,6 +26,9 @@ app.use(express.static('public'));
 
 var KEYWORD = "rhyme";
 
+//empty string for first name
+var name ="";
+
 /*
  * Be sure to setup your config values before running this code. You can
  * set them using environment variables or modifying the config file in /config.
@@ -362,7 +365,6 @@ function getUserInfo(senderID) {
 
   console.log("Testing and got it " + senderID);
 
-
     request({
       url: "https://graph.facebook.com/v2.6/" + senderID,
       qs: {
@@ -375,7 +377,7 @@ function getUserInfo(senderID) {
         console.log("Error getting user's name: " +  error);
       } else {
         var bodyObj = JSON.parse(body);
-        var name = bodyObj.first_name;
+        name = bodyObj.first_name;
       }
     });
   }
