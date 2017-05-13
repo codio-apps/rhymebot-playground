@@ -333,7 +333,7 @@ function receivedMessage(event) {
         break;
 
       //check to see if we have been greeted, and respond
-      case 'wecome': 
+      case 'wecome':
         if (name=="") {
           console.log("Name not retrieved from Facebook yet");
           name = getUserInfo(senderID);
@@ -393,7 +393,6 @@ function setUpLocalVariables() {
   var temp = fs.readFileSync(greetings_file, "utf-8");
   var greetings_textByLine = temp.split("\n");
   GREETINGS = greetings_textByLine;
-  console.log(GREETINGS);
 
 }
 
@@ -401,7 +400,7 @@ function setUpLocalVariables() {
 function StringSearch(input, key) {
 
   if (key.indexOf(input) >= 0){
-  console.log("This is a welcome");
+  console.log("String was found in array");
   return true;
   }
   return false;
