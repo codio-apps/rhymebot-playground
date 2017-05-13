@@ -320,7 +320,7 @@ function receivedMessage(event) {
         var insult =false;
         insult = messageText.startsWith("you're ");
         console.log("insultCheck: " + insult);
-        if insult=true {
+        if(insult) {
             sendTestMessage(senderID, "ouch my feelings");
         } else
         {
