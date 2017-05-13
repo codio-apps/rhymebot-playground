@@ -326,7 +326,7 @@ function receivedMessage(event) {
       case 'heya';
       case 'yo';
       case 'sup';
-        sendTextMessage("Hello "+senderID;
+        sendTextMessage("Hello "+senderID);
       break;
 
       default:
