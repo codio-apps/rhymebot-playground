@@ -317,6 +317,7 @@ function receivedMessage(event) {
 
       case "you're":
         sendTextMessage("What?");
+        break;
 
       default:
         sendTextMessage(senderID, messageText);
