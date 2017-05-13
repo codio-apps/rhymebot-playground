@@ -328,7 +328,7 @@ function receivedMessage(event) {
       case 'yo':
       case 'sup':
         getUserInfo(senderID);
-        sendTextMessage(senderID, "What's up" + name +"?");
+        sendTextMessage(senderID, "What's up " + name +"?");
       break;
 
       default:
@@ -368,7 +368,7 @@ function receivedMessage(event) {
   } else if (messageAttachments) {
     getUserInfo(senderID);
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
-    var message = "Hi " + name + "That's a very nice attachment. Send me some mooooore :)";
+    var message = "Hi " + name + ". That's a very nice attachment. Send me some mooooore :)";
     sendTextMessage(senderID, message);
     //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
   }
