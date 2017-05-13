@@ -220,8 +220,6 @@ function receivedAuthentication(event) {
  */
 function receivedMessage(event) {
   var senderID = event.sender.id;
-  name = getUserInfo(senderID);
-  console.log("First name = "+name);
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
@@ -327,6 +325,7 @@ function receivedMessage(event) {
       case 'sup':
         if (name=="") {
           console.log("Name not retrieved from Facebook yet")
+          name = getUserInfo(senderID);
           sendTextMessage("What's up?");
         } else {
           sendTextMessage(senderID, "What's up " + name +"?");
