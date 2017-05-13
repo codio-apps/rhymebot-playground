@@ -1,5 +1,50 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <script>
+
+  var test = "Hi. ";
+  var welcome = [
+    "hi",
+    "hey",
+    "hello"
+  ];
+
+  function StringSearch(input, key) {
+    var fruits = ["Banana", "Orange", "Apple", "Mango"];
+    var a = fruits.indexOf("Apple");
+
+    if (key.indexOf(input) >= 0){
+    console.log("This is a welcome");
+    return true;
+    }
+    return false;
+}
+
+  function myFunction() {
+      var input = document.getElementById("myText").value;
+      var key = "";
+      var inputLC = (document.getElementById("myText").value).toLowerCase();
+
+      if(StringSearch(inputLC, welcome)){
+        key = "welcome"
+      }
+      else {
+        key = input;
+      }
+
+      switch (key) {
+      case 'welcome':
+      console.log("We have some cars");
+      var output = "This was a welcome";
+      break;
+      default:
+      var output = "Not sure what this was";
+    }
+      document.getElementById("demo").innerHTML = output;
+  }
+  </script>
+</head>
 <body>
 
 <h3>This is the playground area for RhymeBot.</h3>
@@ -12,29 +57,7 @@
 
 <p id="demo"></p>
 
-<script>
-function myFunction() {
-    var input = document.getElementById("myText").value;
-    var inputLC = (document.getElementById("myText").value).toLowerCase();
 
-    var cars = ["Saab", "Volvo", "BMW"];
-
-    switch (inputLC) {
-
-    case cars:
-    console.log("We have some cars");
-    var output = "Cars";
-
-    break;
-    default:
-
-    var output = "NOPE";
-
-  }
-
-    document.getElementById("demo").innerHTML = input + " or " + output;
-}
-</script>
 
 </body>
 </html>
