@@ -23,15 +23,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
-// Keys and Values
+
 var KEYWORD = "rhyme";
-var GREETING;
 var name = "";
 
-// File Parsers
 var fs = require("fs");
-// Greetings text file
-var greetings_file = "./public/greetings.txt";
+var greetings_file = "public/greetings.txt";
 
 
 /*
@@ -231,10 +228,171 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  var text = fs.readFileSync(greetings_file, "utf-8");
-  var textByLine = text.split("\n");
-  console.log(textByLine);
+    setUpLocalVariables();
+
+  console.log("Received message for user %d with message:",
+    senderID, recipientID, timeOfMessage);
+
+  var isEcho = message.is_echo;
+  var messageId = message.mid;
+  var appId = message.app_id;
+  var metadata = message.metadata;
+
+  // You may get a text or attachment but not both
+  var messageText = message.text;
+  var messageAttachments = message.attachments;
+  var quickReply = message.quick_reply;
+
+  if (isEcho) {
+    // Just logging message echoes to console
+    console.log("Received echo for message %s and app %d with metadata %s",
+      messageId, appId, metadata);
+    return;
+  } else if (quickReply) {
+    var quickReplyPayload = quickReply.payload;
+    console.log("Quick reply for message %s with payload %s",
+      messageId, quickReplyPayload);
+
+    sendTextMessage(senderID, "Quick reply tapped");
+    return;
+  }
+
+
+
+  if (messageText) {
+    // If we receive a text message, check to see if it matches any special
+    // keywords and send back the corresponding example. Otherwise, just echo
+    // the text we received.
+
+    // Pass the message into a case-insenstivie expression for comparison purposes
+    // only. Use messageText for the original text when you need to print output.
+    var lc_messageText = messageText.toLowerCase();
+    console.log("Message Test in lower case is now " + lc_messageText);
+
+    switch (lc_messageText) {
+      case 'image':
+        sendImageMessage(senderID);
+        break;
+
+      case 'gif':
+        sendGifMessage(senderID);
+        break;
+
+      case 'audio':
+        sendAudioMessage(senderID);
+        break;
+
+      case 'video':
+        sendVideoMessage(senderID);
+        break;
+
+      case 'file':
+        sendFileMessage(senderID);
+        break;
+
+      case 'button':
+        sendButtonMessage(senderID);
+        break;
+
+      case 'generic':
+        sendGenericMessage(senderID);
+        break;
+
+      case 'receipt':
+        sendReceiptMessage(senderID);
+        break;
+
+      case 'quick reply':
+        sendQuickReply(senderID);
+        break;
+
+      case 'read receipt':
+        sendReadReceipt(senderID);
+        break;
+
+      case 'typing on':
+        sendTypingOn(senderID);
+        break;
+
+      case 'typing off':
+        sendTypingOff(senderID);
+        break;
+
+      case 'account linking':
+        sendAccountLinking(senderID);
+        break;
+
+      //check to see if we have been greeted, and respond
+      case 'hi':
+      case 'hello':
+      case 'howdy':
+      case 'yo':
+      case 'hey':
+      case 'heya':
+      case 'yo':
+      case 'sup':
+        if (name=="") {
+          console.log("Name not retrieved from Facebook yet");
+          name = getUserInfo(senderID);
+          sendTextMessage("What's up?");
+        } else {
+          sendTextMessage(senderID, "What's up " + name +"?");
+        }
+
+      break;
+
+      default:
+      //check to see if we have possibly been insulted, and respond
+        var insult =false;
+        var insulted=false;
+
+        insult = messageText.startsWith("you're ");
+        if(insult) {
+           insulted=true;
+           var insultString = messageText.slice(7);
+           sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
+        }
+
+        insult = messageText.startsWith("you are ");
+        if(insult) {
+           insulted=true;
+          var insultString = messageText.slice(8);
+          sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
+        }
+
+        insult = messageText.startsWith("your ");
+        if(insult) {
+           insulted=true;
+          var insultString = messageText.slice(5);
+          sendTextMessage(senderID, "My "+insultString+"? I am sorry, I have no concept of how I should feel about that");
+        }
+
+        //otherwise just reply with an added question mark for now
+        if(insulted) {
+        } else
+        {
+          sendTextMessage(senderID, messageText+"?");
+        }
+
+    }
+  } else if (messageAttachments) {
+    getUserInfo(senderID);
+    //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
+    var message = "Hi " + name + ". That's a very nice attachment. Send me some mooooore :)";
+    sendTextMessage(senderID, message);
+    //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
+  }
 }
+
+// Read text file data and store it into local variables for string comparisons
+function setUpLocalVariables() {
+
+  var temp = fs.readFileSync(greetings_file, "utf-8");
+  var greetings_textByLine = temp.split("\n");
+  console.log(greetings_textByLine);
+
+}
+
 
 function getUserInfo(senderID) {
 
