@@ -354,7 +354,7 @@ function receivedMessage(event) {
         if(insult) {
            insulted=true;
           var insultString = messageText.slice(5);
-          sendTextMessage(senderID, "My "+insultString+"? I am sorry, I have no concept of how I should feel about that "+insultString);
+          sendTextMessage(senderID, "My "+insultString+"? I am sorry, I have no concept of how I should feel about that");
         }
 
         //otherwise just reply with an added question mark for now
