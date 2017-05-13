@@ -272,7 +272,14 @@ function receivedMessage(event) {
     var lc_messageText = messageText.toLowerCase();
     console.log("Message Test in lower case is now " + lc_messageText);
 
-    switch (lc_messageText) {
+    if(StringSearch(lc_messageText, GREETINGS)){
+      key = "welcome"
+    }
+    else {
+      key = lc_messageText;
+    }
+
+    switch (key) {
       case 'image':
         sendImageMessage(senderID);
         break;
@@ -326,14 +333,7 @@ function receivedMessage(event) {
         break;
 
       //check to see if we have been greeted, and respond
-      case 'hi':
-      case 'hello':
-      case 'howdy':
-      case 'yo':
-      case 'hey':
-      case 'heya':
-      case 'yo':
-      case 'sup':
+      case 'wecome': 
         if (name=="") {
           console.log("Name not retrieved from Facebook yet");
           name = getUserInfo(senderID);
@@ -390,12 +390,21 @@ function receivedMessage(event) {
 // Read text file data and store it into local variables for string comparisons
 function setUpLocalVariables() {
 
-  console.log(GREETINGS);
   var temp = fs.readFileSync(greetings_file, "utf-8");
   var greetings_textByLine = temp.split("\n");
   GREETINGS = greetings_textByLine;
   console.log(GREETINGS);
 
+}
+
+
+function StringSearch(input, key) {
+
+  if (key.indexOf(input) >= 0){
+  console.log("This is a welcome");
+  return true;
+  }
+  return false;
 }
 
 
