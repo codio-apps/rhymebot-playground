@@ -325,11 +325,7 @@ function receivedMessage(event) {
       var insultString = messageText.slice(insult + 4);
       console.log("StringParser: " + rhymeString);
       var messageArray = "I'm "+insultString.split(" ")+"?";
-
-       console.log("StringParser: " + insult);
-       console.log("StringParser: " + messageArray);
-
-       return messageArray;
+      sendTextMessage(senderID, "I'm "+insultString+"?");
 
      } else {
        sendTextMessage(senderID, messageText+"?");
