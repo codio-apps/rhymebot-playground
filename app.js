@@ -25,6 +25,8 @@ app.use(express.static('public'));
 
 
 var KEYWORD = "rhyme";
+//empty string for first name of user
+var name = ""
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -194,7 +196,7 @@ function receivedAuthentication(event) {
   // plugin.
   var passThroughParam = event.optin.ref;
   //init string for first name
-  var name = getUserInfo(senderID);
+name = getUserInfo(senderID);
 
   console.log("Received authentication for user %d and page %d with pass " +
     "through param '%s' at %d", senderID, recipientID, passThroughParam,
