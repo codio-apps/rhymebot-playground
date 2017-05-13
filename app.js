@@ -320,12 +320,12 @@ function receivedMessage(event) {
 
       case 'hi':
       case 'hello':
-      case 'howdy';
-      case 'yo';
-      case 'hey';
-      case 'heya';
-      case 'yo';
-      case 'sup';
+      case 'howdy':
+      case 'yo':
+      case 'hey':
+      case 'heya':
+      case 'yo':
+      case 'sup':
         getUserInfo(senderID);
         sendTextMessage(senderID, "Hello " + name);
       break;
