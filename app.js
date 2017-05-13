@@ -315,7 +315,7 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
-      case 'you':
+      case 'you *':
         sendTextMessage(senderID, "What?");
         break;
 
