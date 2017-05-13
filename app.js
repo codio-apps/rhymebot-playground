@@ -317,19 +317,9 @@ function receivedMessage(event) {
         break;
 
       default:
-      //check to see if we have been insulted
-        insult = messageText.startsWith("you're ");
-        console.log("insultCheck: " + insult);
-        if(insult = true) {
-          sendTextMessage("you insult me?");
-          var insultString = messageText.slice(insult + 7);
-          console.log("insult: " + insultString);
-          //turn the insult round
-          sendTextMessage(senderID, "I'm "+insultString.split(" ")+"?");
-        } else {
-          sendTextMessage(senderID, messageText+"?");
-        }
 
+          sendTextMessage(senderID, messageText+"?");
+        
 
     }
   } else if (messageAttachments) {
