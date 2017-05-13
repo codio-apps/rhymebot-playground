@@ -351,6 +351,9 @@ function receivedMessage(event) {
     }
   } else if (messageAttachments) {
     getUserInfo(senderID);
+    //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
+    var message = "Hi " + name + "That's a very nice attachment. Send me some mooooore :)";
+    sendTextMessage(senderID, message);
     //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
   }
 }
@@ -368,16 +371,12 @@ function getUserInfo(senderID) {
       },
       method: "GET"
     }, function(error, response, body) {
-      var greeting = "";
       if (error) {
         console.log("Error getting user's name: " +  error);
       } else {
         var bodyObj = JSON.parse(body);
         var name = bodyObj.first_name;
-        greeting = "Hi " + name + ", ya wank. ";
       }
-      var message = greeting + "That's a very nice attachment. Send me some mooooore :)";
-      sendTextMessage(senderID, message);
     });
   }
 
