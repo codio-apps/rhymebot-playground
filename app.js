@@ -270,13 +270,14 @@ function receivedMessage(event) {
     // Pass the message into a case-insenstivie expression for comparison purposes
     // only. Use messageText for the original text when you need to print output.
     var lc_messageText = messageText.toLowerCase();
+    var key = lc_messageText;
     console.log("Message Test in lower case is now " + lc_messageText);
 
     if(StringSearch(lc_messageText, GREETINGS)){
-      key = "welcome"
+      key = 'welcome';
     }
     else {
-      key = lc_messageText;
+    // Do nothing
     }
 
     switch (key) {
