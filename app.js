@@ -257,7 +257,12 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
-    switch (messageText) {
+
+    // Pass the message into a case-insenstivie expression for comparison purposes
+    // only. Use messageText for the original text
+    regex = new RegExp('^' + messageText + '$', 'i');
+
+    switch (regex) {
       case 'image':
         sendImageMessage(senderID);
         break;
@@ -311,7 +316,7 @@ function receivedMessage(event) {
         break;
 
       //check to see if we have been greeted, and respond
-      case '/hi/':
+      case 'hi':
       case 'hello':
       case 'howdy':
       case 'yo':
