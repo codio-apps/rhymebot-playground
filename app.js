@@ -224,10 +224,6 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-
-
-  //console.log(" Thank you %d", firstName);
-
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
 
