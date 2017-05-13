@@ -333,7 +333,7 @@ function getUserInfo(senderID) {
       url: "https://graph.facebook.com/v2.6/" + senderID,
       qs: {
         access_token: PAGE_ACCESS_TOKEN,
-        fields: "first_name", "hometown"
+        fields: first_name,hometown
       },
       method: "GET"
     }, function(error, response, body) {
