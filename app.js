@@ -25,7 +25,6 @@ app.use(express.static('public'));
 
 
 var KEYWORD = "rhyme";
-var insult = false;
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -317,6 +316,11 @@ function receivedMessage(event) {
         break;
 
       default:
+      //check to see if we have been insulted
+        var insult =false;
+        insult = messageText.startsWith("you're ");
+        console.log("insultCheck: " + insult);
+
 
           sendTextMessage(senderID, messageText+"?");
         
