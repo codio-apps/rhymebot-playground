@@ -318,8 +318,8 @@ function receivedMessage(event) {
       default:
         var insult = messageText.startsWith("you're ");
         console.log("StringParser: " + insult);
-        if(insult >= 0) {
-          var insultString = messageText.slice(insult + 4);
+        if(insult = true) {
+          var insultString = messageText.slice(insult + 7);
           console.log("StringParser: " + insultString);
           var messageArray = "I'm "+insultString.split(" ")+"?";
           sendTextMessage(senderID, "I'm "+insultString+"?");
