@@ -330,6 +330,7 @@ function receivedMessage(event) {
         if (name=="") {
           name = getUserInfo(senderID);
         }
+        console.log("name = "+name);
         sendTextMessage(senderID, "What's up " + name +"?");
       break;
 
@@ -369,7 +370,6 @@ function receivedMessage(event) {
     }
   } else if (messageAttachments) {
     getUserInfo(senderID);
-    console.log("getting name now....")
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
     var message = "Hi " + name + ". That's a very nice attachment. Send me some mooooore :)";
     sendTextMessage(senderID, message);
@@ -379,7 +379,7 @@ function receivedMessage(event) {
 
 function getUserInfo(senderID) {
 
-  console.log("Testing and got it " + senderID);
+  console.log("Retrieving name now " + senderID);
 
     request({
       url: "https://graph.facebook.com/v2.6/" + senderID,
