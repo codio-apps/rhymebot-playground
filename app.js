@@ -594,7 +594,7 @@ function checkKeyword(messageText){
 
  if(n >= 0) {
 
- var rhymeString = messageText.slice(n + 7);
+ var rhymeString = messageText.slice(n + 6);
  console.log("StringParser: " + rhymeString);
  var messageArray = rhymeString.split(" ");
 
@@ -604,6 +604,21 @@ function checkKeyword(messageText){
   return messageArray;
 
 } else {
+  n = messageText.search(/"you're"/i);
+  console.log("StringParser: " + n);
+
+  if(n >=0) {
+    var insultString = messageText.slice(n + 7);
+    console.log("StringParser :" + insultString);
+    var messageArray = insultString.split(" ");
+    console.log("StringParser: " + n);
+    console.log("StringParser: " + messageArray);
+
+    return messageArray;
+  }
+}
+
+else {
   return messageText;
 }
 
