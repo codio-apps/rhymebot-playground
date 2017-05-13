@@ -369,6 +369,7 @@ function receivedMessage(event) {
     }
   } else if (messageAttachments) {
     getUserInfo(senderID);
+    console.log("getting name now....")
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
     var message = "Hi " + name + ". That's a very nice attachment. Send me some mooooore :)";
     sendTextMessage(senderID, message);
