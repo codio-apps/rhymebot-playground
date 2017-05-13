@@ -318,26 +318,30 @@ function receivedMessage(event) {
       default:
       //check to see if we have been insulted, and respond
         var insult =false;
+        var insulted=false;
 
         insult = messageText.startsWith("you're ");
         if(insult) {
+           insulted=true;
            var insultString = messageText.slice(7);
            sendTextMessage(senderID, "I'm "+insultString+"? that hurts my ones and zeroes");
         }
 
         insult = messageText.startsWith ("you are ");
         if(insult) {
+           insulted=true;
           var insultString = messageText.slice(8);
           sendTextMessage(senderID, "I'm "+insultString+"? :( ouch, my feelings");
         }
 
         insult = messageText.startsWith ("your ");
         if(insult) {
+           insulted=true;
           var insultString = messageText.slice(5);
-          sendTextMessage(senderID, "My "+insultString+"? I'm sorry my masters did not create me with one");
+          sendTextMessage(senderID, "My "+insultString+"? I'm sorry my masters did not create me with any "+insultString);
         }
 
-        if(insult) {
+        if(insulted) {
         } else
         {
           sendTextMessage(senderID, messageText+"?");
