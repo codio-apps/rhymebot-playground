@@ -327,7 +327,7 @@ function receivedMessage(event) {
       case 'heya':
       case 'yo':
       case 'sup':
-        if (name.equals("")) {
+        if (name.length() == 0) {
           name = getUserInfo(senderID);
         }
         sendTextMessage(senderID, "What's up " + name +"?");
