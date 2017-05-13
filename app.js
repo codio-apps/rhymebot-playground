@@ -318,6 +318,17 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
+      case 'hi':
+      case 'hello':
+      case 'howdy';
+      case 'yo';
+      case 'hey';
+      case 'heya';
+      case 'yo';
+      case 'sup';
+        sendTextMessage("Hello "+senderID;
+      break;
+
       default:
       //check to see if we have been insulted, and respond
         var insult =false;
