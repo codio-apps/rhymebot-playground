@@ -3,6 +3,8 @@
 /* Testing testing, un, dau, tri */
 
 /* jshint node: true, devel: true */
+
+/*rhymebot mk0.0000001 alpha */
 'use strict';
 
 const
