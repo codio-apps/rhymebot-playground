@@ -322,13 +322,13 @@ function receivedMessage(event) {
         insult = messageText.startsWith("you're ");
         if(insult) {
            var insultString = messageText.slice(7);
-           sendTextMessage(senderID, "I'm "+insultString+"? ouch, my feelings");
+           sendTextMessage(senderID, "I'm "+insultString+"? that hurts my ones and zeroes");
         }
 
         insult = messageText.startsWith ("you are ");
         if(insult) {
           var insultString = messageText.slice(8);
-          sendTextMessage(senderID, "I'm "+insultString+"? ouch, my feelings");
+          sendTextMessage(senderID, "I'm "+insultString+"? :( ouch, my feelings");
         }
         if(insult) {
         } else
