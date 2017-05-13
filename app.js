@@ -32,7 +32,6 @@ var name = "";
 var fs = require("fs");
 // Greetings text file
 var greetings_file = "./public/greetings.txt";
-// Curse word text file
 
 
 /*
@@ -232,19 +231,9 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  setUpLocalVariables();
-
-
-
-}
-
-// Read text file data and store it into local variables for string comparisons
-function setUpLocalVariables() {
-
-  var temp = fs.readFileSync(greetings_file, "utf-8");
-  var greetings_textByLine = temp.split("\n");
-  console.log(greetings_textByLine);
-
+  var text = fs.readFileSync(greetings_file, "utf-8");
+  var textByLine = text.split("\n");
+  console.log(textByLine);
 }
 
 function getUserInfo(senderID) {
