@@ -24,7 +24,7 @@ app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
 
-var KEYWORD = "you're";
+var KEYWORD = "rhyme";
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -314,6 +314,9 @@ function receivedMessage(event) {
       case 'account linking':
         sendAccountLinking(senderID);
         break;
+
+      case "you're":
+        sendTextMessage("What?");
 
       default:
         sendTextMessage(senderID, messageText);
