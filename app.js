@@ -274,7 +274,9 @@ function receivedMessage(event) {
     console.log("Message Test in lower case is now " + lc_messageText);
 
     if(StringSearch(lc_messageText, GREETINGS)){
+
       key = "welcome";
+      console.log("String search was successfull. Key is now " + key);
     }
     else {
     // Do nothing
