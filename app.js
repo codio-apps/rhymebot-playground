@@ -321,7 +321,7 @@ function receivedMessage(event) {
         insult = messageText.startsWith("you're ");
         console.log("insultCheck: " + insult);
         if(insult) {
-           var insultString = messageText.slice(n + 7);
+           var insultString = messageText.slice(7);
            sendTextMessage(senderID, "I'm "+insultString+"?");
         } else
         {
