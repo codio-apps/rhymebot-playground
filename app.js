@@ -311,7 +311,7 @@ function receivedMessage(event) {
         break;
 
       //check to see if we have been greeted, and respond
-      case 'hi':
+      case '/hi/':
       case 'hello':
       case 'howdy':
       case 'yo':
