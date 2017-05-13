@@ -316,11 +316,6 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
-      case ['banana', 'lemon', 'mango', 'pineapple']:
-      console.log("We have some fruit");
-      sendTextMessage(senderID, "You get your five a day, good job!");
-      break;
-
       //check to see if we have been greeted, and respond
       case 'hi':
       case 'hello':
