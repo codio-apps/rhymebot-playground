@@ -25,6 +25,7 @@ app.use(express.static('public'));
 
 
 var KEYWORD = "rhyme";
+var name = "";
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -219,7 +220,7 @@ function receivedAuthentication(event) {
  */
 function receivedMessage(event) {
   var senderID = event.sender.id;
-  var name = getUserInfo(senderID);
+  name = getUserInfo(senderID);
   console.log("First name = "+name);
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
