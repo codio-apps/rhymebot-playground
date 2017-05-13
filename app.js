@@ -23,12 +23,16 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
-
+// Keys and Values
 var KEYWORD = "rhyme";
+var GREETING;
 var name = "";
 
+// File Parsers
 var fs = require("fs");
+// Greetings text file
 var greetings_file = "./public/greetings.txt";
+// Curse word text file
 
 
 /*
@@ -228,9 +232,19 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  var text = fs.readFileSync(greetings_file, "utf-8");
-  var textByLine = text.split("\n");
-  console.log(textByLine);
+  setUpLocalVariables();
+
+
+
+}
+
+// Read text file data and store it into local variables for string comparisons
+function setUpLocalVariables() {
+
+  var temp = fs.readFileSync(greetings_file, "utf-8");
+  var greetings_textByLine = temp.split("\n");
+  console.log(greetings_textByLine);
+
 }
 
 function getUserInfo(senderID) {
