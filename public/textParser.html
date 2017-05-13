@@ -17,7 +17,22 @@ function myFunction() {
     var input = document.getElementById("myText").value;
     var inputLC = (document.getElementById("myText").value).toLowerCase();
 
-    document.getElementById("demo").innerHTML = input + " or " + <br> + inputLC;
+    var cars = ["Saab", "Volvo", "BMW"];
+
+    switch (inputLC) {
+
+    case cars:
+    console.log("We have some cars");
+    var output = "Cars";
+
+    break;
+    default:
+
+    var output = "NOPE";
+
+  }
+
+    document.getElementById("demo").innerHTML = input + " or " + output;
 }
 </script>
 
