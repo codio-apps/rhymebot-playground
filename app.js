@@ -26,8 +26,8 @@ app.use(express.static('public'));
 
 var KEYWORD = "rhyme";
 
-//empty string for first name
-var name ="";
+//init string for first name
+var name = getUserInfo(senderID);
 
 /*
  * Be sure to setup your config values before running this code. You can
