@@ -1,0 +1,30 @@
+{
+  "name": "rhymebot-playground",
+  "version": "1.0.0",
+  "description": "You make the rhythm, we make the rhyme.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codio-apps/rhymebot-playground.git"
+  },
+  "author": "ajstevens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codio/rhymebot-playground/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "config": "^1.20.4",
+    "csv": "^1.1.1",
+    "ejs": "^2.4.2",
+    "express": "^4.15.2",
+    "mongojs": "^2.4.0",
+    "request": "^2.72.0"
+  },
+  "homepage": "https://github.com/codio/rhymebot-playground#readme",
+  "devDependencies": {}
+}

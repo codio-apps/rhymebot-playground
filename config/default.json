@@ -1,0 +1,6 @@
+{
+    "appSecret": "8c5ece8f8822ed19e7a515c3ed710e01",
+    "pageAccessToken": "EAACEjKZBTfTEBAL0RCnYjr4ZBipNwhX9QygpT5ZApcaZCuep509l1ajxBHUJmSaZCOHNTXgRIz9v4OR41HN5yoiQZCNx74rWS8USXAPAzAf8piutcdIXoU8RlR22SWCq4kAtCZBlIZAsnYNew6SBRWRyG38C1EpsLsl0G4nKZBHP2vwZDZD",
+    "validationToken": "rhymebot_playground_verification",
+    "serverURL": "https://rhymebot-playground.herokuapp.com/webhook"
+}
