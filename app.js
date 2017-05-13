@@ -330,6 +330,13 @@ function receivedMessage(event) {
           var insultString = messageText.slice(8);
           sendTextMessage(senderID, "I'm "+insultString+"? :( ouch, my feelings");
         }
+
+        insult = messageText.startsWith ("your ");
+        if(insult) {
+          var insultString = messageText.slice(5);
+          sendTextMessage(senderID, "My "+insultString+"? my masters did not create me with one");
+        }
+
         if(insult) {
         } else
         {
