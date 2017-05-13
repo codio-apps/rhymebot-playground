@@ -261,6 +261,10 @@ function receivedMessage(event) {
 
 
   if (messageText) {
+    // when we receive a message, ensure we know the first name
+    if (name=="") {
+      name = getUserInfo(senderID);
+    }
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
@@ -327,10 +331,6 @@ function receivedMessage(event) {
       case 'heya':
       case 'yo':
       case 'sup':
-        if (name=="") {
-          name = getUserInfo(senderID);
-        }
-        console.log("name = "+name);
         sendTextMessage(senderID, "What's up " + name +"?");
       break;
 
