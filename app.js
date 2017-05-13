@@ -317,16 +317,16 @@ function receivedMessage(event) {
 
       default:
 
-      var nString = messageText.startsWith("you're ");
-      console.log("StringParser: " + n);
+      var insult = messageText.startsWith("you're ");
+      console.log("StringParser: " + insult);
 
       if(n >= 0) {
 
-      var rhymeString = messageText.slice(n + 4);
+      var insultString = messageText.slice(insult + 4);
       console.log("StringParser: " + rhymeString);
-      var messageArray = "I'm "+rhymeString.split(" ");
+      var messageArray = "I'm "+insultString.split(" ")+"?";
 
-       console.log("StringParser: " + n);
+       console.log("StringParser: " + insult);
        console.log("StringParser: " + messageArray);
 
        return messageArray;
