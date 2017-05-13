@@ -315,12 +315,8 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
-      case 'you *':
-        sendTextMessage(senderID, "What?");
-        break;
-
       default:
-        sendTextMessage(senderID, messageText);
+        sendTextMessage(senderID, messageText+"?");
     }
   } else if (messageAttachments) {
     getUserInfo(senderID);
