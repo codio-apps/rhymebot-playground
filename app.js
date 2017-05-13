@@ -327,20 +327,21 @@ function receivedMessage(event) {
            sendTextMessage(senderID, "I'm "+insultString+"? that hurts my ones and zeroes");
         }
 
-        insult = messageText.startsWith ("you are ");
+        insult = messageText.startsWith("you are ");
         if(insult) {
            insulted=true;
           var insultString = messageText.slice(8);
           sendTextMessage(senderID, "I'm "+insultString+"? :( ouch, my feelings");
         }
 
-        insult = messageText.startsWith ("your ");
+        insult = messageText.startsWith("your ");
         if(insult) {
            insulted=true;
           var insultString = messageText.slice(5);
           sendTextMessage(senderID, "My "+insultString+"? I'm sorry my masters did not create me with any "+insultString);
         }
 
+        //otherwise just reply with a question mark for now
         if(insulted) {
         } else
         {
@@ -618,11 +619,11 @@ if (rhymeObject == messageText) {
 
 function checkKeyword(messageText){
 
-
- var n = messageText.search(/rhyme/i);
+//changed this to only search for "rhyme" at the start of the string 
+ var n = messageText.startsWith("rhyme");
  console.log("StringParser: " + n);
 
- if(n >= 0) {
+ if(n) {
 
  var rhymeString = messageText.slice(n + 6);
  console.log("StringParser: " + rhymeString);
