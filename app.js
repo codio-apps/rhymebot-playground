@@ -28,7 +28,7 @@ var KEYWORD = "rhyme";
 var name = "";
 
 var fs = require("fs");
-var greetings_file = "./greetings.txt";
+var greetings_file = "./public/greetings.txt";
 
 
 /*
