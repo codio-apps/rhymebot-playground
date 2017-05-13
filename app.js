@@ -625,7 +625,7 @@ function checkKeyword(messageText){
 
  if(n) {
 
- var rhymeString = messageText.slice(n + 6);
+ var rhymeString = messageText.slice(6);
  console.log("StringParser: " + rhymeString);
  var messageArray = rhymeString.split(" ");
 
