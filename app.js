@@ -316,13 +316,13 @@ function receivedMessage(event) {
         break;
 
       default:
-      //check to see if we have been insulted
+      //check to see if we have been insulted, and respond
         var insult =false;
         insult = messageText.startsWith("you're ");
         console.log("insultCheck: " + insult);
         if(insult) {
            var insultString = messageText.slice(7);
-           sendTextMessage(senderID, "I'm "+insultString+"?");
+           sendTextMessage(senderID, "I'm a "+insultString+"? ouch, my feelings");
         } else
         {
           sendTextMessage(senderID, messageText+"?");
