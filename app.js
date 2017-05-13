@@ -1,3 +1,7 @@
+/* RhymeBot is a Codio Apps Production */
+/* Signed by ajstevens and ohmegamega */
+/* Testing */
+
 /* jshint node: true, devel: true */
 'use strict';
 
