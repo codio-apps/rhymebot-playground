@@ -570,21 +570,25 @@ function findRhyme(senderID, searchWord) {
       var wordLength = searchWord.length;
       var temp = CURRENTDICTIONARY[i].slice(wordLength+2);
       SYLLABLES = temp.split(" ");
-      sendTextMessage(senderID, "I know this word: "+searchWord+", it has "+SYLLABLES.length+" parts.\nThey are: "+temp);
     }
   }
     if (!wordFound) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
-    console.log("attempting to find the rhyme");
+    console.log("Enterpreting the rhyme");
     //put parts to rhyme into a var
-    for (var i = SYLLABLES.length-2, len = SYLLABLES.length; i < len; i++){
-      //do something
-    }
     var ending = SYLLABLES[SYLLABLES.length-2]+" "+SYLLABLES[SYLLABLES.length-1];
     sendTextMessage(senderID, "Ok I will attempt to rhyme the ending "+ending);
+    //now compare the var to the dictionary file
+    var returnString = "";
+    for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+      if(CURRENTDICTIONARY[i].endsWith(ending)){
+        console.log("rhyme found");
+        returnString =CURRENTDICTIONARY[i]+"\n";
+      }
+    }
+    sendTextMessage(senderID, returnString);
   }
-  console.log("Dictionary search complete, searched "+i+" entries");
 }
 
 /*
