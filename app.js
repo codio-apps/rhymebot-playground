@@ -425,7 +425,7 @@ function receivedMessage(event) {
       //check to see if we have possibly been insulted, and respond
         var insult = false;
 
-        insult = lcmessageText.startsWith("you're ");
+        insult = messageText.startsWith("you're ");
         if(insult) {
            caughtCommand=true;
            var insultString = messageText.slice(7);
