@@ -28,6 +28,7 @@ var RHYME_TYPOS = "";
 var GREETINGS = "";
 var name = "";
 var rhymeString = "";
+var searchWord = "";
 
 // Set up file parsing
 var fs = require("fs");
@@ -378,8 +379,8 @@ function receivedMessage(event) {
         var syllableString = messageText.slice(9);
         sendTextMessage(senderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't do that yet :/");
         console.log("parsing to upper case")
-        syllableString = syllableString.toUpperCase();
-        searchDictionary(syllableString);
+        searchWord = syllableString.toUpperCase();
+        searchDictionary(searchWord);
       }
 
       //check to see if we have possibly been insulted, and respond
@@ -494,8 +495,8 @@ function getUserInfo(senderID) {
     });
   }
 
-function searchDictionary(messageText) {
-  console.log("Dictionary search request received");
+function searchDictionary(searchWord) {
+  console.log("Dictionary search request received, word is: "+searchWord);
 }
 
 /*
