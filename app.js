@@ -373,7 +373,8 @@ function receivedMessage(event) {
       if (syllableCheck) {
         caughtCommand = true;
         console.log("syllable check requested");
-        sendTextMessage("Ok "+name+", looks like you want to output syllables. I can't do it yet :/");
+        var syllableString = messageText.slice(9);
+        sendTextMessage(SenderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't do that yet :/");
       }
 
       //check to see if we have possibly been insulted, and respond
