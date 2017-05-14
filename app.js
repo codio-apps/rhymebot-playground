@@ -425,24 +425,24 @@ function receivedMessage(event) {
       //check to see if we have possibly been insulted, and respond
         var insult = false;
 
-        insult = lc_messageText.startsWith("you're ");
+        insult = lcmessageText.startsWith("you're ");
         if(insult) {
            caughtCommand=true;
-           var insultString = lc_messageText.slice(7);
+           var insultString = messageText.slice(7);
            sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
         }
 
-        insult = lc_messageText.startsWith("you are ");
+        insult = messageText.startsWith("you are ");
         if(insult) {
            caughtCommand=true;
-          var insultString = lc_messageText.slice(8);
+          var insultString = messageText.slice(8);
           sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
         }
 
-        insult = lc_messageText.startsWith("your ");
+        insult = messageText.startsWith("your ");
         if(insult) {
            caughtCommand=true;
-          var insultString = lc_messageText.slice(5);
+          var insultString = messageText.slice(5);
           sendTextMessage(senderID, "My "+insultString+"? I am sorry, I have no concept of how I should feel about that");
         }
 
@@ -831,8 +831,8 @@ if (rhymeObject == messageText) {
 
 function checkKeyword(messageText){
 
-//this keeps biting m in the ass
- var n = lc_messageText.startsWith("rhyme");
+//changed this to only search for "rhyme" at the start of the string
+ var n = messageText.startsWith("rhyme");
  //this line is being output to the console a lot, often being called twice per instruction - am not sure why???
  console.log("Rhyme command " + n);
 
