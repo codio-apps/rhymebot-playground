@@ -395,8 +395,8 @@ function receivedMessage(event) {
         //send the string to be searched
         for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
           wordNumber++;
-          console.log("word "+wordNumber+" of "+stringLength" is: "+SEARCHSTRING[i]);
           searchWord = SEARCHSTRING[i].toUpperCase();
+          console.log("word "+wordNumber+" of "+stringLength+" is: "+searchWord);
           searchDictionary(senderID, searchWord, wordNumber);
         }
         //return output in right order
