@@ -26,6 +26,7 @@ var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
 var GREETINGS = "";
 var CURRENTDICTIONARY ="";
+var SEARCHSTRING ="";
 var name = "";
 var rhymeString = "";
 var searchWord = "";
@@ -378,8 +379,11 @@ function receivedMessage(event) {
         caughtCommand = true;
         var syllableString = lc_messageText.slice(9);
         console.log("syllable check requested, parsing to upper case");
-        searchWord = syllableString.toUpperCase();
-        searchDictionary(senderID, searchWord);
+        SEARCHSTRING = syllableString.split(" ");
+        for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
+          searchWord = SEARCHSTRING[i].toUpperCase();
+          searchDictionary(senderID, searchWord);
+        }
       }
 
       //check to see if we have possibly been insulted, and respond
