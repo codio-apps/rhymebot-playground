@@ -583,8 +583,8 @@ function findRhyme(senderID, searchWord) {
     var returnString = "";
     for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
       if(CURRENTDICTIONARY[i].endsWith(ending)){
-        console.log("rhyme found");
-        returnString =returnString+CURRENTDICTIONARY[i]+"\n";
+        console.log("rhyme found: "+CURRENTDICTIONARY[i]);
+        returnString=returnString+CURRENTDICTIONARY[i]+"\n";
       }
     }
     sendTextMessage(senderID, returnString);
