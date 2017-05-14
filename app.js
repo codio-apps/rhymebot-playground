@@ -586,7 +586,7 @@ function findRhyme(senderID, searchWord) {
       if(CURRENTDICTIONARY[i].endsWith(ending)){
         console.log("rhyme found: "+CURRENTDICTIONARY[i]);
         returnString=returnString+CURRENTDICTIONARY[i]+"\n";
-        count++
+        count++;
       }
     }
     sendTextMessage("I found "+count+" rhymes. If this is over 640??, nothing will be displayed");
