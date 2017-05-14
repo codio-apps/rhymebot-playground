@@ -287,17 +287,17 @@ function receivedMessage(event) {
     }
     else if(StringSearch(lc_messageText, RHYME_TYPOS)) {
       key = "rhyme_typo";
-      console.log("Nearly a rhyme, send them a confirmation. String was: " + key);
+      console.log("Nearly a rhyme, send them a confirmation. String was: " + messageText);
     }
     else {
 
       //Do nothing
     }
     //now parse the messageText to lower case
-    console.log("parsing to lower case");
-    messageText = messageText.toLowerCase();
+    console.log("parsing global message text to lower case");
+    messageText = lc_messageText;
     console.log("message text is now: "+messageText);
-    
+
     switch (key) {
       case 'image':
         sendImageMessage(senderID);
@@ -364,7 +364,7 @@ function receivedMessage(event) {
 
       case 'rhyme_typo':
       console.log("Typo time, ask for confirmation");
-      sendTextMessage("Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme");
+      sendTextMessage(senderID, "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme");
       break;
       default:
 
