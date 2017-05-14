@@ -419,11 +419,9 @@ function receivedMessage(event) {
       //test environment for single word, single syllable perfect rhymes
       var searchWord = lc_messageText.slice(7)
       searchWord = searchWord.toUpperCase();
-      if (singleRhyme) {
         caughtCommand=true;
         console.log("calling find rhyme, word is |"+searchWord);
         findRhyme(senderID, searchWord);
-      }
       break;
 
       default:
