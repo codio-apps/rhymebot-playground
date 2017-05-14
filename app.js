@@ -310,6 +310,10 @@ function receivedMessage(event) {
     else if(lc_messageText.startsWith("single")) {
       key = "single";
     }
+    // If the message starts with Rhyme, change the key to rhyme
+    else if(lc_messageText.startsWith("rhyme")) {
+      key = "rhyme";
+    }
     else {
       //Do nothing, key is set to messageText
     }
@@ -346,7 +350,7 @@ function receivedMessage(event) {
       var syllableString = lc_messageText.slice(9);
       var tempString="";
       console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
-      sendTextMessage(senderID, "I recognised the word, I am getting this data: "+syllableString);
+      sendTextMessage(senderID, "I recognised the word, I am getting this data: "+ syllableString);
       SEARCHSTRING = syllableString.split(" ");
       stringLength = SEARCHSTRING.length;
       //send the string to be searched
@@ -374,6 +378,13 @@ function receivedMessage(event) {
         findRhyme(senderID, searchWord);
       break;
 
+      // Handle the RHYME command
+      // ************************************
+      case 'rhyme':
+      var rhymeString = messageText.slice(6);
+      var messageArray = rhymeString.split(" ");
+      sendTextMessage(senderID, "Rhyme Time! You said you want to rhyme: " + messageArray);
+      break;
       default:
 
           sendTextMessage(senderID, messageText+"?");
@@ -484,6 +495,8 @@ function searchDictionary(senderID, searchWord, wordNumber) {
   console.log("Dictionary search complete, searched "+i+" entries");
 }
 
+
+
 //FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
@@ -519,6 +532,32 @@ function findRhyme(senderID, searchWord) {
     sendTextMessage(senderID, returnString);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  * Delivery Confirmation Event
@@ -723,10 +762,7 @@ function sendFileMessage(recipientId) {
  * Send a text message using the Send API.
  *
  */
-function sendTextMessage(recipientId, messageText) {
-  var rhymeObject = checkKeyword(messageText);
-
-if (rhymeObject == messageText) {
+ function sendTextMessage(recipientId, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -736,53 +772,10 @@ if (rhymeObject == messageText) {
       metadata: "DEVELOPER_DEFINED_METADATA"
     }
   };
-} else {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: "Rhyme Time! You said you want to rhyme: " + rhymeObject,
-      metadata: "DEVELOPER_DEFINED_METADATA"
-    }
-  };
-
-
-}
 
   callSendAPI(messageData);
 }
 
-
-
-function checkKeyword(messageText){
-
-console.log("Line 834::::::::::: " + lc_messageText.startsWith("rhyme"));
-//changed this to only search for "rhyme" at the start of the string
- var n = lc_messageText.startsWith("rhyme");
- //this line is being output to the console a lot, often being called twice per instruction - am not sure why???
- console.log("Rhyme command " + n);
-
- if(n) {
-
- rhymeString = lc_messageText.slice(6);
- console.log("StringParser: " + rhymeString);
- var messageArray = rhymeString.split(" ");
-
-  console.log("StringParser: " + n);
-  console.log("StringParser: " + messageArray);
-
-  return messageArray;
-
-} else {
-  return lc_messageText;
-}
-
-
-
-
-
-}
 
 /*
  * Send a button message using the Send API.
