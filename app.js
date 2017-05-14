@@ -27,6 +27,8 @@ var RHYME_TYPOS = "";
 var GREETINGS = "";
 var CURRENTDICTIONARY ="";
 var SEARCHSTRING ="";
+var OUPUTSTRING ="";
+var wordNumber =0;
 var name = "";
 var rhymeString = "";
 var searchWord = "";
@@ -377,14 +379,18 @@ function receivedMessage(event) {
       syllableCheck = lc_messageText.startsWith("syllable");
       if (syllableCheck) {
         caughtCommand = true;
+        wordNumber=0;
         var syllableString = lc_messageText.slice(9);
         console.log("syllable check requested, parsing to upper case");
         SEARCHSTRING = syllableString.split(" ");
-        var OUTPUTSTRING =""
+        console.log(stringLength+" words detected in string");
         for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
+          wordNumber++;
           searchWord = SEARCHSTRING[i].toUpperCase();
-          searchDictionary(senderID, searchWord);
+          searchDictionary(senderID, searchWord, wordNumber);
         }
+        for (var i = 0, len SEARCHSTRING.length; i < len; i++) {
+          sendTextMessage(senderID, OUTPUTSTRING[i]);
       }
 
       //check to see if we have possibly been insulted, and respond
@@ -502,7 +508,7 @@ function getUserInfo(senderID) {
   }
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
-function searchDictionary(senderID, searchWord) {
+function searchDictionary(senderID, searchWord, wordNumber) {
   var wordFound = false;
   console.log("Dictionary search request received, word is: "+searchWord);
   //COMPARE START OF EACH LINE WITH SEARCH WORD
@@ -510,7 +516,8 @@ function searchDictionary(senderID, searchWord) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       wordFound = true;
-      sendTextMessage(senderID, "Yes I know this word, here is the data I have on it: \n"+CURRENTDICTIONARY[i]);
+      OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i]+"\n"
+      console.log(OUTPUTSTRING[wordNumber]+": "+wordNumber+" added to list")
     }
   }
   if (wordFound) {
