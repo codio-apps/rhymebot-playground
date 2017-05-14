@@ -384,7 +384,7 @@ function receivedMessage(event) {
         console.log("syllable check requested, parsing to upper case");
         SEARCHSTRING = syllableString.split(" ");
         console.log(stringLength+" words detected in string");
-        //send the string
+        //send the string to be searched
         for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
           wordNumber++;
           searchWord = SEARCHSTRING[i].toUpperCase();
