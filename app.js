@@ -522,11 +522,11 @@ function getUserInfo(senderID) {
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
 function searchDictionary(senderID, searchWord, wordNumber) {
   var wordFound = false;
-  console.log("Dictionary search request received, word is: "+searchWord);
+  console.log("Dictionary search request received, word is: "+searchWord+" word number is "+wordNumber);
   //COMPARE START OF EACH LINE WITH SEARCH WORD
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-      console.log("word number "+wordNumber+"found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
       wordFound = true;
       OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i];
       console.log(OUTPUTSTRING[wordNumber]+": "+wordNumber+" added to list");
