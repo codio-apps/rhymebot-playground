@@ -379,7 +379,7 @@ function receivedMessage(event) {
         sendTextMessage(senderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't try that now :S");
         console.log("parsing to upper case")
         searchWord = syllableString.toUpperCase()+"  ";
-        searchDictionary(searchWord);
+        searchDictionary(senderID, searchWord);
       }
 
       //check to see if we have possibly been insulted, and respond
@@ -497,8 +497,7 @@ function getUserInfo(senderID) {
   }
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
-//some read operations are handled here ONLY for now, for bug catching
-function searchDictionary(searchWord) {
+function searchDictionary(senderID, searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
   //COMPARE START OF EACH LINE WITH SEARCH WORD
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
