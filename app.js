@@ -533,7 +533,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
   }
   if (wordFound) {
   } else {
-    OUTPUTSTRING[wordnumber]=SEARCHSTRING[wordnumber];
+    OUTPUTSTRING[wordNumber]="**notfound**";
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
   console.log("Dictionary search complete, searched "+i+" entry");
