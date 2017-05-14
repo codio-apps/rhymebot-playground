@@ -497,6 +497,7 @@ function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
   //READ FILE AND PUT INTO ARRAY BY LINE
   var temp = fs.readFile(dictionary, "utf-8");
+  console.log("Dictionary read complete: "+temp);
   var textByLine = temp.split("\n");
   console.log("Dictionary read complete: "+textByLine);
   //COMPARE START OF EACH LINE WITH SEARCH WORD
