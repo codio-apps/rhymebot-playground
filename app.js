@@ -388,7 +388,6 @@ function receivedMessage(event) {
         var syllableString = lc_messageText.slice(9);
         console.log("syllable check requested, parsing to upper case");
         SEARCHSTRING = syllableString.split(" ");
-        OUTPUTSTRING = syllableString.split(" ");
         console.log(stringLength+" words detected in string");
         //send the string to be searched
         for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
