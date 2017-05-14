@@ -34,6 +34,7 @@ var fs = require("fs");
 var greetings_file = "public/greetings.txt";
 // Parse nearly_a_rhyme.txt into data object
 var rhyme_typos = "public/nearly_a_rhyme.txt";
+//setup dictionary file
 var dictionary = "public/dictionarymain.txt";
 
 
