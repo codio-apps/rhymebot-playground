@@ -561,13 +561,13 @@ function findRhyme(senderID, searchWord) {
   var wordFound = false;
   //check every word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    console.log("checking word "+i);
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       sendTextMessage(senderID, "got one");
     }
   }
+  console.log("searched whole dictionary");
   if (wordFound=false) {
     console.log("something ain't working man");
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
