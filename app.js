@@ -549,8 +549,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
       OUTPUTSTRING[wordNumber]=temp;
     }
   }
-  if (wordFound) {
-  } else {
+  if (wordFound=false) {
     OUTPUTSTRING[wordNumber]="**notfound**";
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
@@ -568,10 +567,10 @@ function findRhyme(senderID, searchWord) {
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       sendTextMessage(senderID, "got one");
     }
-    if (wordFound=false) {
-      console.log("something ain't working man");
-      sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
-    }
+  }
+  if (wordFound=false) {
+    console.log("something ain't working man");
+    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
   console.log("Dictionary search complete, searched "+i+" entries");
 }
