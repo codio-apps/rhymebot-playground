@@ -526,9 +526,9 @@ function searchDictionary(senderID, searchWord, wordNumber) {
   //COMPARE START OF EACH LINE WITH SEARCH WORD
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-      console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      console.log("word number "+wordNumber+"found in dictionary, it is "+CURRENTDICTIONARY[i]);
       wordFound = true;
-      OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i]+"\n";
+      OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i];
       console.log(OUTPUTSTRING[wordNumber]+": "+wordNumber+" added to list");
     }
   }
