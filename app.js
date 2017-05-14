@@ -379,7 +379,7 @@ function receivedMessage(event) {
         sendTextMessage(senderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't do that yet :/");
         console.log("parsing to upper case")
         syllableString = syllableString.toUpperCase();
-
+        searchDictionary(syllableString);
       }
 
       //check to see if we have possibly been insulted, and respond
@@ -494,6 +494,9 @@ function getUserInfo(senderID) {
     });
   }
 
+function searchDictionary(messageText) {
+  console.log("Dictionary search request received");
+}
 
 /*
  * Delivery Confirmation Event
