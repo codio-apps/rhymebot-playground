@@ -389,7 +389,6 @@ function receivedMessage(event) {
         var syllableString = lc_messageText.slice(9);
         console.log("syllable check requested, parsing to upper case");
         SEARCHSTRING = syllableString.split(" ");
-        OUTPUTSTRING = SEARCHSTRING;
         stringLength = SEARCHSTRING.length;
         console.log(stringLength+" word(s) detected in string");
         //send the string to be searched
@@ -526,8 +525,8 @@ function searchDictionary(senderID, searchWord, wordNumber) {
   //COMPARE START OF EACH LINE WITH SEARCH WORD
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-      console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
       wordFound = true;
+      console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
       OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i];
       console.log(OUTPUTSTRING[wordNumber]+": "+wordNumber+" added to list");
     }
