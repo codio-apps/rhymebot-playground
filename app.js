@@ -233,6 +233,7 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
+  console.log("***START OF NEW MESSAGE RECIEVED***");
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
 
@@ -393,6 +394,9 @@ function receivedMessage(event) {
     //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
   }
 }
+
+/* ************************************************************************************************************************************
+*/
 
 // Read text file data and store it into local variables for string comparisons
 function setUpLocalVariables() {
