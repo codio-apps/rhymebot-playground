@@ -33,7 +33,7 @@ var fs = require("fs");
 // Parse greetings.txt into data object
 var greetings_file = "public/greetings.txt";
 // Parse nearly_a_rhyme.txt into data object
-var rhyme_typos = "publis/nearly_a_rhyme.txt"
+var rhyme_typos = "public/nearly_a_rhyme.txt"
 
 
 /*
@@ -397,11 +397,27 @@ function receivedMessage(event) {
 // Read text file data and store it into local variables for string comparisons
 function setUpLocalVariables() {
 
+  // Trr and read from file
+  try {
   var temp = fs.readFileSync(greetings_file, "utf-8");
   GREETINGS = temp.split("\n");
-
+}
+// Catch an error and set default
+  catch(err) {
+    console.log("Unable to parse file: " + err);
+    GREETINGS = "hi";
+  }
+  // Trr and read from file
+  try {
   temp = fs.readFileSync(rhyme_typos, "utf-8");
   RHYME_TYPOS = temp.split("\n")
+  }
+  // Catch an error and set default
+  catch(err) {
+    console.log("Unable to parse file: " + err);
+    RHYME_TYPOS = "rhymes";
+
+  }
 
   console.log(GREETINGS + "/n" + RHYME_TYPOS);
 
