@@ -355,6 +355,7 @@ function receivedMessage(event) {
 
       //check to see if we have been greeted, and respond
       case 'welcome':
+        caughtCommand=true;
         if (name=="") {
           console.log("Name not retrieved from Facebook yet");
           name = getUserInfo(senderID);
@@ -508,9 +509,10 @@ function searchDictionary(senderID, searchWord) {
       wordFound = true;
       sendTextMessage(senderID, "Yes I know this word, here is the data I have on it: \n"+CURRENTDICTIONARY[i]);
     }
-    //if (!wordFound) {
-    //  sendTextMessage(senderID, "I don't know the word "+searchWord+"yet, sorry");
-    //}
+    if (wordFound) {
+    } else {
+      sendTextMessage(senderID, "I don't know the word "+searchWord+" yet, sorry");
+    }
   }
 console.log("Dictionary search complete, searched "+i+" entry");
 }
