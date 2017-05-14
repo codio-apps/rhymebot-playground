@@ -428,44 +428,11 @@ function receivedMessage(event) {
 
       default:
 
-      //global temp string
-      var tempString = "";
-
-
-
-
-      //check to see if we have possibly been insulted, and respond
-        var insult = false;
-
-        insult = messageText.startsWith("you're ");
-        if(insult) {
-           caughtCommand=true;
-           var insultString = messageText.slice(7);
-           sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
-        }
-
-        insult = messageText.startsWith("you are ");
-        if(insult) {
-           caughtCommand=true;
-          var insultString = messageText.slice(8);
-          sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
-        }
-
-        insult = messageText.startsWith("your ");
-        if(insult) {
-           caughtCommand=true;
-          var insultString = messageText.slice(5);
-          sendTextMessage(senderID, "My "+insultString+"? I am sorry, I have no concept of how I should feel about that");
-        }
-
-        //otherwise just reply with an added question mark for now
-        if(caughtCommand) {
-        } else
-        {
           sendTextMessage(senderID, messageText+"?");
         }
 
     }
+
   } else if (messageAttachments) {
     getUserInfo(senderID);
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
