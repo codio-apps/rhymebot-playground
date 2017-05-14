@@ -388,15 +388,12 @@ function receivedMessage(event) {
         //init arrays and counter
         wordNumber=0;
         var syllableString = lc_messageText.slice(9);
-        console.log("syllable check requested, parsing to upper case");
+        console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
         SEARCHSTRING = syllableString.split(" ");
         stringLength = SEARCHSTRING.length;
-        console.log(stringLength+" word(s) detected in string");
         //send the string to be searched
         for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
-          console.log("searching i="+i+" len="+len+" searchWord="+searchWord);
           searchWord = SEARCHSTRING[i].toUpperCase();
-          console.log("word "+wordNumber+" of "+stringLength+" is: "+searchWord);
           searchDictionary(senderID, searchWord, wordNumber);
           wordNumber++;
         }
@@ -532,11 +529,11 @@ function searchDictionary(senderID, searchWord, wordNumber) {
       wordFound = true;
       console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
       OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i];
-      console.log(OUTPUTSTRING[wordNumber]+": "+wordNumber+" added to list");
     }
   }
   if (wordFound) {
   } else {
+    OUTPUTSTRING[wordnumber]=SEARCHSTRING[wordnumber];
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
   console.log("Dictionary search complete, searched "+i+" entry");
