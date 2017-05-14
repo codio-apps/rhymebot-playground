@@ -756,15 +756,15 @@ if (rhymeObject == messageText) {
 
 function checkKeyword(messageText){
 
-console.log("Line 834::::::::::: " + messageText.startsWith("rhyme"));
+console.log("Line 834::::::::::: " + lc_messageText.startsWith("rhyme"));
 //changed this to only search for "rhyme" at the start of the string
- var n = messageText.startsWith("rhyme");
+ var n = lc_messageText.startsWith("rhyme");
  //this line is being output to the console a lot, often being called twice per instruction - am not sure why???
  console.log("Rhyme command " + n);
 
  if(n) {
 
- rhymeString = messageText.slice(6);
+ rhymeString = lc_messageText.slice(6);
  console.log("StringParser: " + rhymeString);
  var messageArray = rhymeString.split(" ");
 
@@ -774,7 +774,7 @@ console.log("Line 834::::::::::: " + messageText.startsWith("rhyme"));
   return messageArray;
 
 } else {
-  return messageText;
+  return lc_messageText;
 }
 
 
