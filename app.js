@@ -309,7 +309,7 @@ function receivedMessage(event) {
     else if(syllableCheck = lc_messageText.startsWith("syllable")) {
 
       console.log("Also a syllable is fired here!!!!!!!!!!!!!!!!!!!!!!");
-
+      key = "syllable";
 
     }
     else {
@@ -390,38 +390,30 @@ function receivedMessage(event) {
 
       case 'syllable':
       console.log("SYLLABLE STUFF GOES HERE ALSO");
+      caughtCommand = true;
+      //init arrays and counter
+      wordNumber=0;
+      var syllableString = lc_messageText.slice(9);
+      console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
+      sendTextMessage(senderID, "I recognised the word, I am getting this data: "+syllableString);
+      SEARCHSTRING = syllableString.split(" ");
+      stringLength = SEARCHSTRING.length;
+      //send the string to be searched
+      for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
+        searchWord = SEARCHSTRING[i].toUpperCase();
+        searchDictionary(senderID, searchWord, wordNumber);
+        wordNumber++;
+      }
+      //return output in right order
+      for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
+        tempString = tempString+"\n"+SEARCHSTRING[i]+": "+OUTPUTSTRING[i];
+      }
+      sendTextMessage(senderID, tempString);
 
       default:
 
       //global temp string
       var tempString = "";
-
-      //simple test environment for syllable command/output
-      var syllableCheck = false;
-      syllableCheck = lc_messageText.startsWith("syllable");
-      if (syllableCheck) {
-        caughtCommand = true;
-        //init arrays and counter
-        wordNumber=0;
-        var syllableString = lc_messageText.slice(9);
-        console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
-        sendTextMessage(senderID, "I recognised the word, I am getting this data: "+syllableString);
-        SEARCHSTRING = syllableString.split(" ");
-        stringLength = SEARCHSTRING.length;
-        //send the string to be searched
-        for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
-          searchWord = SEARCHSTRING[i].toUpperCase();
-          searchDictionary(senderID, searchWord, wordNumber);
-          wordNumber++;
-        }
-        //return output in right order
-        for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
-          tempString = tempString+"\n"+SEARCHSTRING[i]+": "+OUTPUTSTRING[i];
-        }
-        sendTextMessage(senderID, tempString);
-      }
-
-
 
       //test environment for single word, single syllable perfect rhymes
       var singleRhyme = false;
