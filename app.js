@@ -399,7 +399,7 @@ function receivedMessage(event) {
         }
         //return output in right order
         for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
-          tempString = tempString+"\n"+OUTPUTSTRING[i];
+          tempString = tempString+"\n"+SEARCHSTRING[i]+": "+OUTPUTSTRING[i];
         }
         sendTextMessage(senderID, tempString);
       }
