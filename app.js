@@ -503,7 +503,7 @@ function searchDictionary(searchWord) {
   //COMPARE START OF EACH LINE WITH SEARCH WORD
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord)){
-      console.log("word found in dictionary");
+      console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
     }
   }
 console.log("Dictionary search complete, searched "+i+" entry");
