@@ -393,6 +393,7 @@ function receivedMessage(event) {
         console.log(stringLength+" word(s) detected in string");
         //send the string to be searched
         for (var i = 0, len = SEARCHSTRING.length; i <= len; i++) {
+          console.log("searching i="+i+" len="+len+"searchWord")
           searchWord = SEARCHSTRING[i].toUpperCase();
           console.log("word "+wordNumber+" of "+stringLength+" is: "+searchWord);
           searchDictionary(senderID, searchWord, wordNumber);
