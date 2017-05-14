@@ -496,8 +496,7 @@ function getUserInfo(senderID) {
 function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
   //READ FILE AND PUT INTO ARRAY BY LINE
-  var fs = require("fs");
-  fs.readFile(dictionary, function(text){
+  fs.readFile(dictionary, "utf-8"){
     var textByLine = dictionary.split("\n")
 });
 console.log("Dictionary read complete: "+textByLine);
