@@ -396,6 +396,7 @@ function receivedMessage(event) {
       //init arrays and counter
       wordNumber=0;
       var syllableString = lc_messageText.slice(9);
+      var tempString="";
       console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
       sendTextMessage(senderID, "I recognised the word, I am getting this data: "+syllableString);
       SEARCHSTRING = syllableString.split(" ");
