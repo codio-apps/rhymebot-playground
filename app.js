@@ -560,12 +560,12 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 //FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT rhymes
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
-  console.log("findRhyme initialiation");
   //check every word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+    console.log("checking word "+i);
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
-      console.log(" word found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       sendTextMessage(senderID, "got one");
     }
     if (wordFound=false) {
