@@ -529,7 +529,8 @@ function searchDictionary(senderID, searchWord, wordNumber) {
       wordFound = true;
       console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
       //output rhyme data to the output array
-      var temp = CURRENTDICTIONARY[i].slice(searchWord.length);
+      var wordLength = searchWord.length+2;
+      var temp = CURRENTDICTIONARY[i].slice(wordLength);
       OUTPUTSTRING[wordNumber]=temp;
     }
   }
