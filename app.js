@@ -524,8 +524,8 @@ function searchDictionary(senderID, searchWord, wordNumber) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       wordFound = true;
-      OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i]+"\n"
-      console.log(OUTPUTSTRING[wordNumber]+": "+wordNumber+" added to list")
+      OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i]+"\n";
+      console.log(OUTPUTSTRING[wordNumber]+": "+wordNumber+" added to list");
     }
   }
   if (wordFound) {
