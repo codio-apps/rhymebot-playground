@@ -38,8 +38,6 @@ var rhyme_typos = "public/nearly_a_rhyme.txt";
 //setup dictionary file
 var dictionary = "public/dictionarymain.txt";
 
-
-
 /*
  * Be sure to setup your config values before running this code. You can
  * set them using environment variables or modifying the config file in /config.
@@ -455,11 +453,6 @@ function setUpLocalVariables() {
   //try to read dictionary file
   try {
   temp = fs.readFileSync(dictionary, "utf-8");
-  var fs = require('fs');
-  var array = fs.readFileSync('public/dictionarymain.txt').toString().split("\n");
-  for(i in array) {
-    console.log(array[i]);
-}
 }
 // Catch an error and set default
   catch(err) {
