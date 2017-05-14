@@ -567,8 +567,8 @@ function findRhyme(senderID, searchWord) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
-      SYLLABLES = searchWord.split(" ");
-      sendTextMessage(senderID, "I know this word: "+searchWord+", it has "+SYLLABLES.length+" parts");
+      var tempSyllables = searchWord.split(" ");
+      sendTextMessage(senderID, "I know this word: "+searchWord+", it has "+tempSyllables.length+" parts");
     }
   }
     if (!wordFound) {
