@@ -584,7 +584,7 @@ function findRhyme(senderID, searchWord) {
     var count = 0;
     for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
       if(CURRENTDICTIONARY[i].endsWith(ending)){
-        console.log("rhyme found: "+CURRENTDICTIONARY[i]);
+        console.log("rhyme number"+count+" found: "+CURRENTDICTIONARY[i]);
         returnString=returnString+CURRENTDICTIONARY[i]+"\n";
         count++;
       }
