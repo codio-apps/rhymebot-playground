@@ -415,7 +415,7 @@ function receivedMessage(event) {
       if (singleRhyme) {
         caughtCommand=true;
         console.log("calling find rhyme");
-        findRhyme(senderID, searchWord, 0);
+        findRhyme(senderID, searchWord);
       }
 
 
@@ -558,7 +558,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 }
 
 //FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT rhymes
-function findRhyme(senderID, searchWord, wordNumber) {
+function findRhyme(senderID, searchWord) {
   //check every word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
