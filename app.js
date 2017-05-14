@@ -283,8 +283,13 @@ function receivedMessage(event) {
       key = "welcome";
       console.log("String search was successfull. Key is now " + key);
     }
+    else if(StringSearch(lc_messageText, RHYME_TYPOS)) {
+      key = "rhyme_typo";
+      console.log("Nealy a rhyme, send them a confirmation. String was: " + key);
+    }
     else {
-    // Do nothing
+
+      //Do nothing
     }
 
     switch (key) {
@@ -349,9 +354,12 @@ function receivedMessage(event) {
         } else {
           sendTextMessage(senderID, "What's up " + name +"?");
         }
-
       break;
 
+      case 'rhyme_typo':
+      console.log("Type time, ask for confirmation");
+      sendTextMessage("Are you looking for a rhyme? We'll only respond if you start your sentance with \"rhyme\"");
+      break;
       default:
       //check to see if we have possibly been insulted, and respond
         var insult =false;
