@@ -567,7 +567,7 @@ function findRhyme(senderID, searchWord) {
       sendTextMessage(senderID, "got one");
     }
   }
-  console.log("searched whole dictionary");
+  console.log("searched whole dictionary, word found status is "+wordFound);
   if (wordFound=false) {
     console.log("something ain't working man");
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
