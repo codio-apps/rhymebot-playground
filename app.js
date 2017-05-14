@@ -306,7 +306,7 @@ function receivedMessage(event) {
       console.log("Nearly a rhyme, send them a confirmation. String was: " + messageText);
     }
     // If the message starts with Syllable, change the key to "syllable"
-    else if(syllableCheck = lc_messageText.startsWith("syllable");) {
+    else if(syllableCheck = lc_messageText.startsWith("syllable")) {
 
       console.log("Also a syllable is fired here!!!!!!!!!!!!!!!!!!!!!!");
 
