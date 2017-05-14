@@ -497,7 +497,7 @@ function searchDictionary(searchWord) {
   //READ FILE AND PUT INTO ARRAY BY LINE
   var fs = require("fs");
   fs.readFile(dictionary, function(text){
-    var textByLine = text.split("\n")
+    var textByLine = dictionary.split("\n")
 });
 console.log("Dictionary search complete");
 }
