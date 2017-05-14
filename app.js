@@ -401,8 +401,9 @@ function receivedMessage(event) {
         }
         //return output in right order
         for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
-          sendTextMessage(senderID, OUTPUTSTRING[i]);
+          var tempString = tempString+" "+OUTPUTSTRING[i];
         }
+        sendTextMessage(senderID, tempString);
       }
 
       //check to see if we have possibly been insulted, and respond
