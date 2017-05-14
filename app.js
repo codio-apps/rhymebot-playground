@@ -412,6 +412,7 @@ function receivedMessage(event) {
       var singleRhyme = false;
       singleRhyme = lc_messageText.startsWith("single");
       var searchWord = lc_messageText.slice(7)
+      searchWord = searchWord.toUpperCase();
       if (singleRhyme) {
         caughtCommand=true;
         console.log("calling find rhyme, word is |"+searchWord);
@@ -556,7 +557,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
   console.log("Dictionary search complete, searched "+i+" entries");
 }
 
-//FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT rhymes
+//FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT RHYMEs - doesn't work yet
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
   //check every word in the dictionary
