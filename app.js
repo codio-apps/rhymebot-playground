@@ -26,6 +26,7 @@ app.use(express.static('public'));
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
 var GREETINGS = "";
+var CURRENTDICTIONARY ="";
 var name = "";
 var rhymeString = "";
 var searchWord = "";
@@ -427,7 +428,7 @@ function receivedMessage(event) {
 // Read text file data and store it into local variables for string comparisons
 function setUpLocalVariables() {
 
-  // Trr and read from file
+  // Try to read from file
   try {
   var temp = fs.readFileSync(greetings_file, "utf-8");
   GREETINGS = temp.split("\n");
@@ -437,7 +438,7 @@ function setUpLocalVariables() {
     console.log("Unable to parse greetings file: " + err);
     GREETINGS = "hi";
   }
-  // Try and read from file
+  // Try to read from file
   try {
   temp = fs.readFileSync(rhyme_typos, "utf-8");
   RHYME_TYPOS = temp.split("\n")
@@ -451,6 +452,8 @@ function setUpLocalVariables() {
   //try to read dictionary file
   try {
   temp = fs.readFileSync(dictionary, "utf-8");
+  CURRENTDICTIONARY = temp.split"\n");
+  console.log("Dictionary read complete "+CURRENTDICTIONARY.length+" entries found");
 }
 // Catch an error and set default
   catch(err) {
@@ -493,15 +496,11 @@ function getUserInfo(senderID) {
   }
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
+//some read operations are handled here ONLY for now, for bug catching
 function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
-  //READ FILE AND PUT INTO ARRAY BY LINE
-  var temp = fs.readFile(dictionary, "utf-8");
-  console.log("Dictionary read complete: "+temp);
-  var textByLine = temp.split("\n");
-  console.log("Dictionary read complete: "+textByLine);
   //COMPARE START OF EACH LINE WITH SEARCH WORD
-  for (var i = 0, len = textByLine.length; i < len; i++) {
+  for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(textByLine[i].startsWith(searchWord)){
       console.log("word found in dictionary");
     }
