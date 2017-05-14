@@ -423,7 +423,7 @@ function receivedMessage(event) {
         caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
         sendTextMessage(senderID, "I will soon run the findRhyme function for: " + searchWord);
-        //findRhyme(senderID, searchWord);
+        findRhyme(senderID, searchWord);
       break;
 
       default:
