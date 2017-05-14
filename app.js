@@ -564,8 +564,8 @@ function findRhyme(senderID, searchWord, wordNumber) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
+    }
       //how many syllables?
-
   }
 
 }
