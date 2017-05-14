@@ -831,7 +831,7 @@ if (rhymeObject == messageText) {
 
 function checkKeyword(messageText){
 
-console.log(messageText.startsWith("rhyme"));
+console.log("Line 834::::::::::: " + messageText.startsWith("rhyme"));
 //changed this to only search for "rhyme" at the start of the string
  var n = messageText.startsWith("rhyme");
  //this line is being output to the console a lot, often being called twice per instruction - am not sure why???
