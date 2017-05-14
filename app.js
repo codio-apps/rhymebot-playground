@@ -295,13 +295,22 @@ function receivedMessage(event) {
     var key = lc_messageText;
     console.log("Message text in lower case is now " + lc_messageText);
 
+    // If greeting, set the key to "welcome"
     if(StringSearch(lc_messageText, GREETINGS)){
       key = "welcome";
       console.log("String search was successfull. Key is now " + key);
     }
+    // If a Rhyme typo, change the key to "rhyme_typo"
     else if(StringSearch(lc_messageText, RHYME_TYPOS)) {
       key = "rhyme_typo";
       console.log("Nearly a rhyme, send them a confirmation. String was: " + messageText);
+    }
+    // If the message starts with Syllable, change the key to "syllable"
+    else if(syllableCheck = lc_messageText.startsWith("syllable");) {
+
+      console.log("Also a syllable is fired here!!!!!!!!!!!!!!!!!!!!!!");
+
+
     }
     else {
       //Do nothing
@@ -378,6 +387,10 @@ function receivedMessage(event) {
       console.log("Typo time, ask for confirmation");
       sendTextMessage(senderID, "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme");
       break;
+
+      case 'syllable':
+      console.log("SYLLABLE STUFF GOES HERE ALSO");
+
       default:
 
       //global temp string
