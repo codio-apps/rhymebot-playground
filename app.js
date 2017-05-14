@@ -507,9 +507,9 @@ function searchDictionary(senderID, searchWord) {
       wordFound = true;
       sendTextMessage(senderID, "Yes I know this word, here is the data I have on it: \n"+CURRENTDICTIONARY[i]);
     }
-    if (!wordFound) {
-      sendTextMessage(senderID, "I don't know the word "+searchWord+"yet, sorry");
-    }
+    //if (!wordFound) {
+    //  sendTextMessage(senderID, "I don't know the word "+searchWord+"yet, sorry");
+    //}
   }
 console.log("Dictionary search complete, searched "+i+" entry");
 }
