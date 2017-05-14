@@ -384,13 +384,16 @@ function receivedMessage(event) {
         console.log("syllable check requested, parsing to upper case");
         SEARCHSTRING = syllableString.split(" ");
         console.log(stringLength+" words detected in string");
+        //send the string
         for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
           wordNumber++;
           searchWord = SEARCHSTRING[i].toUpperCase();
           searchDictionary(senderID, searchWord, wordNumber);
         }
-        for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
+        //return output in right order
+        for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
           sendTextMessage(senderID, OUTPUTSTRING[i]);
+        }
       }
 
       //check to see if we have possibly been insulted, and respond
@@ -424,7 +427,7 @@ function receivedMessage(event) {
           sendTextMessage(senderID, messageText+"?");
         }
 
-    
+    }
   } else if (messageAttachments) {
     getUserInfo(senderID);
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
