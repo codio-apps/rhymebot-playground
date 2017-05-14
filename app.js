@@ -381,6 +381,7 @@ function receivedMessage(event) {
 
       //simple test environment for syllable command/output
       var syllableCheck = false;
+      var tempString = "";
       syllableCheck = lc_messageText.startsWith("syllable");
       if (syllableCheck) {
         caughtCommand = true;
@@ -401,7 +402,7 @@ function receivedMessage(event) {
         }
         //return output in right order
         for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
-          var tempString = tempString+" "+OUTPUTSTRING[i];
+          tempString = tempString+" "+OUTPUTSTRING[i];
         }
         sendTextMessage(senderID, tempString);
       }
