@@ -421,7 +421,7 @@ function receivedMessage(event) {
       searchWord = searchWord.toUpperCase();
         caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
-        sendTextMessage(senderID, "I will soon run the rindRHyme function for: " + searchWord);
+        sendTextMessage(senderID, "I will soon run the findRhyme function for: " + searchWord);
         //findRhyme(senderID, searchWord);
       break;
 
