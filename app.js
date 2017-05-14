@@ -496,17 +496,16 @@ function getUserInfo(senderID) {
 function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
   //READ FILE AND PUT INTO ARRAY BY LINE
-  fs.readFile(dictionary, "utf-8"){
-    var textByLine = dictionary.split("\n")
-});
-console.log("Dictionary read complete: "+textByLine);
-//COMPARE START OF EACH LINE WITH SEARCH WORD
-for (var i = 0, len = textByLine.length; i < len; i++) {
-  if(textByLine[i].startsWith(searchWord)){
-  console.log("word found in dictionary");
+  fs.readFile(dictionary, "utf-8");
+  var textByLine = dictionary.split("\n")
+  console.log("Dictionary read complete: "+textByLine);
+  //COMPARE START OF EACH LINE WITH SEARCH WORD
+  for (var i = 0, len = textByLine.length; i < len; i++) {
+    if(textByLine[i].startsWith(searchWord)){
+      console.log("word found in dictionary");
+    }
   }
-}
-console.log("Dictionary search complete");
+console.log("Dictionary search complete, searched "+i+" entr");
 }
 
 /*
