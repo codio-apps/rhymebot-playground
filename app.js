@@ -550,7 +550,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
       OUTPUTSTRING[wordNumber]=temp;
     }
   }
-  if (wordFound=false) {
+  if (!wordFound) {
     OUTPUTSTRING[wordNumber]="**notfound**";
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
@@ -568,8 +568,7 @@ function findRhyme(senderID, searchWord) {
       sendTextMessage(senderID, "got one");
     }
   }
-  console.log("searched whole dictionary, word found status is "+wordFound);
-  if (wordFound=false) {
+    if (!wordFound) {
     console.log("something ain't working man");
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
