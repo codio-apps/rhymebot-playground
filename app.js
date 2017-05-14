@@ -513,7 +513,9 @@ function findRhyme(senderID, searchWord) {
         returnString=returnString+CURRENTDICTIONARY[i]+"\n";
         count++;
       }
-    sendTextMessage(senderID,"I found "+count+" rhymes. If this is over 640??, nothing will be displayed");
+    }
+
+    sendTextMessage(senderID, "I found "+count+" rhymes. If this is over 640??, nothing will be displayed");
     sendTextMessage(senderID, returnString);
   }
 }
@@ -724,7 +726,7 @@ function sendFileMessage(recipientId) {
 function sendTextMessage(recipientId, messageText) {
   var rhymeObject = checkKeyword(messageText);
 
-if (rhymeObject == lc_messageText) {
+if (rhymeObject == messageText) {
   var messageData = {
     recipient: {
       id: recipientId
