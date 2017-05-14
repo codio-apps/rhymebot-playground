@@ -494,6 +494,12 @@ function getUserInfo(senderID) {
 
 function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
+  //READ FILE AND PUT INTO ARRAY BY LINE
+  var fs = require("fs");
+  fs.readFile(dictionary, function(text){
+    var textByLine = text.split("\n")
+});
+console.log("Dictionary search complete");
 }
 
 /*
