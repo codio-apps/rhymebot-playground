@@ -560,6 +560,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 //FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT rhymes
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
+  console.log("findRhyme initialiation");
   //check every word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
@@ -567,10 +568,10 @@ function findRhyme(senderID, searchWord) {
       console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
       sendTextMessage(senderID, "got one");
     }
-    if (wordFound=false){
+    if (wordFound=false) {
       console.log("something ain't working man");
       sendTextMessage(senderID, "couldn't find that one");
-    } //how many syllables?
+    }
   }
 
 }
