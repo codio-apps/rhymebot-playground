@@ -28,7 +28,7 @@ var GREETINGS = "";
 //array initialisation
 var CURRENTDICTIONARY = new Array();
 var SEARCHSTRING = new Array();
-var OUPUTSTRING = new Array();
+var OUTPUTSTRING = new Array();
 
 //integers for array counting in sentences
 var wordNumber =0;
