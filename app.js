@@ -293,27 +293,22 @@ function receivedMessage(event) {
     caughtCommand = false;
     lc_messageText = messageText.toLowerCase();
     var key = lc_messageText;
-    console.log("Message text in lower case is now " + lc_messageText);
 
     // If greeting, set the key to "welcome"
     if(StringSearch(lc_messageText, GREETINGS)){
       key = "welcome";
-      console.log("String search was successfull. Key is now " + key);
     }
     // If a Rhyme typo, change the key to "rhyme_typo"
     else if(StringSearch(lc_messageText, RHYME_TYPOS)) {
       key = "rhyme_typo";
-      console.log("Nearly a rhyme, send them a confirmation. String was: " + messageText);
     }
     // If the message starts with Syllable, change the key to "syllable"
-    else if(syllableCheck = lc_messageText.startsWith("syllable")) {
-
-      console.log("Also a syllable is fired here!!!!!!!!!!!!!!!!!!!!!!");
+    else if(lc_messageText.startsWith("syllable")) {
       key = "syllable";
 
     }
     else {
-      //Do nothing
+      //Do nothing, key is set to messageText
     }
     console.log("Original message text is: "+messageText);
 
