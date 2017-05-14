@@ -1,8 +1,7 @@
 /* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
-/* jshint node: true, devel: true */
 
-/*rhymebot mk0.0000001 alpha */
+/*rhymebot mk0.0000002 alpha */
 'use strict';
 
 // Set up constants
@@ -365,6 +364,7 @@ function receivedMessage(event) {
         }
       break;
 
+      // check to see if they mispellt rhyme
       case 'rhyme_typo':
       console.log("Typo time, ask for confirmation");
       sendTextMessage(senderID, "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme");
@@ -378,7 +378,7 @@ function receivedMessage(event) {
         caughtCommand = true;
         var syllableString = lc_messageText.slice(9);
         console.log("syllable check requested, parsing to upper case");
-        searchWord = syllableString.toUpperCase()+"  ";
+        searchWord = syllableString.toUpperCase();
         searchDictionary(senderID, searchWord);
       }
 
@@ -502,7 +502,7 @@ function searchDictionary(senderID, searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
   //COMPARE START OF EACH LINE WITH SEARCH WORD
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    if(CURRENTDICTIONARY[i].startsWith(searchWord)){
+    if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       wordFound = true;
       sendTextMessage(senderID, "Yes I know this word, here is the data I have on it: \n"+CURRENTDICTIONARY[i]);
@@ -510,7 +510,7 @@ function searchDictionary(senderID, searchWord) {
   }
   if (wordFound) {
   } else {
-    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
+    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
   console.log("Dictionary search complete, searched "+i+" entry");
 }
@@ -719,7 +719,6 @@ function sendFileMessage(recipientId) {
  *
  */
 function sendTextMessage(recipientId, messageText) {
-
   var rhymeObject = checkKeyword(messageText);
 
 if (rhymeObject == messageText) {
@@ -755,6 +754,7 @@ function checkKeyword(messageText){
 
 //changed this to only search for "rhyme" at the start of the string
  var n = messageText.startsWith("rhyme");
+ //this line is being output to the console a lot, often being called twice per instruction - am not sure why???
  console.log("Rhyme command " + n);
 
  if(n) {
