@@ -369,6 +369,7 @@ function receivedMessage(event) {
         break;
 
       //Case to handle GREETING messages
+      // ************************************
       case 'welcome':
         caughtCommand=true;
         if (name=="") {
@@ -381,12 +382,14 @@ function receivedMessage(event) {
       break;
 
       // Case to handle mispellt RHYME commands
+      // ************************************
       case 'rhyme_typo':
       console.log("Typo time, ask for confirmation");
       sendTextMessage(senderID, "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme");
       break;
 
       // Case to handle the SYLLABLE command
+      // ************************************
       case 'syllable':
       console.log("SYLLABLE STUFF GOES HERE ALSO");
       caughtCommand = true;
@@ -410,6 +413,8 @@ function receivedMessage(event) {
       sendTextMessage(senderID, tempString);
       break;
 
+      // Handle the SINGLE command
+      // ************************************
       case 'single':
       //test environment for single word, single syllable perfect rhymes
       var searchWord = lc_messageText.slice(7)
