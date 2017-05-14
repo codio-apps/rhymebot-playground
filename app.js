@@ -494,9 +494,8 @@ function getUserInfo(senderID) {
 
 function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
-  var reader = new System.IO.StreamReader(dictionary))
-    while (!reader.EndOfStream)
-    {
+  var reader = new System.IO.StreamReader(dictionary));
+    while (!reader.EndOfStream) {
         var line = reader.ReadLine();
 
         if (line.StartsWith(searchWord))
