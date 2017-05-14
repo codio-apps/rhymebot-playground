@@ -498,14 +498,17 @@ function getUserInfo(senderID) {
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
 function searchDictionary(senderID, searchWord) {
+  var wordFound = false;
   console.log("Dictionary search request received, word is: "+searchWord);
   //COMPARE START OF EACH LINE WITH SEARCH WORD
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord)){
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      wordFound = true;
       sendTextMessage(senderID, "Yes I know this word, here is the data I have on it: \n"+CURRENTDICTIONARY[i]);
-    } else {
-      sendTextMessage(senderID, "I don't know the word "+searchWord+" yet, sorry");
+    }
+    if (!wordFound) {
+      sendTextMessage(senderID, "I don't know the word "+searchWord+"yet, sorry");
     }
   }
 console.log("Dictionary search complete, searched "+i+" entry");
