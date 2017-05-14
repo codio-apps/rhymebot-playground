@@ -1,13 +1,11 @@
 /* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
-/* Testing testing, un, dau, tri */
-/* Did it break? */
-
 /* jshint node: true, devel: true */
 
 /*rhymebot mk0.0000001 alpha */
 'use strict';
 
+// Set up constants
 const
   bodyParser = require('body-parser'),
   config = require('config'),
@@ -16,7 +14,7 @@ const
   https = require('https'),
   request = require('request');
 
-
+// Express environment
 var app = express();
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
@@ -24,7 +22,9 @@ app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
 
-var KEYWORD = "rhyme";
+// Keyword initialisation
+var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
+var RHYME_TYPOS = "";
 var GREETINGS = "";
 var name = "";
 
@@ -32,6 +32,8 @@ var name = "";
 var fs = require("fs");
 // Parse greetings.txt into data object
 var greetings_file = "public/greetings.txt";
+// Parse nearly_a_rhyme.txt into data object
+var rhyme_typos = "publis/nearly_a_rhyme.txt"
 
 
 /*
@@ -231,8 +233,6 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-    setUpLocalVariables();
-
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
 
@@ -245,6 +245,8 @@ function receivedMessage(event) {
   var messageText = message.text;
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
+
+
 
   if (isEcho) {
     // Just logging message echoes to console
@@ -260,6 +262,8 @@ function receivedMessage(event) {
     return;
   }
 
+
+      setUpLocalVariables();
 
 
   if (messageText) {
@@ -394,8 +398,12 @@ function receivedMessage(event) {
 function setUpLocalVariables() {
 
   var temp = fs.readFileSync(greetings_file, "utf-8");
-  var greetings_textByLine = temp.split("\n");
-  GREETINGS = greetings_textByLine;
+  GREETINGS = temp.split("\n");
+
+  temp = fs.readFileSync(rhyme_typos, "utf-8");
+  RHYME_TYPOS = temp.split("\n")
+
+  console.log(GREETINGS + "/n" + RHYME_TYPOS);
 
 }
 
@@ -441,6 +449,7 @@ function getUserInfo(senderID) {
  *
  */
 function receivedDeliveryConfirmation(event) {
+
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var delivery = event.delivery;
