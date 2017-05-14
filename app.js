@@ -279,10 +279,9 @@ function receivedMessage(event) {
     // only. Use messageText for the original text when you need to print output.
     var lc_messageText = messageText.toLowerCase();
     var key = lc_messageText;
-    console.log("Message Test in lower case is now " + lc_messageText);
+    console.log("Message Text in lower case is now " + lc_messageText);
 
     if(StringSearch(lc_messageText, GREETINGS)){
-
       key = "welcome";
       console.log("String search was successfull. Key is now " + key);
     }
@@ -290,15 +289,15 @@ function receivedMessage(event) {
       key = "rhyme_typo";
       console.log("Nearly a rhyme, send them a confirmation. String was: " + key);
     }
-    //now parse the messageText to lower case
-    console.log("parsing to lower case");
-    messageText = messageText.toLowerCase();
-    console.log("message text is now: "+messageText);
     else {
 
       //Do nothing
     }
-
+    //now parse the messageText to lower case
+    console.log("parsing to lower case");
+    messageText = messageText.toLowerCase();
+    console.log("message text is now: "+messageText);
+    
     switch (key) {
       case 'image':
         sendImageMessage(senderID);
@@ -365,7 +364,7 @@ function receivedMessage(event) {
 
       case 'rhyme_typo':
       console.log("Typo time, ask for confirmation");
-      sendTextMessage("Are you looking for a rhyme? We'll only respond if you start your sentance with \"rhyme\"");
+      sendTextMessage("Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme");
       break;
       default:
 
