@@ -376,9 +376,9 @@ function receivedMessage(event) {
         caughtCommand = true;
         console.log("syllable check requested");
         var syllableString = lc_messageText.slice(9);
-        sendTextMessage(senderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't do that yet :/");
+        sendTextMessage(senderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't try that now :S");
         console.log("parsing to upper case")
-        searchWord = syllableString.toUpperCase();
+        searchWord = syllableString.toUpperCase()+"  ";
         searchDictionary(searchWord);
       }
 
@@ -504,6 +504,7 @@ function searchDictionary(searchWord) {
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord)){
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      sendTextMessage(senderID, "Yes I know this word, here is the data I have on it: \n"+CURRENTDICTIONARY[i]);
     }
   }
 console.log("Dictionary search complete, searched "+i+" entry");
