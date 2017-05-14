@@ -374,6 +374,7 @@ function receivedMessage(event) {
         caughtCommand = true;
         console.log("syllable check requested");
         var syllableString = messageText.slice(9);
+        syllableString = syllableString.toUpperCase();
         sendTextMessage(senderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't do that yet :/");
       }
 
@@ -434,7 +435,7 @@ function setUpLocalVariables() {
     console.log("Unable to parse greetings file: " + err);
     GREETINGS = "hi";
   }
-  // Trr and read from file
+  // Try and read from file
   try {
   temp = fs.readFileSync(rhyme_typos, "utf-8");
   RHYME_TYPOS = temp.split("\n")
@@ -445,9 +446,15 @@ function setUpLocalVariables() {
     RHYME_TYPOS = "rhymes";
 
   }
-
-  console.log(GREETINGS + "/n" + RHYME_TYPOS);
-
+  //try to read dictionary file
+  try {
+  temp = fs.readFileSync(dictionary, "utf-8");
+}
+// Catch an error and set default
+  catch(err) {
+    console.log("Unable to parse dictionary file: " + err);
+  }
+  console.log(GREETINGS + "/n " + RHYME_TYPOS);
 }
 
 
