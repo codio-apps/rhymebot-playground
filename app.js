@@ -26,9 +26,9 @@ var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
 var GREETINGS = "";
 //array initialisation
-var CURRENTDICTIONARY ="";
-var SEARCHSTRING ="";
-var OUPUTSTRING ="";
+var CURRENTDICTIONARY = new Array();
+var SEARCHSTRING = new Array();
+var OUPUTSTRING = new Array();
 
 //integers for array counting in sentences
 var wordNumber =0;
