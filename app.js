@@ -33,7 +33,8 @@ var fs = require("fs");
 // Parse greetings.txt into data object
 var greetings_file = "public/greetings.txt";
 // Parse nearly_a_rhyme.txt into data object
-var rhyme_typos = "public/nearly_a_rhyme.txt"
+var rhyme_typos = "public/nearly_a_rhyme.txt";
+var dictionary = "public/dictionarymain.txt";
 
 
 /*
@@ -285,7 +286,7 @@ function receivedMessage(event) {
     }
     else if(StringSearch(lc_messageText, RHYME_TYPOS)) {
       key = "rhyme_typo";
-      console.log("Nealy a rhyme, send them a confirmation. String was: " + key);
+      console.log("Nearly a rhyme, send them a confirmation. String was: " + key);
     }
     else {
 
@@ -360,42 +361,38 @@ function receivedMessage(event) {
       console.log("Type time, ask for confirmation");
       sendTextMessage("Are you looking for a rhyme? We'll only respond if you start your sentance with \"rhyme\"");
       break;
-
       default:
-
-      sendTextMessage(senderID, messageText+"?");
-      
       //check to see if we have possibly been insulted, and respond
-        // var insult =false;
-        // var insulted=false;
-        //
-        // insult = messageText.startsWith("you're ");
-        // if(insult) {
-        //    insulted=true;
-        //    var insultString = messageText.slice(7);
-        //    sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
-        // }
-        //
-        // insult = messageText.startsWith("you are ");
-        // if(insult) {
-        //    insulted=true;
-        //   var insultString = messageText.slice(8);
-        //   sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
-        // }
-        //
-        // insult = messageText.startsWith("your ");
-        // if(insult) {
-        //    insulted=true;
-        //   var insultString = messageText.slice(5);
-        //   sendTextMessage(senderID, "My "+insultString+"? I am sorry, I have no concept of how I should feel about that");
-        // }
-        //
-        // //otherwise just reply with an added question mark for now
-        // if(insulted) {
-        // } else
-        // {
-        //   sendTextMessage(senderID, messageText+"?");
-        // }
+        var insult =false;
+        var insulted=false;
+
+        insult = messageText.startsWith("you're ");
+        if(insult) {
+           insulted=true;
+           var insultString = messageText.slice(7);
+           sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
+        }
+
+        insult = messageText.startsWith("you are ");
+        if(insult) {
+           insulted=true;
+          var insultString = messageText.slice(8);
+          sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
+        }
+
+        insult = messageText.startsWith("your ");
+        if(insult) {
+           insulted=true;
+          var insultString = messageText.slice(5);
+          sendTextMessage(senderID, "My "+insultString+"? I am sorry, I have no concept of how I should feel about that");
+        }
+
+        //otherwise just reply with an added question mark for now
+        if(insulted) {
+        } else
+        {
+          sendTextMessage(senderID, messageText+"?");
+        }
 
     }
   } else if (messageAttachments) {
