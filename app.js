@@ -494,20 +494,18 @@ function getUserInfo(senderID) {
 
 function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
-  using (var reader = new System.IO.StreamReader(dictionary))
-  {
+  var reader = new System.IO.StreamReader(@"C:\file.txt"))
     while (!reader.EndOfStream)
     {
         var line = reader.ReadLine();
 
-        if (line.StartsWith(searchWord))
+        if (line.StartsWith("info"))
         {
-            console.log("something found in dictionary");
+              console.log("Found something")// do something
         }
     }
 
     reader.Close();
-}
 }
 
 /*
