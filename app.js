@@ -414,7 +414,7 @@ function receivedMessage(event) {
       var searchWord = lc_messageText.slice(7)
       if (singleRhyme) {
         caughtCommand=true;
-        console.log("calling find rhyme, word is "+searchWord);
+        console.log("calling find rhyme, word is |"+searchWord);
         findRhyme(senderID, searchWord);
       }
 
@@ -570,10 +570,10 @@ function findRhyme(senderID, searchWord) {
     }
     if (wordFound=false) {
       console.log("something ain't working man");
-      sendTextMessage(senderID, "couldn't find that one");
+      sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
     }
   }
-
+  console.log("Dictionary search complete, searched "+i+" entries");
 }
 
 /*
