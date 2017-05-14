@@ -316,58 +316,6 @@ function receivedMessage(event) {
     console.log("Original message text is: "+messageText);
 
     switch (key) {
-      case 'image':
-        sendImageMessage(senderID);
-        break;
-
-      case 'gif':
-        sendGifMessage(senderID);
-        break;
-
-      case 'audio':
-        sendAudioMessage(senderID);
-        break;
-
-      case 'video':
-        sendVideoMessage(senderID);
-        break;
-
-      case 'file':
-        sendFileMessage(senderID);
-        break;
-
-      case 'button':
-        sendButtonMessage(senderID);
-        break;
-
-      case 'generic':
-        sendGenericMessage(senderID);
-        break;
-
-      case 'receipt':
-        sendReceiptMessage(senderID);
-        break;
-
-      case 'quick reply':
-        sendQuickReply(senderID);
-        break;
-
-      case 'read receipt':
-        sendReadReceipt(senderID);
-        break;
-
-      case 'typing on':
-        sendTypingOn(senderID);
-        break;
-
-      case 'typing off':
-        sendTypingOff(senderID);
-        break;
-
-      case 'account linking':
-        sendAccountLinking(senderID);
-        break;
-
       //Case to handle GREETING messages
       // ************************************
       case 'welcome':
@@ -423,7 +371,7 @@ function receivedMessage(event) {
         caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
         sendTextMessage(senderID, "I will soon run the findRhyme function for: " + searchWord);
-        //findRhyme(senderID, searchWord);
+        findRhyme(senderID, searchWord);
       break;
 
       default:
