@@ -1,8 +1,12 @@
 hello
 hey
+hiya
+heya
 hi
 howdy
 yo
+sup
+what's up?
 greeting
 greetings
 bonjour
@@ -11,5 +15,7 @@ good morning
 good afternoon
 evening
 yoyo
+hola
+aloha
 salut
 ciao
