@@ -441,7 +441,7 @@ function setUpLocalVariables() {
   // Try to read from file
   try {
   temp = fs.readFileSync(rhyme_typos, "utf-8");
-  RHYME_TYPOS = temp.split("\n")
+  RHYME_TYPOS = temp.split("\n");
   }
   // Catch an error and set default
   catch(err) {
@@ -452,7 +452,7 @@ function setUpLocalVariables() {
   //try to read dictionary file
   try {
   temp = fs.readFileSync(dictionary, "utf-8");
-  CURRENTDICTIONARY = temp.split"\n");
+  CURRENTDICTIONARY = temp.split("\n");
   console.log("Dictionary read complete "+CURRENTDICTIONARY.length+" entries found");
 }
 // Catch an error and set default
