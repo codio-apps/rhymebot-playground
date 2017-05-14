@@ -282,6 +282,7 @@ function receivedMessage(event) {
 
     // Pass the message into a case-insenstivie expression for comparison purposes
     // only. Use messageText for the original text when you need to print output.
+    caughtCommand = false;
     lc_messageText = messageText.toLowerCase();
     var key = lc_messageText;
     console.log("Message text in lower case is now " + lc_messageText);
