@@ -384,6 +384,7 @@ function receivedMessage(event) {
       syllableCheck = lc_messageText.startsWith("syllable");
       if (syllableCheck) {
         caughtCommand = true;
+        //init arrays and counter
         wordNumber=0;
         var syllableString = lc_messageText.slice(9);
         console.log("syllable check requested, parsing to upper case");
@@ -394,6 +395,7 @@ function receivedMessage(event) {
         //send the string to be searched
         for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
           wordNumber++;
+          console.log("word "+wordNumber+" of "+stringLength" is: "+SEARCHSTRING[i]);
           searchWord = SEARCHSTRING[i].toUpperCase();
           searchDictionary(senderID, searchWord, wordNumber);
         }
