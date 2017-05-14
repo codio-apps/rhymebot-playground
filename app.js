@@ -577,12 +577,11 @@ function findRhyme(senderID, searchWord) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
     console.log("attempting to find the rhyme");
-    var ending ="";
     //put parts to rhyme into a var
     for (var i = SYLLABLES.length-2, len = SYLLABLES.length; i < len; i++){
       //do something
     }
-    var ending = SYLLABLES.length-2+" "+SYLLABLES.length-1;
+    var ending = SYLLABLES[SYLLABLES.length-2]+" "+SYLLABLES[SYLLABLES.length-1];
     sendTextMessage(senderID, "Ok I will attempt to rhyme the ending "+ending);
   }
   console.log("Dictionary search complete, searched "+i+" entries");
