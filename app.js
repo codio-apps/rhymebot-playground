@@ -379,9 +379,11 @@ function receivedMessage(event) {
       break;
       default:
 
+      //global temp string
+      var tempString = "";
+
       //simple test environment for syllable command/output
       var syllableCheck = false;
-      var tempString = "";
       syllableCheck = lc_messageText.startsWith("syllable");
       if (syllableCheck) {
         caughtCommand = true;
@@ -403,6 +405,19 @@ function receivedMessage(event) {
         }
         sendTextMessage(senderID, tempString);
       }
+
+
+
+      //test environment for single word, single syllable perfect rhymes
+      var singleRhyme = false;
+      singleRhyme = lc_messageText.startsWith("single");
+      var searchWord = lc_messageText.slice(7)
+      if (singleRhyme) {
+        caughtCommand=true;
+        console.log("calling find rhyme");
+        findRhyme(senderID, searchWord, 0);
+      }
+
 
       //check to see if we have possibly been insulted, and respond
         var insult = false;
@@ -540,6 +555,19 @@ function searchDictionary(senderID, searchWord, wordNumber) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
   console.log("Dictionary search complete, searched "+i+" entry");
+}
+
+//FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT rhymes
+function findRhyme(senderID, searchWord, wordNumber) {
+  //check every word in the dictionary
+  for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+    if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
+      wordFound = true;
+      console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      //how many syllables?
+
+  }
+
 }
 
 /*
