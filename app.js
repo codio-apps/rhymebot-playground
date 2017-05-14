@@ -279,7 +279,7 @@ function receivedMessage(event) {
     // only. Use messageText for the original text when you need to print output.
     var lc_messageText = messageText.toLowerCase();
     var key = lc_messageText;
-    console.log("Message Text in lower case is now " + lc_messageText);
+    console.log("Message text in lower case is now " + lc_messageText);
 
     if(StringSearch(lc_messageText, GREETINGS)){
       key = "welcome";
@@ -290,13 +290,9 @@ function receivedMessage(event) {
       console.log("Nearly a rhyme, send them a confirmation. String was: " + messageText);
     }
     else {
-
       //Do nothing
     }
-    //now parse the messageText to lower case
-    console.log("parsing global message text to lower case");
-    messageText = lc_messageText;
-    console.log("message text is now: "+messageText);
+    console.log("Original message text is: "+messageText);
 
     switch (key) {
       case 'image':
