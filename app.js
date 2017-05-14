@@ -414,7 +414,7 @@ function receivedMessage(event) {
       var searchWord = lc_messageText.slice(7)
       if (singleRhyme) {
         caughtCommand=true;
-        console.log("calling find rhyme");
+        console.log("calling find rhyme, word is "+searchWord);
         findRhyme(senderID, searchWord);
       }
 
@@ -554,16 +554,18 @@ function searchDictionary(senderID, searchWord, wordNumber) {
     OUTPUTSTRING[wordNumber]="**notfound**";
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
   }
-  console.log("Dictionary search complete, searched "+i+" entry");
+  console.log("Dictionary search complete, searched "+i+" entries");
 }
 
 //FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT rhymes
 function findRhyme(senderID, searchWord) {
+  var wordFound = false;
   //check every word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      sendTextMessage(senderID, "got one, am trying am trying");
     }
       //how many syllables?
   }
