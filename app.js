@@ -389,7 +389,7 @@ function receivedMessage(event) {
           searchWord = SEARCHSTRING[i].toUpperCase();
           searchDictionary(senderID, searchWord, wordNumber);
         }
-        for (var i = 0, len SEARCHSTRING.length; i < len; i++) {
+        for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
           sendTextMessage(senderID, OUTPUTSTRING[i]);
       }
 
