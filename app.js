@@ -562,7 +562,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 //FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
-  //check every word in the dictionary
+    //check every word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
@@ -577,11 +577,13 @@ function findRhyme(senderID, searchWord) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
     console.log("attempting to find the rhyme");
+    var ending ="";
     //put parts to rhyme into a var
     for (var i = SYLLABLES.length-2, len = SYLLABLES.length; i < len; i++){
-        sendTextMessage(senderID, "i: "+i+". len: "+len+". syl: "+SYLLABLES[i]);//compare to Dictionary
+      //do something
     }
-
+    var ending = SYLLABLES.length-2+" and "SYLLABLES.length-1;
+    sendTextMessage(senderID, "Ok I will attempt to rhyme the ending "+ending);
   }
   console.log("Dictionary search complete, searched "+i+" entries");
 }
