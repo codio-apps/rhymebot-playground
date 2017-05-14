@@ -514,8 +514,7 @@ function findRhyme(senderID, searchWord) {
         count++;
       }
     }
-    console.log("I found "+count+" rhymes. If this is over 640??, nothing will be displayed");
-    sendTextMessage("I found "+count+" rhymes. If this is over 640??, nothing will be displayed");
+    sendTextMessage(senderID,"I found "+count+" rhymes. If this is over 640??, nothing will be displayed");
     sendTextMessage(senderID, returnString);
   }
 }
