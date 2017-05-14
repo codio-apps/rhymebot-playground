@@ -424,7 +424,7 @@ function receivedMessage(event) {
           sendTextMessage(senderID, messageText+"?");
         }
 
-    }
+    
   } else if (messageAttachments) {
     getUserInfo(senderID);
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
