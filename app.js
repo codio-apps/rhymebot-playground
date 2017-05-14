@@ -39,6 +39,7 @@ var rhyme_typos = "public/nearly_a_rhyme.txt";
 var dictionary = "public/dictionarymain.txt";
 
 
+
 /*
  * Be sure to setup your config values before running this code. You can
  * set them using environment variables or modifying the config file in /config.
@@ -377,8 +378,10 @@ function receivedMessage(event) {
         caughtCommand = true;
         console.log("syllable check requested");
         var syllableString = messageText.slice(9);
-        syllableString = syllableString.toUpperCase();
         sendTextMessage(senderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't do that yet :/");
+        console.log("parsing to upper case")
+        syllableString = syllableString.toUpperCase();
+
       }
 
       //check to see if we have possibly been insulted, and respond
@@ -452,6 +455,11 @@ function setUpLocalVariables() {
   //try to read dictionary file
   try {
   temp = fs.readFileSync(dictionary, "utf-8");
+  var fs = require('fs');
+  var array = fs.readFileSync('public/dictionarymain.txt').toString().split("\n");
+  for(i in array) {
+    console.log(array[i]);
+}
 }
 // Catch an error and set default
   catch(err) {
