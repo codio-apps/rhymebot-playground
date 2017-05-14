@@ -27,6 +27,7 @@ var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
 var GREETINGS = "";
 var name = "";
+var rhymeString = "";
 
 // Set up file parsing
 var fs = require("fs");
@@ -363,9 +364,17 @@ function receivedMessage(event) {
       sendTextMessage("Are you looking for a rhyme? We'll only respond if you start your sentance with \"rhyme\"");
       break;
       default:
+
+      //simple test environment for syllable command/output
+      var syllableCheck = false;
+      syllableCheck = messageText.startsWith("syllable");
+      if (syllableCheck) {
+        console.log("syllable check requested");
+      }
+
       //check to see if we have possibly been insulted, and respond
-        var insult =false;
-        var insulted=false;
+        var insult = false;
+        var insulted= false;
 
         insult = messageText.startsWith("you're ");
         if(insult) {
@@ -418,7 +427,7 @@ function setUpLocalVariables() {
 }
 // Catch an error and set default
   catch(err) {
-    console.log("Unable to parse file: " + err);
+    console.log("Unable to parse greetings file: " + err);
     GREETINGS = "hi";
   }
   // Trr and read from file
@@ -428,7 +437,7 @@ function setUpLocalVariables() {
   }
   // Catch an error and set default
   catch(err) {
-    console.log("Unable to parse file: " + err);
+    console.log("Unable to parse rhyme file: " + err);
     RHYME_TYPOS = "rhymes";
 
   }
@@ -715,7 +724,7 @@ function checkKeyword(messageText){
 
  if(n) {
 
- var rhymeString = messageText.slice(6);
+ rhymeString = messageText.slice(6);
  console.log("StringParser: " + rhymeString);
  var messageArray = rhymeString.split(" ");
 
