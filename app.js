@@ -528,7 +528,9 @@ function searchDictionary(senderID, searchWord, wordNumber) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
-      OUTPUTSTRING[wordNumber]=CURRENTDICTIONARY[i];
+      //output rhyme data to the output array
+      var temp = CURRENTDICTIONARY[i].slice(searchWord.length);
+      OUTPUTSTRING[wordNumber]=temp;
     }
   }
   if (wordFound) {
