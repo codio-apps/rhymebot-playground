@@ -365,40 +365,43 @@ function receivedMessage(event) {
       break;
       default:
 
+      //var for catching response state (replaces insulted)
+      var caughtCommand= false;
       //simple test environment for syllable command/output
       var syllableCheck = false;
       syllableCheck = messageText.startsWith("syllable");
       if (syllableCheck) {
+        caughtCommand = true;
         console.log("syllable check requested");
+        sendTextMessage("Ok "+name+", looks like you want to output syllables. I can't do it yet :/");
       }
 
       //check to see if we have possibly been insulted, and respond
         var insult = false;
-        var insulted= false;
 
         insult = messageText.startsWith("you're ");
         if(insult) {
-           insulted=true;
+           caughtCommand=true;
            var insultString = messageText.slice(7);
            sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
         }
 
         insult = messageText.startsWith("you are ");
         if(insult) {
-           insulted=true;
+           caughtCommand=true;
           var insultString = messageText.slice(8);
           sendTextMessage(senderID, "I'm "+insultString+"? I am incapable of experiencing any feelings about that");
         }
 
         insult = messageText.startsWith("your ");
         if(insult) {
-           insulted=true;
+           caughtCommand=true;
           var insultString = messageText.slice(5);
           sendTextMessage(senderID, "My "+insultString+"? I am sorry, I have no concept of how I should feel about that");
         }
 
         //otherwise just reply with an added question mark for now
-        if(insulted) {
+        if(caughtCommand) {
         } else
         {
           sendTextMessage(senderID, messageText+"?");
