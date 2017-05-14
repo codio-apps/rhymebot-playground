@@ -494,16 +494,13 @@ function getUserInfo(senderID) {
 
 function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
-  var reader = new System.IO.StreamReader(dictionary));
+  var reader = new System.IO.StreamReader(dictionary);
     while (!reader.EndOfStream) {
-        var line = reader.ReadLine();
-
-        if (line.StartsWith(searchWord))
-        {
-              console.log("Found something")// do something
-        }
+      var line = reader.ReadLine();
+      if (line.StartsWith(searchWord)) {
+        console.log("Found something")// do something
+      }
     }
-
     reader.Close();
 }
 
