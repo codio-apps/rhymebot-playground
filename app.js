@@ -277,7 +277,7 @@ function receivedMessage(event) {
 
     // Pass the message into a case-insenstivie expression for comparison purposes
     // only. Use messageText for the original text when you need to print output.
-    var lc_messageText = messageText.toLowerCase();
+    var key = messageText.toLowerCase();
     var key = lc_messageText;
     console.log("Message Test in lower case is now " + lc_messageText);
 
@@ -290,6 +290,10 @@ function receivedMessage(event) {
       key = "rhyme_typo";
       console.log("Nearly a rhyme, send them a confirmation. String was: " + key);
     }
+    //now parse the messageText to lower case
+    console.log("parsing to lower case");
+    messageText = messageText.toLowerCase();
+    console.log("message text is now: "+messageText);
     else {
 
       //Do nothing
@@ -360,7 +364,7 @@ function receivedMessage(event) {
       break;
 
       case 'rhyme_typo':
-      console.log("Type time, ask for confirmation");
+      console.log("Typo time, ask for confirmation");
       sendTextMessage("Are you looking for a rhyme? We'll only respond if you start your sentance with \"rhyme\"");
       break;
       default:
