@@ -28,7 +28,11 @@ var GREETINGS = "";
 var CURRENTDICTIONARY ="";
 var SEARCHSTRING ="";
 var OUPUTSTRING ="";
+
+//integers for array counting in sentences
 var wordNumber =0;
+var stringLength =0;
+
 var name = "";
 var rhymeString = "";
 var searchWord = "";
