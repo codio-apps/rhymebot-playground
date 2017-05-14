@@ -582,7 +582,7 @@ function findRhyme(senderID, searchWord) {
     for (var i = SYLLABLES.length-2, len = SYLLABLES.length; i < len; i++){
       //do something
     }
-    var ending = SYLLABLES.length-2+" and "+SYLLABLES.length-1;
+    var ending = SYLLABLES.length-2+" "+SYLLABLES.length-1;
     sendTextMessage(senderID, "Ok I will attempt to rhyme the ending "+ending);
   }
   console.log("Dictionary search complete, searched "+i+" entries");
