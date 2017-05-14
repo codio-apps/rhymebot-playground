@@ -392,6 +392,7 @@ function receivedMessage(event) {
         wordNumber=0;
         var syllableString = lc_messageText.slice(9);
         console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
+        sendTextMessage(senderID, "I recognised the word, I am getting this data: "+syllableString);
         SEARCHSTRING = syllableString.split(" ");
         stringLength = SEARCHSTRING.length;
         //send the string to be searched
@@ -558,7 +559,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
   console.log("Dictionary search complete, searched "+i+" entries");
 }
 
-//FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT RHYMEs - doesn't work yet
+//FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
   //check every word in the dictionary
