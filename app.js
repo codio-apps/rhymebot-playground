@@ -307,7 +307,7 @@ function receivedMessage(event) {
       key = "syllable";
     }
     // If the message starts with Single, change the key to "single"
-    else if(lc_messageText.startsWith("single"); {
+    else if(lc_messageText.startsWith("single")) {
       key = "single";
     }
     else {
