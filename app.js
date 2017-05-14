@@ -402,7 +402,7 @@ function receivedMessage(event) {
         }
         //return output in right order
         for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
-          tempString = tempString+" "+OUTPUTSTRING[i];
+          tempString = tempString+"\n"+OUTPUTSTRING[i];
         }
         sendTextMessage(senderID, tempString);
       }
@@ -522,6 +522,7 @@ function getUserInfo(senderID) {
   }
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
+//inputs: who sent it, what is the word, where does it appear in the string
 function searchDictionary(senderID, searchWord, wordNumber) {
   var wordFound = false;
   console.log("Dictionary search request received, word is: "+searchWord+" word number is "+wordNumber);
