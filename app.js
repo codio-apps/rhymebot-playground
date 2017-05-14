@@ -504,6 +504,8 @@ function searchDictionary(senderID, searchWord) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord)){
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       sendTextMessage(senderID, "Yes I know this word, here is the data I have on it: \n"+CURRENTDICTIONARY[i]);
+    } else {
+      sendTextMessage(senderID, "I don't know the word "+searchWord+" yet, sorry");
     }
   }
 console.log("Dictionary search complete, searched "+i+" entry");
