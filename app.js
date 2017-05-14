@@ -29,6 +29,7 @@ var GREETINGS = "";
 var CURRENTDICTIONARY = new Array();
 var SEARCHSTRING = new Array();
 var OUTPUTSTRING = new Array();
+var SYLLABLES = new Array();
 
 //integers for array counting in sentences
 var wordNumber =0;
@@ -552,7 +553,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
   }
   if (!wordFound) {
     OUTPUTSTRING[wordNumber]="**notfound**";
-    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
+    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   }
   console.log("Dictionary search complete, searched "+i+" entries");
 }
@@ -565,12 +566,13 @@ function findRhyme(senderID, searchWord) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
-      sendTextMessage(senderID, "got one");
+      SYLLABLES = searchWord.split(" ");
+      sendTextMessage(senderID, "I know this word: "+searchWord+", it has "+SYLLABLES.length+" parts");
     }
   }
     if (!wordFound) {
     console.log("something ain't working man");
-    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+"yet, sorry");
+    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   }
   console.log("Dictionary search complete, searched "+i+" entries");
 }
