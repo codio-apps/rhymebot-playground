@@ -420,8 +420,9 @@ function receivedMessage(event) {
       var searchWord = lc_messageText.slice(7)
       searchWord = searchWord.toUpperCase();
         caughtCommand=true;
-        console.log("calling find rhyme, word is |"+searchWord);
-        findRhyme(senderID, searchWord);
+        console.log("calling find rhyme, word is |" + searchWord);
+        sendTextMessage(senderID, "I will soon run the rindRHyme function for: " + searchWord);
+        //findRhyme(senderID, searchWord);
       break;
 
       default:
