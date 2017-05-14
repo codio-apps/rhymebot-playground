@@ -29,6 +29,7 @@ var GREETINGS = "";
 var name = "";
 var rhymeString = "";
 var searchWord = "";
+var lc_messageText = "";
 
 // Set up file parsing
 var fs = require("fs");
@@ -277,7 +278,7 @@ function receivedMessage(event) {
 
     // Pass the message into a case-insenstivie expression for comparison purposes
     // only. Use messageText for the original text when you need to print output.
-    var lc_messageText = messageText.toLowerCase();
+    lc_messageText = messageText.toLowerCase();
     var key = lc_messageText;
     console.log("Message text in lower case is now " + lc_messageText);
 
@@ -368,11 +369,11 @@ function receivedMessage(event) {
       var caughtCommand= false;
       //simple test environment for syllable command/output
       var syllableCheck = false;
-      syllableCheck = messageText.startsWith("syllable");
+      syllableCheck = lc_messageText.startsWith("syllable");
       if (syllableCheck) {
         caughtCommand = true;
         console.log("syllable check requested");
-        var syllableString = messageText.slice(9);
+        var syllableString = lc_messageText.slice(9);
         sendTextMessage(senderID, "Ok "+name+", looks like you want to output syllables for "+syllableString+". I can't do that yet :/");
         console.log("parsing to upper case")
         searchWord = syllableString.toUpperCase();
