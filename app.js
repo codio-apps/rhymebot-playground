@@ -32,6 +32,9 @@ var rhymeString = "";
 var searchWord = "";
 var lc_messageText = "";
 
+//var for catching response state (replaces insulted)
+var caughtCommand= false;
+
 // Set up file parsing
 var fs = require("fs");
 // Parse greetings.txt into data object
@@ -366,8 +369,6 @@ function receivedMessage(event) {
       break;
       default:
 
-      //var for catching response state (replaces insulted)
-      var caughtCommand= false;
       //simple test environment for syllable command/output
       var syllableCheck = false;
       syllableCheck = lc_messageText.startsWith("syllable");
@@ -501,7 +502,7 @@ function searchDictionary(searchWord) {
   console.log("Dictionary search request received, word is: "+searchWord);
   //COMPARE START OF EACH LINE WITH SEARCH WORD
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    if(textByLine[i].startsWith(searchWord)){
+    if(CURRENTDICTIONARY[i].startsWith(searchWord)){
       console.log("word found in dictionary");
     }
   }
