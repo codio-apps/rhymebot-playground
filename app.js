@@ -565,7 +565,7 @@ function findRhyme(senderID, searchWord) {
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
-      console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      console.log(" word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       sendTextMessage(senderID, "got one");
     }
     if (wordFound=false) {
