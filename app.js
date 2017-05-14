@@ -305,7 +305,10 @@ function receivedMessage(event) {
     // If the message starts with Syllable, change the key to "syllable"
     else if(lc_messageText.startsWith("syllable")) {
       key = "syllable";
-
+    }
+    // If the message starts with Single, change the key to "single"
+    else if(lc_messageText.startsWith("single"); {
+      key = "single";
     }
     else {
       //Do nothing, key is set to messageText
@@ -365,7 +368,7 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
-      //check to see if we have been greeted, and respond
+      //Case to handle GREETING messages
       case 'welcome':
         caughtCommand=true;
         if (name=="") {
@@ -377,12 +380,13 @@ function receivedMessage(event) {
         }
       break;
 
-      // check to see if they mispellt rhyme
+      // Case to handle mispellt RHYME commands
       case 'rhyme_typo':
       console.log("Typo time, ask for confirmation");
       sendTextMessage(senderID, "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme");
       break;
 
+      // Case to handle the SYLLABLE command
       case 'syllable':
       console.log("SYLLABLE STUFF GOES HERE ALSO");
       caughtCommand = true;
@@ -404,15 +408,10 @@ function receivedMessage(event) {
         tempString = tempString+"\n"+SEARCHSTRING[i]+": "+OUTPUTSTRING[i];
       }
       sendTextMessage(senderID, tempString);
+      break;
 
-      default:
-
-      //global temp string
-      var tempString = "";
-
+      case 'single':
       //test environment for single word, single syllable perfect rhymes
-      var singleRhyme = false;
-      singleRhyme = lc_messageText.startsWith("single");
       var searchWord = lc_messageText.slice(7)
       searchWord = searchWord.toUpperCase();
       if (singleRhyme) {
@@ -420,6 +419,14 @@ function receivedMessage(event) {
         console.log("calling find rhyme, word is |"+searchWord);
         findRhyme(senderID, searchWord);
       }
+      break;
+
+      default:
+
+      //global temp string
+      var tempString = "";
+
+
 
 
       //check to see if we have possibly been insulted, and respond
