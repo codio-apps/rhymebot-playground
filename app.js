@@ -629,10 +629,11 @@ function findRhyme(senderID, searchWord) {
   var stringBin = "";
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].endsWith(temp)){
-      console.log(CURRENTDICTIONARY[i]);
-      arrayBin = CURRENTDICTIONARY[i].split("  ");
-      RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
-      found++;
+      arrayBin = CURRENTDICTIONARY[i].split("  ").toLowerCase;
+      if (arrayBin[0]==searchWord){
+        RHYMEOUTPUT[found]=arrayBin[0];
+        found++;
+      }
     }
   }
   console.log("found: "+found+" rhyme(s).");
