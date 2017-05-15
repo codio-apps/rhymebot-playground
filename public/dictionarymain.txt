@@ -1,59 +1,5 @@
-;;; # CMUdict  --  Major Version: 0.07a [102007]
-;;;
-;;; # $URL:
-;;; # $Id$
-;;; # $Rev$  -- this is the *repository's* count; expect gaps
-;;; # $Date$
-;;; # $Author$
-;;;
-;;; #
-;;; # ========================================================================
-;;; # Copyright (C) 1993-2008 Carnegie Mellon University. All rights reserved.
-;;; #
-;;; # Redistribution and use in source and binary forms, with or without
-;;; # modification, are permitted provided that the following conditions
-;;; # are met:
-;;; #
-;;; # 1. Redistributions of source code must retain the above copyright
-;;; #    notice, this list of conditions and the following disclaimer.
-;;; #    The contents of this file are deemed to be source code.
-;;; #
-;;; # 2. Redistributions in binary form must reproduce the above copyright
-;;; #    notice, this list of conditions and the following disclaimer in
-;;; #    the documentation and/or other materials provided with the
-;;; #    distribution.
-;;; #
-;;; # This work was supported in part by funding from the Defense Advanced
-;;; # Research Projects Agency, the Office of Naval Research and the National
-;;; # Science Foundation of the United States of America, and by member
-;;; # companies of the Carnegie Mellon Sphinx Speech Consortium. We acknowledge
-;;; # the contributions of many volunteers to the expansion and improvement of
-;;; # this dictionary.
-;;; #
-;;; # THIS SOFTWARE IS PROVIDED BY CARNEGIE MELLON UNIVERSITY ``AS IS'' AND
-;;; # ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
-;;; # THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-;;; # PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL CARNEGIE MELLON UNIVERSITY
-;;; # NOR ITS EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-;;; # SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-;;; # LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-;;; # DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-;;; # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-;;; # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-;;; # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-;;; #
-;;; # ========================================================================
-;;; #
-;;;
-;;;  NOTES  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;  [20080401] (air)  New dict file format introduced
-;;;   - comments (like this section) are allowed
-;;;   - file name is major version; vers/rev information is now in the header
-;;;
-;;;
-
-//RhymeBot edit version 0.001
+// RhymeBot english dictionary version 0.01a
+// baseond onCopyright (C) 1993-2008 Carnegie Mellon University. Version 0.7a
 
 !EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T
 "CLOSE-QUOTE  K L OW1 Z K W OW1 T
@@ -5856,6 +5802,8 @@ ARROYO'S  ER0 OY1 OW0 Z
 ARRUDA  AA0 R UW1 D AH0
 ARRUPE  AE1 R UW2 P
 ARSDALE  AA1 R Z D EY2 L
+ARSE  AA1 R S
+ARSEPIECE  AA1 R S P IY1 S
 ARSENAL  AA1 R S AH0 N AH0 L
 ARSENALS  AA1 R S AH0 N AH0 L Z
 ARSENAULT  AA1 R S IH0 N OW0
@@ -83424,6 +83372,7 @@ NIGERIAN  N AY0 JH IH1 R IY0 AH0 N
 NIGERIANS  N AY0 JH IH1 R IY0 AH0 N Z
 NIGG  N IH1 G
 NIGGA  N IH1 G AH
+NIGGA(1) N IH1 G ER0
 NIGGARD  N IH1 G ER0 D
 NIGGARDLINESS  N IH1 G ER0 D L IY0 N AH0 S
 NIGGARDLY  N IH1 G ER0 D L IY0
@@ -112949,6 +112898,7 @@ SPLICED  S P L AY1 S T
 SPLICES  S P L AY1 S IH0 Z
 SPLICHAL  S P L IH1 CH AH0 L
 SPLICING  S P L AY1 S IH0 NG
+SPLIFF  S P L IH1 F
 SPLINT  S P L IH1 N T
 SPLINTER  S P L IH1 N T ER0
 SPLINTERED  S P L IH1 N T ER0 D
@@ -127799,6 +127749,7 @@ WANGLER  W AE1 NG G L ER0
 WANING  W EY1 N IH0 NG
 WANK  W AA1 NG K
 WANKE  W AA1 NG K
+WANKER  W AE1 NG K ER0
 WANKO  W AA1 NG K OW0
 WANLESS  W AA1 N L AH0 S
 WANN  W AA1 N
@@ -128239,6 +128190,7 @@ WAVERLEY  W EY1 V ER0 L IY0
 WAVERLY  W EY1 V ER0 L IY0
 WAVES  W EY1 V Z
 WAVETEK  W EY1 V T EH2 K
+WAVEY  W EY1 V IY0
 WAVING  W EY1 V IH0 NG
 WAVRA  W AA1 V R AH0
 WAVY  W EY1 V IY0
