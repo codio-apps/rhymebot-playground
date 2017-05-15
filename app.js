@@ -1,7 +1,7 @@
 /* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
 
-/*rhymebot mk0.0000003 alpha */
+/*rhymebot mk0.02 alpha */
 'use strict';
 
 // Set up constants
@@ -636,6 +636,7 @@ function findRhyme(senderID, searchWord) {
         sendTextMessage(senderID, messageSplit[i]);
     }
   }
+  console.log("made it to the end");
   sendTypingOff(senderID);
 }
 
