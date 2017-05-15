@@ -429,7 +429,7 @@ function receivedMessage(event) {
         console.log("calling find rhyme, word is |" + searchWord);
 
         sendTypingOn(senderID);
-        sleep(200);
+        sleep(2000);
         sendTypingOff(senderID);
         findRhyme(senderID, searchWord);
       break;
