@@ -626,16 +626,16 @@ function findRhyme(senderID, searchWord) {
     sendTextMessage(senderID, "I am going to try to rhyme the string "+temp+". I can't do that yet");
   }
   //now search the dictionary for rhymes
-  var rhymes = "";
+  OUTPUTSTRING = "";
   var found = 0;
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].endsWith(temp)){
-      rhymes = rhymes+" "+CURRENTDICTIONARY[i];
+      OUTPUTSTRING[found]=CURRENTDICTIONARY[i];
       found++;
     }
   }
-  console.log("found: "+found+" rhymes.");
-  console.log(rhymes);
+  console.log("found: "+found+" rhyme(s).");
+  console.log(OUTPUTSTRING);
 }
 
 
