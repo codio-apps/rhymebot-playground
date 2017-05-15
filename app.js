@@ -626,7 +626,9 @@ function findRhyme(senderID, searchWord) {
           splitNum=0;
       }
     }
-    sendTextMessage(senderID, messageSplit[messageChunk]);
+    for (int i = 0; i < chunkTotal; i++){
+        sendTextMessage(senderID, messageSplit[i]);
+    }
     console.log("Rhyme delivery complete");
 
 
