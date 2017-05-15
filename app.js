@@ -616,7 +616,7 @@ function findRhyme(senderID, searchWord) {
     console.log("found the first vowel, it is: "+char+" from "+PHONEMES[firstVowel]+" at position "+firstVowel+". Relevant phonemes "+sylLen);
     //make a phoneme string to search for
     temp = "";
-    for (i = sylLen, PHONEMES.length; i < len; i++){
+    for (i = firstVowel, len = PHONEMES.length; i < len; i++){
       temp = temp+" "+PHONEMES[i];
       console.log("temp is now "+temp);
     }
