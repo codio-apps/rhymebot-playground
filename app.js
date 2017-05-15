@@ -437,6 +437,7 @@ function receivedMessage(event) {
       var messageArray = rhymeString.split(" ");
       messageResponse = "Rhyme Time! You said you want to rhyme: " + messageArray;
       break;
+
       default:
 
           messageResponse = messageText + "?";
@@ -445,7 +446,6 @@ function receivedMessage(event) {
         sendTextMessage(senderID, messageResponse);
 
     } else if (messageAttachments) {
-    name = getUserInfo(senderID);
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
     var message = "Nice attachment;"
     sendTextMessage(senderID, message);
@@ -497,6 +497,10 @@ function setUpLocalVariables() {
     RHYME_TYPOS = "rhymes";
 
   }
+  //try to read dictionary file
+  console.log(GREETINGS + "/n " + RHYME_TYPOS);
+}
+
 
 function StringSearch(input, key) {
 
