@@ -592,7 +592,6 @@ function findRhyme(senderID, searchWord) {
   if (!wordFound) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
-      console.log("Enterpreting the rhyme");
       //detect the first letter of syllable sounds until you find a vowel
       var firstVowel = 0;
       var char = "";
@@ -614,10 +613,10 @@ function findRhyme(senderID, searchWord) {
     //identify position of first vowel sound in array
     char = SYLLABLES[firstVowel].charAt(0);
     sylLen = SYLLABLES.length-firstVowel;
-    console.log("found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel+". Expected: "+sylLen);
+    console.log("found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel+". Relevant phonemes "+sylLen);
     //make a syllable string to search for
     temp = "";
-    for (i = firstVowel, len=sylLen; i < sylLen; i++){
+    for (i = firstVowel, len=sylLen; i < len; i++){
       temp = temp+" "+SYLLABLES[i];
       console.log("temp is now "+temp);
     }
