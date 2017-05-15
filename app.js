@@ -446,7 +446,7 @@ function receivedMessage(event) {
 
           messageResponse = messageText + "?";
         }
-        if(key != 'single'){
+        if(intent != 'single'){
         sendTextMessage(senderID, messageResponse);
       }
 
