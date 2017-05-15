@@ -608,7 +608,6 @@ function findRhyme(senderID, searchWord) {
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
             firstVowel = position;
-            console.log("found "+vowels[j]+" at position "+i);
           }
         }
     }
@@ -617,12 +616,11 @@ function findRhyme(senderID, searchWord) {
     console.log("found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
     sylLen = SYLLABLES.length-firstVowel;
     //make a syllable string to search for
-    console.log("I think I need to make a syllable string of length "+sylLen);
     temp = "";
     for (i = firstVowel, len=sylLen; i <= sylLen; i++){
       temp = temp+" "+SYLLABLES[i];
     }
-    console.log("Succesfully constructed rhyme: "+temp);
+    console.log("Succesfully constructed rhyme: "+temp+" searching for matches now...");
     sendTextMessage(senderID, "I am going to try to rhyme the string "+temp+". I can't do that yet");
   }
   //now search the dictionary for rhymes
@@ -633,12 +631,13 @@ function findRhyme(senderID, searchWord) {
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].endsWith(temp)){
       arrayBin = CURRENTDICTIONARY[i].split("  ");
-      RHYMEOUTPUT[found]=arrayBin[0];
+      RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
       found++;
     }
   }
   console.log("found: "+found+" rhyme(s).");
   console.log(RHYMEOUTPUT);
+  sendTextMessage(senderID, "I found "+found+" rhymes, they are:\n"+RHYMEOUTPUT);
 
 }
 
