@@ -395,8 +395,9 @@ function receivedMessage(event) {
       for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
         tempString = tempString+"\n"+SEARCHSTRING[i]+": "+OUTPUTSTRING[i];
       }
+
+      sendTextMessage(senderID, tempString);
       sendTypingOff(senderID);
-      messageResponse = tempString;
       break;
 
       // Handle the SINGLE command
