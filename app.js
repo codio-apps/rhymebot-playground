@@ -397,7 +397,7 @@ function receivedMessage(event) {
       }
 
       sendTextMessage(senderID, tempString);
-      sendTypingOn(senderID);
+
       break;
 
       // Handle the SINGLE command
