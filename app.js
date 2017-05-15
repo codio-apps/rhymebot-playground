@@ -616,10 +616,10 @@ function findRhyme(senderID, searchWord) {
   }
   //output stuff
   console.log("found: "+found+" rhyme(s).");
-  stringBin = "";
-  var messageSplit = new Array;
+    var messageSplit = new Array;
   var sequence = 0;
   var chunk = 0;
+  messageSplit[chunk] = "";
   //for every word found
   //for (var i = 0, len = found; i < len; i++){
 
@@ -632,6 +632,7 @@ function findRhyme(senderID, searchWord) {
         }
         //then up the chunk number
         chunk++;
+        console.log("increasing chunk number to "+chunk);
     }
 
 
