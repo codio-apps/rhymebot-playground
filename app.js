@@ -253,7 +253,7 @@ function receivedMessage(event) {
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
 
-  console.log("Getting user ingo");
+  console.log("Getting user info");
   getUserInfo(senderID);
 
   var isEcho = message.is_echo;
@@ -346,7 +346,6 @@ function receivedMessage(event) {
         if (name=="") {
           console.log("Name not retrieved from Facebook yet");
           messageResponse = "What's up?";
-          name = getUserInfo(senderID);
 
         } else if(name!= "unknown") {
           messageResponse = ("What's up " + name +"?");
@@ -435,7 +434,7 @@ function receivedMessage(event) {
     } else if (messageAttachments) {
     getUserInfo(senderID);
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
-    var message = "Hi " + name + ". That's a very nice attachment. Send me some mooooore :)";
+    var message = "Nice attachment;"
     sendTextMessage(senderID, message);
     //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
   }
