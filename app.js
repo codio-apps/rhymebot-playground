@@ -265,16 +265,16 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
-  console.log("***START OF NEW MESSAGE RECIEVED***");
-  console.log("Received message for user "+senderID+" with message:"+messageText+"\nCalling setUpLocalVariables");
+  console.log("***NEW MESSAGE RECIEVED***");
+  console.log("Setting up local variables");
   setUpLocalVariables();
 
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
 
-  request(
-     ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
-   function(error, response, body) {
+  //request(
+  //   ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
+ // function(error, response, body) {
      // CODE GOES HERE AFTER FUNCTION RETURNS
 
 
