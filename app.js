@@ -292,34 +292,50 @@ function receivedMessage(event) {
     // only. Use messageText for the original text when you need to print output.
     caughtCommand = false;
     lc_messageText = messageText.toLowerCase();
-    var key = lc_messageText;
+    var intent = lc_messageText;
 
     // If greeting, set the key to "welcome"
     if(StringSearch(lc_messageText, GREETINGS)){
-      key = "welcome";
+      intent = "welcome";
+    }
+    // If help, set the key to "help"
+    if(StringSearch(lc_messageText, "--help")){
+      intent = "help";
+    }
+    // If about, set the key to "help"
+    if(StringSearch(lc_messageText, "--about")){
+      intent = "about";
     }
     // If a Rhyme typo, change the key to "rhyme_typo"
     else if(StringSearch(lc_messageText, RHYME_TYPOS)) {
-      key = "rhyme_typo";
+      intent = "rhyme_typo";
     }
     // If the message starts with Syllable, change the key to "syllable"
     else if(lc_messageText.startsWith("syllable")) {
-      key = "syllable";
+      intent = "syllable";
     }
     // If the message starts with Single, change the key to "single"
     else if(lc_messageText.startsWith("single")) {
-      key = "single";
+      intent = "single";
     }
     // If the message starts with Rhyme, change the key to rhyme
     else if(lc_messageText.startsWith("rhyme")) {
-      key = "rhyme";
+      intent = "rhyme";
     }
     else {
       //Do nothing, key is set to messageText
     }
     console.log("Original message text is: "+messageText);
 
-    switch (key) {
+
+    // We convert the incoming message into a key, or we leave it as is and respond accordingly.
+    // We use a key so we can take multiple messages (hi, hello hey) and convert them into the same
+    // unser intent
+
+    // Set up the default FINAL response
+    var messageResponse = (messageText + "?")
+
+    switch (intent) {
       //Case to handle GREETING messages
       // ************************************
       case 'welcome':
@@ -327,17 +343,32 @@ function receivedMessage(event) {
         if (name=="") {
           console.log("Name not retrieved from Facebook yet");
           name = getUserInfo(senderID);
-          sendTextMessage("What's up?");
+
+          messageResponse = "What's up?";
         } else {
-          sendTextMessage(senderID, "What's up " + name +"?");
+          messageResponse = ("What's up " + name +"?");
         }
       break;
+
+      case 'help':
+      messageResponse = "Here is some help information: \n" +
+                          "Type: rhyme - get a.\n" +
+                          "Type single - get b.\n" +
+                          "Type syllable - get c";
+      break;
+      case 'about':
+      messageResponse = "Here is some about information: \n" +
+                          "We are here to help you rhyme.\n" +
+                          "We are ajstevens and ohmegamega.\n" +
+                          "You feel the rhythm, we feel the rhyme.";
+      break;
+
 
       // Case to handle mispellt RHYME commands
       // ************************************
       case 'rhyme_typo':
       console.log("Typo time, ask for confirmation");
-      sendTextMessage(senderID, "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme");
+      messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme";
       break;
 
       // Case to handle the SYLLABLE command
@@ -383,12 +414,14 @@ function receivedMessage(event) {
       case 'rhyme':
       var rhymeString = messageText.slice(6);
       var messageArray = rhymeString.split(" ");
-      sendTextMessage(senderID, "Rhyme Time! You said you want to rhyme: " + messageArray);
+      messageResponse = "Rhyme Time! You said you want to rhyme: " + messageArray;
       break;
       default:
 
-          sendTextMessage(senderID, messageText+"?");
+          messageResponse = messageText + "?";
         }
+
+        sendTextMessage(senderID, messageResponse);
 
     } else if (messageAttachments) {
     getUserInfo(senderID);
