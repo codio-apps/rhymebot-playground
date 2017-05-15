@@ -636,7 +636,9 @@ function findRhyme(senderID, searchWord) {
   stringBin = "";
   for (var i = 0, len = RHYMEOUTPUT.length; i < len; i++){
     stringBin = stringBin+"\n"+RHYMEOUTPUT[i];
+    console.log("aaa");
   }
+  console.log("eeeeeeh");
   sendTextMessage(senderID, "I found "+found+" rhymes, they are:\n"+stringBin);
 }
 
