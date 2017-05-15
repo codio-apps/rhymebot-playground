@@ -628,6 +628,7 @@ function findRhyme(senderID, searchWord) {
     }
     console.log("Delivering results");
     for (var i = 0; i < chunkTotal; i++){
+        console.log("i am in the loop");
         sendTextMessage(senderID, messageSplit[i]);
     }
     sendTypingOff(senderID);
