@@ -654,7 +654,8 @@ function findRhyme(senderID, searchWord) {
           splitNum=0;
       }
     }
-    for (int i = 0; i < chunkTotal; i++){
+    console.log("Delivering rhymes");
+    for (var i = 0; i < chunkTotal; i++){
         sendTextMessage(senderID, messageSplit[i]);
     }
     console.log("Rhyme delivery complete");
