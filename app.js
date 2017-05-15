@@ -570,7 +570,7 @@ function findRhyme(senderID, searchWord) {
       var char = "";
       var foundVowel=false;
       //check the first character of each syllable
-      for (var i = 0, sylLen=SYLLABLES.length; i < sylLen; i++){
+      for (var i = 0, sylLen=SYLLABLES.length; !foundVowel; i++){
         //set char to the first letter of the syllable
         char = SYLLABLES[i].charAt(0);
         console.log("char found: "+char);
@@ -581,16 +581,15 @@ function findRhyme(senderID, searchWord) {
             firstVowel = i;
             console.log("found a vowel, it is: "+char+" from "+SYLLABLES[i]+" at position "+i);
             //end the loops
-            if (foundVowel=false){
-              foundVowel=true;
-              j=vowLen;
+            foundVowel=true;
+            j=vowLen;
             }
           } else {
             console.log("no vowel found at position "+i);
           }
         }
     }
-    sendTextMessage(senderID, "found a vowel, it is: "+char+" from "+SYLLABLES[i]+" at position "+i);
+    sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[i]+" at position "+i);
   }
 }
 
