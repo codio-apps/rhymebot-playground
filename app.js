@@ -427,7 +427,7 @@ function receivedMessage(event) {
       searchWord = searchWord.toUpperCase();
         caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
-        sendTypingOn(senderID);
+
         findRhyme(senderID, searchWord);
       break;
 
@@ -559,6 +559,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
+  sendTypingOn(senderID);
     //first find the word in the dictionary
     temp = fs.readFileSync(dictionary, "utf-8");
     CURRENTDICTIONARY = temp.split("\n");
