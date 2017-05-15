@@ -569,8 +569,8 @@ function findRhyme(senderID, searchWord) {
       var firstVowel = 0;
       var char = "";
       var foundVowel=false;
-      //for every syllable in the word, until a vowel is found:
-      for (var i=0, len=SYLLABLES.length, foundVowel=false; i++){
+      //check the first character of each syllable
+      for (var i=0, len=SYLLABLES.length, i<len; i++){
         //set char to the first letter of the syllable
         char = SYLLABLES[i].charAt(0);
         console.log("char found: "+char);
