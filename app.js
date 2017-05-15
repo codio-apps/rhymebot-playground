@@ -36,7 +36,11 @@ var SYLLABLES = new Array();
 var wordNumber =0;
 var stringLength =0;
 
+// Graph Profile fields by senderID
 var name = "";
+var last_name = "";
+
+
 var rhymeString = "";
 var searchWord = "";
 var lc_messageText = "";
