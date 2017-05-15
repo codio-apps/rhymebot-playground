@@ -37,7 +37,7 @@ var wordNumber =0;
 var stringLength =0;
 
 // Graph Profile fields by senderID
-var name = "";
+var name = "NONAMESET";
 var last_name = "";
 var nameFound = false;
 
