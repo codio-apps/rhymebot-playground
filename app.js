@@ -608,7 +608,7 @@ function findRhyme(senderID, searchWord) {
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0
-          if (char = vowels[j]){
+          if (char == vowels[j]){
             firstVowel = position;
             console.log("looking for "+vowels[j]+" and found "+char+" at position "+i);
             //end the loops
