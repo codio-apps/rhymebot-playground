@@ -21,6 +21,9 @@ app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
 
+var TEST = "test";
+
+
 // Keyword initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
@@ -505,6 +508,7 @@ function StringSearch(input, key) {
   }
   return false;
 }
+
 
 
 function getUserInfo(senderID) {
