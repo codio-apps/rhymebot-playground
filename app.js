@@ -595,11 +595,10 @@ function findRhyme(senderID, searchWord) {
       //detect the first letter of phonemes sounds until you find a vowel
       var firstVowel = 0;
       var char = "";
-      var foundVowel=false;
       //check the first character of each phoneme, backwards
-      for (var i = 0, sylLen = PHONEMES.length; i < sylLen; i++){
+      for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
-        var position = sylLen-i-1;
+        var position = phoLen-i-1;
         var temp = PHONEMES[position];
         char = temp.charAt(0);
         //compare char to every vowel
@@ -612,13 +611,11 @@ function findRhyme(senderID, searchWord) {
     }
     //identify position of first vowel sound in array
     char = PHONEMES[firstVowel].charAt(0);
-    sylLen = PHONEMES.length-firstVowel;
-    console.log("found the first vowel, it is: "+char+" from "+PHONEMES[firstVowel]+" at position "+firstVowel+". Relevant phonemes "+sylLen);
+    phoLen = PHONEMES.length-firstVowel;
     //make a phoneme string to search for
     temp = "";
     for (i = firstVowel, len = PHONEMES.length; i < len; i++){
       temp = temp+" "+PHONEMES[i];
-      console.log("temp is now "+temp);
     }
     console.log("Succesfully constructed rhyme: "+temp+" searching for matches now...");
   }
@@ -634,6 +631,7 @@ function findRhyme(senderID, searchWord) {
       found++;
     }
   }
+  //output stuff
   console.log("found: "+found+" rhyme(s).");
   stringBin = "";
   for (var i = 0, len = RHYMEOUTPUT.length; i < len; i++){
