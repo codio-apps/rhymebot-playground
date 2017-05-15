@@ -458,7 +458,7 @@ function receivedMessage(event) {
   } else {
   }
   // CODE GOES HERE AFTER FUNCTION RETURNS
-  console.log("Just tried to get name, it is now " + name +" "+ last_name);
+  console.log("Just received the name from Facebook, it is now: " + name +" "+ last_name);
 
 });
 
@@ -559,6 +559,9 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
     //first find the word in the dictionary
+    temp = fs.readFileSync(dictionary, "utf-8");
+    CURRENTDICTIONARY = temp.split("\n");
+    console.log("dictionary succefully read");
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
