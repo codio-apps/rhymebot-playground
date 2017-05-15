@@ -254,6 +254,16 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
+  var isEcho = message.is_echo;
+  var messageId = message.mid;
+  var appId = message.app_id;
+  var metadata = message.metadata;
+
+  // You may get a text or attachment but not both
+  var messageText = message.text;
+  var messageAttachments = message.attachments;
+  var quickReply = message.quick_reply;
+
   console.log("***START OF NEW MESSAGE RECIEVED***");
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
@@ -273,15 +283,7 @@ function receivedMessage(event) {
 
   console.log("Just tried to get name, it is now " + name);
 
-  var isEcho = message.is_echo;
-  var messageId = message.mid;
-  var appId = message.app_id;
-  var metadata = message.metadata;
 
-  // You may get a text or attachment but not both
-  var messageText = message.text;
-  var messageAttachments = message.attachments;
-  var quickReply = message.quick_reply;
 
 
 
