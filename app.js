@@ -428,8 +428,6 @@ function receivedMessage(event) {
         caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
         sendTypingOn(senderID);
-        sleep(200);
-        sendTypingOff(senderID);
         findRhyme(senderID, searchWord);
       break;
 
@@ -470,14 +468,6 @@ function receivedMessage(event) {
 
 /* ************************************************************************************************************************************
 */
-
-//Sleeper
-function sleep(miliseconds) {
-   var currentTime = new Date().getTime();
-
-   while (currentTime + miliseconds >= new Date().getTime()) {
-   }
-}
 
 // Read text file data and store it into local variables for string comparisons
 function setUpLocalVariables() {
