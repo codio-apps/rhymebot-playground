@@ -603,22 +603,23 @@ function findRhyme(senderID, searchWord) {
         var position = sylLen-i-1;
         var temp = SYLLABLES[position];
         char = temp.charAt(0);
-        console.log("Comparing: "+char+" at position "+position+" of "+sylLen);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          //if we find a vowel at character 0
+          //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
             firstVowel = position;
             console.log("found "+vowels[j]+" at position "+i);
           }
         }
     }
+    //identify position of first vowel sound in array
     char = SYLLABLES[firstVowel].charAt(0);
     sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
     console.log("found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
     sylLen = SYLLABLES.length-firstVowel;
     console.log("I think I need to make a syllable string of length "+sylLen);
-    for (i = sylLen, len=SYLLABLES.length; i < len; i++){
+    temp = "";
+    for (i = 0, len=SYLLABLES.length; i < len; i++){
       console.log("syllable number "+i);
       temp = temp+" "+SYLLABLES[i];
       console.log("temp: "+temp);
