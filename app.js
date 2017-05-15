@@ -621,13 +621,12 @@ function findRhyme(senderID, searchWord) {
       temp = temp+" "+SYLLABLES[i];
     }
     console.log("Succesfully constructed rhyme: "+temp+" searching for matches now...");
-    sendTextMessage(senderID, "I am going to try to rhyme the string "+temp+". I can't do that yet");
   }
   //now search the dictionary for rhymes
   var RHYMEOUTPUT = new Array;
   var found = 0;
   var arrayBin = new Array;
-  var stringBin
+  var stringBin = "";
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].endsWith(temp)){
       arrayBin = CURRENTDICTIONARY[i].split("  ");
@@ -636,9 +635,11 @@ function findRhyme(senderID, searchWord) {
     }
   }
   console.log("found: "+found+" rhyme(s).");
-  console.log(RHYMEOUTPUT);
-  sendTextMessage(senderID, "I found "+found+" rhymes, they are:\n"+RHYMEOUTPUT);
-
+  stringBin = "";
+  for (var i = 0, len = RHYMEOUTPUT.length; i < len; i++){
+    stringBin = stringBin+"\n"+RHYMEOUTPUT[i];
+  }
+  sendTextMessage(senderID, "I found "+found+" rhymes, they are:\n"+stringBin);
 }
 
 
