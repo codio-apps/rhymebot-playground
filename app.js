@@ -279,7 +279,7 @@ function receivedMessage(event) {
      // CODE GOES HERE AFTER FUNCTION RETURNS
 
 
-  console.log("Just tried to get name, it is now " + name);
+
 
 
 
@@ -464,10 +464,8 @@ function receivedMessage(event) {
     console.log(bodyObj);
     name = bodyObj.first_name;
     last_name = bodyObj.last_name;
-
-    console.log("Name = " + name + " and last name " + last_name);
   }
-  console.log("iudfouhsdiufhsdoufhsiufhsdiufhsdifuhsdifuhsdifuhsdifuhsdfiuhsdf");
+  console.log("Just tried to get name, it is now " + name +" "+ last_name);
 
 });
 
