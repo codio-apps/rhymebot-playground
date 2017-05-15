@@ -272,13 +272,10 @@ function receivedMessage(event) {
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
 
-  request(
-     ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
-   function(error, response, body) {
-     // CODE GOES HERE AFTER FUNCTION RETURNS
+  
      console.log("Just tried to get name, it is now " + name);
 
-});
+
 
 
   if (isEcho) {
@@ -464,7 +461,6 @@ function receivedMessage(event) {
     console.log("Name = " + name + " and last name " + last_name);
   }
   console.log("iudfouhsdiufhsdoufhsiufhsdiufhsdifuhsdifuhsdifuhsdifuhsdfiuhsdf");
-
 
 
 }
