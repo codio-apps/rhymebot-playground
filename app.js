@@ -640,7 +640,8 @@ function findRhyme(senderID, searchWord) {
           splitNum++;
           //otherwise, split the message into the next chunk
         } else {
-          sendTextMessage(senderID,+ messageSplit[messageChunk]);
+
+          sendTextMessage(senderID, messageSplit[messageChunk]);
           //go onto the next messageChunk
           messageChunk++;
           messageSplit[messageChunk]="";
