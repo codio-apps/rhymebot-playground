@@ -611,17 +611,13 @@ function findRhyme(senderID, searchWord) {
           if (char == vowels[j]){
             firstVowel = position;
             console.log("found "+vowels[j]+" at position "+i);
-            //end the loops
-            if (!foundVowel){
-              foundVowel=true;
-              j=vowLen;
             }
           } else {
             console.log("no vowel "+vowels[j]+" found at position "+position+". Found: "+char);
           }
         }
     }
-    sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[position]+" at position "+position);
+    sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
   }
 }
 
