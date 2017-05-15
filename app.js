@@ -618,12 +618,28 @@ function findRhyme(senderID, searchWord) {
   console.log("found: "+found+" rhyme(s).");
   stringBin = "";
   var messageSplit = new Array;
-  for (var i = 0, len = found; i < len; i++){
-    for (var num = 0, limit =25; num < limit; num++){
-      messageSplit[num] = messageSplit[num]+"\n"+RHYMEOUTPUT[i];
-        //stringBin = stringBin+"\n"+RHYMEOUTPUT[i];
+  var sequence = 0;
+  var chunk = 0;
+  //for every word found
+  //for (var i = 0, len = found; i < len; i++){
+
+    //for how ever many there are words found
+    for (var sequence = 0, len = found; sequence < found; sequence ++){
+        //add the next word to a string in the array
+        messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT+"\n"[sequence];
+        //count to 50
+        for (var i = 0, j = 50; i < j; i++){
+        }
+        //then up the chunk number
+        chunk++;
     }
-  }
+
+
+    //for (var num = 0, limit =25; num < limit; num++){
+    //  messageSplit[num] = messageSplit[num]+"\n"+RHYMEOUTPUT[i];
+
+    //}
+  //}
   console.log(messageSplit);
   sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
 }
