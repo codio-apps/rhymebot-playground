@@ -1,7 +1,7 @@
 /* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
 
-/*rhymebot mk0.0000002 alpha */
+/*rhymebot mk0.0000003 alpha */
 'use strict';
 
 // Set up constants
