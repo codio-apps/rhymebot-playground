@@ -39,6 +39,7 @@ var stringLength =0;
 // Graph Profile fields by senderID
 var name = "";
 var last_name = "";
+var nameFound = false;
 
 
 var rhymeString = "";
@@ -265,15 +266,22 @@ function receivedMessage(event) {
   var quickReply = message.quick_reply;
 
   console.log("***START OF NEW MESSAGE RECIEVED***");
-  console.log("Received message for user "+senderID+" with message:"+messageText);
+  console.log("Received message for user "+senderID+" with message:"+messageText+"\nCalling setUpLocalVariables");
+  setUpLocalVariables();
 
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
 
+  for (i = 0; nameFound = false; i++){
+    console.log("name attempt "+0+". Name is :"+name);
     request(
       ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
     function(error, response, body) {
+      if (name != ""){
+        nameFound = true;
+      }
       // CODE GOES HERE AFTER FUNCTION RETURNS
+  }
 
 
   console.log("Just tried to get name, it is now " + name);
@@ -297,8 +305,7 @@ function receivedMessage(event) {
   }
 
 
-  setUpLocalVariables();
-  console.log("calling setUpLocalVariables");
+
 
 
   if (messageText) {
