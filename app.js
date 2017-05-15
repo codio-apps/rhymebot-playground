@@ -21,9 +21,6 @@ app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
 
-var TEST = "test";
-
-
 // Keyword initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
@@ -510,31 +507,6 @@ function StringSearch(input, key) {
 }
 
 
-
-function getUserInfo(senderID) {
-
-  console.log("Retrieving name now " + senderID + ". Name is currently: " + name);
-
-    request({
-      url: "https://graph.facebook.com/v2.6/" + senderID,
-      qs: {
-        access_token: PAGE_ACCESS_TOKEN,
-        fields: "first_name"
-      },
-      method: "GET"
-    }, function(error, response, body) {
-      if (error) {
-        name = "";
-        console.log("Error getting user's name: " +  error);
-      } else {
-        var bodyObj = JSON.parse(body);
-        name = bodyObj.first_name;
-        console.log("Name = " + name);
-      }
-    });
-    console.log("Returning Name from function: " + name);
-    return name;
-  }
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
 //inputs: who sent it, what is the word, where does it appear in the string
