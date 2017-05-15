@@ -614,9 +614,8 @@ function findRhyme(senderID, searchWord) {
     }
     //identify position of first vowel sound in array
     char = SYLLABLES[firstVowel].charAt(0);
-    sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
     console.log("found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
-    sylLen = SYLLABLES.length-firstVowel;
+    sylLen = SYLLABLES.length-firstVowel+1;
     console.log("I think I need to make a syllable string of length "+sylLen);
     temp = "";
     for (i = firstVowel, len=sylLen; i < len; i++){
@@ -624,6 +623,7 @@ function findRhyme(senderID, searchWord) {
       temp = temp+" "+SYLLABLES[i];
       console.log("temp: "+temp);
     }
+    sendTextMessage(senderID, "I am going to try to rhyme the string "+temp+". I can't do that yet");
   }
 }
 
