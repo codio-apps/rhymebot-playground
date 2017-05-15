@@ -619,7 +619,7 @@ function findRhyme(senderID, searchWord) {
     sylLen = SYLLABLES.length-firstVowel;
     console.log("I think I need to make a syllable string of length "+sylLen);
     temp = "";
-    for (i = 0, len=SYLLABLES.length; i < len; i++){
+    for (i = firstVowel, len=sylLen; i < len; i++){
       console.log("syllable number "+i);
       temp = temp+" "+SYLLABLES[i];
       console.log("temp: "+temp);
