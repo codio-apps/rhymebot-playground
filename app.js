@@ -253,8 +253,9 @@ function receivedMessage(event) {
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
 
-  console.log("Getting user info");
+  console.log("Getting user info. Name is currently " + name);
   name = getUserInfo(senderID);
+  console.log("Just tried to get name, it is now " + name);
 
   var isEcho = message.is_echo;
   var messageId = message.mid;
@@ -493,7 +494,7 @@ function StringSearch(input, key) {
 
 function getUserInfo(senderID) {
 
-  console.log("Retrieving name now " + senderID);
+  console.log("Retrieving name now " + senderID + ". Name is currently: " + name);
 
     request({
       url: "https://graph.facebook.com/v2.6/" + senderID,
@@ -512,7 +513,7 @@ function getUserInfo(senderID) {
         console.log("Name = " + name);
       }
     });
-
+    console.log("Returning Name from function: " + name);
     return name;
   }
 
