@@ -13,9 +13,10 @@ bonjour
 ola
 good morning
 good afternoon
-evening
+good evening
 yoyo
 hola
 aloha
 salut
 ciao
+ahoy
