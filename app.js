@@ -432,7 +432,6 @@ function receivedMessage(event) {
       searchWord = searchWord.toUpperCase();
         caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
-        sendTextMessage(senderID, "I will soon run the findRhyme function for: " + searchWord);
         findRhyme(senderID, searchWord);
       break;
 
@@ -576,14 +575,12 @@ function searchDictionary(senderID, searchWord, wordNumber) {
   sendTypingOff(senderID);
 }
 
-
-
-//FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT RHYMES - doesn't work as intended yet
+//FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
     //first find the word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
+    if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ") || (CURRENTDICTIONARY[i].startsWith(searchWord+"(")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       var wordLength = searchWord.length;
@@ -603,53 +600,31 @@ function findRhyme(senderID, searchWord) {
       //check the first character of each syllable, backwards
       for (var i = 0, sylLen = SYLLABLES.length; i < sylLen; i++){
         //set char to the first letter of the syllable
-        var tmp = sylLen-i-1;
-        console.log("tmp is "+tmp+". i is "+i+". sylLen is "+sylLen+". syllable is "+SYLLABLES[tmp]);
-        var temp = SYLLABLES[tmp]
+        var position = sylLen-i-1;
+        console.log("position is "+position+". i is "+i+". sylLen is "+sylLen+". syllable is "+SYLLABLES[position]);
+        var temp = SYLLABLES[position];
         char = temp.charAt(0);
-        console.log("char found: "+char+"at position "+tmp+"of "+sylLen);
+        console.log("char found: "+char+" at position "+position+" of "+sylLen);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+          temp = vowels[j];
           //if we find a vowel at character 0
-          if (char == vowels[j].charAt(0)){
-            firstVowel = i;
-            console.log("found a vowel, it is: "+char+" from "+SYLLABLES[i]+" at position "+i);
+          if (char = temp.charAt(0)){
+            firstVowel = position;
+            console.log("found a vowel, it is: "+char+" from "+SYLLABLES[position]+" at position "+i);
             //end the loops
             if (foundVowel=false){
               foundVowel=true;
               j=vowLen;
             }
           } else {
-            console.log("no vowel found at position "+i);
+            console.log("no vowel "+vowels[j]+" found at position "+position+". Found: "+char);
           }
         }
     }
-    sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[i]+" at position "+i);
+    sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[position]+" at position "+position);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
