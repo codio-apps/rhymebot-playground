@@ -630,7 +630,8 @@ function findRhyme(senderID, searchWord) {
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].endsWith(temp)){
       arrayBin = CURRENTDICTIONARY[i].split("  ").toLowerCase;
-      if (arrayBin[0]==searchWord){
+      //don't add the original word to the return array
+      if (arrayBin[0]=searchWord){
         RHYMEOUTPUT[found]=arrayBin[0];
         found++;
       }
