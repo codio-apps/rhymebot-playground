@@ -617,12 +617,15 @@ function findRhyme(senderID, searchWord) {
   //output stuff
   console.log("found: "+found+" rhyme(s).");
   stringBin = "";
-  for (var i = 0, len = found; i < len; i++){
-    stringBin = stringBin+"\n"+RHYMEOUTPUT[i];
-  }
   var messageSplit = new Array;
-  console.log(stringBin.match(/.{1,3}/g));
-  sendTextMessage(senderID, "I found "+found+" rhymes, they are:\n"+stringBin);
+  for (var i = 0, len = found; i < len; i++){
+    for (var num = 0, limit =25; num < limit; num++){
+      messageSplit[num] = messageSplit[num]+"\n"+RHYMEOUTPUT[i];
+        //stringBin = stringBin+"\n"+RHYMEOUTPUT[i];
+    }
+  }
+  console.log(messageSplit);
+  sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
 }
 
 
