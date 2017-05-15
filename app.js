@@ -642,6 +642,7 @@ function findRhyme(senderID, searchWord) {
           sendTextMessage(senderID, messageSplit[messageChunk]);
           //go onto the next messageChunk
           messageChunk++;
+          console.log("splitting chunks into a new chunk: "+messageChunk);
           messageSplit[messageChunk]="";
           messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
           splitNum=0;
