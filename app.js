@@ -556,9 +556,9 @@ function findRhyme(senderID, searchWord) {
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       var wordLength = searchWord.length;
-      var temp = CURRENTDICTIONARY[i].slice(wordLength+2);
+      var tempSyllables = CURRENTDICTIONARY[i].slice(wordLength+2);
       //make an array with each syllable sound
-      SYLLABLES = temp.split(" ");
+      SYLLABLES = tempSyllables.split(" ");
     }
   }
   if (!wordFound) {
@@ -572,9 +572,10 @@ function findRhyme(senderID, searchWord) {
       //check the first character of each syllable, backwards
       for (var i = 0, sylLen = SYLLABLES.length; i < sylLen; i++){
         //set char to the first letter of the syllable
-        var tmp = sylLen-i;
+        var tmp = sylLen-i-1;
         console.log("tmp is "+tmp+". i is "+i+". sylLen is "+sylLen+". syllable is "+SYLLABLES[tmp]);
-        char = SYLLABLES[tmp].charAt(0);
+        var temp = SYLLABLES[tmp]
+        char = temp.charAt(0);
         console.log("char found: "+char+"at position "+tmp+"of "+sylLen);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
