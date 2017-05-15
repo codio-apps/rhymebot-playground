@@ -36,7 +36,11 @@ var SYLLABLES = new Array();
 var wordNumber =0;
 var stringLength =0;
 
+// Graph Profile fields by senderID
 var name = "";
+var last_name = "";
+
+
 var rhymeString = "";
 var searchWord = "";
 var lc_messageText = "";
@@ -250,6 +254,16 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
+  var isEcho = message.is_echo;
+  var messageId = message.mid;
+  var appId = message.app_id;
+  var metadata = message.metadata;
+
+  // You may get a text or attachment but not both
+  var messageText = message.text;
+  var messageAttachments = message.attachments;
+  var quickReply = message.quick_reply;
+
   console.log("***START OF NEW MESSAGE RECIEVED***");
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
@@ -265,32 +279,11 @@ function receivedMessage(event) {
       ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
     function(error, response, body) {
       // CODE GOES HERE AFTER FUNCTION RETURNS
-      if (error) {
-        name = "";
-        console.log("Error getting user's name: " +  error);
-      } else {
-        var bodyObj = JSON.parse(body);
-        name = bodyObj.first_name;
-        last_name = bodyObj.last_name;
-
-        console.log("Name = " + name + "and last name " + last_name);
-      }
-      console.log("iudfouhsdiufhsdoufhsiufhsdiufhsdifuhsdifuhsdifuhsdifuhsdfiuhsdf");
-
-    });
 
 
   console.log("Just tried to get name, it is now " + name);
 
-  var isEcho = message.is_echo;
-  var messageId = message.mid;
-  var appId = message.app_id;
-  var metadata = message.metadata;
 
-  // You may get a text or attachment but not both
-  var messageText = message.text;
-  var messageAttachments = message.attachments;
-  var quickReply = message.quick_reply;
 
 
 
@@ -464,6 +457,23 @@ function receivedMessage(event) {
     sendTextMessage(senderID, message);
     //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
   }
+
+  if (error) {
+    name = "";
+    console.log("Error getting user's name: " +  error);
+  } else {
+
+    var bodyObj = JSON.parse(body);
+    console.log(bodyObj);
+    name = bodyObj.first_name;
+    last_name = bodyObj.last_name;
+
+    console.log("Name = " + name + "and last name " + last_name);
+  }
+  console.log("iudfouhsdiufhsdoufhsiufhsdiufhsdifuhsdifuhsdifuhsdifuhsdfiuhsdf");
+
+});
+
 }
 
 /* ************************************************************************************************************************************
