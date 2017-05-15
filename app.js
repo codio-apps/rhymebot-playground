@@ -427,7 +427,6 @@ function receivedMessage(event) {
       searchWord = searchWord.toUpperCase();
         caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
-
         sendTypingOn(senderID);
         sleep(200);
         sendTypingOff(senderID);
@@ -553,15 +552,17 @@ function findRhyme(senderID, searchWord) {
     CURRENTDICTIONARY = temp.split("\n");
     console.log("dictionary successfully read");
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
+    //insert or operator here
+    if((CURRENTDICTIONARY[i].startsWith(searchWord+"  "))||(CURRENTDICTIONARY[i].startsWith(searchWord+"("))){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       var wordLength = searchWord.length;
       var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
-      //make an array with each phoneme sound
+      //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
     }
   }
+  //if we didnt' find the word in the dictionary
   if (!wordFound) {
     sendTypingOff(senderID);
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
@@ -583,15 +584,14 @@ function findRhyme(senderID, searchWord) {
           }
         }
     }
-    //identify position of first vowel sound in array
-    char = PHONEMES[firstVowel].charAt(0);
+    //figure out how many phonemes we want to compare
     phoLen = PHONEMES.length-firstVowel;
-    //make a phoneme string to search for
+    //construct our phoneme string
     temp = "";
     for (i = firstVowel, len = PHONEMES.length; i < len; i++){
       temp = temp+" "+PHONEMES[i];
     }
-    console.log("Succesfully constructed rhyme: "+temp+" searching for matches now...");
+    console.log("Succesfully constructed phoneme string: "+temp+" searching for matches now...");
   }
   //now search the dictionary for rhymes
   var RHYMEOUTPUT = new Array;
