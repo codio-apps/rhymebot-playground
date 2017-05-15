@@ -611,8 +611,7 @@ function findRhyme(senderID, searchWord) {
           if (char == vowels[j]){
             firstVowel = position;
             console.log("found "+vowels[j]+" at position "+i);
-            }
-          } else {
+            } else {
             console.log("no vowel "+vowels[j]+" found at position "+position+". Found: "+char);
           }
         }
