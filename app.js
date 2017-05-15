@@ -628,14 +628,18 @@ function findRhyme(senderID, searchWord) {
   //now search the dictionary for rhymes
   var RHYMEOUTPUT = new Array;
   var found = 0;
+  var arrayBin = new Array;
+  var stringBin
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].endsWith(temp)){
-      RHYMEOUTPUT[found]=CURRENTDICTIONARY[i];
+      arrayBin = rhymeString.split("  ");
+      RHYMEOUTPUT[found]=arrayBin[0];
       found++;
     }
   }
   console.log("found: "+found+" rhyme(s).");
   console.log(RHYMEOUTPUT);
+
 }
 
 
