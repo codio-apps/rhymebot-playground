@@ -30,7 +30,7 @@ var vowels =new Array('A', 'E', 'I', 'O', 'U');
 var CURRENTDICTIONARY = new Array();
 var SEARCHSTRING = new Array();
 var OUTPUTSTRING = new Array();
-var SYLLABLES = new Array();
+var PHONEMES = new Array();
 
 //integers for array counting in sentences
 var wordNumber =0;
@@ -402,12 +402,12 @@ function receivedMessage(event) {
       caughtCommand = true;
       //init arrays and counter
       wordNumber=0;
-      var syllableString = lc_messageText.slice(9);
+      var PHONEMEString = lc_messageText.slice(9);
       var tempString="";
       console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
-      sendTextMessage(senderID, "I recognised the word, I am getting this data: "+ syllableString);
+      sendTextMessage(senderID, "I recognised the word, I am getting this data: "+ PHONEMEString);
 
-      SEARCHSTRING = syllableString.split(" ");
+      SEARCHSTRING = PHONEMEString.split(" ");
       stringLength = SEARCHSTRING.length;
       //send the string to be searched
       for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
@@ -427,7 +427,7 @@ function receivedMessage(event) {
       // Handle the SINGLE command
       // ************************************
       case 'single':
-      //test environment for single word, single syllable perfect rhymes
+      //test environment for single word perfect rhymes
       var searchWord = lc_messageText.slice(7)
       searchWord = searchWord.toUpperCase();
         caughtCommand=true;
@@ -584,23 +584,23 @@ function findRhyme(senderID, searchWord) {
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       var wordLength = searchWord.length;
-      var tempSyllables = CURRENTDICTIONARY[i].slice(wordLength+2);
-      //make an array with each syllable sound
-      SYLLABLES = tempSyllables.split(" ");
+      var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
+      //make an array with each phoneme sound
+      PHONEMES = tempPHONEMES.split(" ");
     }
   }
   if (!wordFound) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
-      //detect the first letter of syllable sounds until you find a vowel
+      //detect the first letter of phonemes sounds until you find a vowel
       var firstVowel = 0;
       var char = "";
       var foundVowel=false;
-      //check the first character of each syllable, backwards
-      for (var i = 0, sylLen = SYLLABLES.length; i < sylLen; i++){
-        //set char to the first letter of the syllable
+      //check the first character of each phoneme, backwards
+      for (var i = 0, sylLen = PHONEMES.length; i < sylLen; i++){
+        //set char to the first letter of the phoneme
         var position = sylLen-i-1;
-        var temp = SYLLABLES[position];
+        var temp = PHONEMES[position];
         char = temp.charAt(0);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
@@ -611,13 +611,13 @@ function findRhyme(senderID, searchWord) {
         }
     }
     //identify position of first vowel sound in array
-    char = SYLLABLES[firstVowel].charAt(0);
-    sylLen = SYLLABLES.length-firstVowel;
-    console.log("found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel+". Relevant phonemes "+sylLen);
-    //make a syllable string to search for
+    char = PHONEMES[firstVowel].charAt(0);
+    sylLen = PHONEMES.length-firstVowel;
+    console.log("found the first vowel, it is: "+char+" from "+PHONEMES[firstVowel]+" at position "+firstVowel+". Relevant phonemes "+sylLen);
+    //make a phoneme string to search for
     temp = "";
-    for (i = firstVowel, len=sylLen; i < len; i++){
-      temp = temp+" "+SYLLABLES[i];
+    for (i = sylLen, PHONEMES.length; i < len; i++){
+      temp = temp+" "+PHONEMES[i];
       console.log("temp is now "+temp);
     }
     console.log("Succesfully constructed rhyme: "+temp+" searching for matches now...");
