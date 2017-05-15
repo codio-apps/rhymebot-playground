@@ -265,15 +265,10 @@ function receivedMessage(event) {
   var quickReply = message.quick_reply;
 
   console.log("***START OF NEW MESSAGE RECIEVED***");
-  console.log("Received message for user %d with message:",
-    senderID, recipientID, timeOfMessage);
+  console.log("Received message for user %d with message:"+messageText);
 
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
-
-  console.log("***START OF NEW MESSAGE RECIEVED***");
-  console.log("Received message for user %d with message:",
-    senderID, recipientID, timeOfMessage);
 
     request(
       ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
@@ -302,7 +297,7 @@ function receivedMessage(event) {
   }
 
 
-      setUpLocalVariables();
+  setUpLocalVariables();
 
 
   if (messageText) {
