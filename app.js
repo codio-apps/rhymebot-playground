@@ -550,7 +550,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 //FUNCTION TO SEARCH FOR ALL ONE SYLLABLE PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
-    //check every word in the dictionary
+    //first find the word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
@@ -561,7 +561,7 @@ function findRhyme(senderID, searchWord) {
       SYLLABLES = temp.split(" ");
     }
   }
-    if (!wordFound) {
+  if (!wordFound) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
       console.log("Enterpreting the rhyme");
