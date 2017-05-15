@@ -634,13 +634,14 @@ function findRhyme(senderID, searchWord) {
         if (splitNum <50){
           //assign this rhyme to the string
           messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT[sequence]+"\n";
+          splitNum++;
+          //otherwise, split the message into the next chunk
         } else {
           console.log("Splitting message")
           chunk++;
           messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT+"\n"[sequence];
           splitNum=0;
       }
-        //count to 50
     }
 
 
@@ -650,6 +651,7 @@ function findRhyme(senderID, searchWord) {
     //}
   //}
   sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
+  console.log("OK: "+messageSplit);
 }
 
 
