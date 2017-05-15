@@ -352,7 +352,6 @@ function receivedMessage(event) {
           messageResponse = ("What's up " + name +"?");
         }
         else {
-
           messageResponse = ("What's up ?");
         }
       break;
@@ -818,6 +817,7 @@ function sendFileMessage(recipientId) {
   };
 
   callSendAPI(messageData);
+  name = "";
 }
 
 
