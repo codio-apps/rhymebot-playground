@@ -254,7 +254,10 @@ function receivedMessage(event) {
     senderID, recipientID, timeOfMessage);
 
   console.log("Getting user info. Name is currently " + name);
-  name = getUserInfo(senderID);
+  // name = getUserInfo(senderID);
+  getUserInfo(senderID, function(name) {
+    
+  });
   console.log("Just tried to get name, it is now " + name);
 
   var isEcho = message.is_echo;
