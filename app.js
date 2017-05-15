@@ -575,6 +575,7 @@ function findRhyme(senderID, searchWord) {
     }
   }
   if (!wordFound) {
+    sendTypingOff(senderID);
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
       //detect the first letter of phonemes sounds until you find a vowel
@@ -639,6 +640,7 @@ function findRhyme(senderID, searchWord) {
           splitNum++;
           //otherwise, split the message into the next chunk
         } else {
+
           sendTextMessage(senderID, messageSplit[messageChunk]);
           //go onto the next messageChunk
           messageChunk++;
@@ -658,6 +660,7 @@ function findRhyme(senderID, searchWord) {
 
     //}
   //}
+  sendTypingOff(senderID);
   sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
 }
 
