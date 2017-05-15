@@ -632,7 +632,7 @@ function findRhyme(senderID, searchWord) {
   var stringBin
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].endsWith(temp)){
-      arrayBin = rhymeString.split("  ");
+      arrayBin = CURRENTDICTIONARY[i].split("  ");
       RHYMEOUTPUT[found]=arrayBin[0];
       found++;
     }
