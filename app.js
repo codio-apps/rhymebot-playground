@@ -635,19 +635,21 @@ function findRhyme(senderID, searchWord) {
         //if we have less than 50 in this message section
         if (splitNum <50){
           //assign this rhyme to the string
-          messageSplit[messageChunk] = messageSplit[messageChunk]+RHYMEOUTPUT[sequence]+"\n";
+          messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
           //increase the split number
           splitNum++;
           //otherwise, split the message into the next chunk
         } else {
-          console.log("message number: "+messageChunk+" of "+chunkTotal+" is "+messageSplit[messageChunk]);
+          sendTextMessage(senderID,+ messageSplit[messageChunk]);
           //go onto the next messageChunk
           messageChunk++;
-          messageSplit[messageChunk] = messageSplit[messageChunk]+RHYMEOUTPUT[sequence]+"\n";
+          messageSplit[messageChunk]="";
+          messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
           splitNum=0;
       }
     }
-    console.log("message number: "+messageChunk+" is "+messageSplit[messageChunk]);
+    sendTextMessage(senderID, messageSplit[messageChunk]);
+    console.log("Rhyme delivery complete");
 
 
 
