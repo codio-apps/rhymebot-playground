@@ -1,6 +1,6 @@
 ;;; # CMUdict  --  Major Version: 0.07a [102007]
-;;; 
-;;; # $URL: 
+;;;
+;;; # $URL:
 ;;; # $Id$
 ;;; # $Rev$  -- this is the *repository's* count; expect gaps
 ;;; # $Date$
@@ -46,12 +46,15 @@
 ;;; #
 ;;;
 ;;;  NOTES  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; 
-;;;  [20080401] (air)  New dict file format introduced 
+;;;
+;;;  [20080401] (air)  New dict file format introduced
 ;;;   - comments (like this section) are allowed
 ;;;   - file name is major version; vers/rev information is now in the header
 ;;;
-;;; 
+;;;
+
+//RhymeBot edit version 0.001
+
 !EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T
 "CLOSE-QUOTE  K L OW1 Z K W OW1 T
 "DOUBLE-QUOTE  D AH1 B AH0 L K W OW1 T
@@ -55322,6 +55325,7 @@ HOFSTAD  HH AA1 F S T AE0 D
 HOFSTETTER  HH AA1 F S T EH0 T ER0
 HOFSTRA  HH AA1 F S T R AH0
 HOG  HH AA1 G
+HOG(1) HH AO1 G
 HOGAN  HH OW1 G AA2 N
 HOGAN(1)  HH OW1 G AH0 N
 HOGAN'S  HH OW1 G AA2 N Z
@@ -83419,6 +83423,7 @@ NIGERIA'S  N AY0 JH IH1 R IY0 AH0 Z
 NIGERIAN  N AY0 JH IH1 R IY0 AH0 N
 NIGERIANS  N AY0 JH IH1 R IY0 AH0 N Z
 NIGG  N IH1 G
+NIGGA N IH1 G AH
 NIGGARD  N IH1 G ER0 D
 NIGGARDLINESS  N IH1 G ER0 D L IY0 N AH0 S
 NIGGARDLY  N IH1 G ER0 D L IY0
