@@ -627,21 +627,23 @@ function findRhyme(senderID, searchWord) {
   //for (var i = 0, len = found; i < len; i++){
 
     //for how ever many there were words found
-    for (var sequence = 0, len = found; sequence < found; sequence ++){
+    for (var sequence = 0; sequence < found; sequence ++){
         //add the next word to a string in the array
         //if we have less than 50 in this section
         if (splitNum <50){
           //assign this rhyme to the string
           console.log("processing "+RHYMEOUTPUT[sequence]);
           messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT[sequence]+"\n";
+          //increase the split number
           splitNum++;
           //otherwise, split the message into the next chunk
         } else {
           console.log("Splitting message")
+          //go to the next chunk
           chunk++;
-          messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT+"\n"[sequence];
+          messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT[sequence]+"\n";
           splitNum=0;
-          //console.log("message "+chunk+" is "+messageSplit[chunk]);
+          console.log("message "+chunk+" is "+messageSplit[chunk]);
       }
     }
 
