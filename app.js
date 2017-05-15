@@ -254,7 +254,7 @@ function receivedMessage(event) {
     senderID, recipientID, timeOfMessage);
 
   console.log("Getting user info");
-  getUserInfo(senderID);
+  name = getUserInfo(senderID);
 
   var isEcho = message.is_echo;
   var messageId = message.mid;
@@ -432,7 +432,7 @@ function receivedMessage(event) {
         sendTextMessage(senderID, messageResponse);
 
     } else if (messageAttachments) {
-    getUserInfo(senderID);
+    name = getUserInfo(senderID);
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
     var message = "Nice attachment;"
     sendTextMessage(senderID, message);
@@ -504,6 +504,7 @@ function getUserInfo(senderID) {
       method: "GET"
     }, function(error, response, body) {
       if (error) {
+        name = "";
         console.log("Error getting user's name: " +  error);
       } else {
         var bodyObj = JSON.parse(body);
@@ -511,6 +512,8 @@ function getUserInfo(senderID) {
         console.log("Name = " + name);
       }
     });
+
+    return name;
   }
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
