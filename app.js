@@ -601,7 +601,8 @@ function findRhyme(senderID, searchWord) {
   var chunkTotal = found/50;
   var splitNum = 0;
   chunkTotal = Math.round(chunkTotal);
-  console.log("words found: "+found+". additional chunks required: "+chunkTotal);
+  console.log("words found: "+found+". additional message chunks required: "+chunkTotal);
+    sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
   //for every word found
   //for (var i = 0, len = found; i < len; i++){
     messageSplit[messageChunk]="message : 0";
@@ -616,8 +617,6 @@ function findRhyme(senderID, searchWord) {
           splitNum++;
           //otherwise, split the message into the next chunk
         } else {
-
-          sendTextMessage(senderID, messageSplit[messageChunk]);
           //go onto the next messageChunk
           messageChunk++;
           console.log("splitting chunks into a new chunk: "+messageChunk);
@@ -631,16 +630,7 @@ function findRhyme(senderID, searchWord) {
         sendTextMessage(senderID, messageSplit[i]);
     }
     console.log("Rhyme delivery complete");
-
-
-
-    //for (var num = 0, limit =25; num < limit; num++){
-    //  messageSplit[num] = messageSplit[num]+"\n"+RHYMEOUTPUT[i];
-
-    //}
-  //}
-  sendTypingOff(senderID);
-  sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
+    sendTypingOff(senderID);
 }
 
 
