@@ -629,8 +629,12 @@ function findRhyme(senderID, searchWord) {
     //for how ever many there are words found
     for (var sequence = 0, len = found; sequence < found; sequence ++){
         //add the next word to a string in the array
-        if (chunk <50 )
+        if (chunk <50){
         messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT+"\n"[sequence];
+      } else {
+        chunk++;
+        messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT+"\n"[sequence];
+      }
         //count to 50
     }
 
