@@ -25,7 +25,7 @@ app.use(express.static('public'));
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
 var GREETINGS = "";
-var vowels =new Array('a', 'e', 'i', 'o', 'u');
+var vowels =new Array('A', 'E', 'I', 'O', 'U');
 //array initialisation
 var CURRENTDICTIONARY = new Array();
 var SEARCHSTRING = new Array();
@@ -610,7 +610,7 @@ function findRhyme(senderID, searchWord) {
           //if we find a vowel at character 0
           if (char == vowels[j]){
             firstVowel = position;
-            console.log("looking for "+vowels[j]+" and found "+char+" at position "+i);
+            console.log("found"+vowels[j]+" at position "+i);
             //end the loops
             if (foundVowel=false){
               foundVowel=true;
