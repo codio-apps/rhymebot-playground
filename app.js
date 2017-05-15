@@ -627,7 +627,7 @@ function findRhyme(senderID, searchWord) {
   }
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].endsWith(temp)){
-      console.log("rhyme found");
+      console.log("rhyme found, it is "+CURRENTDICTIONARY[i]);
     }
   }
 }
