@@ -618,7 +618,7 @@ function findRhyme(senderID, searchWord) {
     sylLen = SYLLABLES.length-firstVowel;
     console.log("I think I need to make a syllable string of length "+sylLen);
     temp = "";
-    for (i = firstVowel, len=sylLen; i <= len; i++){
+    for (i = firstVowel, len=sylLen; i < sylLen; i++){
       temp = temp+" "+SYLLABLES[i];
     }
     console.log("Succesfully constructed rhyme: "+temp);
