@@ -620,6 +620,7 @@ function findRhyme(senderID, searchWord) {
   var sequence = 0;
   var chunk = 0;
   var chunkTotal = found/50;
+  var splitNum = 0;
   chunkTotal = Math.round(chunkTotal);
   console.log("words found: "+found+". chunks required: "+chunkTotal);
   messageSplit[chunk] = "";
@@ -629,13 +630,13 @@ function findRhyme(senderID, searchWord) {
     //for how ever many there are words found
     for (var sequence = 0, len = found; sequence < found; sequence ++){
         //add the next word to a string in the array
-        if (chunk <50){
+        if (splitNum <50){
         messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT+"\n"[sequence];
       } else {
         console.log("Splitting message")
         chunk++;
         messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT+"\n"[sequence];
-        chunk=0;
+        splitNum=0;
       }
         //count to 50
     }
