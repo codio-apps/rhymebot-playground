@@ -278,7 +278,7 @@ function receivedMessage(event) {
      // CODE GOES HERE AFTER FUNCTION RETURNS
      console.log("Just tried to get name, it is now " + name);
 
-
+});
 
 
   if (isEcho) {
@@ -465,7 +465,7 @@ function receivedMessage(event) {
   }
   console.log("iudfouhsdiufhsdoufhsiufhsdiufhsdifuhsdifuhsdifuhsdifuhsdfiuhsdf");
 
-});
+
 
 }
 
