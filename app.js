@@ -615,8 +615,9 @@ function findRhyme(senderID, searchWord) {
     }
     char = SYLLABLES[firstVowel].charAt(0);
     sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
+    console.log("found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
     sylLen = SYLLABLES.length-firstVowel;
-    for (i = 0, len=sylLen; i < len; i++){
+    for (i = sylLen, len=SYLLABLES.length; i < len; i++){
       console.log("got this far");
       temp = temp+" "+SYLLABLES[i];
       console.log("temp: "+temp);
