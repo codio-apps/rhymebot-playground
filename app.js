@@ -633,7 +633,7 @@ function findRhyme(senderID, searchWord) {
         if (splitNum <50){
           //assign this rhyme to the string
           messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
-          //increase the split number
+          //increase the split number ok?
           splitNum++;
           //otherwise, split the message into the next chunk
         } else {
