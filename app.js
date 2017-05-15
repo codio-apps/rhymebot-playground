@@ -382,6 +382,7 @@ function receivedMessage(event) {
       var tempString="";
       console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
       sendTextMessage(senderID, "I recognised the word, I am getting this data: "+ syllableString);
+      sendTypingOn(senderID);
       SEARCHSTRING = syllableString.split(" ");
       stringLength = SEARCHSTRING.length;
       //send the string to be searched
@@ -394,7 +395,8 @@ function receivedMessage(event) {
       for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
         tempString = tempString+"\n"+SEARCHSTRING[i]+": "+OUTPUTSTRING[i];
       }
-      sendTextMessage(senderID, tempString);
+      sendTypingOff(senderID);
+      messageResponse = tempString;
       break;
 
       // Handle the SINGLE command
