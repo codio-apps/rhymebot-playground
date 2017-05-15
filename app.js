@@ -429,8 +429,13 @@ function receivedMessage(event) {
         console.log("calling find rhyme, word is |" + searchWord);
 
         sendTypingOn(senderID);
-        sleep(2000);
-        sendTypingOff(senderID);
+        sleep(2000);var delayMillis = 2000; //1 second
+
+setTimeout(function() {
+  //your code to be executed after 1 second
+    sendTypingOff(senderID);
+}, delayMillis);
+
         findRhyme(senderID, searchWord);
       break;
 
@@ -471,14 +476,6 @@ function receivedMessage(event) {
 
 /* ************************************************************************************************************************************
 */
-
-//Sleeper
-function sleep(miliseconds) {
-   var currentTime = new Date().getTime();
-
-   while (currentTime + miliseconds >= new Date().getTime()) {
-   }
-}
 
 // Read text file data and store it into local variables for string comparisons
 function setUpLocalVariables() {
