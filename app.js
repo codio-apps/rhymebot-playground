@@ -632,7 +632,7 @@ function findRhyme(senderID, searchWord) {
     }
     console.log("Delivering results");
     for (var i = 0; i < chunkTotal; i++){
-        console.log("in the loop "+i+"times, because "+i+"is still <"chunkTotal);
+        console.log("in the loop "+i+" times, because "+i+"is still <"+chunkTotal);
         sendTextMessage(senderID, messageSplit[i]);
     }
   }
