@@ -619,17 +619,15 @@ function findRhyme(senderID, searchWord) {
         } else {
           //go onto the next messageChunk
           messageChunk++;
-          console.log("splitting chunks into a new chunk: "+messageChunk);
           messageSplit[messageChunk]="message : "+messageChunk;
           messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
           splitNum=0;
       }
     }
-    console.log("Delivering rhymes");
+    console.log("Delivering results");
     for (var i = 0; i < chunkTotal; i++){
         sendTextMessage(senderID, messageSplit[i]);
     }
-    console.log("Rhyme delivery complete");
     sendTypingOff(senderID);
 }
 
