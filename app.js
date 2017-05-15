@@ -615,14 +615,13 @@ function findRhyme(senderID, searchWord) {
     //identify position of first vowel sound in array
     char = SYLLABLES[firstVowel].charAt(0);
     console.log("found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
-    sylLen = SYLLABLES.length-firstVowel+1;
+    sylLen = SYLLABLES.length-firstVowel;
     console.log("I think I need to make a syllable string of length "+sylLen);
     temp = "";
-    for (i = firstVowel, len=sylLen; i < len; i++){
-      console.log("syllable number "+i);
+    for (i = firstVowel, len=sylLen; i <= len; i++){
       temp = temp+" "+SYLLABLES[i];
-      console.log("temp: "+temp);
     }
+    console.log("Succesfully constructed rhyme: "+temp);
     sendTextMessage(senderID, "I am going to try to rhyme the string "+temp+". I can't do that yet");
   }
 }
