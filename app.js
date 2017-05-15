@@ -25,6 +25,7 @@ app.use(express.static('public'));
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
 var GREETINGS = "";
+var vowels =new Array('a', 'e', 'i', 'o', 'u');
 //array initialisation
 var CURRENTDICTIONARY = new Array();
 var SEARCHSTRING = new Array();
@@ -256,7 +257,7 @@ function receivedMessage(event) {
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
   getUserInfo(senderID, function(name) {
-    
+
   });
   console.log("Just tried to get name, it is now " + name);
 
@@ -556,29 +557,38 @@ function findRhyme(senderID, searchWord) {
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       var wordLength = searchWord.length;
       var temp = CURRENTDICTIONARY[i].slice(wordLength+2);
+      //make an array with each syllable sound
       SYLLABLES = temp.split(" ");
     }
   }
     if (!wordFound) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
-    console.log("Enterpreting the rhyme");
-    //put parts to rhyme into a var
-    var ending = SYLLABLES[SYLLABLES.length-2]+" "+SYLLABLES[SYLLABLES.length-1];
-    sendTextMessage(senderID, "Ok I will attempt to rhyme the ending "+ending);
-    //now compare the var to the dictionary file
-    var returnString = "";
-    var count = 0;
-    for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-      if(CURRENTDICTIONARY[i].endsWith(ending)){
-        console.log("rhyme number"+count+" found: "+CURRENTDICTIONARY[i]);
-        returnString=returnString+CURRENTDICTIONARY[i]+"\n";
-        count++;
-      }
+      console.log("Enterpreting the rhyme");
+      //detect the first letter of syllable sounds until you find a vowel
+      var firstVowel = 0;
+      var char = "";
+      var foundVowel=false;
+      //for every syllable in the word, until a vowel is found:
+      for (var i=0, len=SYLLABLES.length, !foundVowel; i++){
+        //set char to the first letter of the syllable
+        char = SYLLABLES[i].charAt(0);
+        console.log("char found: "+char);
+        //compare char to every vowel
+        for (var j=0, len=vowels.length, j<len; j++){
+          //if we find a vowel at character 0
+          if char = vowels[j].charat(0){
+            firstVowel = i;
+            console.log("found a vowel, it is: "+char+" from "+SYLLABLES[i]+" at position "+i);
+            //end the loops
+            foundVowel=true;
+            j=len;
+          } else {
+            console.log("no vowel found at position "+i);
+          }
+        }
     }
-
-    sendTextMessage(senderID, "I found "+count+" rhymes. If this is over 640??, nothing will be displayed");
-    sendTextMessage(senderID, returnString);
+    sendTextMessage(senderID, "found a vowel, it is: "+char+" from "+SYLLABLES[i]+" at position "+i);
   }
 }
 
