@@ -561,7 +561,7 @@ function findRhyme(senderID, searchWord) {
     //first find the word in the dictionary
     temp = fs.readFileSync(dictionary, "utf-8");
     CURRENTDICTIONARY = temp.split("\n");
-    console.log("dictionary succefully read");
+    console.log("dictionary successfully read");
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
@@ -620,6 +620,8 @@ function findRhyme(senderID, searchWord) {
   for (var i = 0, len = found; i < len; i++){
     stringBin = stringBin+"\n"+RHYMEOUTPUT[i];
   }
+  var messageSplit = new Array;
+  console.log(stringBin.match(/.{1,3}/g));
   sendTextMessage(senderID, "I found "+found+" rhymes, they are:\n"+stringBin);
 }
 
