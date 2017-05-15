@@ -175,9 +175,6 @@ app.get('/authorize', function(req, res) {
   });
 });
 
-setUpLocalVariables();
-console.log("calling setUpLocalVariables globally");
-
 /*
  * Verify that the callback came from Facebook. Using the App Secret from
  * the App Dashboard, we can verify the signature that is sent with each
@@ -300,7 +297,8 @@ function receivedMessage(event) {
   }
 
 
-
+  setUpLocalVariables();
+  console.log("calling setUpLocalVariables");
 
 
   if (messageText) {
