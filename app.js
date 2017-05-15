@@ -265,7 +265,7 @@ function receivedMessage(event) {
   var quickReply = message.quick_reply;
 
   console.log("***START OF NEW MESSAGE RECIEVED***");
-  console.log("Received message for user %d with message:"+messageText);
+  console.log("Received message for user "+senderID+" with message:"+messageText);
 
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
@@ -497,19 +497,6 @@ function setUpLocalVariables() {
     RHYME_TYPOS = "rhymes";
 
   }
-  //try to read dictionary file
-  try {
-  temp = fs.readFileSync(dictionary, "utf-8");
-  CURRENTDICTIONARY = temp.split("\n");
-  console.log("Dictionary read complete "+CURRENTDICTIONARY.length+" entries found");
-}
-// Catch an error and set default
-  catch(err) {
-    console.log("Unable to parse dictionary file: " + err);
-  }
-  console.log(GREETINGS + "/n " + RHYME_TYPOS);
-}
-
 
 function StringSearch(input, key) {
 
