@@ -253,6 +253,9 @@ function receivedMessage(event) {
   console.log("Received message for user %d with message:",
     senderID, recipientID, timeOfMessage);
 
+  console.log("Getting user ingo");
+  getUserInfo(senderID);
+
   var isEcho = message.is_echo;
   var messageId = message.mid;
   var appId = message.app_id;
@@ -342,11 +345,15 @@ function receivedMessage(event) {
         caughtCommand=true;
         if (name=="") {
           console.log("Name not retrieved from Facebook yet");
+          messageResponse = "What's up?";
           name = getUserInfo(senderID);
 
-          messageResponse = "What's up?";
-        } else {
+        } else if(name!= "unknown") {
           messageResponse = ("What's up " + name +"?");
+        }
+        else {
+
+          messageResponse = ("What's up ?");
         }
       break;
 
