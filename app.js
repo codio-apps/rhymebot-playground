@@ -631,8 +631,9 @@ function findRhyme(senderID, searchWord) {
       }
     }
     console.log("Delivering results");
+    chunkTotal++;
     for (var i = 0; i < chunkTotal; i++){
-        console.log("in the loop "+i+" times, because "+i+"is still <"+chunkTotal);
+        console.log("in the loop for the "+i+"th time, because "+i+" is still < "+chunkTotal);
         sendTextMessage(senderID, messageSplit[i]);
     }
   }
