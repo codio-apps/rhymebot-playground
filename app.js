@@ -580,7 +580,7 @@ function findRhyme(senderID, searchWord) {
   var wordFound = false;
     //first find the word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ") || (CURRENTDICTIONARY[i].startsWith(searchWord+"(")){
+    if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       var wordLength = searchWord.length;
