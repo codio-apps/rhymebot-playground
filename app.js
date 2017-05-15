@@ -275,7 +275,6 @@ function receivedMessage(event) {
   request(
      ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
    function(error, response, body) {
-   });
      // CODE GOES HERE AFTER FUNCTION RETURNS
 
 
