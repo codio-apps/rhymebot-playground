@@ -266,20 +266,22 @@ function receivedMessage(event) {
   var quickReply = message.quick_reply;
 
   console.log("***NEW MESSAGE RECIEVED***");
-  console.log("etting up local variables");
+  console.log("Setting up local variables");
   setUpLocalVariables();
 
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
 
+  request(
+     ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
+   function(error, response, body) {
+
+     // CODE GOES HERE AFTER FUNCTION RETURNS
 
 
+  console.log("Just tried to get name, it is now " + name);
 
-     var bodyObj = JSON.parse(body);
-     console.log(bodyObj);
-     name = bodyObj.first_name;
-     last_name = bodyObj.last_name;
-    console.log("Just tried to get name, it is now " + name+" "+last_name);
+
 
 
 
@@ -452,6 +454,22 @@ function receivedMessage(event) {
     sendTextMessage(senderID, message);
     //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
   }
+
+  if (error) {
+    name = "";
+    console.log("Error getting user's name: " +  error);
+  } else {
+
+    var bodyObj = JSON.parse(body);
+    console.log(bodyObj);
+    name = bodyObj.first_name;
+    last_name = bodyObj.last_name;
+
+    console.log("Name = " + name + " and last name " + last_name);
+  }
+  console.log("iudfouhsdiufhsdoufhsiufhsdiufhsdifuhsdifuhsdifuhsdifuhsdfiuhsdf");
+
+});
 
 }
 
