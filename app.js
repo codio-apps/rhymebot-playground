@@ -467,7 +467,7 @@ function receivedMessage(event) {
     name = bodyObj.first_name;
     last_name = bodyObj.last_name;
 
-    console.log("Name = " + name + "and last name " + last_name);
+    console.log("Name = " + name + " and last name " + last_name);
   }
   console.log("iudfouhsdiufhsdoufhsiufhsdiufhsdifuhsdifuhsdifuhsdifuhsdfiuhsdf");
 
