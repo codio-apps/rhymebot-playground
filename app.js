@@ -601,10 +601,9 @@ function findRhyme(senderID, searchWord) {
       for (var i = 0, sylLen = SYLLABLES.length; i < sylLen; i++){
         //set char to the first letter of the syllable
         var position = sylLen-i-1;
-        console.log("position is "+position+". i is "+i+". sylLen is "+sylLen+". syllable is "+SYLLABLES[position]);
         var temp = SYLLABLES[position];
         char = temp.charAt(0);
-        console.log("char found: "+char+" at position "+position+" of "+sylLen);
+        console.log("Comparing: "+char+" at position "+position+" of "+sylLen);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0
@@ -616,6 +615,12 @@ function findRhyme(senderID, searchWord) {
     }
     char = SYLLABLES[firstVowel].charAt(0);
     sendTextMessage(senderID, "found the first vowel, it is: "+char+" from "+SYLLABLES[firstVowel]+" at position "+firstVowel);
+    sylLen = SYLLABLES.length-firstVowel;
+    for (i = 0, len=sylLen; i < len; i++){
+      console.log("got this far");
+      temp = temp+" "+SYLLABLES[i];
+      console.log("temp: "+temp);
+    }
   }
 }
 
