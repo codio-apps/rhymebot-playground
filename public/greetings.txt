@@ -1,22 +1,22 @@
-hello
-hey
-hiya
-heya
-hi
-howdy
-yo
-sup
-what's up?
-greeting
-greetings
+ahoy
+aloha
 bonjour
-ola
-good morning
+ciao
 good afternoon
 good evening
-yoyo
+good morning
+greeting
+greetings
 hola
-aloha
+hello
+hey
+heya
+hi
+hiya
+howdy
+ola
 salut
-ciao
-ahoy
+sup
+what's up?
+yo
+yoyo
