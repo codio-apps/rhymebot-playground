@@ -616,36 +616,37 @@ function findRhyme(senderID, searchWord) {
   }
   //output stuff
   console.log("found: "+found+" rhyme(s).");
-    var messageSplit = new Array;
+  var messageSplit = new Array;
   var sequence = 0;
-  var chunk = 0;
+  var messageChunk = 0;
   var chunkTotal = found/50;
   var splitNum = 0;
   chunkTotal = Math.round(chunkTotal);
   console.log("words found: "+found+". additional chunks required: "+chunkTotal);
   //for every word found
   //for (var i = 0, len = found; i < len; i++){
-
+    messageSplit[messageChunk]="";
     //for how ever many there were words found
-    for (var sequence = 1; sequence < found; sequence ++){
+    for (var sequence = 0; sequence < found; sequence ++){
         //add the next word to a string in the array
         //if we have less than 50 in this message section
         if (splitNum <50){
           //assign this rhyme to the string
-          messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT[sequence]+"\n";
+          messageSplit[messageChunk] = messageSplit[messageChunk]+RHYMEOUTPUT[sequence]+"\n";
           //increase the split number
           splitNum++;
           //otherwise, split the message into the next chunk
         } else {
           console.log("Splitting message")
-          //go to the next chunk
-          chunk++;
-          messageSplit[chunk] = messageSplit[chunk]+RHYMEOUTPUT[sequence]+"\n";
+          //go onto the next messageChunk
+          messageChunk++;
+          messageSplit[messageChunk] = messageSplit[chunk]+RHYMEOUTPUT[sequence]+"\n";
           splitNum=0;
-          console.log("message "+chunk+" is "+messageSplit[chunk]);
+          console.log("message number: "+messageChunk+" of "+chunkTotal+" is "+messageSplit[messageChunk]);
       }
-      console.log("message chunks ready");
     }
+    console.log("message number: "+messageChunk+" is "+messageSplit[messageChunk]);
+
 
 
     //for (var num = 0, limit =25; num < limit; num++){
