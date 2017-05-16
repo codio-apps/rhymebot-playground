@@ -356,8 +356,6 @@ function receivedMessage(event) {
     }
     else if(lc_messageText.startsWith("count")) {
       intent = "count";
-    }
-
     } else {
       //Do nothing, key is set to messageText
     }
