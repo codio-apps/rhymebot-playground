@@ -273,7 +273,6 @@ function receivedMessage(event) {
   console.log("***NEW MESSAGE RECIEVED***");
   console.log("Setting up local variables");
   setUpLocalVariables();
-
   alphabetReference();
 
   console.log("Getting user info. Name is currently " + name);
@@ -549,6 +548,7 @@ function alphabetReference() {
   console.log("REFERENCE: " + ENGLISH_ALPHABET[i] + " :::::::::::::::::::::: " + ENGLISH_ALPHABET[j]);
 
 for (i = 0; i < alphabetLength; i++) {
+  console.log("made it into the loop");
   for (j = 0; j < dictionary_length; j++) {
     if(DICTIONARY[i].startsWith(ENGLISH_ALPHABET[j])){
       FINAL_ALPHABET_REFERENCE[j] = i;
@@ -658,11 +658,10 @@ function findRhyme(senderID, searchWord) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
             arrayBin[0] = arrayBin[0].toLowerCase()
-            console.log("fixed to "+arrayBin[0]);
             //if the last element in RHYMEOUTPUT is this fixed word, skip it
             if (arrayBin[0]==RHYMEOUTPUT[found-1]){
               //skip
-              console.log("found duplicate for "+RHYMEOUTPUT[found-1]+", skipped it");
+              console.log("found duplicate for "+RHYMEOUTPUT[found-1]+", skipped it")
             } else {
               //save it
               RHYMEOUTPUT[found]=arrayBin[0];
