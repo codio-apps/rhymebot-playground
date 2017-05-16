@@ -578,10 +578,10 @@ var i = 0;
 if(!ALPHABET_ARRAY[i][0] == letter){
   i++;
 
-  console.log();
+
 }
 
-console.log(ALPHABET_ARRAY[i][1]);
+console.log("WIPEEEEEEEEEEEEEE: " + ALPHABET_ARRAY[i][1]);
 
 
 for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
