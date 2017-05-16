@@ -607,7 +607,7 @@ function findRhyme(senderID, searchWord) {
 
 
         //if the found word ends in (n)
-        if (arrayBin[0].endsWith(")"));{
+        if (arrayBin[0].endsWith(")")=true);{
             var tmpLen = arrayBin[0].length-3;
             arrayBin = arrayBin[0].slice(tmpLen);
             console.log("found word with bracket ending and fixed it");
