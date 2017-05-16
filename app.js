@@ -642,23 +642,24 @@ function findRhyme(senderID, searchWord) {
     var found = 0;
     var arrayBin = new Array;
     var stringBin = "";
+    //search the dictionary
     for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
       //if the rhyme is a match
       if(CURRENTDICTIONARY[i].endsWith(temp)) {
         arrayBin = CURRENTDICTIONARY[i].split("  ");
 
-        //if the found word ends in (n)
+        //if the found word ends in ")"
         if (arrayBin[0].endsWith(")")) {
             console.log("found word "+arrayBin[0]+" with bracket ending, of length : "+arrayBin[0].length+". Fixing it");
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
             arrayBin[0] = arrayBin[0].toLowerCase()
             console.log("fixed to "+arrayBin[0]);
-            if (arrayBin[0]==RHYMEOUTPUT[found]){
+            if (arrayBin[0]==RHYMEOUTPUT[found-1]){
               //skip
               console.log("found duplicate, skipping");
             } else {
-              console.log("not a duplicate, adding to list");
+              console.log("not a duplicate of previous word, adding to list");
               RHYMEOUTPUT[found]=arrayBin[0];
               found++;
             }
