@@ -557,7 +557,7 @@ function alphabetReference() {
   console.log("alphabet is "+alphabet);
 
 for (var i = 0; i < alphabetLength; i++) {
-  console.log("made it into the loop");
+  console.log("made it into the loop, checking "+DICTIONARY[i]);
   for (var j = 0; j < dictionary_length; j++) {
     if(DICTIONARY[i].startsWith(alphabet[j])){
       console.log("comparing "+DICTIONARY[i]+" with "+alphabet[j]);
