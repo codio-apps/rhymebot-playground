@@ -346,10 +346,6 @@ function receivedMessage(event) {
       intent = "rhyme_typo";
       instant_reply = true;
     }
-    // If the message starts with Syllable, change the key to "syllable"
-    else if(lc_messageText.startsWith("syllable")) {
-      intent = "syllable";
-    }
     // If the message starts with Single, change the key to "single"
     else if(lc_messageText.startsWith("single")) {
       intent = "single";
@@ -358,10 +354,13 @@ function receivedMessage(event) {
     else if(lc_messageText.startsWith("rhyme")) {
       intent = "rhyme";
     }
-    else {
+    else if(lc_messageText.startsWith("count")) {
+      intent = "count";
+    }
+
+    } else {
       //Do nothing, key is set to messageText
     }
-    console.log("Original message text is: "+messageText);
 
 
     // We convert the incoming message into a key, or we leave it as is and respond accordingly.
@@ -391,7 +390,8 @@ function receivedMessage(event) {
       messageResponse = "Here is some help information: \n" +
                           "Type: rhyme - get a.\n" +
                           "Type single - get b.\n" +
-                          "Type syllable - get c";
+                          "Type syllable - get c"
+                          "Type count - get d";
       break;
       case 'about':
       messageResponse = "Here is some about information: \n" +
@@ -414,7 +414,7 @@ function receivedMessage(event) {
       //test environment for single word perfect rhymes
       var searchWord = lc_messageText.slice(7)
       searchWord = searchWord.toUpperCase();
-      console.log("calling find rhyme, word is |" + searchWord);
+      console.log("Calling find rhyme, word is: " + searchWord);
       findRhyme(senderID, searchWord);
       break;
       // Handle the RHYME command
@@ -423,6 +423,10 @@ function receivedMessage(event) {
       var rhymeString = messageText.slice(6);
       var messageArray = rhymeString.split(" ");
       messageResponse = "Rhyme Time! You said you want to rhyme: " + messageArray;
+      break;
+
+      //handle the count command
+      case 'count':
       break;
 
       default:
@@ -588,6 +592,10 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 
 }
 
+function count(senderID, searchword){
+  console.log("count triggered");
+}
+
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   sendTypingOn(senderID);
@@ -599,7 +607,6 @@ function findRhyme(senderID, searchWord) {
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       pronunciationsFound = 1;
-      console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
     //check for multiple pronunciations in dictionary file
     //as long as the next item isn't undefined, examine it
       if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
@@ -609,7 +616,7 @@ function findRhyme(senderID, searchWord) {
                 pronunciationsFound++;
             } else {
               //if it's the end of the pronunciations, stop
-              console.log("I found all the pronunciations for "+searchWord+". There are "+pronunciationsFound);
+              console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
               keepLooking = false;
             }
           }
@@ -647,7 +654,7 @@ function findRhyme(senderID, searchWord) {
     for (i = firstVowel, len = PHONEMES.length; i < len; i++){
       phonemeString = phonemeString+" "+PHONEMES[i];
     }
-    console.log("Succesfully constructed phoneme string: "+phonemeString+" searching for matches now...");
+    console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
 
     //now search the dictionary for rhymes
     var RHYMEOUTPUT = new Array;
@@ -663,13 +670,12 @@ function findRhyme(senderID, searchWord) {
         //if the found word ends in ")"
         if (arrayBin[0].endsWith(")")) {
             //add the word to the list, but remove the brackets from the spelling info
-            console.log("found word "+arrayBin[0]+" with bracket ending, of length : "+arrayBin[0].length+". Fixing it");
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
             arrayBin[0] = arrayBin[0].toLowerCase()
             //if the last element added to RHYMEOUTPUT is the same, skip it
             if (arrayBin[0]==RHYMEOUTPUT[found-1]){
-              console.log("Found additional pronunciation for "+RHYMEOUTPUT[found-1]+", skipped it")
+              console.log("Additional pronunciation for "+RHYMEOUTPUT[found-1]+" found, skipped it")
             } else {
               //otherwise, save it
               RHYMEOUTPUT[found]=arrayBin[0];
@@ -678,9 +684,9 @@ function findRhyme(senderID, searchWord) {
         } else {
           //make sure it's not the same as searchWord
           if (arrayBin[0]==searchWord){
-            console.log("comparing "+arrayBin[0]+" to "+searchWord);
+            //do nothing
           } else {
-            //save the word to the output array
+            //otherwise save the word to the output array
             RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
             found++;
           }
@@ -695,7 +701,6 @@ function findRhyme(senderID, searchWord) {
     var chunkTotal = found/50;
     var splitNum = 0;
     chunkTotal = Math.round(chunkTotal);
-    console.log("words found: "+found+". additional message chunks required: "+chunkTotal);
 
     if (found == 0) {
       sendTypingOff(senderID);
