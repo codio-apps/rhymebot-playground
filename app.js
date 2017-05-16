@@ -681,8 +681,13 @@ function findRhyme(senderID, searchWord) {
     for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
       //if the rhyme is a match
       if(CURRENTDICTIONARY[i].endsWith(temp)) {
+        //store the word in a temp string
         arrayBin = CURRENTDICTIONARY[i].split("  ");
-
+        //make sure it's not the same as searchWord
+        console.log("comparing "+arrayBin[0]+" to "+searchWord);
+        if (arrayBin[0]==searchWord){
+          console.log("that's the same word stupid");
+        }
         //if the found word ends in ")"
         if (arrayBin[0].endsWith(")")) {
             console.log("found word "+arrayBin[0]+" with bracket ending, of length : "+arrayBin[0].length+". Fixing it");
