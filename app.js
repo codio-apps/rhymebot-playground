@@ -44,6 +44,8 @@ var filesBuffered = false;
 //integers for array counting in sentences
 var wordNumber = 0;
 var stringLength = 0;
+
+var pronunciationsFound = 0;
 var found = 0;
 
 // Graph Profile fields by senderID
@@ -656,7 +658,6 @@ function countSyllables(senderID, searchWord) {
 function findRhyme(senderID, searchWord) {
   sendTypingOn(senderID);
   var keepLooking = true;
-  var pronunciationsFound = 0;
   var phonemeString = "";
   var wordLength = searchWord.length;
   //first find the word in the dictionary
