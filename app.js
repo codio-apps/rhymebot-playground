@@ -541,7 +541,7 @@ function StringSearch(input, key) {
 function alphabetReference() {
 
   //load the file
-  fileBuffer = fs.readFileSync(dictionary, "utf-8");
+  fileBuffer = fs.readFileSync(abcdef, "utf-8");
   var DICTIONARY = fileBuffer.split("\n");
 
   //var index1 = 'a';
