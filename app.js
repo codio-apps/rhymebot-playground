@@ -428,7 +428,11 @@ function receivedMessage(event) {
         searchWord = lc_messageText.slice(6);
         searchWord = searchWord.toUpperCase();
         var v = countSyllables(senderID, searchWord);
-        messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
+        if (typeof v !== "undefined") {
+            messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
+        } else {
+          messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
+        }
       break;
 
       default:
@@ -627,10 +631,8 @@ function countSyllables(senderID, searchword){
         }
       }
     }
-    console.log(vowelsFound+"syllables detected");
+    console.log(vowelsFound+" syllables detected");
     //messageResponse = "There are "+vowelsFound+" syllables in "+searchWord.toLowerCase();
-  } else {
-    messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
   }
   return vowelsFound;
 }
