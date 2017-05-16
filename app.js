@@ -570,13 +570,19 @@ console.log(ALPHABET_ARRAY);
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 }
 
-//function to
-function calcPhonemes(senderID, PHONEMES) {
-  console.log("calcPhonemes called: "+PHONEMES);
+//function to return the phonemes for a position in the dictionary
+function getPhonemes(index) {
+  console.log("getPhonemes called for index: "+index);
+  console.log(CURRENTDICTIONARY[index]);
 }
 
 //function to return how many syllables there are in a word and return that number
 function countSyllables(senderID, searchWord) {
+  getPhonemes(1);
+  getPhonemes(11234);
+  getPhonemes(46737);
+  getPhonemes(22452);
+  getPhonemes(10000);
   var wordLength = searchWord.length;
   var wordFound = false;
   var syllablesFound = 0;
