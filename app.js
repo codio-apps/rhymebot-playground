@@ -630,13 +630,13 @@ function findRhyme(senderID, searchWord) {
     var stringBin = "";
     for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
       //if the rhyme is a match
-      if(CURRENTDICTIONARY[i].endsWith(temp)){
+      if(CURRENTDICTIONARY[i].endsWith(temp)) {
         arrayBin = CURRENTDICTIONARY[i].split("  ");
-
+        console.log("splitting line");
 
         //if the found word ends in (n)
-        if (arrayBin[0].endsWith(")")=true) {
-            console.log("test. found word "+arrayBin[0]+" with bracket ending of length "+arrayBin[0].length+". Fixing it");
+        if (arrayBin[0].endsWith(")")) {
+            console.log("found word "+arrayBin[0]+" with bracket ending, of length : "+arrayBin[0].length+". Fixing it");
             var tmpLen = arrayBin[0].length-3;
             arrayBin = arrayBin[0].slice(tmpLen);
         }
