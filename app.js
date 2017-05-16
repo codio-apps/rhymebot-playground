@@ -277,14 +277,11 @@ function receivedMessage(event) {
 
   console.log("***NEW MESSAGE RECIEVED: "+messageText+"***");
   if (filesBuffered) {
-    console.log("All files already Buffered");
   } else {
     setUpLocalVariables();
       alphabetReference();
   }
 
-
-  console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
 
   request(
@@ -402,7 +399,6 @@ function receivedMessage(event) {
       // Case to handle mispellt RHYME commands
       // ************************************
       case 'rhyme_typo':
-        console.log("Typo time, ask for confirmation");
         messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme";
       break;
 
@@ -464,7 +460,6 @@ function receivedMessage(event) {
   } else {
   }
   // CODE GOES HERE AFTER FUNCTION RETURNS
-  console.log("Just received the name from Facebook, it is now: " + name +" "+ last_name);
 
 });
 
@@ -506,7 +501,6 @@ function setUpLocalVariables() {
   console.log(GREETINGS + "/n " + RHYME_TYPOS);
   }
   if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""){
-    console.log("All files buffered succesfully");
     filesBuffered=true;
   }
 }
@@ -515,7 +509,7 @@ function setUpLocalVariables() {
 function StringSearch(input, key) {
 
   if (key.indexOf(input) >= 0){
-  console.log("String was found in array");
+// String was found in array
   return true;
   }
   return false;
