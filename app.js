@@ -561,7 +561,6 @@ for (i = 0; i < alphabetLength; i++) {
   for (j = 0; j < dictionary_length; j++) {
     if(DICTIONARY[i].startsWith(alphabet[j])){
       FINAL_ALPHABET_REFERENCE[j] = i;
-      console.log("ALPHABET*****************************************")
       console.log("Ref: " + FINAL_ALPHABET_REFERENCE[i] + "::::::::" + i + j);
 }
 }
@@ -572,7 +571,7 @@ for (i = 0; i < alphabetLength; i++) {
 
 }
 function splitAlphabet(index1, index2) {
-  return (ENGLISH_ALPHABET.slice(ENGLISH_ALPHABET.indexOf(index1), ENGLISH_ALPHABET.indexOf(index2) + 1));
+  return (alphabet.slice(alphabet.indexOf(index1), alphabet.indexOf(index2) + 1));
 }
 
 
