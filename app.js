@@ -545,7 +545,7 @@ function alphabetReference() {
 // }
 }
 function splitAlphabet(index1, index2) {
-  return (ENGLISH_ALPHABET.slice(ENGLISH_ALPHABET.indexOf(index1), ENGLISH_ALPHABET.indexOf(c2) + 1));
+  return (ENGLISH_ALPHABET.slice(ENGLISH_ALPHABET.indexOf(index1), ENGLISH_ALPHABET.indexOf(index2) + 1));
 }
 
 
