@@ -620,12 +620,14 @@ function findRhyme(senderID, searchWord) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      console.log("the next word is "+CURRENTDICTIONARY[i+1]);
       var wordLength = searchWord.length;
       var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
     }
   }
+
   //if we didnt' find the word in the dictionary
   if (!wordFound) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
