@@ -630,7 +630,7 @@ function findRhyme(senderID, searchWord) {
                 pronunciationsFound++;
                 console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
             } else {
-              console.log("That doesn't rhyme, so I think I found all the pronunciations, I found: "+pronunciationsFound);
+              console.log("That doesn't match, so I think I found all the pronunciations, I found: "+pronunciationsFound);
               keepLooking = false;
             }
           }
