@@ -604,7 +604,6 @@ function findRhyme(senderID, searchWord) {
       //if the rhyme is a match
       if(CURRENTDICTIONARY[i].endsWith(temp)){
         arrayBin = CURRENTDICTIONARY[i].split("  ");
-        console.log("match found: "+arrayBin[0]);
 
 
         //if the found word ends in (n)
