@@ -636,7 +636,7 @@ function findRhyme(senderID, searchWord) {
 
         //if the found word ends in (n)
         if (arrayBin[0].endsWith(")")=true) {
-            console.log("found word "+arrayBin[0]+" with bracket ending of length "+arrayBin[0].length+". Fixing it");
+            console.log("test. found word "+arrayBin[0]+" with bracket ending of length "+arrayBin[0].length+". Fixing it");
             var tmpLen = arrayBin[0].length-3;
             arrayBin = arrayBin[0].slice(tmpLen);
         }
