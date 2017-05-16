@@ -640,9 +640,10 @@ function receivedMessage(event) {
   }
 
   //function to take in URRENTDICTIONARY reference and spit out the phonemes
-  function getPhonemes(index){
+  function getPhonemes(i){
+    console.log("getPhonemes triggered");
     //trim off the spelling and spacing from the string
-    var tempPHONEMES = CURRENTDICTIONARY[index].slice(wordLength+2);
+    var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
     //for the found word, make an array containing each phoneme sound
     PHONEMES = tempPHONEMES.split(" ");
     //detect the first letter of phonemes sounds until you find a vowel
