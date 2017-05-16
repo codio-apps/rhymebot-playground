@@ -517,7 +517,7 @@ function setUpLocalVariables() {
   try {
     fileBuffer = fs.readFileSync(dictionary, "utf-8");
     CURRENTDICTIONARY = fileBuffer.split("\n");
-    console.log("dictionary successfully read");
+    console.log("Dictionary successfully read");
   }
   // catch errors
   catch(err) {
@@ -542,8 +542,8 @@ function StringSearch(input, key) {
 function alphabetReference() {
 
   //load the file
-  var tempfile = fs.readFileSync(abcdef, "utf-8");
-  var DICTIONARY = tempfile.split("\n");
+  fileBuffer = fs.readFileSync(abcdef, "utf-8");
+  var DICTIONARY = fileBuffer.split("\n");
 
   //var index1 = 'a';
   //var index2 = 'b';
@@ -608,7 +608,7 @@ function findRhyme(senderID, searchWord) {
   //first find the word in the dictionary
   // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    //insert or operator here
+    //if we find the word at the start of the line
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
@@ -617,6 +617,12 @@ function findRhyme(senderID, searchWord) {
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
     }
+    //now handle brackets
+    if (CURRENTDICTIONARY[i+1].startsWith(searchWord+"(")){
+      console.log("duplicate word found in dictionary it is "+CURRENTDICTIONARY[i]);
+
+    }
+
   }
   //if we didnt' find the word in the dictionary
   if (!wordFound) {
