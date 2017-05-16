@@ -643,7 +643,7 @@ function findRhyme(senderID, searchWord) {
   }
 
   //if we didnt' find the word in the dictionary
-  if (pronunciationsFound !== 0) {
+  if (pronunciationsFound == 0) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
       //detect the first letter of phonemes sounds until you find a vowel
