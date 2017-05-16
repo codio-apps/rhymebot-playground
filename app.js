@@ -34,6 +34,7 @@ var SEARCHSTRING = new Array();
 var OUTPUTSTRING = new Array();
 var PHONEMES = new Array();
 var ALPHABET_ARRAY = new Array();
+var RHYMEOUTPUT = new Array;
 
 
 //file buffer
@@ -572,18 +573,49 @@ console.lgo("THE LETTER IS: " + ALPHABET_ARRAY[i][0] + " AND THE VALUE IS: " + A
 }
 
 //function to return the phonemes for a position in the dictionary
-function getPhonemes(index) {
-  console.log("getPhonemes called for index: "+index);
-  console.log(CURRENTDICTIONARY[index]);
+function searchPhonemes(phonemeString) {
+  console.log("searchPhonemes called for index: "+phonemeString);
+  var found = 0;
+  var arrayBin = new Array;
+  var stringBin = "";
+  //search the dictionary
+  for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+    //if the rhyme is a match
+    if(CURRENTDICTIONARY[i].endsWith(phonemeString)) {
+      //store the word in a temp string
+      arrayBin = CURRENTDICTIONARY[i].split("  ");
+      //if the found word ends in ")"
+      if (arrayBin[0].endsWith(")")) {
+          //add the word to the list, but remove the brackets from the spelling info
+          var tmpLen = arrayBin[0].length-3;
+          arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+          arrayBin[0] = arrayBin[0].toLowerCase()
+          //if the last element added to RHYMEOUTPUT is the same, skip it
+          if (arrayBin[0]==RHYMEOUTPUT[found-1]){
+            console.log("Additional pronunciation for "+RHYMEOUTPUT[found-1]+" found, skipped it")
+          } else {
+            //otherwise, save it
+            RHYMEOUTPUT[found]=arrayBin[0];
+            found++;
+          }
+      } else {
+        //make sure it's not the same as searchWord
+        if (arrayBin[0]==searchWord){
+          //do nothing
+        } else {
+          //otherwise save the word to the output array
+          RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
+          found++;
+        }
+      }
+    }
+  }
+  return RHYMEOUTPUT;
+  console.log("RHYMEOUTPUT:"+RHYMEOUTPUT);
 }
 
 //function to return how many syllables there are in a word and return that number
 function countSyllables(senderID, searchWord) {
-  getPhonemes(1);
-  getPhonemes(11234);
-  getPhonemes(46737);
-  getPhonemes(22452);
-  getPhonemes(10000);
   var wordLength = searchWord.length;
   var wordFound = false;
   var syllablesFound = 0;
@@ -670,7 +702,7 @@ function findRhyme(senderID, searchWord) {
           }
         }
     }
-    //figure out how many phonemes we want to compare
+    //figure out how many phonemes we want to compare (in this case, all from the first vowel)
     phoLen = PHONEMES.length-firstVowel;
     //construct our phoneme string
     for (i = firstVowel, len = PHONEMES.length; i < len; i++){
@@ -679,42 +711,7 @@ function findRhyme(senderID, searchWord) {
     console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
 
     //now search the dictionary for rhymes
-    var RHYMEOUTPUT = new Array;
-    var found = 0;
-    var arrayBin = new Array;
-    var stringBin = "";
-    //search the dictionary
-    for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-      //if the rhyme is a match
-      if(CURRENTDICTIONARY[i].endsWith(phonemeString)) {
-        //store the word in a temp string
-        arrayBin = CURRENTDICTIONARY[i].split("  ");
-        //if the found word ends in ")"
-        if (arrayBin[0].endsWith(")")) {
-            //add the word to the list, but remove the brackets from the spelling info
-            var tmpLen = arrayBin[0].length-3;
-            arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-            arrayBin[0] = arrayBin[0].toLowerCase()
-            //if the last element added to RHYMEOUTPUT is the same, skip it
-            if (arrayBin[0]==RHYMEOUTPUT[found-1]){
-              console.log("Additional pronunciation for "+RHYMEOUTPUT[found-1]+" found, skipped it")
-            } else {
-              //otherwise, save it
-              RHYMEOUTPUT[found]=arrayBin[0];
-              found++;
-            }
-        } else {
-          //make sure it's not the same as searchWord
-          if (arrayBin[0]==searchWord){
-            //do nothing
-          } else {
-            //otherwise save the word to the output array
-            RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
-            found++;
-          }
-        }
-      }
-    }
+    RHYMEOUTPUT = searchPhonemes(phonemeString);
     //output stuff
     console.log("Search complete. Found: "+found+" rhyme(s).");
     var messageSplit = new Array;
