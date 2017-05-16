@@ -646,7 +646,7 @@ function receivedMessage(event) {
     return RHYMEOUTPUT;
   }
 
-  //function to return how many syllables there are in a word and return that number
+  //function to calculate how many syllables there are in a word and return that number
   function countSyllables(senderID, searchWord) {
     var wordLength = searchWord.length;
     var wordFound = false;
