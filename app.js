@@ -558,11 +558,12 @@ var word = "QAPPLE";
 console.log(word);
 
 var letter = word.charAt(0);
+letter = letter.toUpperCase();
 console.log(letter);
 
 console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
 
-for(var i = 0; i < 10; i++){
+for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
 
   console.log("In the loop, checking array at: " + i + "which is: " + ALPHABET_ARRAY[i][0]);
 }
