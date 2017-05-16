@@ -45,6 +45,7 @@ var filesBuffered = false;
 var wordNumber = 0;
 var stringLength = 0;
 
+//counters for found objects
 var pronunciationsFound = 0;
 var found = 0;
 
@@ -720,8 +721,7 @@ function findRhyme(senderID, searchWord) {
     //now search the dictionary for rhymes
     RHYMEOUTPUT = searchPhonemes(phonemeString);
     splitMessage(RHYMEOUTPUT);
-    //output stuff
-
+    sendTypingOff(senderID);
     }
 }
 
@@ -735,10 +735,8 @@ function splitMessage(stringArray){
   chunkTotal = Math.round(chunkTotal);
 
   if (found == 0) {
-    sendTypingOff(senderID);
     messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
   } else {
-    sendTypingOff(senderID);
     //for every word found
     messageSplit[messageChunk]="message : 0";
     //for how ever many there were words found
