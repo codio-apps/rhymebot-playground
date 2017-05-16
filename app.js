@@ -600,6 +600,7 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 
 }
 
+//function to count how many syllables there are in a word and return that number
 function countSyllables(senderID, searchword){
   var wordLength = searchWord.length;
   var wordFound = false;
