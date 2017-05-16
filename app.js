@@ -642,8 +642,7 @@ function findRhyme(senderID, searchWord) {
     }
   }
 
-  //if we didnt' find the word in the dictionary
-  console.log("checking pfound now, finding: "+pronunciationsFound);
+  //if we didnt' find the word in the dictionary at all
   if (pronunciationsFound == 0) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
@@ -719,7 +718,7 @@ function findRhyme(senderID, searchWord) {
     if (found == 0) {
       console.log("NOT SEARCHING FOR RHYMES");
     } else {
-      sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
+      sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults given are currently for the first only");
       //for every word found
       //for (var i = 0, len = found; i < len; i++){
       messageSplit[messageChunk]="message : 0";
