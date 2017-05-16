@@ -522,6 +522,7 @@ function setUpLocalVariables() {
     console.log("Unable to parse dictionary file: " + err);
   //try to read dictionary file
   console.log(GREETINGS + "/n " + RHYME_TYPOS);
+  }
 }
 
 
