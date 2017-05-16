@@ -613,6 +613,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
   var keepLooking = true;
+  var pronunciationsFound = 0;
   sendTypingOn(senderID);
   //first find the word in the dictionary
   // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
@@ -628,6 +629,7 @@ function findRhyme(senderID, searchWord) {
             console.log("the next word is "+CURRENTDICTIONARY[i+j]);
             if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
                 keepLooking = true;
+                pronunciationsFound++;
                 console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
             } else {
               keepLooking = false;
