@@ -629,10 +629,21 @@ function findRhyme(senderID, searchWord) {
     var arrayBin = new Array;
     var stringBin = "";
     for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+      //if the rhyme is a match
       if(CURRENTDICTIONARY[i].endsWith(temp)){
         arrayBin = CURRENTDICTIONARY[i].split("  ");
+
+
+        //if the found word ends in (n)
+        if (arrayBin[0].endsWith(")")=true){
+            //console.log("found word "+arrayBin[0]+" with bracket ending of length "+arrayBin[0].length+". Fixing it");
+            var tmpLen = arrayBin[0].length-3;
+            arrayBin = arrayBin[0].slice(tmpLen);
+        }
+        //save the word to the output array
         RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
         found++;
+        console.log("added word: "+RHYMEOUTPUT[found]);
       }
     }
     //output stuff
