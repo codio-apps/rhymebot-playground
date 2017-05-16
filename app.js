@@ -428,7 +428,7 @@ function receivedMessage(event) {
         searchWord = lc_messageText.slice(6);
         searchWord = searchWord.toUpperCase();
         countSyllables(senderID, searchWord);
-        messageResonse = "You want me to count syllables in a word for you";
+        messageResponse = "You want me to count syllables in a word for you";
       break;
 
       default:
