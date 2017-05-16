@@ -571,18 +571,17 @@ function findTheLine(){
 
 // FOR testing purposes
 var word = "QAPPLE";
+console.log(word);
 
 var letter = word.charAt(0);
 console.log(letter);
-var i = 0;
 
-if(!ALPHABET_ARRAY[i][0] == letter){
+
+for(var i = 0; !ALPHABET_ARRAY[i][0] == letter){
   i++;
-
-
 }
 
-console.log("WIPEEEEEEEEEEEEEE: " + ALPHABET_ARRAY[i][1]);
+console.log("WIPEEEEEEEEEEEEEE: " + i);
 
 
 // for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
