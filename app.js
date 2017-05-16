@@ -648,6 +648,7 @@ function findRhyme(senderID, searchWord) {
   //if we didnt' find the word in the dictionary at all
   if (pronunciationsFound == 0) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
+  //otherwise
   } else {
       //detect the first letter of phonemes sounds until you find a vowel
       var firstVowel = 0;
@@ -655,8 +656,7 @@ function findRhyme(senderID, searchWord) {
       //check the first character of each phoneme, backwards
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
-        var position = phoLen-i-1;
-        var temp = PHONEMES[position];
+        var temp = PHONEMES[phoLen-i-1];
         char = temp.charAt(0);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
