@@ -660,17 +660,20 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("checkpoint");
+    console.log("checkpoint 1");
     //code below constucts a string of phonemes to be compared to the rest of the dictionary
     //the current logic is that it goes from the first vowel
     phoLen = PHONEMES.length-firstVowel;
+    console.log("checkpoint 2");
     //construct our phoneme string
     for (i = firstVowel; i < PHONEMES.length; i++){
       phonemeString = phonemeString+" "+PHONEMES[i];
     }
     console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
     return phoneString;
+      console.log("checkpoint 3");
   }
+
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
