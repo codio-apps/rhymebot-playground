@@ -567,6 +567,7 @@ for (var i = 0; i < dictionary_length; i++) {
 }
 }
 }
+  console.log(FINAL_ALPHABET_REFERENCE);
 
 
 
