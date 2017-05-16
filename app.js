@@ -609,7 +609,7 @@ function countSyllables(senderID, searchWord) {
   }
   if (wordFound){
     console.log("calling calcPhonemes");
-    syllablesFOund = calcPhonemes(senderID, PHONEMES);
+    syllablesFound = calcPhonemes(senderID, PHONEMES);
   }
   return syllablesFound;
 }
