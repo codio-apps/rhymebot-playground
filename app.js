@@ -600,7 +600,7 @@ function searchPhonemes(phonemeString) {
     }
   }
   console.log("Search complete. Found: "+found+" rhyme(s).");
-  messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
+  messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first pronunciation only";
   return RHYMEOUTPUT;
 }
 
@@ -728,7 +728,7 @@ function splitMessage(sender, stringArray){
         //if we have less than 50 in this message section
         if (splitNum <50){
           //assign this rhyme to the string
-          messageSplit[messageChunk] = messageSplit[messageChunk]+"\t"+stringArray[sequence];
+          messageSplit[messageChunk] = messageSplit[messageChunk]+"\t\t\t"+stringArray[sequence];
           //increase the split number
           splitNum++;
           //otherwise, split the message into the next chunk
@@ -736,7 +736,7 @@ function splitMessage(sender, stringArray){
           //go onto the next messageChunk
           messageChunk++;
           messageSplit[messageChunk]="message : "+messageChunk;
-          messageSplit[messageChunk] = messageSplit[messageChunk]+"\t"+stringArray[sequence];
+          messageSplit[messageChunk] = messageSplit[messageChunk]+"\t\t\t"+stringArray[sequence];
           splitNum=0;
         }
       }
