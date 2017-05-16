@@ -640,14 +640,13 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
+  sendTypingOn(senderID);
   var keepLooking = true;
   var pronunciationsFound = 0;
   var phonemeString = "";
-  sendTypingOn(senderID);
+  var wordLength = searchWord.length;
   //first find the word in the dictionary
-  // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    //if we find the word at the start of the line
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       pronunciationsFound = 1;
       console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
@@ -655,17 +654,17 @@ function findRhyme(senderID, searchWord) {
     //as long as the next item isn't undefined, examine it
       if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
           for (var j=1; keepLooking==true; j++) {
-            console.log("the next word is "+CURRENTDICTIONARY[i+j]);
+            //if this appears to be an alternative pronunciation, log it
             if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
                 pronunciationsFound++;
-                console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
             } else {
-              console.log("That doesn't match, so I think I found all the pronunciations, I found: "+pronunciationsFound);
+              //if it's the end of the pronunciations, stop
+              console.log("I found all the pronunciations for "+searchWord+". There are "+pronunciationsFound);
               keepLooking = false;
             }
           }
       }
-      var wordLength = searchWord.length;
+      //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
@@ -713,16 +712,16 @@ function findRhyme(senderID, searchWord) {
         arrayBin = CURRENTDICTIONARY[i].split("  ");
         //if the found word ends in ")"
         if (arrayBin[0].endsWith(")")) {
+            //add the word to the list, but remove the brackets from the spelling info
             console.log("found word "+arrayBin[0]+" with bracket ending, of length : "+arrayBin[0].length+". Fixing it");
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
             arrayBin[0] = arrayBin[0].toLowerCase()
-            //if the last element in RHYMEOUTPUT is this fixed word, skip it
+            //if the last element added to RHYMEOUTPUT is the same, skip it
             if (arrayBin[0]==RHYMEOUTPUT[found-1]){
-              //skip
               console.log("Found additional pronunciation for "+RHYMEOUTPUT[found-1]+", skipped it")
             } else {
-              //save it
+              //otherwise, save it
               RHYMEOUTPUT[found]=arrayBin[0];
               found++;
             }
