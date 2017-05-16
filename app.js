@@ -641,6 +641,7 @@ function receivedMessage(event) {
 
   //function to take in URRENTDICTIONARY reference and spit out the phonemes
   function getPhonemes(theWord, wordLength){
+    console.log("getPhonemes called on "+theWord);
     var phonemeString ="";
     //trim off the spelling and spacing from the string
     var tempPHONEMES = theWord.slice(wordLength+2);
@@ -661,7 +662,6 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("checkpoint 1");
     //code below constucts a string of phonemes to be compared to the rest of the dictionary
     //the current logic is that it goes from the first vowel
     phoLen = PHONEMES.length-firstVowel;
@@ -670,9 +670,8 @@ function receivedMessage(event) {
     for (i = firstVowel; i < PHONEMES.length; i++){
       phonemeString = phonemeString+" "+PHONEMES[i];
     }
-    console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
+    console.log("Constructed phoneme string: "+phonemeString);
     return phonemeString;
-      console.log("checkpoint 3");
   }
 
 
@@ -712,7 +711,7 @@ function receivedMessage(event) {
     }  else {
       //now search the dictionary for rhymes
       RHYMEOUTPUT = searchPhonemes(processedPhonemes);
-      messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
+      messageResponse = "I found "+found+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
       if (found == 0) {
         messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
       } else {
