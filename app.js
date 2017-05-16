@@ -34,6 +34,9 @@ var PHONEMES = new Array();
 var ENGLISH_ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 var ALPHABET_REFERENCE = new Array();
 
+//file buffer
+var fileBuffer = "";
+
 //integers for array counting in sentences
 var wordNumber =0;
 var stringLength =0;
@@ -490,8 +493,8 @@ function setUpLocalVariables() {
 
   // Try to read from file
   try {
-  var temp = fs.readFileSync(greetings_file, "utf-8");
-  GREETINGS = temp.split("\n");
+  fileBuffer = fs.readFileSync(greetings_file, "utf-8");
+  GREETINGS = fileBuffer.split("\n");
 }
 // Catch an error and set default
   catch(err) {
@@ -500,8 +503,8 @@ function setUpLocalVariables() {
   }
   // Try to read from file
   try {
-  temp = fs.readFileSync(rhyme_typos, "utf-8");
-  RHYME_TYPOS = temp.split("\n");
+  fileBuffer = fs.readFileSync(rhyme_typos, "utf-8");
+  RHYME_TYPOS = fileBuffer.split("\n");
   }
   // Catch an error and set default
   catch(err) {
@@ -574,7 +577,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
       console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
       //output rhyme data to the output array
       var wordLength = searchWord.length+2;
-      var temp = CURRENTDICTIONARY[i].slice(wordLength);
+      fileBuffer = CURRENTDICTIONARY[i].slice(wordLength);
       OUTPUTSTRING[wordNumber]=temp;
     }
   }
@@ -592,7 +595,7 @@ function findRhyme(senderID, searchWord) {
   sendTypingOn(senderID);
     //first find the word in the dictionary
     // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
-    temp = fs.readFileSync(dictionary, "utf-8");
+    fileBuffer = fs.readFileSync(dictionary, "utf-8");
     CURRENTDICTIONARY = temp.split("\n");
     console.log("dictionary successfully read");
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
@@ -654,11 +657,10 @@ function findRhyme(senderID, searchWord) {
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
             arrayBin[0] = arrayBin[0].toLowerCase()
             console.log("fixed to "+arrayBin[0]);
+            //if the last element in RHYMEOUTPUT is this fixed word, skip it
             if (arrayBin[0]==RHYMEOUTPUT[found-1]){
               //skip
-              console.log("found duplicate, skipping");
             } else {
-              console.log("not a duplicate of previous word, adding to list");
               RHYMEOUTPUT[found]=arrayBin[0];
               found++;
             }
@@ -670,7 +672,7 @@ function findRhyme(senderID, searchWord) {
       }
     }
     //output stuff
-    console.log("found: "+found+" rhyme(s).");
+    console.log("Search complete. Found: "+found+" rhyme(s).");
     var messageSplit = new Array;
     var sequence = 0;
     var messageChunk = 0;
