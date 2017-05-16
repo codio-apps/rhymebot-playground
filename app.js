@@ -736,7 +736,7 @@ function receivedMessage(event) {
     for (var sequence = 1; sequence < found; sequence ++){
       //add the next word to a string in the array
       //if we have less than 50 in this message section
-      if (splitCount <50){
+      if (splitCount <100){
         //assign this rhyme to the string
         messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
         //increase the split number
