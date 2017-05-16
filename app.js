@@ -556,11 +556,12 @@ function alphabetReference() {
   //var j = 0;
   console.log("alphabet is "+alphabet);
 
-for (var i = 0; i < alphabetLength; i++) {
+for (var i = 0; i < dictionary_length; i++) {
   console.log("made it into the loop, checking "+DICTIONARY[i]);
-  for (var j = 0; j < dictionary_length; j++) {
+  for (var j = 0; j < alphabet_length; j++) {
+    console.log("comparing "+DICTIONARY[i]+" with "+alphabet[j]);
     if(DICTIONARY[i].startsWith(alphabet[j])){
-      console.log("comparing "+DICTIONARY[i]+" with "+alphabet[j]);
+      console.log("match found");
       FINAL_ALPHABET_REFERENCE[j] = i;
       console.log("Ref: " + FINAL_ALPHABET_REFERENCE[i] + "::::::::" + i + j);
 }
