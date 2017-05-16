@@ -26,7 +26,7 @@ var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
 var GREETINGS = "";
 var vowels = new Array('A', 'E', 'I', 'O', 'U');
-var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 //array initialisation
 var CURRENTDICTIONARY = new Array();
@@ -559,9 +559,8 @@ function alphabetReference() {
 for (var i = 0; i < dictionary_length; i++) {
   console.log("made it into the loop, checking "+DICTIONARY[i]);
   for (var j = 0; j < alphabetLength; j++) {
-    console.log("comparing "+DICTIONARY[i]+" with "+alphabet[j]);
     if(DICTIONARY[i].startsWith(alphabet[j])){
-      console.log("match found");
+      console.log("match found :"+DICTIONARY[i]+" starts with "+alphabet[j]);
       FINAL_ALPHABET_REFERENCE[j] = i;
 }
 }
