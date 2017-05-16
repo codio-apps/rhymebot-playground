@@ -25,13 +25,14 @@ app.use(express.static('public'));
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var RHYME_TYPOS = "";
 var GREETINGS = "";
-var vowels =new Array('A', 'E', 'I', 'O', 'U');
+var vowels = new Array('A', 'E', 'I', 'O', 'U');
+var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
 //array initialisation
 var CURRENTDICTIONARY = new Array();
 var SEARCHSTRING = new Array();
 var OUTPUTSTRING = new Array();
 var PHONEMES = new Array();
-var ENGLISH_ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 var ALPHABET_REFERENCE = new Array();
 
 //file buffer
@@ -511,6 +512,14 @@ function setUpLocalVariables() {
     RHYME_TYPOS = "rhymes";
 
   }
+  try {
+    fileBuffer = fs.readFileSync(dictionary, "utf-8");
+    CURRENTDICTIONARY = fileBuffer.split("\n");
+    console.log("dictionary successfully read");
+  }
+  // catch errors
+  catch(err) {
+    console.log("Unable to parse dictionary file: " + err);
   //try to read dictionary file
   console.log(GREETINGS + "/n " + RHYME_TYPOS);
 }
@@ -535,7 +544,6 @@ function alphabetReference() {
   var index1 = 'a';
   var index2 = 'b';
 
-  console.log("dictionary successfully read");
   var dictionary_length = DICTIONARY.length;
   var alphabetLength = 25;
   var FINAL_ALPHABET_REFERENCE = new Array();
@@ -595,11 +603,8 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
   sendTypingOn(senderID);
-    //first find the word in the dictionary
-    // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
-    fileBuffer = fs.readFileSync(dictionary, "utf-8");
-    CURRENTDICTIONARY = fileBuffer.split("\n");
-    console.log("dictionary successfully read");
+  //first find the word in the dictionary
+  // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     //insert or operator here
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
