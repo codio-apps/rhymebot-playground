@@ -277,11 +277,14 @@ function receivedMessage(event) {
 
   console.log("***NEW MESSAGE RECIEVED: "+messageText+"***");
   if (filesBuffered) {
+    console.log("All files already Buffered");
   } else {
     setUpLocalVariables();
       alphabetReference();
   }
 
+
+  console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
 
   request(
@@ -399,6 +402,7 @@ function receivedMessage(event) {
       // Case to handle mispellt RHYME commands
       // ************************************
       case 'rhyme_typo':
+        console.log("Typo time, ask for confirmation");
         messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme";
       break;
 
@@ -460,6 +464,7 @@ function receivedMessage(event) {
   } else {
   }
   // CODE GOES HERE AFTER FUNCTION RETURNS
+  console.log("Just received the name from Facebook, it is now: " + name +" "+ last_name);
 
 });
 
@@ -501,6 +506,7 @@ function setUpLocalVariables() {
   console.log(GREETINGS + "/n " + RHYME_TYPOS);
   }
   if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""){
+    console.log("All files buffered succesfully");
     filesBuffered=true;
   }
 }
@@ -509,7 +515,7 @@ function setUpLocalVariables() {
 function StringSearch(input, key) {
 
   if (key.indexOf(input) >= 0){
-// String was found in array
+  console.log("String was found in array");
   return true;
   }
   return false;
@@ -554,46 +560,14 @@ console.log(word);
 var letter = word.charAt(0);
 console.log(letter);
 
-var temparray = ALPHABET_ARRAY[i][0];
-
-console.log(" Before the loop starts: " + temparray);
+console.log(" Before the loop starts: " + ALPHABET_ARRAY[0][0]);
 
 for(var i = 0; ALPHABET_ARRAY[i][0] == letter; i++){
 
   console.log("In the loop, checking array at: " + i);
   console.log(ALPHABET_ARRAY[i][0]);
 }
-
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
-
-
-// for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-//   //if we find the word at the start of the line
-//   if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-//     pronunciationsFound = 1;
-//     console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
-//   //check for multiple pronunciations in dictionary file
-//   //as long as the next item isn't undefined, examine it
-//     if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
-//         for (var j=1; keepLooking==true; j++) {
-//           console.log("the next word is "+CURRENTDICTIONARY[i+j]);
-//           if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
-//               pronunciationsFound++;
-//               console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
-//           } else {
-//             console.log("That doesn't match, so I think I found all the pronunciations, I found: "+pronunciationsFound);
-//             keepLooking = false;
-//           }
-//         }
-//     }
-//     var wordLength = searchWord.length;
-//     var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
-//     //for the found word, make an array containing each phoneme sound
-//     PHONEMES = tempPHONEMES.split(" ");
-//   }
-// }
-
-
 }
 
 //function to count how many syllables there are in a word and return that number
@@ -609,7 +583,6 @@ function countSyllables(senderID, searchword){
       var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
-      console.log(PHONEMES);
     }
   }
   if (wordFound){
