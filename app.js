@@ -568,8 +568,8 @@ for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
 
   console.log("In the loop, checking array at: " + i + "which is: " + ALPHABET_ARRAY[i][0]);
 }
-console.log(ALPHABET_ARRAY);
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
+console.log("THE LETTER IS: " + ALPHABET_ARRAY[i][0] + " AND THE VALUE IS: " + ALPHABET_ARRAY[i][1])
 }
 
 //function to return the phonemes for a position in the dictionary
