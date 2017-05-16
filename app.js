@@ -285,7 +285,7 @@ function receivedMessage(event) {
     console.log("All files already Buffered");
   } else {
     setUpLocalVariables();
-      alphabetReference();
+      // alphabetReference();
   }
 
 
