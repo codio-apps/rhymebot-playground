@@ -728,7 +728,7 @@ function splitMessage(sender, stringArray){
         //if we have less than 50 in this message section
         if (splitNum <50){
           //assign this rhyme to the string
-          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\t\t\t";
+          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\t\t\t\t\t";
           //increase the split number
           splitNum++;
           //otherwise, split the message into the next chunk
@@ -736,7 +736,7 @@ function splitMessage(sender, stringArray){
           //go onto the next messageChunk
           messageChunk++;
           messageSplit[messageChunk]="message : "+messageChunk+"\n";
-          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\t\t\t";
+          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\t\t\t\t\t";
           splitNum=0;
         }
       }
