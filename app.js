@@ -577,11 +577,12 @@ var letter = word.charAt(0);
 console.log(letter);
 
 
-for(var i = 0; !ALPHABET_ARRAY[i][0] == letter){
-  i++;
+for(var i = 0; !ALPHABET_ARRAY[i][0] == letter; i++){
+
+  console.log("checking array at: " + i);
 }
 
-console.log("WIPEEEEEEEEEEEEEE: " + i);
+console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 
 
 // for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
