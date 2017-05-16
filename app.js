@@ -604,14 +604,15 @@ function findRhyme(senderID, searchWord) {
       //if the rhyme is a match
       if(CURRENTDICTIONARY[i].endsWith(temp)){
         arrayBin = CURRENTDICTIONARY[i].split("  ");
+        console.log("match found: "+arrayBin[0]);
 
 
-        //if the found word ends in (n)
-        //if (arrayBin[0].endsWith(")"));{
-        //    console.log("found word "+arrayBin[0]+"with bracket ending, fixing it:");
-        //    var tmpLen = arrayBin[0].length-3;
-        //    arrayBin = arrayBin[0].slice(tmpLen);
-        //}
+        if the found word ends in (n)
+        if (arrayBin[0].endsWith(")"));{
+            console.log("found word "+arrayBin[0]+"with bracket ending, fixing it:");
+            var tmpLen = arrayBin[0].length-3;
+            arrayBin = arrayBin[0].slice(tmpLen);
+        }
         //convert to lowercase and save the word to the output array
         RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
         found++;
