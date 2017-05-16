@@ -604,7 +604,7 @@ function receivedMessage(event) {
       sendTypingOff(senderID);
     }
   }
-  //function to return the phonemes for a position in the dictionary
+  //function to return the phonemes for a word in the dictionary
   function searchPhonemes(phonemeString) {
     console.log("searchPhonemes called for index: "+phonemeString);
     found = 0;
