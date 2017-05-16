@@ -643,6 +643,7 @@ function findRhyme(senderID, searchWord) {
   }
 
   //if we didnt' find the word in the dictionary
+  console.log("checking pfound now, finding: "+pronunciationsFound);
   if (pronunciationsFound == 0) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
