@@ -627,7 +627,7 @@ function findRhyme(senderID, searchWord) {
       PHONEMES = tempPHONEMES.split(" ");
     }
     //if the next word begins with this word as well
-    if (CURRENTDICTIONARY[i+1].startsWith(searchWord)) {
+    if (CURRENTDICTIONARY[i+1].startsWith(searchWord+"(")) {
       console.log("duplicate word found in dictionary it is "+CURRENTDICTIONARY[i]);
     }
   }
