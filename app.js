@@ -620,7 +620,7 @@ function findRhyme(senderID, searchWord) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
-      if (typeof CURRENDICTIONARY[i+1] !== "undefined") {
+      if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
           console.log("the next word is "+CURRENTDICTIONARY[i+1]);
       }
       var wordLength = searchWord.length;
