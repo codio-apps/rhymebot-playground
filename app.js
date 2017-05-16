@@ -575,7 +575,7 @@ for (var i = 0; i < dictionary_length; i++) {
   [B, 1],
   [C, 2]
 ];
-console.log(items[0][0]); // 1
+console.log("****************(((((^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + items[0] + "     " items[1]); // 1
 console.log(items);
 
 
