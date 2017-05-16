@@ -735,8 +735,7 @@ function receivedMessage(event) {
       } else {
         //otherwise, split the message into the next chunk
         messageChunk++;
-        messageSplit[messageChunk]="message : "+messageChunk+"\n";
-        messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
+        messageSplit[messageChunk]="message : "+messageChunk+"\n"+stringArray[sequence];
         splitCount=0;
       }
     }
