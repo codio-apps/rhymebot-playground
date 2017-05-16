@@ -428,7 +428,7 @@ function receivedMessage(event) {
         searchWord = lc_messageText.slice(6);
         searchWord = searchWord.toUpperCase();
         var v = countSyllables(senderID, searchWord);
-        if (typeof v != 0) {
+        if (v != 0) {
             messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
         } else {
           messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
@@ -604,11 +604,12 @@ function countSyllables(senderID, searchWord) {
         }
       }
     }
+    console.log("match found, returning "+syllablesFound);
     return syllablesFound;
   } else {
+    console.log("no matches found, returning 0");
     return 0;
   }
-  console.log("countSyllables complete");
 }
 
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
