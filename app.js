@@ -639,6 +639,39 @@ function receivedMessage(event) {
     }
   }
 
+  //function to take in URRENTDICTIONARY reference and spit out the phonemes
+  function getPhonemes(senderID, index){
+    //trim off the spelling and spacing from the string
+    var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
+    //for the found word, make an array containing each phoneme sound
+    PHONEMES = tempPHONEMES.split(" ");
+    //detect the first letter of phonemes sounds until you find a vowel
+    var firstVowel = 0;
+    var char = "";
+    //check the first character of each phoneme, backwards
+    for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
+      //set char to the first letter of the phoneme
+      char = PHONEMES[phoLen-i-1].charAt(0);
+      //compare char to every vowel
+      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+        //if we find a vowel at character 0, log the position as the first relevant one
+        if (char == vowels[j]){
+          firstVowel = phoLen-i-1;
+        }
+      }
+    }
+
+    //code below constucts a string of phonemes to be compared to the rest of the dictionary
+    //the current logic is that it goes from the first vowel
+    phoLen = PHONEMES.length-firstVowel;
+    //construct our phoneme string
+    for (i = firstVowel, len = PHONEMES.length; i < len; i++){
+      phonemeString = phonemeString+" "+PHONEMES[i];
+    }
+    console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
+    return phoneString;
+  }
+
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
     sendTypingOn(senderID);
@@ -661,13 +694,10 @@ function receivedMessage(event) {
               //if it's the end of the pronunciations, stop
               console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
               keepLooking = false;
+              phonemeString = getPhonemes(senderID, CURRENTDICTIONARY[i]);
             }
           }
         }
-        //trim off the spelling and spacing from the string
-        var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
-        //for the found word, make an array containing each phoneme sound
-        PHONEMES = tempPHONEMES.split(" ");
       }
     }
 
@@ -675,33 +705,10 @@ function receivedMessage(event) {
     if (pronunciationsFound == 0) {
       messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
       //otherwise
-    } else {
-      //detect the first letter of phonemes sounds until you find a vowel
-      var firstVowel = 0;
-      var char = "";
-      //check the first character of each phoneme, backwards
-      for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
-        //set char to the first letter of the phoneme
-        char = PHONEMES[phoLen-i-1].charAt(0);
-        //compare char to every vowel
-        for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          //if we find a vowel at character 0, log the position as the first relevant one
-          if (char == vowels[j]){
-            firstVowel = phoLen-i-1;
-          }
-        }
-      }
-      //figure out how many phonemes we want to compare (in this case, all from the first vowel)
-      phoLen = PHONEMES.length-firstVowel;
-      //construct our phoneme string
-      for (i = firstVowel, len = PHONEMES.length; i < len; i++){
-        phonemeString = phonemeString+" "+PHONEMES[i];
-      }
-      console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
-
+    }  else {
       //now search the dictionary for rhymes
       RHYMEOUTPUT = searchPhonemes(phonemeString);
-      messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first pronunciation only";
+      messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
       if (found == 0) {
         messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
       } else {
