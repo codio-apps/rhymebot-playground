@@ -571,10 +571,10 @@ for (var i = 0; i < dictionary_length; i++) {
 
   //Experiment
   var items = [
-  [0, A, 2],
-  [1, B, 55],
-  [2, C, 67]
-];
+    [1, 2],
+    [3, 4],
+    [5, 6]
+  ];
 console.log("****************(((((^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + items[0] + "     " + items[1]); // 1
 console.log(items);
 
