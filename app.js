@@ -584,7 +584,6 @@ function searchPhonemes(phonemeString) {
   found = 0;
   var arrayBin = new Array;
   var stringBin = "";
-
   //search the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     //if the rhyme is a match
@@ -758,7 +757,6 @@ function splitMessage(stringArray){
         }
       }
       console.log("Delivering results");
-      sendTypingOff(senderID);
       chunkTotal++;
       for (var i = 0; i < chunkTotal; i++){
         sendTextMessage(senderID, messageSplit[i]);
