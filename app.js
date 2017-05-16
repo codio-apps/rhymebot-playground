@@ -721,22 +721,22 @@ function splitMessage(sender, stringArray){
     messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
   } else {
     //for every word found
-    messageSplit[messageChunk]="message : 0";
+    messageSplit[messageChunk]="message : 0\n";
     //for how ever many there were words found
     for (var sequence = 0; sequence < found; sequence ++){
         //add the next word to a string in the array
         //if we have less than 50 in this message section
         if (splitNum <50){
           //assign this rhyme to the string
-          messageSplit[messageChunk] = messageSplit[messageChunk]+"\t\t\t"+stringArray[sequence];
+          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\t\t\t";
           //increase the split number
           splitNum++;
           //otherwise, split the message into the next chunk
         } else {
           //go onto the next messageChunk
           messageChunk++;
-          messageSplit[messageChunk]="message : "+messageChunk;
-          messageSplit[messageChunk] = messageSplit[messageChunk]+"\t\t\t"+stringArray[sequence];
+          messageSplit[messageChunk]="message : "+messageChunk+"\n";
+          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\t\t\t";
           splitNum=0;
         }
       }
