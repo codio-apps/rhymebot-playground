@@ -571,9 +571,9 @@ for (var i = 0; i < dictionary_length; i++) {
 
   //Experiment
   var items = [
-  [A, 0],
-  [B, 1],
-  [C, 2]
+  [0, A, 2],
+  [1, B, 55],
+  [2, C, 67]
 ];
 console.log("****************(((((^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + items[0] + "     " + items[1]); // 1
 console.log(items);
