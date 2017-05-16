@@ -577,7 +577,7 @@ var letter = word.charAt(0);
 console.log(letter);
 
 
-for(var i = 0; !ALPHABET_ARRAY[i][0] == letter; i++){
+for(var i = 0; ALPHABET_ARRAY[i][0] == letter; i++){
 
   console.log("checking array at: " + i);
 }
