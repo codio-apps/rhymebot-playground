@@ -572,7 +572,7 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 
 //function to return how many vowel sounds there are in a phoneme string
 function calcPhonemes(senderID, PHONEMES) {
-  console.log("calcPhonemes called");
+  console.log("calcPhonemes called: "+PHONEMES);
   //detect the first letter of phonemes sounds until you find a vowel
   var vowelsFound = 0;
   var char = "";
