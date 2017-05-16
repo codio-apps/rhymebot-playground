@@ -428,7 +428,7 @@ function receivedMessage(event) {
         searchWord = lc_messageText.slice(6);
         searchWord = searchWord.toUpperCase();
         var v = countSyllables(senderID, searchWord);
-        if (typeof v !== "undefined") {
+        if (typeof v != 0) {
             messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
         } else {
           messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
@@ -570,7 +570,7 @@ console.log(ALPHABET_ARRAY);
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 }
 
-//function to return phonemes for a word in the dictionary
+//function to return how many vowel sounds there are in a phoneme string
 function calcPhonemes(senderID, PHONEMES) {
   console.log("calcPhonemes called");
   //detect the first letter of phonemes sounds until you find a vowel
@@ -610,8 +610,11 @@ function countSyllables(senderID, searchWord) {
   }
   if (wordFound){
     syllablesFound = calcPhonemes(senderID, PHONEMES);
+    return syllablesFound;
+  } else {
+    return 0;
   }
-  return syllablesFound;
+
 }
 
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
