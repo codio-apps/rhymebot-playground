@@ -654,7 +654,7 @@ function findRhyme(senderID, searchWord) {
     for (i = firstVowel, len = PHONEMES.length; i < len; i++){
       phonemeString = phonemeString+" "+PHONEMES[i];
     }
-    console.log("Succesfully constructed phoneme string: "+temp+" searching for matches now...");
+    console.log("Succesfully constructed phoneme string: "+phonemeString+" searching for matches now...");
 
     //now search the dictionary for rhymes
     var RHYMEOUTPUT = new Array;
@@ -664,7 +664,7 @@ function findRhyme(senderID, searchWord) {
     //search the dictionary
     for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
       //if the rhyme is a match
-      if(CURRENTDICTIONARY[i].endsWith(temp)) {
+      if(CURRENTDICTIONARY[i].endsWith(phonemeString)) {
         //store the word in a temp string
         arrayBin = CURRENTDICTIONARY[i].split("  ");
         //if the found word ends in ")"
