@@ -540,15 +540,16 @@ function alphabetReference() {
 
   var tempint = splitAlphabet(index1, index2);
   console.log("Current index is " + tempint);
+  var i,j = 0;
 
   console.log("REFERENCE: " + DICTIONARY[i] + " :::::::::::::::::::::: " + ENGLISH_ALPHABET[j]);
 
-for (var j = 0; j < alphabetLength; j++) {
-  for (var i = 0; i < dictionary_length; i++) {
-    if(DICTIONARY[i].startsWith(ENGLISH_ALPHABET[j])){
-      FINAL_ALPHABET_REFERENCE[j] = i;
+for (i = 0; i < alphabetLength; i++) {
+  for (j = 0; j < dictionary_length; j++) {
+    if(DICTIONARY[j].startsWith(ENGLISH_ALPHABET[i])){
+      FINAL_ALPHABET_REFERENCE[i] = j;
       console.log("ALPHABET*****************************************")
-      console.log("Ref: " + FINAL_ALPHABET_REFERENCE[j] + "::::::::" + i + j);
+      console.log("Ref: " + FINAL_ALPHABET_REFERENCE[i] + "::::::::" + i + j);
 }
 }
 }
