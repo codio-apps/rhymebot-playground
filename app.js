@@ -612,6 +612,8 @@ function searchPhonemes(phonemeString) {
   }
   return RHYMEOUTPUT;
   console.log("RHYMEOUTPUT:"+RHYMEOUTPUT);
+  console.log("Search complete. Found: "+found+" rhyme(s).");
+  messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
 }
 
 //function to return how many syllables there are in a word and return that number
@@ -713,7 +715,6 @@ function findRhyme(senderID, searchWord) {
     //now search the dictionary for rhymes
     RHYMEOUTPUT = searchPhonemes(phonemeString);
     //output stuff
-    console.log("Search complete. Found: "+found+" rhyme(s).");
     var messageSplit = new Array;
     var sequence = 0;
     var messageChunk = 0;
@@ -726,7 +727,6 @@ function findRhyme(senderID, searchWord) {
       messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
     } else {
       sendTypingOff(senderID);
-      messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
       //for every word found
       //for (var i = 0, len = found; i < len; i++){
       messageSplit[messageChunk]="message : 0";
