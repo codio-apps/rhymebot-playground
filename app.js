@@ -448,7 +448,7 @@ function receivedMessage(event) {
 
           messageResponse = messageText + "?";
         }
-        if(instant_reply = true;){
+        if(instant_reply = true){
         sendTextMessage(senderID, messageResponse);
       }
 
