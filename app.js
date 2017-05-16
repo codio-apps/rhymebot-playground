@@ -275,7 +275,7 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
-  console.log("***NEW MESSAGE RECIEVED: "+message+"***");
+  console.log("***NEW MESSAGE RECIEVED: "+messageText+"***");
   if (filesBuffered) {
     console.log("All files already Buffered");
   } else {
@@ -402,29 +402,33 @@ function receivedMessage(event) {
       // Case to handle mispellt RHYME commands
       // ************************************
       case 'rhyme_typo':
-      console.log("Typo time, ask for confirmation");
-      messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme";
+        console.log("Typo time, ask for confirmation");
+        messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme";
       break;
 
       // Handle the SINGLE command
       // ************************************
       case 'single':
       //test environment for single word perfect rhymes
-      var searchWord = lc_messageText.slice(7)
-      searchWord = searchWord.toUpperCase();
-      console.log("Calling find rhyme, word is: " + searchWord);
-      findRhyme(senderID, searchWord);
+        searchWord = lc_messageText.slice(7)
+        searchWord = searchWord.toUpperCase();
+        console.log("Calling find rhyme, word is: " + searchWord);
+        findRhyme(senderID, searchWord);
       break;
       // Handle the RHYME command
       // ************************************
       case 'rhyme':
-      var rhymeString = messageText.slice(6);
-      var messageArray = rhymeString.split(" ");
-      messageResponse = "Rhyme Time! You said you want to rhyme: " + messageArray;
+        var rhymeString = messageText.slice(6);
+        var messageArray = rhymeString.split(" ");
+        messageResponse = "Rhyme Time! You said you want to rhyme: " + messageArray;
       break;
 
       //handle the count command
       case 'count':
+        searchWord = lc_messageText.slice(6);
+        searchWord = searchWord.toUpperCase();
+        countSyllables(senderID, searchWord);
+        messageResonse = "You want me to count syllables in a word for you";
       break;
 
       default:
@@ -590,7 +594,7 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 
 }
 
-function count(senderID, searchword){
+function countSyllables(senderID, searchword){
   console.log("count triggered");
 }
 
@@ -705,7 +709,7 @@ function findRhyme(senderID, searchWord) {
       messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
     } else {
       sendTypingOff(senderID);
-      messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults given are currently for the first only";
+      messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
       //for every word found
       //for (var i = 0, len = found; i < len; i++){
       messageSplit[messageChunk]="message : 0";
