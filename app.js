@@ -42,8 +42,9 @@ var fileBuffer = "";
 var filesBuffered = false;
 
 //integers for array counting in sentences
-var wordNumber =0;
-var stringLength =0;
+var wordNumber = 0;
+var stringLength = 0;
+var found = 0;
 
 // Graph Profile fields by senderID
 var name = "NONAMESET";
@@ -575,7 +576,7 @@ console.log("THE LETTER IS: " + ALPHABET_ARRAY[i][0] + " AND THE VALUE IS: " + A
 //function to return the phonemes for a position in the dictionary
 function searchPhonemes(phonemeString) {
   console.log("searchPhonemes called for index: "+phonemeString);
-  var found = 0;
+  found = 0;
   var arrayBin = new Array;
   var stringBin = "";
   //search the dictionary
