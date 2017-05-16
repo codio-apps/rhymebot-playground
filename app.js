@@ -560,22 +560,14 @@ for (var i = 0; i < dictionary_length; i++) {
 }
 }
 }
-  // //Experiment
-  //  ALPHABET_ARRAY = [
-  //   ["Alpha", "Beta"],
-  //   ["Charlie", "Delta"],
-  //   ["Echo", "Foxies"]
-  // ];
   console.log(ALPHABET_ARRAY);
-
-
-
-
 
 }
 //function splitAlphabet(index1, index2) {
 //  return (alphabet.slice(alphabet.indexOf(index1), alphabet.indexOf(index2) + 1));
 //}
+
+//FUNCTION TO FIND THE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
 
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
