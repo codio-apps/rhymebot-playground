@@ -642,8 +642,8 @@ function findRhyme(senderID, searchWord) {
         //}
         //save the word to the output array
         RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
-        found++;
         console.log("added word: "+RHYMEOUTPUT[found]);
+        found++;
       }
     }
     //output stuff
