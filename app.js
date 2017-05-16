@@ -23,13 +23,13 @@ app.use(express.static('public'));
 
 // Keyword initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
-var RHYME_TYPOS = "";
-var GREETINGS = "";
 var vowels = new Array('A', 'E', 'I', 'O', 'U');
 var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 //array initialisation
-var CURRENTDICTIONARY = new Array();
+var CURRENTDICTIONARY = "";
+var RHYME_TYPOS = "";
+var GREETINGS = "";
 var SEARCHSTRING = new Array();
 var OUTPUTSTRING = new Array();
 var PHONEMES = new Array();
@@ -37,6 +37,7 @@ var ALPHABET_REFERENCE = new Array();
 
 //file buffer
 var fileBuffer = "";
+var filesBuffered = false;
 
 //integers for array counting in sentences
 var wordNumber =0;
@@ -47,13 +48,10 @@ var name = "NONAMESET";
 var last_name = "";
 var nameFound = false;
 
-
+//blank strings
 var rhymeString = "";
 var searchWord = "";
 var lc_messageText = "";
-
-//var for catching response state (replaces insulted)
-var caughtCommand= false;
 
 // Set up file parsing
 var fs = require("fs");
@@ -275,8 +273,13 @@ function receivedMessage(event) {
 
   console.log("***NEW MESSAGE RECIEVED***");
   console.log("Setting up local variables");
-  setUpLocalVariables();
-  alphabetReference();
+  if (filesBuffered) {
+    console.log("All files already Buffered");
+  } else {
+    setUpLocalVariables();
+    alphabetReference();
+  }
+
 
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
@@ -316,7 +319,6 @@ function receivedMessage(event) {
 
     // Pass the message into a case-insenstivie expression for comparison purposes
     // only. Use messageText for the original text when you need to print output.
-    caughtCommand = false;
     lc_messageText = messageText.toLowerCase();
     var intent = lc_messageText;
     var instant_reply = false;
@@ -370,7 +372,6 @@ function receivedMessage(event) {
       //Case to handle GREETING messages
       // ************************************
       case 'welcome':
-        caughtCommand=true;
         if (name=="NONAMESET") {
           console.log("Name not retrieved from Facebook yet");
           messageResponse = "What's up?";
@@ -408,7 +409,6 @@ function receivedMessage(event) {
       // ************************************
       case 'syllable':
       console.log("SYLLABLE STUFF GOES HERE ALSO");
-      caughtCommand = true;
       //init arrays and counter
       wordNumber=0;
       var PHONEMEString = lc_messageText.slice(9);
@@ -439,7 +439,6 @@ function receivedMessage(event) {
       //test environment for single word perfect rhymes
       var searchWord = lc_messageText.slice(7)
       searchWord = searchWord.toUpperCase();
-        caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
         findRhyme(senderID, searchWord);
       break;
@@ -501,7 +500,6 @@ function setUpLocalVariables() {
 // Catch an error and set default
   catch(err) {
     console.log("Unable to parse greetings file: " + err);
-    GREETINGS = "hi";
   }
   // Try to read from file
   try {
@@ -511,8 +509,6 @@ function setUpLocalVariables() {
   // Catch an error and set default
   catch(err) {
     console.log("Unable to parse rhyme file: " + err);
-    RHYME_TYPOS = "rhymes";
-
   }
   try {
     fileBuffer = fs.readFileSync(dictionary, "utf-8");
@@ -524,6 +520,10 @@ function setUpLocalVariables() {
     console.log("Unable to parse dictionary file: " + err);
   //try to read dictionary file
   console.log(GREETINGS + "/n " + RHYME_TYPOS);
+  }
+  if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""){
+    console.log("All files parsed succesfully");
+    filesBuffered=true;
   }
 }
 
