@@ -560,7 +560,7 @@ console.log(word);
 var letter = word.charAt(0);
 console.log(letter);
 
-console.log("Starting loop");
+console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
 
 for(var i = 0; ALPHABET_ARRAY[i][0] == letter.toUpperCase(); i++){
 
@@ -589,6 +589,7 @@ function calcPhonemes(senderID, PHONEMES) {
     }
   }
   console.log("Success! "+vowelsFound+" syllables detected");
+  return vowelsFound;
 }
 
 //function to count how many syllables there are in a word and return that number
@@ -608,7 +609,6 @@ function countSyllables(senderID, searchWord) {
     }
   }
   if (wordFound){
-    console.log("calling calcPhonemes");
     syllablesFound = calcPhonemes(senderID, PHONEMES);
   }
   return syllablesFound;
