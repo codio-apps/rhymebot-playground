@@ -662,7 +662,9 @@ function findRhyme(senderID, searchWord) {
             //if the last element in RHYMEOUTPUT is this fixed word, skip it
             if (arrayBin[0]==RHYMEOUTPUT[found-1]){
               //skip
+              console.log("found duplicate for "+RHYMEOUTPUT[found-1]+", skipped it");
             } else {
+              //save it
               RHYMEOUTPUT[found]=arrayBin[0];
               found++;
             }
