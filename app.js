@@ -716,7 +716,8 @@ function receivedMessage(event) {
     return phonemeString;
   }
 
-  //function to split an array of words into 100-word chunks and send them
+  //function to split an array of words into 75-word chunks and send them
+  //the 75 word limit is hardcoded for now
   function splitMessage(sender, stringArray){
     var messageSplit = new Array;
     var sequence = 0;
@@ -752,9 +753,6 @@ function receivedMessage(event) {
     }
     console.log("Results delivered");
   }
-
-
-
 
   /*
   * Delivery Confirmation Event
