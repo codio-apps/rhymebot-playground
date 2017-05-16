@@ -541,7 +541,7 @@ function StringSearch(input, key) {
 function alphabetReference() {
 
   //load the file
-  fileBuffer = fs.readFileSync(abcdef, "utf-8");
+  fileBuffer = fs.readFileSync(dictionary, "utf-8");
   var DICTIONARY = fileBuffer.split("\n");
 
   //var index1 = 'a';
@@ -564,22 +564,20 @@ for (var i = 0; i < dictionary_length; i++) {
     if(DICTIONARY[i].startsWith(alphabet[j])){
       console.log("match found :"+DICTIONARY[i]+" starts with "+alphabet[j]);
       FINAL_ALPHABET_REFERENCE[j] = i;
-      ALPHABET_ARRAY[j] = [DICTIONARY[i].startsWith(), i];
+      ALPHABET_ARRAY[j] = [DICTIONARY[i].charAt(0), i];
+      console.log("*********************************" + ALPHABET_ARRAY[i][j]);
 }
 }
 }
-  console.log(FINAL_ALPHABET_REFERENCE);
+  // //Experiment
+  //  ALPHABET_ARRAY = [
+  //   ["Alpha", "Beta"],
+  //   ["Charlie", "Delta"],
+  //   ["Echo", "Foxies"]
+  // ];
 
-  //Experiment
-   ALPHABET_ARRAY = [
-    ["Alpha", "Beta"],
-    ["Charlie", "Delta"],
-    ["Echo", "Foxies"]
-  ];
-console.log("*********************************" + ALPHABET_ARRAY[0][0]);
-console.log("*********************************" + ALPHABET_ARRAY[0][1]);
-console.log("*********************************" + ALPHABET_ARRAY[1][0]);
-console.log("*********************************" + ALPHABET_ARRAY[1][1]);
+
+
 
 
 }
