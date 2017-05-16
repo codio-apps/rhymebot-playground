@@ -576,12 +576,12 @@ console.log("THE LETTER IS: " + ALPHABET_ARRAY[linePointer][0] + " AND THE VALUE
 
 //function to return the phonemes for a position in the dictionary
 function searchPhonemes(phonemeString) {
-  console.log("searchPhonemes called for index: "+phonemeString);
+  console.log("searchPhonemes called for: "+phonemeString);
   found = 0;
   var arrayBin = new Array;
   var stringBin = "";
   //this line is just a fix as linePointer was undefined
-  var linepointer = 0;
+  var linePointer = 0;
   //search the dictionary
   for (var i = ALPHABET_ARRAY[linePointer][1], len = CURRENTDICTIONARY.length; i < len; i++) {
     //if the rhyme is a match
@@ -615,7 +615,6 @@ function searchPhonemes(phonemeString) {
     }
 
   }
-  return RHYMEOUTPUT;
   console.log("RHYMEOUTPUT:"+RHYMEOUTPUT);
   console.log("Search complete. Found: "+found+" rhyme(s).");
   messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
