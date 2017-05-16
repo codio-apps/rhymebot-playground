@@ -427,7 +427,8 @@ function receivedMessage(event) {
       case 'count':
         searchWord = lc_messageText.slice(6);
         searchWord = searchWord.toUpperCase();
-        countSyllables(senderID, searchWord);
+        var v = countSyllables(senderID, searchWord);
+        messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
       break;
 
       default:
@@ -594,13 +595,12 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 }
 
 function countSyllables(senderID, searchword){
-  console.log("count triggered");
   var wordLength = searchWord.length;
   var wordFound = false;
   //first find the word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-      console.log("word found in dictionary, splitting");
+      console.log("Word found in dictionary");
       wordFound=true;
       //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
@@ -622,15 +622,15 @@ function countSyllables(senderID, searchword){
         //if we find a vowel at character 0, increment the syllable count
         if (char == vowels[j]){
           vowelsFound++;
-          console.log("vowel found");
         }
       }
     }
-    console.log("total syllables detected: "+vowelsFound);
-    messageResponse = "There are "+vowelsFound+" syllables in "+searchWord.toLowerCase();
+    console.log(vowelsFound+"syllables detected");
+    //messageResponse = "There are "+vowelsFound+" syllables in "+searchWord.toLowerCase();
   } else {
     messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
   }
+  return vowelsFound;
 }
 
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
