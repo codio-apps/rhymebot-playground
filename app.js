@@ -723,7 +723,12 @@ function receivedMessage(event) {
     //for how ever many there were words found
     for (var sequence = 0; sequence < found; sequence ++){
       var currentWordLength = stringArray[sequence].length;
-      console.log("sequencing... number "+sequence+". Length of word: "+currentWordLength);
+      console.log("Length of: "+stringArray[sequence]+" = "+currentWordLength);
+      var spaceCount = 20-currentWordLength;
+      for (var i = 0; i < spaceCount; i++) {
+          stringArray[sequence] = stringArray[sequence]+" ";
+      }
+      console.log("added "+spaceCount)
       //add the next word to a string in the array
       //if we have less than 50 in this message section
       if (splitCount <50){
