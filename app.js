@@ -551,6 +551,7 @@ function alphabetReference() {
   var dictionary_length = DICTIONARY.length;
   var alphabetLength = 26;
   var FINAL_ALPHABET_REFERENCE = new Array();
+  var ALPHABET_ARRAY = new Array();
 
   //var tempint = splitAlphabet(index1, index2);
   //console.log("Current index is " + tempint);
@@ -570,13 +571,13 @@ for (var i = 0; i < dictionary_length; i++) {
   console.log(FINAL_ALPHABET_REFERENCE);
 
   //Experiment
-  var items = [
-  [0, A, 2],
-  [1, B, 55],
-  [2, C, 67]
-];
-console.log("****************(((((^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + items[0] + "     " + items[1]); // 1
-console.log(items);
+   ALPHABET_ARRAY = [
+    ["A", 2],
+    ["B", 4],
+    ["C", 6]
+  ];
+console.log("****************(((((^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + ALPHABET_ARRAY[2, 2] + "     " + ALPHABET_ARRAY[1, 0]); // 1
+console.log(ALPHABET_ARRAY);
 
 
 }
