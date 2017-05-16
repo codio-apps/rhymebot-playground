@@ -571,7 +571,7 @@ for(var linePointer = 0; ALPHABET_ARRAY[linePointer][0] != letter; linePointer++
 }
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + linePointer);
 console.log("THE LETTER IS: " + ALPHABET_ARRAY[linePointer][0] + " AND THE VALUE IS: " + ALPHABET_ARRAY[linePointer][1])
-
+}
 
 
 //function to return the phonemes for a position in the dictionary
@@ -580,7 +580,6 @@ function searchPhonemes(phonemeString) {
   found = 0;
   var arrayBin = new Array;
   var stringBin = "";
->>>>>>> 3f8553bc18e7aba9a32a90988d76c704c6041c28
   //search the dictionary
   for (var i = ALPHABET_ARRAY[linePointer][1], len = CURRENTDICTIONARY.length; i < len; i++) {
     //if the rhyme is a match
@@ -620,7 +619,7 @@ function searchPhonemes(phonemeString) {
   messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
   return RHYMEOUTPUT;
 }
-}
+
 
 //function to return how many syllables there are in a word and return that number
 function countSyllables(senderID, searchWord) {
