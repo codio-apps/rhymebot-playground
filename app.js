@@ -550,6 +550,7 @@ function findRhyme(senderID, searchWord) {
   var wordFound = false;
   sendTypingOn(senderID);
     //first find the word in the dictionary
+    // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
     temp = fs.readFileSync(dictionary, "utf-8");
     CURRENTDICTIONARY = temp.split("\n");
     console.log("dictionary successfully read");
@@ -593,61 +594,62 @@ function findRhyme(senderID, searchWord) {
       temp = temp+" "+PHONEMES[i];
     }
     console.log("Succesfully constructed phoneme string: "+temp+" searching for matches now...");
-  }
-  //now search the dictionary for rhymes
-  var RHYMEOUTPUT = new Array;
-  var found = 0;
-  var arrayBin = new Array;
-  var stringBin = "";
-  for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    if(CURRENTDICTIONARY[i].endsWith(temp)){
-      arrayBin = CURRENTDICTIONARY[i].split("  ");
-      RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
-      found++;
-    }
-  }
-  //output stuff
-  console.log("found: "+found+" rhyme(s).");
-  var messageSplit = new Array;
-  var sequence = 0;
-  var messageChunk = 0;
-  var chunkTotal = found/50;
-  var splitNum = 0;
-  chunkTotal = Math.round(chunkTotal);
-  console.log("words found: "+found+". additional message chunks required: "+chunkTotal);
 
-  if (found == 0) {
-    console.log("NOT SEARCHING FOR RHYMES");
-  } else {
-    sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
-  //for every word found
-  //for (var i = 0, len = found; i < len; i++){
-    messageSplit[messageChunk]="message : 0";
-    //for how ever many there were words found
-    for (var sequence = 0; sequence < found; sequence ++){
-        //add the next word to a string in the array
-        //if we have less than 50 in this message section
-        if (splitNum <50){
-          //assign this rhyme to the string
-          messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
-          //increase the split number
-          splitNum++;
-          //otherwise, split the message into the next chunk
-        } else {
-          //go onto the next messageChunk
-          messageChunk++;
-          messageSplit[messageChunk]="message : "+messageChunk;
-          messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
-          splitNum=0;
+    //now search the dictionary for rhymes
+    var RHYMEOUTPUT = new Array;
+    var found = 0;
+    var arrayBin = new Array;
+    var stringBin = "";
+    for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+      if(CURRENTDICTIONARY[i].endsWith(temp)){
+        arrayBin = CURRENTDICTIONARY[i].split("  ");
+        RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
+        found++;
       }
     }
-    console.log("Delivering results");
-    sendTypingOff(senderID);
-    chunkTotal++;
-    for (var i = 0; i < chunkTotal; i++){
-        sendTextMessage(senderID, messageSplit[i]);
+    //output stuff
+    console.log("found: "+found+" rhyme(s).");
+    var messageSplit = new Array;
+    var sequence = 0;
+    var messageChunk = 0;
+    var chunkTotal = found/50;
+    var splitNum = 0;
+    chunkTotal = Math.round(chunkTotal);
+    console.log("words found: "+found+". additional message chunks required: "+chunkTotal);
+
+    if (found == 0) {
+      console.log("NOT SEARCHING FOR RHYMES");
+    } else {
+      sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
+      //for every word found
+      //for (var i = 0, len = found; i < len; i++){
+      messageSplit[messageChunk]="message : 0";
+      //for how ever many there were words found
+      for (var sequence = 0; sequence < found; sequence ++){
+          //add the next word to a string in the array
+          //if we have less than 50 in this message section
+          if (splitNum <50){
+            //assign this rhyme to the string
+            messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
+            //increase the split number
+            splitNum++;
+            //otherwise, split the message into the next chunk
+          } else {
+            //go onto the next messageChunk
+            messageChunk++;
+            messageSplit[messageChunk]="message : "+messageChunk;
+            messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
+            splitNum=0;
+          }
+        }
+        console.log("Delivering results");
+        sendTypingOff(senderID);
+        chunkTotal++;
+        for (var i = 0; i < chunkTotal; i++){
+          sendTextMessage(senderID, messageSplit[i]);
+        }
+      }
     }
-  }
 }
 
 
