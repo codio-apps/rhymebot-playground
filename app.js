@@ -683,11 +683,6 @@ function findRhyme(senderID, searchWord) {
       if(CURRENTDICTIONARY[i].endsWith(temp)) {
         //store the word in a temp string
         arrayBin = CURRENTDICTIONARY[i].split("  ");
-        //make sure it's not the same as searchWord
-        console.log("comparing "+arrayBin[0]+" to "+searchWord);
-        if (arrayBin[0]==searchWord){
-          console.log("that's the same word stupid");
-        }
         //if the found word ends in ")"
         if (arrayBin[0].endsWith(")")) {
             console.log("found word "+arrayBin[0]+" with bracket ending, of length : "+arrayBin[0].length+". Fixing it");
@@ -705,8 +700,14 @@ function findRhyme(senderID, searchWord) {
             }
         } else {
           //save the word to the output array
-          RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
-          found++;
+          //make sure it's not the same as searchWord
+          console.log("comparing "+arrayBin[0]+" to "+searchWord);
+          if (arrayBin[0]==searchWord){
+            console.log("that's the same as the search term stupid, skipping word");
+          } else {
+            RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
+            found++;
+          }
         }
       }
     }
