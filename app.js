@@ -670,7 +670,7 @@ function findRhyme(senderID, searchWord) {
     for (i = firstVowel, len = PHONEMES.length; i < len; i++){
       phonemeString = phonemeString+" "+PHONEMES[i];
     }
-    console.log("Succesfully constructed phoneme string: "+temp+" searching for matches now...");
+    console.log("Succesfully constructed phoneme string: "+phonemeString+" searching for matches now...");
 
     //now search the dictionary for rhymes
     var RHYMEOUTPUT = new Array;
