@@ -272,12 +272,11 @@ function receivedMessage(event) {
   var quickReply = message.quick_reply;
 
   console.log("***NEW MESSAGE RECIEVED***");
-  console.log("Setting up local variables");
   if (filesBuffered) {
     console.log("All files already Buffered");
   } else {
     setUpLocalVariables();
-    alphabetReference();
+      alphabetReference();
   }
 
 
@@ -522,7 +521,7 @@ function setUpLocalVariables() {
   console.log(GREETINGS + "/n " + RHYME_TYPOS);
   }
   if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""){
-    console.log("All files parsed succesfully");
+    console.log("All files buffered succesfully");
     filesBuffered=true;
   }
 }
@@ -627,8 +626,10 @@ function findRhyme(senderID, searchWord) {
       PHONEMES = tempPHONEMES.split(" ");
     }
     //if the next word begins with this word as well
-    if (CURRENTDICTIONARY[i+1].startsWith(searchWord+"(")) {
-      console.log("duplicate word found in dictionary it is "+CURRENTDICTIONARY[i]);
+    if (i < len) {
+      if (CURRENTDICTIONARY[i+1].startsWith(searchWord+"(")) {
+        console.log("duplicate word found in dictionary it is "+CURRENTDICTIONARY[i]);
+      }
     }
   }
   //if we didnt' find the word in the dictionary
