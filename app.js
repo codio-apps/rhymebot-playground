@@ -560,11 +560,11 @@ console.log(word);
 var letter = word.charAt(0);
 console.log(letter);
 
-console.log(ALPHABET_ARRAY[i][0]);
+console.log(" Before the loop starts: " + ALPHABET_ARRAY[i][0]);
 
 for(var i = 0; ALPHABET_ARRAY[i][0] == letter; i++){
 
-  console.log("checking array at: " + i);
+  console.log("In the loop, checking array at: " + i);
   console.log(ALPHABET_ARRAY[i][0]);
 }
 
