@@ -539,27 +539,28 @@ function StringSearch(input, key) {
 //inputs: the dictionary
 function alphabetReference() {
 
+  //load the file
   var tempfile = fs.readFileSync(dictionary, "utf-8");
   var DICTIONARY = tempfile.split("\n");
 
-  var index1 = 'a';
-  var index2 = 'b';
+  //var index1 = 'a';
+  //var index2 = 'b';
 
   var dictionary_length = DICTIONARY.length;
   var alphabetLength = 25;
   var FINAL_ALPHABET_REFERENCE = new Array();
 
-  var tempint = splitAlphabet(index1, index2);
-  console.log("Current index is " + tempint);
-  var i = 0;
-  var j = 0;
-
-  console.log("REFERENCE: " + alphabet[i] + " :::::::::::::::::::::: " + alphabet[j]);
+  //var tempint = splitAlphabet(index1, index2);
+  //console.log("Current index is " + tempint);
+  //var i = 0;
+  //var j = 0;
+  console.log("alphabet is "+alphabet);
 
 for (i = 0; i < alphabetLength; i++) {
   console.log("made it into the loop");
   for (j = 0; j < dictionary_length; j++) {
     if(DICTIONARY[i].startsWith(alphabet[j])){
+      console.log("comparing "+DICTIONARY[i]+" with "+alphabet[j]);
       FINAL_ALPHABET_REFERENCE[j] = i;
       console.log("Ref: " + FINAL_ALPHABET_REFERENCE[i] + "::::::::" + i + j);
 }
@@ -570,9 +571,9 @@ for (i = 0; i < alphabetLength; i++) {
 
 
 }
-function splitAlphabet(index1, index2) {
-  return (alphabet.slice(alphabet.indexOf(index1), alphabet.indexOf(index2) + 1));
-}
+//function splitAlphabet(index1, index2) {
+//  return (alphabet.slice(alphabet.indexOf(index1), alphabet.indexOf(index2) + 1));
+//}
 
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
