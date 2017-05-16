@@ -405,44 +405,15 @@ function receivedMessage(event) {
       messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme";
       break;
 
-      // Case to handle the SYLLABLE command
-      // ************************************
-      case 'syllable':
-      console.log("SYLLABLE STUFF GOES HERE ALSO");
-      //init arrays and counter
-      wordNumber=0;
-      var PHONEMEString = lc_messageText.slice(9);
-      var tempString="";
-      console.log("syllable check requested, parsing to upper case. \n"+stringLength+" word(s) detected in string");
-      sendTextMessage(senderID, "I recognised the word, I am getting this data: "+ PHONEMEString);
-
-      SEARCHSTRING = PHONEMEString.split(" ");
-      stringLength = SEARCHSTRING.length;
-      //send the string to be searched
-      for (var i = 0, len = SEARCHSTRING.length; i < len; i++) {
-        searchWord = SEARCHSTRING[i].toUpperCase();
-        searchDictionary(senderID, searchWord, wordNumber);
-        wordNumber++;
-      }
-      //return output in right order
-      for (var i = 0, len =SEARCHSTRING.length; i < len; i++) {
-        tempString = tempString+"\n"+SEARCHSTRING[i]+": "+OUTPUTSTRING[i];
-      }
-
-      sendTextMessage(senderID, tempString);
-
-      break;
-
       // Handle the SINGLE command
       // ************************************
       case 'single':
       //test environment for single word perfect rhymes
       var searchWord = lc_messageText.slice(7)
       searchWord = searchWord.toUpperCase();
-        console.log("calling find rhyme, word is |" + searchWord);
-        findRhyme(senderID, searchWord);
+      console.log("calling find rhyme, word is |" + searchWord);
+      findRhyme(senderID, searchWord);
       break;
-
       // Handle the RHYME command
       // ************************************
       case 'rhyme':
@@ -614,31 +585,6 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 
 }
 
-
-//FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
-//inputs: who sent it, what is the word, where does it appear in the string
-function searchDictionary(senderID, searchWord, wordNumber) {
-  var wordFound = false;
-  console.log("Dictionary search request received, word is: "+searchWord+" word number is "+wordNumber);
-  //COMPARE START OF EACH LINE WITH SEARCH WORD
-  for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-    if(CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-      wordFound = true;
-      console.log("word number "+wordNumber+" found in dictionary, it is "+CURRENTDICTIONARY[i]);
-      //output rhyme data to the output array
-      var wordLength = searchWord.length+2;
-      fileBuffer = CURRENTDICTIONARY[i].slice(wordLength);
-      OUTPUTSTRING[wordNumber]=temp;
-    }
-  }
-  if (!wordFound) {
-    OUTPUTSTRING[wordNumber]="**notfound**";
-    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
-  }
-  console.log("Dictionary search complete, searched "+i+" entries");
-  sendTypingOff(senderID);
-}
-
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   sendTypingOn(senderID);
@@ -674,7 +620,7 @@ function findRhyme(senderID, searchWord) {
 
   //if we didnt' find the word in the dictionary at all
   if (pronunciationsFound == 0) {
-    sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
+    messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
   //otherwise
   } else {
       //detect the first letter of phonemes sounds until you find a vowel
@@ -750,10 +696,10 @@ function findRhyme(senderID, searchWord) {
 
     if (found == 0) {
       sendTypingOff(senderID);
-      sendTextMessage(senderID, "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet");
+      messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
     } else {
       sendTypingOff(senderID);
-      sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults given are currently for the first only");
+      messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults given are currently for the first only";
       //for every word found
       //for (var i = 0, len = found; i < len; i++){
       messageSplit[messageChunk]="message : 0";
