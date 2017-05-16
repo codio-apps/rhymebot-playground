@@ -570,7 +570,7 @@ for (var i = 0; i < dictionary_length; i++) {
 function findTheLine(){
 
 // FOR testing purposes
-var word = "APPLE";
+var word = "QAPPLE";
 
 var letter = word.charAt(0);
 console.log(letter);
