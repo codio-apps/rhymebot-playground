@@ -612,8 +612,9 @@ function findRhyme(senderID, searchWord) {
             arrayBin = arrayBin[0].slice(tmpLen);
             console.log("found word with bracket ending and fixed it");
         }
-          RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
-          found++;
+        //convert to lowercase and save the word to the output array
+        RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
+        found++;
       }
     }
     //output stuff
