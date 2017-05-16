@@ -559,6 +559,7 @@ for (var i = 0; i < dictionary_length; i++) {
 }
 }
   console.log(ALPHABET_ARRAY);
+  findTheLine("12", messageText);
 
 }
 //function splitAlphabet(index1, index2) {
@@ -584,31 +585,31 @@ if(!ALPHABET_ARRAY[i][0] == letter){
 console.log("WIPEEEEEEEEEEEEEE: " + ALPHABET_ARRAY[i][1]);
 
 
-for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-  //if we find the word at the start of the line
-  if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-    pronunciationsFound = 1;
-    console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
-  //check for multiple pronunciations in dictionary file
-  //as long as the next item isn't undefined, examine it
-    if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
-        for (var j=1; keepLooking==true; j++) {
-          console.log("the next word is "+CURRENTDICTIONARY[i+j]);
-          if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
-              pronunciationsFound++;
-              console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
-          } else {
-            console.log("That doesn't match, so I think I found all the pronunciations, I found: "+pronunciationsFound);
-            keepLooking = false;
-          }
-        }
-    }
-    var wordLength = searchWord.length;
-    var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
-    //for the found word, make an array containing each phoneme sound
-    PHONEMES = tempPHONEMES.split(" ");
-  }
-}
+// for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+//   //if we find the word at the start of the line
+//   if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
+//     pronunciationsFound = 1;
+//     console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
+//   //check for multiple pronunciations in dictionary file
+//   //as long as the next item isn't undefined, examine it
+//     if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
+//         for (var j=1; keepLooking==true; j++) {
+//           console.log("the next word is "+CURRENTDICTIONARY[i+j]);
+//           if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
+//               pronunciationsFound++;
+//               console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
+//           } else {
+//             console.log("That doesn't match, so I think I found all the pronunciations, I found: "+pronunciationsFound);
+//             keepLooking = false;
+//           }
+//         }
+//     }
+//     var wordLength = searchWord.length;
+//     var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
+//     //for the found word, make an array containing each phoneme sound
+//     PHONEMES = tempPHONEMES.split(" ");
+//   }
+// }
 
 
 }
