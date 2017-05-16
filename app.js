@@ -565,7 +565,6 @@ for (var i = 0; i < dictionary_length; i++) {
       console.log("match found :"+DICTIONARY[i]+" starts with "+alphabet[j]);
       FINAL_ALPHABET_REFERENCE[j] = i;
       ALPHABET_ARRAY[j] = [DICTIONARY[i].charAt(0), i];
-      console.log("*********************************" + ALPHABET_ARRAY[i][j]);
 }
 }
 }
@@ -575,6 +574,7 @@ for (var i = 0; i < dictionary_length; i++) {
   //   ["Charlie", "Delta"],
   //   ["Echo", "Foxies"]
   // ];
+  console.log(ALPHABET_ARRAY);
 
 
 
