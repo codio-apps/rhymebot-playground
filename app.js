@@ -428,7 +428,7 @@ function receivedMessage(event) {
         searchWord = lc_messageText.slice(6);
         searchWord = searchWord.toUpperCase();
         var v = countSyllables(senderID, searchWord);
-        if (typeof v !== "undefined") {
+        if (v != 0) {
             messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
         } else {
           messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
@@ -560,7 +560,7 @@ console.log(word);
 var letter = word.charAt(0);
 console.log(letter);
 
-console.log(" Before the loop starts: " + ALPHABET_ARRAY);
+console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
 
 for(var i = 0; i < 10; i++){
 
@@ -570,10 +570,23 @@ console.log(ALPHABET_ARRAY);
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 }
 
-//function to count how many syllables there are in a word and return that number
-function countSyllables(senderID, searchword){
+//function to return the phonemes for a position in the dictionary
+function getPhonemes(index) {
+  console.log("getPhonemes called for index: "+index);
+  console.log(CURRENTDICTIONARY[index]);
+}
+
+//function to return how many syllables there are in a word and return that number
+function countSyllables(senderID, searchWord) {
+  getPhonemes(1);
+  getPhonemes(11234);
+  getPhonemes(46737);
+  getPhonemes(22452);
+  getPhonemes(10000);
   var wordLength = searchWord.length;
   var wordFound = false;
+  var syllablesFound = 0;
+  var char = "";
   //first find the word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
@@ -586,10 +599,7 @@ function countSyllables(senderID, searchword){
     }
   }
   if (wordFound){
-    //detect the first letter of phonemes sounds until you find a vowel
-    var vowelsFound = 0;
-    var char = "";
-    //check the first character of each phoneme, backwards
+    console.log("phoneme data now: "+PHONEMES);
     for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
       //set char to the first letter of the phoneme
       char = PHONEMES[phoLen-i-1].charAt(0);
@@ -597,14 +607,14 @@ function countSyllables(senderID, searchword){
       for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
         //if we find a vowel at character 0, increment the syllable count
         if (char == vowels[j]){
-          vowelsFound++;
+          syllablesFound++;
         }
       }
     }
-    console.log(vowelsFound+" syllables detected");
-    //messageResponse = "There are "+vowelsFound+" syllables in "+searchWord.toLowerCase();
+    return syllablesFound;
+  } else {
+    return 0;
   }
-  return vowelsFound;
 }
 
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
