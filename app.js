@@ -552,17 +552,9 @@ function alphabetReference() {
   var FINAL_ALPHABET_REFERENCE = new Array();
   var ALPHABET_ARRAY = new Array();
 
-  //var tempint = splitAlphabet(index1, index2);
-  //console.log("Current index is " + tempint);
-  //var i = 0;
-  //var j = 0;
-  console.log("alphabet is "+alphabet);
-
 for (var i = 0; i < dictionary_length; i++) {
-  console.log("made it into the loop, checking "+DICTIONARY[i]);
   for (var j = 0; j < alphabetLength; j++) {
     if(DICTIONARY[i].startsWith(alphabet[j])){
-      console.log("match found :"+DICTIONARY[i]+" starts with "+alphabet[j]);
       FINAL_ALPHABET_REFERENCE[j] = i;
       ALPHABET_ARRAY[j] = [DICTIONARY[i].charAt(0), i];
 }
