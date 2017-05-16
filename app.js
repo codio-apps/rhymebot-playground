@@ -671,7 +671,7 @@ function receivedMessage(event) {
       phonemeString = phonemeString+" "+PHONEMES[i];
     }
     console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
-    return phoneString;
+    return phonemeString;
       console.log("checkpoint 3");
   }
 
