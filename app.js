@@ -619,11 +619,11 @@ function findRhyme(senderID, searchWord) {
     //if we find the word at the start of the line
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
-      console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
+      console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
       if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
           console.log("the next word is "+CURRENTDICTIONARY[i+1]);
           if (CURRENTDICTIONARY[i+1].startsWith(searchWord+"(")){
-              console.log("alternative rhyme found for word: "+searchWord"!");
+              console.log("alternative rhyme found for word: "+searchWord+"!");
           }
       }
       var wordLength = searchWord.length;
