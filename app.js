@@ -624,7 +624,7 @@ function findRhyme(senderID, searchWord) {
       pronunciationsFound = 1;
       console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
     //check for multiple pronunciations in dictionary file
-    //as long as the next item isn't undefined
+    //as long as the next item isn't undefined, examine it
       if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
           for (var j=1; keepLooking==true; j++) {
             console.log("the next word is "+CURRENTDICTIONARY[i+j]);
@@ -724,8 +724,10 @@ function findRhyme(senderID, searchWord) {
     console.log("words found: "+found+". additional message chunks required: "+chunkTotal);
 
     if (found == 0) {
-      console.log("NOT SEARCHING FOR RHYMES");
+      sendTypingOff(senderID);
+      sendTextMessage(senderID, "I'm sorry, I don't know any rhymes for "+searchWord+" yet");
     } else {
+      sendTypingOff(senderID);
       sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults given are currently for the first only");
       //for every word found
       //for (var i = 0, len = found; i < len; i++){
@@ -754,6 +756,7 @@ function findRhyme(senderID, searchWord) {
         for (var i = 0; i < chunkTotal; i++){
           sendTextMessage(senderID, messageSplit[i]);
         }
+        console.log("Results delivered");
       }
     }
 }
