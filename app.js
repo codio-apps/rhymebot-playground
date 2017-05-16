@@ -539,29 +539,29 @@ function StringSearch(input, key) {
 
 // FUNCTION TO SET UP THE ALPHABET array
 //inputs: the dictionary
-function alphabetReference() {
-
-  //load the file
-  fileBuffer = fs.readFileSync(dictionary, "utf-8");
-  var DICTIONARY = fileBuffer.split("\n");
-
-  //var index1 = 'a';
-  //var index2 = 'b';
-
-  var dictionary_length = DICTIONARY.length;
-  var alphabetLength = 26;
-
-for (var i = 0; i < dictionary_length; i++) {
-  for (var j = 0; j < alphabetLength; j++) {
-    if(DICTIONARY[i].startsWith(alphabet[j])){
-      ALPHABET_ARRAY[j] = [DICTIONARY[i].charAt(0), i];
-}
-}
-}
-  console.log(ALPHABET_ARRAY);
-  findTheLine();
-
-}
+// function alphabetReference() {
+//
+//   //load the file
+//   fileBuffer = fs.readFileSync(dictionary, "utf-8");
+//   var DICTIONARY = fileBuffer.split("\n");
+//
+//   //var index1 = 'a';
+//   //var index2 = 'b';
+//
+//   var dictionary_length = DICTIONARY.length;
+//   var alphabetLength = 26;
+//
+// for (var i = 0; i < dictionary_length; i++) {
+//   for (var j = 0; j < alphabetLength; j++) {
+//     if(DICTIONARY[i].startsWith(alphabet[j])){
+//       ALPHABET_ARRAY[j] = [DICTIONARY[i].charAt(0), i];
+// }
+// }
+// }
+//   console.log(ALPHABET_ARRAY);
+//   findTheLine();
+//
+// }
 //function splitAlphabet(index1, index2) {
 //  return (alphabet.slice(alphabet.indexOf(index1), alphabet.indexOf(index2) + 1));
 //}
