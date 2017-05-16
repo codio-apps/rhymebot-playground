@@ -616,6 +616,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 function findRhyme(senderID, searchWord) {
   var keepLooking = true;
   var pronunciationsFound = 0;
+  var phonemeString = "";
   sendTypingOn(senderID);
   //first find the word in the dictionary
   // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
@@ -656,8 +657,7 @@ function findRhyme(senderID, searchWord) {
       //check the first character of each phoneme, backwards
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
-        var temp = PHONEMES[phoLen-i-1];
-        char = temp.charAt(0);
+        char = PHONEMES[phoLen-i-1].charAt(0);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0, log the position as the first relevant one
@@ -669,9 +669,8 @@ function findRhyme(senderID, searchWord) {
     //figure out how many phonemes we want to compare
     phoLen = PHONEMES.length-firstVowel;
     //construct our phoneme string
-    temp = "";
     for (i = firstVowel, len = PHONEMES.length; i < len; i++){
-      temp = temp+" "+PHONEMES[i];
+      phonemeString = phonemeString+" "+PHONEMES[i];
     }
     console.log("Succesfully constructed phoneme string: "+temp+" searching for matches now...");
 
