@@ -612,13 +612,10 @@ function searchPhonemes(phonemeString) {
         }
       }
     }
-<<<<<<< HEAD
-  }
-=======
 
+  }
   return RHYMEOUTPUT;
   console.log("RHYMEOUTPUT:"+RHYMEOUTPUT);
->>>>>>> 8ad5630624aa73a51acbb30ce429bf8a5d4d7cc9
   console.log("Search complete. Found: "+found+" rhyme(s).");
   messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
   return RHYMEOUTPUT;
