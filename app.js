@@ -571,12 +571,14 @@ for (var i = 0; i < dictionary_length; i++) {
 
   //Experiment
    ALPHABET_ARRAY = [
-    ["A", 2],
-    ["B", 4],
-    ["C", 6]
+    ["Alpha", "Beta"],
+    ["Charlie", "Delta"],
+    ["Echo", "Foxies"]
   ];
-console.log("****************(((((^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + ALPHABET_ARRAY[0] + "     " + ALPHABET_ARRAY[1]); // 1
-console.log(ALPHABET_ARRAY);
+console.log(ALPHABET_ARRAY[0][0];
+console.log(ALPHABET_ARRAY[0][1];
+console.log(ALPHABET_ARRAY[1][0];
+console.log(ALPHABET_ARRAY[1][1];
 
 
 }
