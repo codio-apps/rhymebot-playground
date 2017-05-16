@@ -554,7 +554,9 @@ console.log(word);
 var letter = word.charAt(0);
 console.log(letter);
 
-console.log(" Before the loop starts: " + ALPHABET_ARRAY[i][0]);
+var temparray = ALPHABET_ARRAY[i][0];
+
+console.log(" Before the loop starts: " + temparray);
 
 for(var i = 0; ALPHABET_ARRAY[i][0] == letter; i++){
 
