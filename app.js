@@ -545,7 +545,8 @@ for (var j = 0; j < alphabetLength; j++) {
   for (var i = 0; i < dictionary_length; i++) {
     if(DICTIONARY[i].startsWith(ENGLISH_ALPHABET[j])){
       FINAL_ALPHABET_REFERENCE[j] = i;
-      console.log(FINAL_ALPHABET_REFERENCE[j] + "::::::::" + i + j);
+      console.log("ALPHABET*****************************************")
+      console.log("Ref: " + FINAL_ALPHABET_REFERENCE[j] + "::::::::" + i + j);
 }
 }
 }
