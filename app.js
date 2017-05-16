@@ -535,14 +535,25 @@ function alphabetReference() {
 
   console.log("dictionary successfully read");
   var dictionary_length = DICTIONARY.length;
+  var alphabetLength = 25;
+  var FINAL_ALPHABET_REFERENCE = new Array();
 
   var tempint = splitAlphabet(index1, index2);
   console.log("Current index is " + tempint);
 
-//   for (var i = 0, i < dictionary_length; i++) {
-//     if(DICTIONARY[i].startsWith("a")){
-//
-// }
+for (var j = 0; j < alphabetLength; j++) {
+  for (var i = 0; i < dictionary_length; i++) {
+    if(DICTIONARY[i].startsWith(ENGLISH_ALPHABET[j])){
+      FINAL_ALPHABET_REFERENCE[j] = i;
+      console.log("ALPHABET*****************************************")
+      console.log("Ref: " + FINAL_ALPHABET_REFERENCE[j] + "::::::::" + i + j);
+}
+}
+}
+
+
+
+
 }
 function splitAlphabet(index1, index2) {
   return (ENGLISH_ALPHABET.slice(ENGLISH_ALPHABET.indexOf(index1), ENGLISH_ALPHABET.indexOf(index2) + 1));
