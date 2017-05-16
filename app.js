@@ -275,7 +275,7 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
-  console.log("***NEW MESSAGE RECIEVED***");
+  console.log("***NEW MESSAGE RECIEVED: "+message+"***");
   if (filesBuffered) {
     console.log("All files already Buffered");
   } else {
