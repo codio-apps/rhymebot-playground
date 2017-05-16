@@ -573,23 +573,6 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 //function to return how many vowel sounds there are in a phoneme string
 function calcPhonemes(senderID, PHONEMES) {
   console.log("calcPhonemes called: "+PHONEMES);
-  //detect the first letter of phonemes sounds until you find a vowel
-  var vowelsFound = 0;
-  var char = "";
-  //check the first character of each phoneme, backwards
-  for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
-    //set char to the first letter of the phoneme
-    char = PHONEMES[phoLen-i-1].charAt(0);
-    //compare char to every vowel
-    for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-      //if we find a vowel at character 0, increment the syllable count
-      if (char == vowels[j]){
-        vowelsFound++;
-      }
-    }
-  }
-  console.log("Success! "+vowelsFound+" syllables detected");
-  return vowelsFound;
 }
 
 //function to count how many syllables there are in a word and return that number
@@ -597,6 +580,7 @@ function countSyllables(senderID, searchWord) {
   var wordLength = searchWord.length;
   var wordFound = false;
   var syllablesFound = 0;
+  var char = "";
   //first find the word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
@@ -609,12 +593,22 @@ function countSyllables(senderID, searchWord) {
     }
   }
   if (wordFound){
-    syllablesFound = calcPhonemes(senderID, PHONEMES);
+    for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
+      //set char to the first letter of the phoneme
+      char = PHONEMES[phoLen-i-1].charAt(0);
+      //compare char to every vowel
+      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+        //if we find a vowel at character 0, increment the syllable count
+        if (char == vowels[j]){
+          syllablesFound++;
+        }
+      }
+    }
     return syllablesFound;
   } else {
     return 0;
   }
-
+  console.log("countSyllables complete");
 }
 
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
