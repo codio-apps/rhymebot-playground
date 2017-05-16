@@ -672,7 +672,7 @@ function findRhyme(senderID, searchWord) {
     //search the dictionary
     for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
       //if the rhyme is a match
-      if(CURRENTDICTIONARY[i].endsWith(temp)) {
+      if(CURRENTDICTIONARY[i].endsWith(phonemeString)) {
         //store the word in a temp string
         arrayBin = CURRENTDICTIONARY[i].split("  ");
         //if the found word ends in ")"
