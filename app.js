@@ -582,10 +582,6 @@ function searchPhonemes(phonemeString) {
   found = 0;
   var arrayBin = new Array;
   var stringBin = "";
-<<<<<<< HEAD
-
-=======
->>>>>>> e1e7ebbf999ddb31a2e955d34f2364bb373608dd
   //search the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     //if the rhyme is a match
