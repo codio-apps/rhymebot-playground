@@ -620,7 +620,9 @@ function findRhyme(senderID, searchWord) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
-      console.log("the next word is "+CURRENTDICTIONARY[i+1]);
+      if (typeof CURRENDICTIONARY[i+1] !== "undefined") {
+          console.log("the next word is "+CURRENTDICTIONARY[i+1]);
+      }
       var wordLength = searchWord.length;
       var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
       //for the found word, make an array containing each phoneme sound
