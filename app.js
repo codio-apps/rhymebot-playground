@@ -562,9 +562,9 @@ console.log(letter);
 
 console.log("Starting loop");
 
-for(var i = 0; ALPHABET_ARRAY[i][0] == letter; i++){
+for(var i = 0; ALPHABET_ARRAY[i][0] == letter.toUpperCase(); i++){
 
-  console.log("In the loop, checking array at: " + i);
+  console.log("In the loop, checking array at: " + i + "which is: " + ALPHABET_ARRAY[i][0]);
 }
 console.log(ALPHABET_ARRAY);
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
