@@ -54,7 +54,7 @@ var rhymeString = "";
 var searchWord = "";
 var lc_messageText = "";
 
-//global message response 
+//global message response string
 var messageResponse = "";
 
 // Set up file parsing
