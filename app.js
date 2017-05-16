@@ -575,7 +575,7 @@ for (var i = 0; i < dictionary_length; i++) {
     ["B", 4],
     ["C", 6]
   ];
-console.log("****************(((((^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + ALPHABET_ARRAY[2, 2] + "     " + ALPHABET_ARRAY[1, 0]); // 1
+console.log("****************(((((^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + ALPHABET_ARRAY[0] + "     " + ALPHABET_ARRAY[1]); // 1
 console.log(ALPHABET_ARRAY);
 
 
