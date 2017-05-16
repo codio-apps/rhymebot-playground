@@ -612,6 +612,7 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
   var wordFound = false;
+  var keepLooking = true;
   sendTypingOn(senderID);
   //first find the word in the dictionary
   // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
@@ -619,11 +620,18 @@ function findRhyme(senderID, searchWord) {
     //if we find the word at the start of the line
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       wordFound = true;
+      pronunciationsFound = 1;
       console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
+    //check for multiple pronunciations in dictionary file
       if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
-          console.log("the next word is "+CURRENTDICTIONARY[i+1]);
-          if (CURRENTDICTIONARY[i+1].startsWith(searchWord+"(")){
-              console.log("alternative rhyme found for word: "+searchWord+"!");
+          for (var j=1; keepLooking==true; j++) {
+            console.log("the next word is "+CURRENTDICTIONARY[i+j]);
+            if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
+                keepLooking = true;
+                console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
+            } else {
+              keepLooking = false;
+            }
           }
       }
       var wordLength = searchWord.length;
