@@ -718,13 +718,13 @@ function findRhyme(senderID, searchWord) {
 
     //now search the dictionary for rhymes
     RHYMEOUTPUT = searchPhonemes(phonemeString);
-    splitMessage(RHYMEOUTPUT);
+    splitMessage(senderID, RHYMEOUTPUT);
     sendTypingOff(senderID);
     }
 }
 
 //function to split an array of words into 50-word chunks and send them
-function splitMessage(stringArray){
+function splitMessage(senderID, stringArray){
   var messageSplit = new Array;
   var sequence = 0;
   var messageChunk = 0;
