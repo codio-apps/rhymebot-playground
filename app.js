@@ -719,8 +719,6 @@ function splitMessage(sender, stringArray){
   var chunkTotal = found/50;
   var splitNum = 0;
   chunkTotal = Math.round(chunkTotal);
-
-   else {
     //for every word found
     messageSplit[messageChunk]="message : 0\n";
     //for how ever many there were words found
@@ -749,7 +747,6 @@ function splitMessage(sender, stringArray){
         sendTextMessage(sender, messageSplit[i]);
       }
       console.log("Results delivered");
-    }
 }
 
 
