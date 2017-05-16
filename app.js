@@ -639,7 +639,7 @@ function receivedMessage(event) {
     }
   }
 
-  //function to take in URRENTDICTIONARY reference and spit out the phonemes
+  //function to take in a word and spit out the phonemes
   function getPhonemes(theWord, wordLength){
     console.log("getPhonemes called on "+theWord);
     var phonemeString ="";
@@ -703,13 +703,12 @@ function receivedMessage(event) {
         }
       }
     }
-
     //if we didnt' find the word in the dictionary at all
     if (pronunciationsFound == 0) {
       messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
       //otherwise
     }  else {
-      //now search the dictionary for rhymes
+      //search the dictionary for matching phoneme endings
       RHYMEOUTPUT = searchPhonemes(processedPhonemes);
       messageResponse = "I found "+found+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
       if (found == 0) {
@@ -721,13 +720,13 @@ function receivedMessage(event) {
     }
   }
 
-  //function to split an array of words into 50-word chunks and send them
+  //function to split an array of words into 100-word chunks and send them
   function splitMessage(sender, stringArray){
     var messageSplit = new Array;
     var sequence = 0;
     var messageChunk = 0;
     var splitCount = 0;
-    var chunkTotal = found/50;
+    var chunkTotal = found/100;
     chunkTotal = Math.round(chunkTotal);
     if (chunkTotal > 0){
 
