@@ -569,7 +569,14 @@ for (var i = 0; i < dictionary_length; i++) {
 }
   console.log(FINAL_ALPHABET_REFERENCE);
 
-
+  //Experiment
+  var items = [
+  [A, 0],
+  [B, 1],
+  [C, 2]
+];
+console.log(items[0][0]); // 1
+console.log(items);
 
 
 }
