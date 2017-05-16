@@ -45,10 +45,6 @@ var filesBuffered = false;
 var wordNumber = 0;
 var stringLength = 0;
 
-//counters for found objects
-var pronunciationsFound = 0;
-var found = 0;
-
 // Graph Profile fields by senderID
 var name = "NONAMESET";
 var last_name = "";
@@ -565,6 +561,7 @@ return ALPHABET_ARRAY[i][1];
 function searchPhonemes(phonemeString) {
   console.log("searchPhonemes called for index: "+phonemeString);
   found = 0;
+  var found = 0;
   var arrayBin = new Array;
   var stringBin = "";
   //search the dictionary
@@ -600,7 +597,6 @@ function searchPhonemes(phonemeString) {
     }
   }
   console.log("Search complete. Found: "+found+" rhyme(s).");
-  messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first pronunciation only";
   return RHYMEOUTPUT;
 }
 
@@ -703,9 +699,14 @@ function findRhyme(senderID, searchWord) {
 
     //now search the dictionary for rhymes
     RHYMEOUTPUT = searchPhonemes(phonemeString);
-    splitMessage(senderID, RHYMEOUTPUT);
-    sendTypingOff(senderID);
+    messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first pronunciation only";
+    if (found == 0) {
+      messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
+    } else {
+      splitMessage(senderID, RHYMEOUTPUT);
     }
+    sendTypingOff(senderID);
+  }
 }
 
 //function to split an array of words into 50-word chunks and send them
@@ -717,18 +718,18 @@ function splitMessage(sender, stringArray){
   var splitNum = 0;
   chunkTotal = Math.round(chunkTotal);
 
-  if (found == 0) {
-    messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
-  } else {
+   else {
     //for every word found
     messageSplit[messageChunk]="message : 0\n";
     //for how ever many there were words found
     for (var sequence = 0; sequence < found; sequence ++){
+        console.log("sequencing... number "+sequence);
+        var currentWordLength =
         //add the next word to a string in the array
         //if we have less than 50 in this message section
         if (splitNum <50){
           //assign this rhyme to the string
-          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\t\t\t\t\t";
+          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\n";
           //increase the split number
           splitNum++;
           //otherwise, split the message into the next chunk
@@ -736,7 +737,7 @@ function splitMessage(sender, stringArray){
           //go onto the next messageChunk
           messageChunk++;
           messageSplit[messageChunk]="message : "+messageChunk+"\n";
-          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\t\t\t\t\t";
+          messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\n";
           splitNum=0;
         }
       }
