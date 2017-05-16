@@ -570,12 +570,12 @@ console.log(ALPHABET_ARRAY);
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 }
 
-//function to return how many vowel sounds there are in a phoneme string
+//function to
 function calcPhonemes(senderID, PHONEMES) {
   console.log("calcPhonemes called: "+PHONEMES);
 }
 
-//function to count how many syllables there are in a word and return that number
+//function to return how many syllables there are in a word and return that number
 function countSyllables(senderID, searchWord) {
   var wordLength = searchWord.length;
   var wordFound = false;
@@ -593,6 +593,7 @@ function countSyllables(senderID, searchWord) {
     }
   }
   if (wordFound){
+    console.log("phoneme data now: "+PHONEMES);
     for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
       //set char to the first letter of the phoneme
       char = PHONEMES[phoLen-i-1].charAt(0);
@@ -604,10 +605,8 @@ function countSyllables(senderID, searchWord) {
         }
       }
     }
-    console.log("match found, returning "+syllablesFound);
     return syllablesFound;
   } else {
-    console.log("no matches found, returning 0");
     return 0;
   }
 }
