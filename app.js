@@ -641,7 +641,6 @@ function receivedMessage(event) {
 
   //function to take in URRENTDICTIONARY reference and spit out the phonemes
   function getPhonemes(theWord, wordLength){
-    console.log("getPhonemes triggered");
     //trim off the spelling and spacing from the string
     var tempPHONEMES = theWord.slice(wordLength+2);
     //for the found word, make an array containing each phoneme sound
@@ -661,7 +660,7 @@ function receivedMessage(event) {
         }
       }
     }
-
+    console.log("checkpoint");
     //code below constucts a string of phonemes to be compared to the rest of the dictionary
     //the current logic is that it goes from the first vowel
     phoLen = PHONEMES.length-firstVowel;
