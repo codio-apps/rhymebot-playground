@@ -543,15 +543,17 @@ function alphabetReference() {
 
   var tempint = splitAlphabet(index1, index2);
   console.log("Current index is " + tempint);
+  var i = 0;
+  var j = 0;
 
-  console.log("REFERENCE: " + DICTIONARY[i] + " :::::::::::::::::::::: " + ENGLISH_ALPHABET[j]);
+  console.log("REFERENCE: " + ENGLISH_ALPHABET[i] + " :::::::::::::::::::::: " + ENGLISH_ALPHABET[j]);
 
-for (var j = 0; j < alphabetLength; j++) {
-  for (var i = 0; i < dictionary_length; i++) {
+for (i = 0; i < alphabetLength; i++) {
+  for (j = 0; j < dictionary_length; j++) {
     if(DICTIONARY[i].startsWith(ENGLISH_ALPHABET[j])){
       FINAL_ALPHABET_REFERENCE[j] = i;
       console.log("ALPHABET*****************************************")
-      console.log("Ref: " + FINAL_ALPHABET_REFERENCE[j] + "::::::::" + i + j);
+      console.log("Ref: " + FINAL_ALPHABET_REFERENCE[i] + "::::::::" + i + j);
 }
 }
 }
