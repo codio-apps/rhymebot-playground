@@ -570,12 +570,12 @@ for (var i = 0; i < dictionary_length; i++) {
 }
   console.log(FINAL_ALPHABET_REFERENCE);
 
-  //Experiment
-   ALPHABET_ARRAY = [
-    ["Alpha", "Beta"],
-    ["Charlie", "Delta"],
-    ["Echo", "Foxies"]
-  ];
+  // //Experiment
+  //  ALPHABET_ARRAY = [
+  //   ["Alpha", "Beta"],
+  //   ["Charlie", "Delta"],
+  //   ["Echo", "Foxies"]
+  // ];
 console.log("*********************************" + ALPHABET_ARRAY[0][0]);
 console.log("*********************************" + ALPHABET_ARRAY[0][1]);
 console.log("*********************************" + ALPHABET_ARRAY[1][0]);
