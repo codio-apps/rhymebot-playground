@@ -596,6 +596,7 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 
 function countSyllables(senderID, searchword){
   console.log("count triggered");
+  var wordLength = searchWord.length;
   //first find the word in the dictionary
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
@@ -616,14 +617,14 @@ function countSyllables(senderID, searchword){
     char = PHONEMES[phoLen-i-1].charAt(0);
     //compare char to every vowel
     for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-      //if we find a vowel at character 0, log the position as the first relevant one
+      //if we find a vowel at character 0, increment the syllable count
       if (char == vowels[j]){
         vowelsFound++;
         console.log("vowel found");
       }
     }
   }
-  console.log("total syllables detected = "+vowelsFound);
+  console.log("total syllables detected: "+vowelsFound);
 }
 
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
