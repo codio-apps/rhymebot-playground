@@ -754,7 +754,6 @@ function splitMessage(stringArray){
         }
       }
       console.log("Delivering results");
-      sendTypingOff(senderID);
       chunkTotal++;
       for (var i = 0; i < chunkTotal; i++){
         sendTextMessage(senderID, messageSplit[i]);
