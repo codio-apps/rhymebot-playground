@@ -432,7 +432,6 @@ function receivedMessage(event) {
       searchWord = searchWord.toUpperCase();
         caughtCommand=true;
         console.log("calling find rhyme, word is |" + searchWord);
-        sendTypingOn(senderID);
         findRhyme(senderID, searchWord);
       break;
 
@@ -567,7 +566,6 @@ function findRhyme(senderID, searchWord) {
   }
   //if we didnt' find the word in the dictionary
   if (!wordFound) {
-    sendTypingOff(senderID);
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
       //detect the first letter of phonemes sounds until you find a vowel
@@ -620,7 +618,6 @@ function findRhyme(senderID, searchWord) {
 
   if (found == 0) {
     console.log("NOT SEARCHING FOR RHYMES");
-    sendTypingOff(senderID);
   } else {
     sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord);
   //for every word found
