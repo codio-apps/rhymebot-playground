@@ -45,9 +45,9 @@ var filesBuffered = false;
 var wordNumber = 0;
 var stringLength = 0;
 
-//counter for found rhymes
+//counters for finders
 var found = 0;
-pronunciationsFound = 0;
+var pronunciationsFound = 0;
 
 // Graph Profile fields by senderID
 var name = "NONAMESET";
@@ -646,7 +646,6 @@ function receivedMessage(event) {
     var phonemeString = "";
     var wordLength = searchWord.length;
     var startingLine = 0;
-    console.log("made it to this bit");
     //first find the word in the dictionary
     for (var i = startingLine, len = CURRENTDICTIONARY.length; i < len; i++) {
       if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
