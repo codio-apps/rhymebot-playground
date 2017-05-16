@@ -500,16 +500,27 @@ function setUpLocalVariables() {
     console.log("Unable to parse rhyme file: " + err);
   }
   try {
+
+    //load the file
     fileBuffer = fs.readFileSync(dictionary, "utf-8");
     CURRENTDICTIONARY = fileBuffer.split("\n");
-    console.log("Dictionary successfully read");
+
+    var dictionary_length = CURRENTDICTIONARY.length;
+    var alphabetLength = 26;
+
+  for (var i = 0; i < dictionary_length; i++) {
+    for (var j = 0; j < alphabetLength; j++) {
+      if(CURRENTDICTIONARY[i].startsWith(alphabet[j])){
+        ALPHABET_ARRAY[j] = [CURRENTDICTIONARY[i].charAt(0), i];
+        }
+      }
+    }
   }
-  // catch errors
   catch(err) {
-    console.log("Unable to parse dictionary file: " + err);
-  //try to read dictionary file
-  console.log(GREETINGS + "/n " + RHYME_TYPOS);
+    console.log("Unable to parse alphabet index: " + err);
   }
+
+
   if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""){
     console.log("All files buffered succesfully");
     filesBuffered=true;
