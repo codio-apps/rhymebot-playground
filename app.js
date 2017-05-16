@@ -565,25 +565,22 @@ console.log(letter);
 
 console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
 
-for(var linePointer = 0; ALPHABET_ARRAY[linePointer][0] != letter; linePointer++){
+for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
 
-  console.log("In the loop, checking array at: " + linePointer + "which is: " + ALPHABET_ARRAY[linePointer][0]);
+  console.log("In the loop, checking array at: " + i + "which is: " + ALPHABET_ARRAY[i][0]);
 }
-console.log("WIPEEEEEEEEEEEEEE we found it at: " + linePointer);
-console.log("THE LETTER IS: " + ALPHABET_ARRAY[linePointer][0] + " AND THE VALUE IS: " + ALPHABET_ARRAY[linePointer][1])
+console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
+console.log("THE LETTER IS: " + ALPHABET_ARRAY[i][0] + " AND THE VALUE IS: " + ALPHABET_ARRAY[i][1])
 }
-
 
 //function to return the phonemes for a position in the dictionary
 function searchPhonemes(phonemeString) {
-  console.log("searchPhonemes called for: "+phonemeString);
+  console.log("searchPhonemes called for index: "+phonemeString);
   found = 0;
   var arrayBin = new Array;
   var stringBin = "";
-  //this line is just a fix as linePointer was undefined
-  var linePointer = 0;
   //search the dictionary
-  for (var i = ALPHABET_ARRAY[linePointer][1], len = CURRENTDICTIONARY.length; i < len; i++) {
+  for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     //if the rhyme is a match
     if(CURRENTDICTIONARY[i].endsWith(phonemeString)) {
       //store the word in a temp string
@@ -613,14 +610,11 @@ function searchPhonemes(phonemeString) {
         }
       }
     }
-
   }
-  console.log("RHYMEOUTPUT:"+RHYMEOUTPUT);
   console.log("Search complete. Found: "+found+" rhyme(s).");
   messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
   return RHYMEOUTPUT;
 }
-
 
 //function to return how many syllables there are in a word and return that number
 function countSyllables(senderID, searchWord) {
