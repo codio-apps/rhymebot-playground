@@ -611,7 +611,6 @@ function searchDictionary(senderID, searchWord, wordNumber) {
 
 //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
 function findRhyme(senderID, searchWord) {
-  var wordFound = false;
   var keepLooking = true;
   var pronunciationsFound = 0;
   sendTypingOn(senderID);
@@ -620,18 +619,18 @@ function findRhyme(senderID, searchWord) {
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     //if we find the word at the start of the line
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-      wordFound = true;
       pronunciationsFound = 1;
       console.log("Word successfully found in dictionary, it is "+CURRENTDICTIONARY[i]);
     //check for multiple pronunciations in dictionary file
+    //as long as the next item isn't undefined
       if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
           for (var j=1; keepLooking==true; j++) {
             console.log("the next word is "+CURRENTDICTIONARY[i+j]);
             if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
-                keepLooking = true;
                 pronunciationsFound++;
                 console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
             } else {
+              console.log("I think I found all the pronunciations, I found: "+pronunciationsFound);
               keepLooking = false;
             }
           }
@@ -644,7 +643,7 @@ function findRhyme(senderID, searchWord) {
   }
 
   //if we didnt' find the word in the dictionary
-  if (!wordFound) {
+  if (pronunciationsFound != 0) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
       //detect the first letter of phonemes sounds until you find a vowel
