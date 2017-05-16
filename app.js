@@ -554,12 +554,12 @@ function alphabetReference() {
   var i = 0;
   var j = 0;
 
-  console.log("REFERENCE: " + ENGLISH_ALPHABET[i] + " :::::::::::::::::::::: " + ENGLISH_ALPHABET[j]);
+  console.log("REFERENCE: " + alphabet[i] + " :::::::::::::::::::::: " + alphabet[j]);
 
 for (i = 0; i < alphabetLength; i++) {
   console.log("made it into the loop");
   for (j = 0; j < dictionary_length; j++) {
-    if(DICTIONARY[i].startsWith(ENGLISH_ALPHABET[j])){
+    if(DICTIONARY[i].startsWith(alphabet[j])){
       FINAL_ALPHABET_REFERENCE[j] = i;
       console.log("ALPHABET*****************************************")
       console.log("Ref: " + FINAL_ALPHABET_REFERENCE[i] + "::::::::" + i + j);
