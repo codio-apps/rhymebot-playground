@@ -640,7 +640,7 @@ function receivedMessage(event) {
   }
 
   //function to take in URRENTDICTIONARY reference and spit out the phonemes
-  function getPhonemes(i, searchWord){
+  function getPhonemes(i, wordLength){
     console.log("getPhonemes triggered");
     //trim off the spelling and spacing from the string
     var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
@@ -695,7 +695,7 @@ function receivedMessage(event) {
               //if it's the end of the pronunciations, stop
               console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
               keepLooking = false;
-              phonemeString = getPhonemes(CURRENTDICTIONARY[i], searchWord);
+              phonemeString = getPhonemes(CURRENTDICTIONARY[i], wordLength);
             }
           }
         }
