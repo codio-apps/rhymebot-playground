@@ -607,15 +607,15 @@ function findRhyme(senderID, searchWord) {
 
 
         //if the found word ends in (n)
-        if (arrayBin[0].endsWith(")")=true);{
-            console.log("found word "+arrayBin[0]+" with bracket ending of length "+arrayBin[0].length+". Fixing it");
+        if (arrayBin[0].endsWith(")")=true){
+            //console.log("found word "+arrayBin[0]+" with bracket ending of length "+arrayBin[0].length+". Fixing it");
             var tmpLen = arrayBin[0].length-3;
             arrayBin = arrayBin[0].slice(tmpLen);
         }
         //save the word to the output array
         RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
         found++;
-        console.log("added word: "RHYMEOUTPUT[found]);
+        console.log("added word: "+RHYMEOUTPUT[found]);
       }
     }
     //output stuff
