@@ -559,7 +559,7 @@ for (var i = 0; i < dictionary_length; i++) {
 }
 }
   console.log(ALPHABET_ARRAY);
-  findTheLine("12", messageText);
+  findTheLine();
 
 }
 //function splitAlphabet(index1, index2) {
@@ -567,12 +567,12 @@ for (var i = 0; i < dictionary_length; i++) {
 //}
 
 //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
-function findTheLine(senderID, messageText){
+function findTheLine(){
 
 // FOR testing purposes
-messageText = "APPLE";
+var word = "APPLE";
 
-var letter = messageText.charAt(0);
+var letter = word.charAt(0);
 console.log(letter);
 var i = 0;
 
