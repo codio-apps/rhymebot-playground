@@ -664,8 +664,9 @@ function findRhyme(senderID, searchWord) {
   var keepLooking = true;
   var phonemeString = "";
   var wordLength = searchWord.length;
+  var startingLine = findTheLine();
   //first find the word in the dictionary
-  for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+  for (var i = startingLine, len = CURRENTDICTIONARY.length; i < len; i++) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
       pronunciationsFound = 1;
     //check for multiple pronunciations in dictionary file
