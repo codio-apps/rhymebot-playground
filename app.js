@@ -675,6 +675,7 @@ function findRhyme(senderID, searchWord) {
   var phonemeString = "";
   var wordLength = searchWord.length;
   var startingLine = findTheLine();
+  console.log("made it to this bit");
   //first find the word in the dictionary
   for (var i = startingLine, len = CURRENTDICTIONARY.length; i < len; i++) {
     if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
