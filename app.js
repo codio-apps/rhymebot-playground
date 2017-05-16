@@ -575,10 +575,10 @@ for (var i = 0; i < dictionary_length; i++) {
     ["Charlie", "Delta"],
     ["Echo", "Foxies"]
   ];
-console.log(ALPHABET_ARRAY[0][0];
-console.log(ALPHABET_ARRAY[0][1];
-console.log(ALPHABET_ARRAY[1][0];
-console.log(ALPHABET_ARRAY[1][1];
+console.log(ALPHABET_ARRAY[0][0]);
+console.log(ALPHABET_ARRAY[0][1]);
+console.log(ALPHABET_ARRAY[1][0]);
+console.log(ALPHABET_ARRAY[1][1]);
 
 
 }
