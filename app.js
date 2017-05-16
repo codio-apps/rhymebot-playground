@@ -63,6 +63,8 @@ var greetings_file = "public/greetings.txt";
 var rhyme_typos = "public/nearly_a_rhyme.txt";
 //setup dictionary file
 var dictionary = "public/dictionarymain.txt";
+//setup dictionary file
+var abcdef = "public/abcdef.txt";
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -540,7 +542,7 @@ function StringSearch(input, key) {
 function alphabetReference() {
 
   //load the file
-  var tempfile = fs.readFileSync(dictionary, "utf-8");
+  var tempfile = fs.readFileSync(abcdef, "utf-8");
   var DICTIONARY = tempfile.split("\n");
 
   //var index1 = 'a';
