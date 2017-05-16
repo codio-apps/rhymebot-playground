@@ -45,6 +45,9 @@ var filesBuffered = false;
 var wordNumber = 0;
 var stringLength = 0;
 
+//counter for found rhymes
+var found = 0;
+
 // Graph Profile fields by senderID
 var name = "NONAMESET";
 var last_name = "";
@@ -561,7 +564,6 @@ return ALPHABET_ARRAY[i][1];
 function searchPhonemes(phonemeString) {
   console.log("searchPhonemes called for index: "+phonemeString);
   found = 0;
-  var found = 0;
   var arrayBin = new Array;
   var stringBin = "";
   //search the dictionary
@@ -723,8 +725,8 @@ function splitMessage(sender, stringArray){
     messageSplit[messageChunk]="message : 0\n";
     //for how ever many there were words found
     for (var sequence = 0; sequence < found; sequence ++){
-        console.log("sequencing... number "+sequence);
-        var currentWordLength =
+        var currentWordLength = stringArray[sequence].length;
+        console.log("sequencing... number "+sequence+". Length of word: "+currentWordLength);
         //add the next word to a string in the array
         //if we have less than 50 in this message section
         if (splitNum <50){
