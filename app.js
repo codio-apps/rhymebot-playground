@@ -588,15 +588,14 @@ function receivedMessage(event) {
         }
       }
     }
+    RHYMEOUTPUT = searchPhonemes(processedPhonemes);
     //if we didnt' find the word in the dictionary at all
     if (pronunciationsFound == 0) {
       messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
       //otherwise
-    }  else {
-      RHYMEOUTPUT = searchPhonemes(processedPhonemes);
-      if (found == 0) {
+    }  else if (found == 0) {
         messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
-      } else {
+    } else {
         //search the dictionary for matching phoneme endings
         messageResponse = "I found "+found+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
         splitMessage(senderID, RHYMEOUTPUT);
