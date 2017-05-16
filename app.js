@@ -571,6 +571,17 @@ function findTheLine(senderID, messageText){
 // FOR testing purposes
 messageText = "APPLE";
 
+var letter = messageText.charAt(0);
+console.log(letter);
+var i = 0;
+
+if(!ALPHABET_ARRAY[i][0] == letter){
+  i++;
+
+  console.log();
+}
+
+console.log(ALPHABET_ARRAY[i][1]);
 
 
 for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
