@@ -564,7 +564,7 @@ for (var i = 0; i < dictionary_length; i++) {
     if(DICTIONARY[i].startsWith(alphabet[j])){
       console.log("match found :"+DICTIONARY[i]+" starts with "+alphabet[j]);
       FINAL_ALPHABET_REFERENCE[j] = i;
-      ALPHABET_ARRAY[j] = [DICTIONARY[i].startsWith(), i];
+      ALPHABET_ARRAY[j] = [DICTIONARY[i].charAt(0), i];
 }
 }
 }
