@@ -593,12 +593,12 @@ function receivedMessage(event) {
       messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
       //otherwise
     }  else {
-      //search the dictionary for matching phoneme endings
-      RHYMEOUTPUT = searchPhonemes(processedPhonemes);
-      messageResponse = "I found "+found+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
       if (found == 0) {
         messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
       } else {
+        //search the dictionary for matching phoneme endings
+        RHYMEOUTPUT = searchPhonemes(processedPhonemes);
+        messageResponse = "I found "+found+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
         splitMessage(senderID, RHYMEOUTPUT);
       }
       sendTypingOff(senderID);
@@ -644,6 +644,7 @@ function receivedMessage(event) {
     }
     console.log("Search complete. Found: "+found+" rhyme(s).");
     return RHYMEOUTPUT;
+
   }
 
   //function to calculate how many syllables there are in a word and return that number
