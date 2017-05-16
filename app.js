@@ -660,7 +660,7 @@ function findRhyme(senderID, searchWord) {
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
-            firstVowel = position;
+            firstVowel = phoLen-i-1;
           }
         }
     }
@@ -692,19 +692,18 @@ function findRhyme(senderID, searchWord) {
             //if the last element in RHYMEOUTPUT is this fixed word, skip it
             if (arrayBin[0]==RHYMEOUTPUT[found-1]){
               //skip
-              console.log("found duplicate for "+RHYMEOUTPUT[found-1]+", skipped it")
+              console.log("Found additional pronunciation for "+RHYMEOUTPUT[found-1]+", skipped it")
             } else {
               //save it
               RHYMEOUTPUT[found]=arrayBin[0];
               found++;
             }
         } else {
-          //save the word to the output array
           //make sure it's not the same as searchWord
-          console.log("comparing "+arrayBin[0]+" to "+searchWord);
           if (arrayBin[0]==searchWord){
-            console.log("that's the same as the search term stupid, skipping word");
+            console.log("comparing "+arrayBin[0]+" to "+searchWord);
           } else {
+            //save the word to the output array
             RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
             found++;
           }
