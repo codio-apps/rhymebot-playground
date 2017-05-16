@@ -574,8 +574,6 @@ console.log("THE LETTER IS: " + ALPHABET_ARRAY[linePointer][0] + " AND THE VALUE
 
 
 
-<<<<<<< HEAD
-=======
 //function to return the phonemes for a position in the dictionary
 function searchPhonemes(phonemeString) {
   console.log("searchPhonemes called for index: "+phonemeString);
