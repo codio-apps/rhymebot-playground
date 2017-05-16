@@ -630,7 +630,7 @@ function findRhyme(senderID, searchWord) {
                 pronunciationsFound++;
                 console.log("alternative rhyme number "+pronunciationsFound+" found for word: "+searchWord+"!");
             } else {
-              console.log("I think I found all the pronunciations, I found: "+pronunciationsFound);
+              console.log("That doesn't rhyme, so I think I found all the pronunciations, I found: "+pronunciationsFound);
               keepLooking = false;
             }
           }
@@ -643,7 +643,7 @@ function findRhyme(senderID, searchWord) {
   }
 
   //if we didnt' find the word in the dictionary
-  if (pronunciationsFound != 0) {
+  if (pronunciationsFound !== 0) {
     sendTextMessage(senderID, "I don't know the word "+searchWord.toLowerCase()+" yet, sorry");
   } else {
       //detect the first letter of phonemes sounds until you find a vowel
