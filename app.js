@@ -665,7 +665,6 @@ function receivedMessage(event) {
     //code below constucts a string of phonemes to be compared to the rest of the dictionary
     //the current logic is that it goes from the first vowel
     phoLen = PHONEMES.length-firstVowel;
-    console.log("checkpoint 2");
     //construct our phoneme string
     for (i = firstVowel; i < PHONEMES.length; i++){
       phonemeString = phonemeString+" "+PHONEMES[i];
@@ -726,8 +725,9 @@ function receivedMessage(event) {
     var sequence = 0;
     var messageChunk = 0;
     var splitCount = 0;
-    var chunkTotal = found/50;
+    var chunkTotal = found/100;
     chunkTotal = Math.round(chunkTotal);
+    console.log("splitting msg, required chunks: "+chunkTotal);
     if (chunkTotal > 0){
     }
     messageSplit[messageChunk]="message : 0\n"+stringArray[0];
@@ -735,7 +735,7 @@ function receivedMessage(event) {
     for (var sequence = 1; sequence < found; sequence ++){
       //add the next word to a string in the array
       //if we have less than 50 in this message section
-      if (splitCount < 50){
+      if (splitCount < 100){
         //assign this rhyme to the string
         messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
         //increase the split number
@@ -750,6 +750,7 @@ function receivedMessage(event) {
     console.log("Delivering results");
     chunkTotal++;
     for (var i = 0; i < chunkTotal; i++){
+      console.log("delivering chunk "+i);
       sendTextMessage(sender, messageSplit[i]);
     }
     console.log("Results delivered");
