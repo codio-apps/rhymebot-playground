@@ -733,7 +733,7 @@ function receivedMessage(event) {
       //if we have less than 50 in this message section
       if (splitCount <50){
         //assign this rhyme to the string
-        messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\n";
+        messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence];
         //increase the split number
         splitCount++;
         //otherwise, split the message into the next chunk
@@ -741,7 +741,7 @@ function receivedMessage(event) {
         //go onto the next messageChunk
         messageChunk++;
         messageSplit[messageChunk]="message : "+messageChunk+"\n";
-        messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence]+"\n";
+        messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence];
         splitCount=0;
       }
     }
