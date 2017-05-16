@@ -665,7 +665,7 @@ function receivedMessage(event) {
     //the current logic is that it goes from the first vowel
     phoLen = PHONEMES.length-firstVowel;
     //construct our phoneme string
-    for (i = firstVowel, len = PHONEMES.length; i < len; i++){
+    for (i = firstVowel; i < PHONEMES.length; i++){
       phonemeString = phonemeString+" "+PHONEMES[i];
     }
     console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
