@@ -465,11 +465,12 @@ function receivedMessage(event) {
 
   if (error) {
     name = "";
+    last_name = "";
     console.log("Error getting user's name: " +  error);
   } else {
   }
   // CODE GOES HERE AFTER FUNCTION RETURNS
-  console.log("Just received the name from Facebook, it is now: " + name +" "+ last_name);
+  console.log("Just received the name from Facebook, it is now: "+name +" "+last_name);
 
 });
 
@@ -500,28 +501,28 @@ function setUpLocalVariables() {
     console.log("Unable to parse rhyme file: " + err);
   }
   try {
-
     //load the file
     fileBuffer = fs.readFileSync(dictionary, "utf-8");
     CURRENTDICTIONARY = fileBuffer.split("\n");
-
     var dictionary_length = CURRENTDICTIONARY.length;
     var alphabetLength = 26;
-
-  for (var i = 0; i < dictionary_length; i++) {
-    for (var j = 0; j < alphabetLength; j++) {
-      if(CURRENTDICTIONARY[i].startsWith(alphabet[j])){
-        ALPHABET_ARRAY[j] = [CURRENTDICTIONARY[i].charAt(0), i];
+    //for each line in the file
+    for (var i = 0; i < dictionary_length; i++) {
+      //establish which letter it is
+      for (var j = 0; j < alphabetLength; j++) {
+        if(CURRENTDICTIONARY[i].startsWith(alphabet[j])){
+          //log the position of the last instance of letter in file
+          ALPHABET_ARRAY[j] = [CURRENTDICTIONARY[i].charAt(0), i];
         }
       }
     }
   }
   catch(err) {
-    console.log("Unable to parse alphabet index: " + err);
+    console.log("Unable to parse dictionary and alphabet index: " + err);
   }
 
 
-  if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""){
+  if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""){
     console.log("All files buffered succesfully");
     filesBuffered=true;
   }
@@ -536,35 +537,6 @@ function StringSearch(input, key) {
   }
   return false;
 }
-
-// FUNCTION TO SET UP THE ALPHABET array
-//inputs: the dictionary
-// function alphabetReference() {
-//
-//   //load the file
-//   fileBuffer = fs.readFileSync(dictionary, "utf-8");
-//   var DICTIONARY = fileBuffer.split("\n");
-//
-//   //var index1 = 'a';
-//   //var index2 = 'b';
-//
-//   var dictionary_length = DICTIONARY.length;
-//   var alphabetLength = 26;
-//
-// for (var i = 0; i < dictionary_length; i++) {
-//   for (var j = 0; j < alphabetLength; j++) {
-//     if(DICTIONARY[i].startsWith(alphabet[j])){
-//       ALPHABET_ARRAY[j] = [DICTIONARY[i].charAt(0), i];
-// }
-// }
-// }
-//   console.log(ALPHABET_ARRAY);
-//   findTheLine();
-//
-// }
-//function splitAlphabet(index1, index2) {
-//  return (alphabet.slice(alphabet.indexOf(index1), alphabet.indexOf(index2) + 1));
-//}
 
 //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
 function findTheLine(){
@@ -581,7 +553,7 @@ console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
 
 for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
 
-  console.log("In the loop, checking array at: " + i + "which is: " + ALPHABET_ARRAY[i][0]);
+  console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
 }
 console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 console.log("THE LETTER IS: " + ALPHABET_ARRAY[i][0] + " AND THE VALUE IS: " + ALPHABET_ARRAY[i][1])
