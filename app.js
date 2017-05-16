@@ -736,7 +736,7 @@ function findRhyme(senderID, searchWord) {
 }
 
 //function to split an array of words into 50-word chunks and send them
-function splitMessage(senderID, stringArray){
+function splitMessage(sender, stringArray){
   var messageSplit = new Array;
   var sequence = 0;
   var messageChunk = 0;
@@ -770,7 +770,7 @@ function splitMessage(senderID, stringArray){
       console.log("Delivering results");
       chunkTotal++;
       for (var i = 0; i < chunkTotal; i++){
-        sendTextMessage(senderID, messageSplit[i]);
+        sendTextMessage(sender, messageSplit[i]);
       }
       console.log("Results delivered");
     }
