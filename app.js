@@ -54,6 +54,9 @@ var rhymeString = "";
 var searchWord = "";
 var lc_messageText = "";
 
+//global message response 
+var messageResponse = "";
+
 // Set up file parsing
 var fs = require("fs");
 // Parse greetings.txt into data object
@@ -366,7 +369,7 @@ function receivedMessage(event) {
     // unser intent
 
     // Set up the default FINAL response
-    var messageResponse = (messageText + "?")
+    messageResponse = (messageText + "?")
 
     switch (intent) {
       //Case to handle GREETING messages
