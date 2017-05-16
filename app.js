@@ -31,6 +31,8 @@ var CURRENTDICTIONARY = new Array();
 var SEARCHSTRING = new Array();
 var OUTPUTSTRING = new Array();
 var PHONEMES = new Array();
+var ENGLISH_ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
+var ALPHABET_REFERENCE = new Array();
 
 //integers for array counting in sentences
 var wordNumber =0;
@@ -268,6 +270,8 @@ function receivedMessage(event) {
   console.log("***NEW MESSAGE RECIEVED***");
   console.log("Setting up local variables");
   setUpLocalVariables();
+
+  alphabetReference();
 
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
@@ -519,6 +523,30 @@ function StringSearch(input, key) {
   return false;
 }
 
+// FUNCTION TO SET UP THE ALPHABET array
+//inputs: the dictionary
+function alphabetReference() {
+
+  var tempfile = fs.readFileSync(dictionary, "utf-8");
+  var DICTIONARY = tempfile.split("\n");
+
+  var index1 = 'a';
+  var index2 = 'b';
+
+  console.log("dictionary successfully read");
+  var dictionary_length = DICTIONARY.length;
+
+  var tempint = splitAlphabet(index1, index2);
+  console.log("Current index is " + tempint);
+
+//   for (var i = 0, i < dictionary_length; i++) {
+//     if(DICTIONARY[i].startsWith("a")){
+//
+// }
+}
+function splitAlphabet(index1, index2) {
+  return (ENGLISH_ALPHABET.slice(ENGLISH_ALPHABET.indexOf(index1), ENGLISH_ALPHABET.indexOf(c2) + 1));
+}
 
 
 //FUNCTION TO SEARCH FOR ONE WORD IN DICTIONARY
