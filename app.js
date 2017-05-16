@@ -719,29 +719,24 @@ function receivedMessage(event) {
     var splitCount = 0;
     var chunkTotal = found/50;
     chunkTotal = Math.round(chunkTotal);
-    messageSplit[messageChunk]="message : 0\n";
+    if (chunkTotal > 0){
+
+    }
+    messageSplit[messageChunk]="message : 0\n"+stringArray[0];
     //for how ever many there were words found
-    for (var sequence = 0; sequence < found; sequence ++){
-      var currentWordLength = stringArray[sequence].length;
-      console.log("Length of: "+stringArray[sequence]+" = "+currentWordLength);
-      var spaceCount = 20-currentWordLength;
-      for (var i = 0; i < spaceCount; i++) {
-          stringArray[sequence] = stringArray[sequence]+" ";
-      }
-      console.log("added "+spaceCount)
+    for (var sequence = 1; sequence < found; sequence ++){
       //add the next word to a string in the array
       //if we have less than 50 in this message section
       if (splitCount <50){
         //assign this rhyme to the string
-        messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence];
+        messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
         //increase the split number
         splitCount++;
-        //otherwise, split the message into the next chunk
       } else {
-        //go onto the next messageChunk
+        //otherwise, split the message into the next chunk
         messageChunk++;
         messageSplit[messageChunk]="message : "+messageChunk+"\n";
-        messageSplit[messageChunk] = messageSplit[messageChunk]+stringArray[sequence];
+        messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
         splitCount=0;
       }
     }
