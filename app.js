@@ -310,22 +310,27 @@ function receivedMessage(event) {
     caughtCommand = false;
     lc_messageText = messageText.toLowerCase();
     var intent = lc_messageText;
+    var instant_reply = false;
 
     // If greeting, set the key to "welcome"
     if(StringSearch(lc_messageText, GREETINGS)){
       intent = "welcome";
+      instant_reply = true;
     }
     // If help, set the key to "help"
     if(StringSearch(lc_messageText, "--help")){
       intent = "help";
+      instant_reply = true;
     }
     // If about, set the key to "help"
     if(StringSearch(lc_messageText, "--about")){
       intent = "about";
+      instant_reply = true;
     }
     // If a Rhyme typo, change the key to "rhyme_typo"
     else if(StringSearch(lc_messageText, RHYME_TYPOS)) {
       intent = "rhyme_typo";
+      instant_reply = true;
     }
     // If the message starts with Syllable, change the key to "syllable"
     else if(lc_messageText.startsWith("syllable")) {
@@ -443,9 +448,17 @@ function receivedMessage(event) {
 
           messageResponse = messageText + "?";
         }
-        if(intent != 'single'){
+        if(instant_reply = true;){
         sendTextMessage(senderID, messageResponse);
       }
+
+
+
+
+
+
+
+      // Message has attachments, handle response here
 
     } else if (messageAttachments) {
     //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
