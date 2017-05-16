@@ -611,10 +611,9 @@ function searchPhonemes(phonemeString) {
       }
     }
   }
-  return RHYMEOUTPUT;
-  console.log("RHYMEOUTPUT:"+RHYMEOUTPUT);
   console.log("Search complete. Found: "+found+" rhyme(s).");
   messageResponse = "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults are currently for the first only";
+  return RHYMEOUTPUT;
 }
 
 //function to return how many syllables there are in a word and return that number
@@ -715,48 +714,53 @@ function findRhyme(senderID, searchWord) {
 
     //now search the dictionary for rhymes
     RHYMEOUTPUT = searchPhonemes(phonemeString);
+    splitMessage(RHYMEOUTPUT);
     //output stuff
-    var messageSplit = new Array;
-    var sequence = 0;
-    var messageChunk = 0;
-    var chunkTotal = found/50;
-    var splitNum = 0;
-    chunkTotal = Math.round(chunkTotal);
 
-    if (found == 0) {
-      sendTypingOff(senderID);
-      messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
-    } else {
-      sendTypingOff(senderID);
-      //for every word found
-      //for (var i = 0, len = found; i < len; i++){
-      messageSplit[messageChunk]="message : 0";
-      //for how ever many there were words found
-      for (var sequence = 0; sequence < found; sequence ++){
-          //add the next word to a string in the array
-          //if we have less than 50 in this message section
-          if (splitNum <50){
-            //assign this rhyme to the string
-            messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
-            //increase the split number
-            splitNum++;
-            //otherwise, split the message into the next chunk
-          } else {
-            //go onto the next messageChunk
-            messageChunk++;
-            messageSplit[messageChunk]="message : "+messageChunk;
-            messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+RHYMEOUTPUT[sequence];
-            splitNum=0;
-          }
+    }
+}
+
+//function to split an array of words into 50-word chunks and send them
+function splitMessage(stringArray){
+  var messageSplit = new Array;
+  var sequence = 0;
+  var messageChunk = 0;
+  var chunkTotal = found/50;
+  var splitNum = 0;
+  chunkTotal = Math.round(chunkTotal);
+
+  if (found == 0) {
+    sendTypingOff(senderID);
+    messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
+  } else {
+    sendTypingOff(senderID);
+    //for every word found
+    messageSplit[messageChunk]="message : 0";
+    //for how ever many there were words found
+    for (var sequence = 0; sequence < found; sequence ++){
+        //add the next word to a string in the array
+        //if we have less than 50 in this message section
+        if (splitNum <50){
+          //assign this rhyme to the string
+          messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+stringArray[sequence];
+          //increase the split number
+          splitNum++;
+          //otherwise, split the message into the next chunk
+        } else {
+          //go onto the next messageChunk
+          messageChunk++;
+          messageSplit[messageChunk]="message : "+messageChunk;
+          messageSplit[messageChunk] = messageSplit[messageChunk]+"\n"+stringArray[sequence];
+          splitNum=0;
         }
-        console.log("Delivering results");
-        sendTypingOff(senderID);
-        chunkTotal++;
-        for (var i = 0; i < chunkTotal; i++){
-          sendTextMessage(senderID, messageSplit[i]);
-        }
-        console.log("Results delivered");
       }
+      console.log("Delivering results");
+      sendTypingOff(senderID);
+      chunkTotal++;
+      for (var i = 0; i < chunkTotal; i++){
+        sendTextMessage(senderID, messageSplit[i]);
+      }
+      console.log("Results delivered");
     }
 }
 
