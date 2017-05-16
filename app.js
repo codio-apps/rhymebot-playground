@@ -622,6 +622,9 @@ function findRhyme(senderID, searchWord) {
       console.log("word found in dictionary, it is "+CURRENTDICTIONARY[i]);
       if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
           console.log("the next word is "+CURRENTDICTIONARY[i+1]);
+          if (CURRENTDICTIONARY[i+1].startsWith(searchWord+"(")){
+              console.log("alternative rhyme found for word: "+searchWord"!");
+          }
       }
       var wordLength = searchWord.length;
       var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
