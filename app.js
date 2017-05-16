@@ -547,7 +547,7 @@ function alphabetReference() {
   //var index2 = 'b';
 
   var dictionary_length = DICTIONARY.length;
-  var alphabetLength = 25;
+  var alphabetLength = 26;
   var FINAL_ALPHABET_REFERENCE = new Array();
 
   //var tempint = splitAlphabet(index1, index2);
@@ -556,9 +556,9 @@ function alphabetReference() {
   //var j = 0;
   console.log("alphabet is "+alphabet);
 
-for (i = 0; i < alphabetLength; i++) {
+for (var i = 0; i < alphabetLength; i++) {
   console.log("made it into the loop");
-  for (j = 0; j < dictionary_length; j++) {
+  for (var j = 0; j < dictionary_length; j++) {
     if(DICTIONARY[i].startsWith(alphabet[j])){
       console.log("comparing "+DICTIONARY[i]+" with "+alphabet[j]);
       FINAL_ALPHABET_REFERENCE[j] = i;
