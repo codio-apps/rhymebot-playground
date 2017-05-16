@@ -644,7 +644,7 @@ function receivedMessage(event) {
     //trim off the spelling and spacing from the string
     var tempPHONEMES = theWord.slice(wordLength+2);
     //for the found word, make an array containing each phoneme sound
-    PHONEMES = tempPHONEMES.split(" ");
+    var PHONEMES = tempPHONEMES.split(" ");
     //detect the first letter of phonemes sounds until you find a vowel
     var firstVowel = 0;
     var char = "";
