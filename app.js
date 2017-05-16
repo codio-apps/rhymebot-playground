@@ -560,7 +560,50 @@ function receivedMessage(event) {
 
     return ALPHABET_ARRAY[i][1];
   }
-
+  //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
+  function findRhyme(senderID, searchWord) {
+    sendTypingOn(senderID);
+    var keepLooking = true;
+    var wordLength = searchWord.length;
+    var startingLine = 0;
+    var processedPhonemes = "";
+    //first find the word in the dictionary
+    for (var i = startingLine, len = CURRENTDICTIONARY.length; i < len; i++) {
+      if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
+        pronunciationsFound = 1;
+        //check for multiple pronunciations in dictionary file
+        //as long as the next item isn't undefined, examine it
+        if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
+          for (var j=1; keepLooking==true; j++) {
+            //if this appears to be an alternative pronunciation, log it
+            if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
+              pronunciationsFound++;
+            } else {
+              //if it's the end of the pronunciations, stop
+              console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
+              keepLooking = false;
+              processedPhonemes = getPhonemes(CURRENTDICTIONARY[i], wordLength);
+            }
+          }
+        }
+      }
+    }
+    //if we didnt' find the word in the dictionary at all
+    if (pronunciationsFound == 0) {
+      messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
+      //otherwise
+    }  else {
+      //search the dictionary for matching phoneme endings
+      RHYMEOUTPUT = searchPhonemes(processedPhonemes);
+      messageResponse = "I found "+found+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
+      if (found == 0) {
+        messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
+      } else {
+        splitMessage(senderID, RHYMEOUTPUT);
+      }
+      sendTypingOff(senderID);
+    }
+  }
   //function to return the phonemes for a position in the dictionary
   function searchPhonemes(phonemeString) {
     console.log("searchPhonemes called for index: "+phonemeString);
@@ -671,52 +714,6 @@ function receivedMessage(event) {
     }
     console.log("Constructed phoneme string: "+phonemeString);
     return phonemeString;
-  }
-
-
-  //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
-  function findRhyme(senderID, searchWord) {
-    sendTypingOn(senderID);
-    var keepLooking = true;
-    var wordLength = searchWord.length;
-    var startingLine = 0;
-    var processedPhonemes = "";
-    //first find the word in the dictionary
-    for (var i = startingLine, len = CURRENTDICTIONARY.length; i < len; i++) {
-      if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
-        pronunciationsFound = 1;
-        //check for multiple pronunciations in dictionary file
-        //as long as the next item isn't undefined, examine it
-        if (typeof CURRENTDICTIONARY[i+1] !== "undefined") {
-          for (var j=1; keepLooking==true; j++) {
-            //if this appears to be an alternative pronunciation, log it
-            if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
-              pronunciationsFound++;
-            } else {
-              //if it's the end of the pronunciations, stop
-              console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-              keepLooking = false;
-              processedPhonemes = getPhonemes(CURRENTDICTIONARY[i], wordLength);
-            }
-          }
-        }
-      }
-    }
-    //if we didnt' find the word in the dictionary at all
-    if (pronunciationsFound == 0) {
-      messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
-      //otherwise
-    }  else {
-      //search the dictionary for matching phoneme endings
-      RHYMEOUTPUT = searchPhonemes(processedPhonemes);
-      messageResponse = "I found "+found+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
-      if (found == 0) {
-        messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
-      } else {
-        splitMessage(senderID, RHYMEOUTPUT);
-      }
-      sendTypingOff(senderID);
-    }
   }
 
   //function to split an array of words into 100-word chunks and send them
