@@ -541,6 +541,8 @@ function alphabetReference() {
   var tempint = splitAlphabet(index1, index2);
   console.log("Current index is " + tempint);
 
+  console.log("REFERENCE: " + DICTIONARY[i] + " :::::::::::::::::::::: " + ENGLISH_ALPHABET[j]);
+
 for (var j = 0; j < alphabetLength; j++) {
   for (var i = 0; i < dictionary_length; i++) {
     if(DICTIONARY[i].startsWith(ENGLISH_ALPHABET[j])){
