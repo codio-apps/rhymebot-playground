@@ -725,7 +725,7 @@ function receivedMessage(event) {
     var sequence = 0;
     var messageChunk = 0;
     var splitCount = 0;
-    var chunkTotal = found/100;
+    var chunkTotal = found/75;
     chunkTotal = Math.round(chunkTotal);
     console.log("splitting msg, required chunks: "+chunkTotal);
     if (chunkTotal > 0){
@@ -735,7 +735,7 @@ function receivedMessage(event) {
     for (var sequence = 1; sequence < found; sequence ++){
       //add the next word to a string in the array
       //if we have less than 50 in this message section
-      if (splitCount < 100){
+      if (splitCount < 75){
         //assign this rhyme to the string
         messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
         //increase the split number
