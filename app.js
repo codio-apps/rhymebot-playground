@@ -598,7 +598,7 @@ function findRhyme(senderID, searchWord) {
     //first find the word in the dictionary
     // need to add logic here that accounts for multiple pronunciations, only handles default "  " atm, not (1) (2) (3) etc
     fileBuffer = fs.readFileSync(dictionary, "utf-8");
-    CURRENTDICTIONARY = temp.split("\n");
+    CURRENTDICTIONARY = fileBuffer.split("\n");
     console.log("dictionary successfully read");
   for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
     //insert or operator here
