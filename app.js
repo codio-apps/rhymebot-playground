@@ -725,7 +725,7 @@ function findRhyme(senderID, searchWord) {
 
     if (found == 0) {
       sendTypingOff(senderID);
-      sendTextMessage(senderID, "I'm sorry, I don't know any rhymes for "+searchWord+" yet");
+      sendTextMessage(senderID, "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet");
     } else {
       sendTypingOff(senderID);
       sendTextMessage(senderID, "I found "+found+" words that rhyme with "+searchWord+", and "+pronunciationsFound+" ways of pronouncing it.\nResults given are currently for the first only");
