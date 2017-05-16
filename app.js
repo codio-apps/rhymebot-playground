@@ -34,6 +34,7 @@ var SEARCHSTRING = new Array();
 var OUTPUTSTRING = new Array();
 var PHONEMES = new Array();
 var ALPHABET_ARRAY = new Array();
+var RHYMEOUTPUT = new Array;
 
 
 //file buffer
@@ -572,8 +573,7 @@ console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
 
 //function to return the phonemes for a position in the dictionary
 function searchPhonemes(phonemeString) {
-  console.log("getPhonemes called for index: "+phonemeString);
-  var RHYMEOUTPUT = new Array;
+  console.log("searchPhonemes called for index: "+phonemeString);
   var found = 0;
   var arrayBin = new Array;
   var stringBin = "";
@@ -710,7 +710,7 @@ function findRhyme(senderID, searchWord) {
     console.log("Constructed phoneme string: "+phonemeString+" searching for matches");
 
     //now search the dictionary for rhymes
-    searchPhonemes(phonemeString);
+    RHYMEOUTPUT = searchPhonemes(phonemeString);
     //output stuff
     console.log("Search complete. Found: "+found+" rhyme(s).");
     var messageSplit = new Array;
