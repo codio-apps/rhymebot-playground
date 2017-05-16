@@ -625,14 +625,6 @@ function findRhyme(senderID, searchWord) {
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
     }
-    //if the next word begins with this word as well
-    var tempI = len-1;
-      var bin = CURRENTDICTIONARY[i+1];
-      console.log("searchWord "+i+" of "+len+" is "+searchWord+" and bin is "+bin);
-      if (bin.startsWith(searchWord+"(")) {
-        console.log("duplicate word found in dictionary it is "+CURRENTDICTIONARY[i]);
-      }
-    }
   }
   //if we didnt' find the word in the dictionary
   if (!wordFound) {
