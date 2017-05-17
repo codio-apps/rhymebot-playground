@@ -1256,8 +1256,13 @@ function receivedMessage(event) {
                 },
                 {
                   "type":"postback",
-                  "title":"Count Something",
+                  "title":"Count to 9",
                   "payload":"123456789"
+                },
+                {
+                  "type":"postback",
+                  "title":"Say something",
+                  "payload":"Something!"
                 }
               ]
             }
