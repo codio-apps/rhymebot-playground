@@ -644,7 +644,7 @@ function receivedMessage(event) {
     return theWord[0];
   }
 
-  //function to return 10 different random elements from an array
+  //function to return 10 different random elements(in this case, rhymes) from an array
   function randomlyReturn(inputArray, elements){
     var randArray = [""];
     console.log("inputArray contents at init: "+inputArray);
@@ -813,6 +813,7 @@ function receivedMessage(event) {
         RHYMEOUTPUT = [""];
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
+        console.log("RHYMEOUTPUT ="+RHYMEOUTPUT);
         for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
           //if the rhyme is a match
           if (CURRENTDICTIONARY[i].endsWith(phonemeString)) {
