@@ -1262,26 +1262,32 @@ function receivedMessage(event) {
       recipient: {
         id: recipientId
       },
-      message: {
-        text: "How HipHop are you??",
-        quick_replies: [
-          {
-            "content_type":"text",
-            "title":"Kinda",
-            "payload":"Kinda"
-          },
-          {
-            "content_type":"text",
-            "title":"Very",
-            "payload":"Very"
-          },
-          {
-            "content_type":"text",
-            "title":"HH",
-            "payload":"Hippidy Hop"
+      var messageData = {
+        recipient: {
+          id: recipientId
+        },
+        "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"What do you want to do next?",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"https://petersapparel.parseapp.com",
+                "title":"Show Website"
+              },
+              {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"USER_DEFINED_PAYLOAD"
+              }
+            ]
           }
-        ]
+        }
       }
+
     };
 
     callSendAPI(messageData);
