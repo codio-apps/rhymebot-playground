@@ -682,7 +682,7 @@ function receivedMessage(event) {
   function randomRhymes(dictionaryIndex, elements){
     inputArray.length=0;
     var arrayBuffer = getRhymes(dictionaryIndex);
-    var randString =randomlyReturn(arrayBuffer, elements);
+    var randString = randomlyReturn(arrayBuffer, elements);
     return randString;
   }
 
@@ -837,7 +837,7 @@ function receivedMessage(event) {
                 }
               } else {
                 //make sure it's not the same as searchWord
-                if (arrayBin[0]==searchWord){
+                if (arrayBin[0]==theWord){
                   //do nothing
                 } else {
                   //otherwise save the word to the output array
