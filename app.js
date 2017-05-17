@@ -598,7 +598,7 @@ function getWord(dictionaryIndex){
     console.log("getWord: received string: "+gotString);
     var theWord = gotString.split(" ");
     console.log("theWord now: "+theWord);
-    theWord = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
+    theWord = theWord.slice(wordLength+2);
     console.log("theWord now: "+theWord);
     //for the found word, make an array containing each phoneme sound
     PHONEMES = tempPHONEMES.split(" ")
