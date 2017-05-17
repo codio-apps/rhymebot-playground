@@ -808,7 +808,7 @@ function receivedMessage(event) {
       if (dictionaryIndex != -1) {
         var theWord = getWord(dictionaryIndex);
         var phonemeString = getPhonemes(dictionaryIndex);
-        var arrayBin = new Array;
+        var arrayBin = [""];
         matchesFound = 0;
         RHYMEOUTPUT = [""];
         //search the dictionary
@@ -821,6 +821,7 @@ function receivedMessage(event) {
             //handle cutting length to specific number of syllables
             var sylCount = countSyllables(i);
             if (sylCount == syllableLength) {
+              console.log("Matched "+arrayBin[0]);
               //if the found word ends in ")"
               if (arrayBin[0].endsWith(")")) {
                 console.log("removing brackets from "+arrayBin[0]);
@@ -834,8 +835,8 @@ function receivedMessage(event) {
                 } else {
                   //otherwise, save it
                   RHYMEOUTPUT[matchesFound] = arrayBin[0];
+                  console.log("added to list at 1 "+arrayBin[0]);
                   matchesFound++;
-                  console.log("added to list "+arrayBin)
                 }
               } else {
                 //make sure it's not the same as searchWord
@@ -843,6 +844,7 @@ function receivedMessage(event) {
                   //do nothing
                 } else {
                   //otherwise save the word to the output array
+                  console.log("added to list at 2 "+arrayBin[0]);
                   RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
                   matchesFound++;
                 }
