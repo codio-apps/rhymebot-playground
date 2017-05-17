@@ -632,7 +632,6 @@ function receivedMessage(event) {
   function randomlyReturn(inputArray, elements){
     var randArray = new Array;
     console.log("inputArray contents at init: "+inputArray);
-    console.log("randArray contents at init: "+randArray);
     randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
     var rBuffer = "";
     if (inputArray.length > elements){
@@ -666,8 +665,8 @@ function receivedMessage(event) {
 
 
   function randomRhymes(dictionaryIndex){
-    console.log("randomRhymes called");
-    inputArray = [];
+    inputArray.length=0;
+    console.log("randomRhymes called on array of size: "+inputArray.length);
     var arrayBuffer = getRhymes(dictionaryIndex);
     var randString =randomlyReturn(arrayBuffer, 10);
     return randString;
