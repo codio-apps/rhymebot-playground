@@ -459,13 +459,21 @@ function receivedMessage(event) {
           case 'random':
             searchWord = lc_messageText.slice(7);
             searchWord = searchWord.toUpperCase();
-            var dictionaryIndex = findTheLine(senderID, searchWord);
-            if (dictionaryIndex != -1){
-              var randomString = randomRhymes(dictionaryIndex);
-              messageResponse = messageResponse+randomString;
+            var searchArray = searchWord.split(" ");
+            console.log(searchArray[0]+"-----searchArrays-----"+searchArray[1]);
+            if (searchArray[1].isNaN()){
+              console.log("not a number");
             } else {
-              messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+"yet";
+              console.log"(is a number");
+              var dictionaryIndex = findTheLine(senderID, searchWord);
+              if (dictionaryIndex != -1){
+                var randomString = randomRhymes(dictionaryIndex, searchArray[1]);
+                messageResponse = messageResponse+randomString;
+              } else {
+                messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
+              }
             }
+
           break;
 
           default:
@@ -665,10 +673,10 @@ function receivedMessage(event) {
   }
 
 
-  function randomRhymes(dictionaryIndex){
+  function randomRhymes(dictionaryIndex, elements){
     inputArray.length=0;
     var arrayBuffer = getRhymes(dictionaryIndex);
-    var randString =randomlyReturn(arrayBuffer, 10);
+    var randString =randomlyReturn(arrayBuffer, elements);
     return randString;
   }
 
