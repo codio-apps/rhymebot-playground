@@ -576,11 +576,8 @@ function receivedMessage(event) {
         console.log("WE FOUND THE WORD ON LINE " + j);
         console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
         wordFound = true;
-
     }
-
   }
-
   if(wordFound = true){
     return j;
   } else {
