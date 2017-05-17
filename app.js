@@ -464,7 +464,7 @@ function receivedMessage(event) {
             console.log("split input array: "+searchArray);
             if (isNaN(searchArray[1])){
               console.log("No number of results specified, defaulting to 10");
-              var dictionaryIndex = findTheLine(senderID, searchArray[0]);
+              var dictionaryIndex = findTheLine(senderID, searchWord);
               if (dictionaryIndex != -1){
                 randomString = randomRhymes(dictionaryIndex, 10);
                   splitMessage(senderID, randomString);
@@ -825,7 +825,7 @@ function receivedMessage(event) {
         matchesFound = 0;
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-        for (var iX = 0, len = CURRENTDICTIONARY.length; iX < len; iX++) {
+        for (var iX = CURRENTDICTIONARY.length; iX >= 0; iX--) {
           //if the rhyme is a match
           if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
             //store the word in a temp string array
@@ -860,7 +860,6 @@ function receivedMessage(event) {
               }
             }
           }
-
         }
         console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
         return RHYMEOUTPUT;
