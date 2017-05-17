@@ -1280,13 +1280,13 @@ function receivedMessage(event) {
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://petersapparel.parseapp.com",
-                  "title":"Show Website"
+                  "url":"http://facebook.com/rhymebotbot",
+                  "title":"Visit our site"
                 },
                 {
                   "type":"postback",
                   "title":"Start Chatting",
-                  "payload":"USER_DEFINED_PAYLOAD"
+                  "payload":"Hey RhymeBot"
                 }
               ]
             }
