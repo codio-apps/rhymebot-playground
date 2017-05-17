@@ -647,8 +647,8 @@ function receivedMessage(event) {
   //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(senderID, dictionaryIndex, stringLength) {
     if (dictionaryIndex != -1) {
-      var theWord = CURRENTDICTIONARY[dictionaryIndex];
-      var wordLength = CURRENTDICTIONARY[dictionaryIndex].length;
+      var theWord = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
+      var wordLength = theWord.length;
       console.log("dictionaryIndex "+dictionaryIndex+". theWord "+theWord+". wordLength "+wordLength);
       var phonemeString = getPhonemes(theWord, wordLength);
 
