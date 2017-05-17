@@ -630,7 +630,7 @@ function receivedMessage(event) {
             processedPhonemes = getPhonemes(CURRENTDICTIONARY[dictionaryIndex], wordLength);
             console.log("processedPhonemes = "+processedPhonemes);
             syllablesReq = countSyllables(senderID, searchWord);
-            RHYMEOUTPUT = searchPhonemes(processedPhonemes, syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(senderID, processedPhonemes, syllablesReq);
             keepLooking = false;
           }
         }
@@ -654,7 +654,7 @@ function receivedMessage(event) {
   }
 
   //function to search the dictionary for phonemeString matches and return a list
-  function searchPhonemes(phonemeString, stringLength) {
+  function searchPhonemes(senderID, phonemeString, stringLength) {
     console.log("searchPhonemes called for: "+phonemeString);
     var arrayBin = new Array;
     //search the dictionary
