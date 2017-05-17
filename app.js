@@ -556,6 +556,10 @@ function receivedMessage(event) {
 
     messageText = messageText.toUpperCase();
     var letter = messageText.charAt(0);
+    if(!alphabet.includes(letter)){
+      console.log("That is not one of the 26 chosen characters, Jedi - Returning: -1");
+      return -1
+    }
     var dictionaryIndex = -1;
 
     for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
@@ -563,8 +567,16 @@ function receivedMessage(event) {
       console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
 
+
+
+    if(letter = "A"){
+    var letterLeftIndex = 0;
+    }
+    else {
     var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
+      }
     var letterRightIndex = ALPHABET_ARRAY[i][1];
+
     console.log(letterLeftIndex);
     console.log(letterRightIndex);
 
@@ -577,7 +589,13 @@ function receivedMessage(event) {
 
       }
     }
+<<<<<<< HEAD
     if(dictionaryIndex!=-1){
+=======
+
+    if(dictionaryIndex != -1){
+      return dictionaryIndex;
+>>>>>>> 0e30f784072b170eb499464243ecb1a6fc1e5d4d
       console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
       return dictionaryIndex;
     } else {
