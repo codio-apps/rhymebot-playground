@@ -664,7 +664,7 @@ function receivedMessage(event) {
     } else {
       console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
       randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
-      for (var i=1; i < inputArray.length; i++) {
+      for (var i=0; i < inputArray.length; i++) {
         //if the array already includes the newly randomised item, re-roll
         for (var j=0; randArray.includes(rand); j++){
           rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
