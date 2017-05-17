@@ -632,7 +632,7 @@ function receivedMessage(event) {
           } else {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-            syllablesReq = countSyllables(dictionaryIndex);
+            var syllablesReq = countSyllables(dictionaryIndex);
             console.log("countSyllables ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
@@ -641,7 +641,7 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("made it to the end");
+    console.log("made it to the end: "+RHYMEOUTPUT);
   }
 
 
