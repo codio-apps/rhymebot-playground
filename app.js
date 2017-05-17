@@ -35,6 +35,7 @@ var OUTPUTSTRING = new Array();
 var PHONEMES = new Array();
 var ALPHABET_ARRAY = new Array();
 var RHYMEOUTPUT = new Array;
+var inputArray = newArray;
 
 
 //file buffer
@@ -650,13 +651,13 @@ function receivedMessage(event) {
     } else {
       console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
       for (var i=1; i < inputArray.length; i++) {
-        var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
+        randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
         //if the array already includes the newly randomised item, re-roll
         for (var j=0; randArray.includes(rand); j++){
           rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         }
         randArray[i] = rand;
-        console.log("randArray["+i+"] is "+randArray[i])
+        console.log("randArray["+i+"] is "+randArray[i]);
       }
       return inputArray;
     }
@@ -665,6 +666,7 @@ function receivedMessage(event) {
 
   function randomRhymes(dictionaryIndex){
     console.log("randomRhymes called");
+    inputArray = "";
     var arrayBuffer = getRhymes(dictionaryIndex);
     var randString =randomlyReturn(arrayBuffer, 10);
     return randString;
