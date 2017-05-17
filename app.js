@@ -629,13 +629,24 @@ function receivedMessage(event) {
 
   //function to return 10 random elements from an array
   function randomlyReturn(inputArray, elements){
-    var rand = inputArray[Math.floor(Math.random() * inputArray.length)];
-    for (var i=1; i < elements; i++){
-      var rand = rand+", "+inputArray[Math.floor(Math.random() * inputArray.length)];
+    var randArray = new Array;
+    randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
+    var rBuffer = "";
+    if (testerray.length > elements){
+      for (var i=1; i < elements; i++){
+        var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
+        if (randArray.includes(rand)){
+          console.log("randomised to the same word again, it was "+rand+". Rerolling")
+        }
+      }
+      console.log("Randomly returning: "+rand);
+      return rand;
+    } else {
+      console.log("less than "+elements+"rhymes found, returning all rhymes");
+      return inputArray;
     }
-    console.log("Randomly returning: "+rand);
-    return rand;
   }
+
 
   function randomRhymes(dictionaryIndex){
     console.log("randomRhymes called");
