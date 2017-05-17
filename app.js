@@ -776,7 +776,7 @@ function getWord(dictionaryIndex){
     console.log("splitting msg, required chunks: "+chunkTotal);
     if (chunkTotal > 0){
     }
-    messageSplit[messageChunk]="message : 0\n"+stringArray[0];
+    messageSplit[messageChunk]=stringArray[0];
     //for how ever many there were words found
     for (var sequence = 1; sequence < matchesFound; sequence ++){
       //add the next word to a string in the array
@@ -790,7 +790,7 @@ function getWord(dictionaryIndex){
         //otherwise, split the message into the next chunk
         splitCount=0;
         messageChunk++;
-        messageSplit[messageChunk]="message : "+messageChunk+"\n"+stringArray[sequence];
+        messageSplit[messageChunk]="message : "+messageChunk-1+"\n"+stringArray[sequence];
       }
     }
     console.log("Delivering results");
