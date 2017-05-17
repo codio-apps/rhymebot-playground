@@ -1232,27 +1232,29 @@ function receivedMessage(event) {
       recipient: {
         id: recipientId
       },
-      message: {
-        text: "What's your favorite movie genre?",
-        quick_replies: [
-          {
-            "content_type":"text",
-            "title":"Action",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
-          },
-          {
-            "content_type":"text",
-            "title":"Comedy",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
-          },
-          {
-            "content_type":"text",
-            "title":"Drama",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
-          }
-        ]
+      "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+          "text":"What do you want to do next?",
+          "buttons":[
+            {
+              "type":"web_url",
+              "url":"https://petersapparel.parseapp.com",
+              "title":"Show Website"
+            },
+            {
+              "type":"postback",
+              "title":"Start Chatting",
+              "payload":"USER_DEFINED_PAYLOAD"
+            }
+          ]
+        }
       }
+    }
     };
+  }
 
     callSendAPI(messageData);
   }
