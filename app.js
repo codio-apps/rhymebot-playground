@@ -769,7 +769,7 @@ function getWord(dictionaryIndex){
   function splitMessage(sender, stringArray){
     var messageSplit = new Array;
     var sequence = 0;
-    var messageChunk = 0;
+    var messageChunk = 1;
     var splitCount = 0;
     var chunkTotal = matchesFound/75;
     chunkTotal = Math.round(chunkTotal);
@@ -790,7 +790,7 @@ function getWord(dictionaryIndex){
         //otherwise, split the message into the next chunk
         splitCount=0;
         messageChunk++;
-        messageSplit[messageChunk]="message : "+messageChunk-1+"\n"+stringArray[sequence];
+        messageSplit[messageChunk]="message "+messageChunk+"\n"+stringArray[sequence];
       }
     }
     console.log("Delivering results");
