@@ -43,7 +43,7 @@ var filesBuffered = false;
 
 //integers for array counting in sentences
 var wordNumber = 0;
-var stringLength = 0;
+var syllableLength = 0;
 
 //counters for finders
 var matchesFound = 0;
@@ -655,7 +655,7 @@ function getWord(dictionaryIndex){
   }
 
   //function to search the dictionary for phonemeString matches and return a list
-  function searchPhonemes(senderID, dictionaryIndex, stringLength) {
+  function searchPhonemes(senderID, dictionaryIndex, syllableLength) {
     if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
       var wordLength = theWord.length
@@ -663,7 +663,7 @@ function getWord(dictionaryIndex){
       console.log("searchPhonemes called for: "+phonemeString);
       var arrayBin = new Array;
       //search the dictionary
-      console.log("searching phonemes for "+phonemeString+" of length "+stringLength);
+      console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
       for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[i].endsWith(phonemeString)) {
@@ -671,7 +671,7 @@ function getWord(dictionaryIndex){
           arrayBin = CURRENTDICTIONARY[i].split("  ");
           //handle cutting length to specific number of syllables
           var sylCount = countSyllables(senderID, dictionaryIndex);
-          if (sylCount == stringLength) {
+          if (sylCount == syllableLength) {
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
               //add the word to the list, but remove the brackets from the spelling info
@@ -736,7 +736,8 @@ function getWord(dictionaryIndex){
   }
 
   //function to take in a word and spit out the phonemes
-  function getPhonemes(theWord, wordLength){
+  function getPhonemes(dictionaryIndex, wordLength){
+    var theWord = CURRENTDICTIONARY[dictionaryIndex];
     console.log("getPhonemes called on "+theWord);
     var phonemeString ="";
     //trim off the spelling and spacing from the string
