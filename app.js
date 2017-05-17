@@ -637,7 +637,7 @@ function receivedMessage(event) {
         var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         for (var j=0;!randArray.includes(rand); j++){
             rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
-            console.log("randomised to the same word for the "+j+"th time, it was "+rand+". Rerolling"
+            console.log("randomised to the same word for the "+j+"th time, it was "+rand+". Rerolling");
         }
         randArray[i] = rand;
       }
