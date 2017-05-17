@@ -631,6 +631,7 @@ function receivedMessage(event) {
   //function to return 10 different random elements from an array
   function randomlyReturn(inputArray, elements){
     var randArray = new Array;
+    console.log("inputArray contents at init: "+inputArray);
     console.log("randArray contents at init: "+randArray);
     randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
     var rBuffer = "";
@@ -640,8 +641,8 @@ function receivedMessage(event) {
         console.log("randomly selected "+rand+" from inputArray");
         //if the array already includes the newly randomised item, re-roll
         for (var j=0; randArray.includes(rand); j++){
-            rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
-            console.log("randomised to a duplicate word, it was "+rand+". Rerolling");
+          console.log("randomised to a duplicate word, it was "+rand+". Rerolling");
+          rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         }
         randArray[i] = rand;
         console.log("randArray["+i+"] is "+randArray[i]);
