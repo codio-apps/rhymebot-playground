@@ -714,13 +714,11 @@ function getWord(dictionaryIndex){
     var syllablesFound = 0;
     var char = "";
     //call findTheLine to get the index
-    console.log("dictionary index during countSyllables is "+dictionaryIndex);
     if (dictionaryIndex != -1) {
       //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
-      console.log("phoneme data now: "+PHONEMES);
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
         char = PHONEMES[phoLen-i-1].charAt(0);
@@ -729,6 +727,7 @@ function getWord(dictionaryIndex){
           syllablesFound++;
         }
       }
+      console.log("Returning results of countSyllables")
       return syllablesFound;
     } else {
       return 0;
@@ -737,12 +736,12 @@ function getWord(dictionaryIndex){
 
   //function to take in a word and spit out the phonemes
   function getPhonemes(dictionaryIndex){
-    var theWord = CURRENTDICTIONARY[dictionaryIndex];
-    console.log("getPhonemes called on "+theWord);
+    var theLine = CURRENTDICTIONARY[dictionaryIndex];
+    console.log("getPhonemes called on "+theLine);
     var wordLength = getWord(dictionaryIndex).length;
     var phonemeString ="";
     //trim off the spelling and spacing from the string
-    var tempPHONEMES = theWord.slice(wordLength+2);
+    var tempPHONEMES = theLine.slice(wordLength+2);
     //for the found word, make an array containing each phoneme sound
     var PHONEMES = tempPHONEMES.split(" ");
     //detect the first letter of phonemes sounds until you find a vowel
