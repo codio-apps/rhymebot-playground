@@ -601,6 +601,7 @@ function receivedMessage(event) {
         }
       }
     }
+    console.log("found = "+found+". pronunciationsFound ="+pronunciationsFound);
     //if we didnt' find the word in the dictionary at all
     if (pronunciationsFound == 0) {
       messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
