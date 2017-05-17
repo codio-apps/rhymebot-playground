@@ -836,6 +836,7 @@ function receivedMessage(event) {
                 var tmpLen = arrayBin[0].length-3;
                 arrayBin[0] = arrayBin[0].slice(0, tmpLen);
                 arrayBin[0] = arrayBin[0].toLowerCase()
+                matchesFound++;
                 //if the last element added to RHYMEOUTPUT is the same, skip it
                 if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
                   console.log("skipping "+arrayBin[0]);
