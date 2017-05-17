@@ -623,9 +623,6 @@ function receivedMessage(event) {
   function getRhymes(dictionaryIndex){
     console.log("calling getRhymes on input: "+dictionaryIndex);
     pronunciationsFound = 0;
-    function getRhymes(dictionaryIndex, resultsReq){
-      console.log("calling getRhymes on input: "+dictionaryIndex+" \ "+resultsReq);
-      var pronunciationsFound = 0;
       var keepLooking = true;
       var theWord = getWord(dictionaryIndex);
       console.log("word is "+theWord);
@@ -643,8 +640,7 @@ function receivedMessage(event) {
               //if it's the end of the pronunciations, stop and send phonemes for processing
               console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
               var syllablesReq = countSyllables(dictionaryIndex);
-              console.log("countSyllables ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
-              console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
+              console.log("triggering searchPhonemes from findTheRhyme: " +dictionaryIndex+" "+syllablesReq);
               RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
               keepLooking = false;
               console.log("Rhyme array"+RHYMEOUTPUT);
@@ -653,17 +649,12 @@ function receivedMessage(event) {
           }
         }
       }
-      console.log("made it to the end: "+RHYMEOUTPUT);
-    }
   }
 
 
     //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
     function findRhyme(senderID, searchWord) {
       sendTypingOn(senderID);
-      var keepLooking = true;
-      var wordLength = searchWord.length;
-      var startingLine = 0;
       var dictionaryIndex = -1;
       var syllablesReq = 0;
       matchesFound = 0;
@@ -672,29 +663,8 @@ function receivedMessage(event) {
       console.log("starting to findTheLine within findRhyme: "+searchWord);
       dictionaryIndex = findTheLine(senderID, searchWord);
       if (dictionaryIndex != -1) {
-        console.log("getting to this bit, where pfound is "+pronunciationsFound+" and mfound is"+matchesFound);
         RHYMEOUTPUT = getRhymes(dictionaryIndex);
-        pronunciationsFound = 1;
-        //check for multiple pronunciations in dictionary file
-        //as long as the next item isn't undefined, examine it
-        if (typeof CURRENTDICTIONARY[dictionaryIndex+1] !== "undefined") {
-          for (var j=1; keepLooking==true; j++) {
-            //if this appears to be an alternative pronunciation, log it
-            if (CURRENTDICTIONARY[dictionaryIndex+j].startsWith(searchWord+"(")) {
-              pronunciationsFound++;
-              console.log("additional pronunciation found");
-            } else {
-              //if it's the end of the pronunciations, stop and send phonemes for processing
-              console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-              syllablesReq = countSyllables(dictionaryIndex);
-              console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
-              console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
-              RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
-              keepLooking = false;
-            }
-          }
-        }
-      }
+        console.log("getting to this bit, where pfound is "+pronunciationsFound+" and mfound is "+matchesFound);
       //if we didnt' find the word in the dictionary at all
       if (pronunciationsFound == 0) {
         messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
@@ -711,6 +681,7 @@ function receivedMessage(event) {
       //now turn off the typer
       sendTypingOff(senderID);
     }
+  }
 
     //function to calculate how many syllables there are in a word and return that number
     function countSyllables(dictionaryIndex) {
