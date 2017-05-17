@@ -564,13 +564,25 @@ function receivedMessage(event) {
 
       console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
-    console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
-    console.log("THE LETTER IS: " + ALPHABET_ARRAY[i][0] + " AND THE VALUE IS: " + ALPHABET_ARRAY[i][1])
 
     var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
     var letterRightIndex = ALPHABET_ARRAY[i][1];
-    console.log(letterLeftIndex + " ALL THE WAY TO " + letterRightIndex);
-    return letterLeftIndex;
+
+    for (j = letterLeftIndex; j = letterRightIndex; j++){
+      if (CURRENTDICTIONARY[j].startsWith(searchWord+"  ")){
+
+        console.log("WE FOUND THE WORD ON LINE " + j);
+
+    }
+
+  }
+}
+
+
+  function findTheWord(word){
+
+
+
   }
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
