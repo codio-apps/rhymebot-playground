@@ -869,7 +869,7 @@ function receivedMessage(event) {
             options[5]++;
           }
         }
-        i--;
+        iX--;
       }
       console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
       console.log("attempted: "+options[6]+" matched ending: "+options[0]+" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
