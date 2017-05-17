@@ -43,7 +43,7 @@ var filesBuffered = false;
 
 //integers for array counting in sentences
 var wordNumber = 0;
-var stringLength = 0;
+var syllableLength = 0;
 
 //counters for finders
 var matchesFound = 0;
@@ -362,11 +362,17 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("count")) {
           intent = "count";
         }
+<<<<<<< HEAD
         // If the message starts with Rhyme, change the key to rhyme
         else if(lc_messageText.startsWith("question")) {
           intent = "question";
         }
         else {
+=======
+        else if(lc_messageText.startsWith("random")) {
+          intent = "random";
+        } else {
+>>>>>>> a0ed259139a920e02660dab393c7f1d68071ae73
           //Do nothing, key is set to messageText
         }
 
@@ -396,10 +402,11 @@ function receivedMessage(event) {
 
           case 'help':
           messageResponse = "Here is some help information: \n" +
-          "Type: rhyme - get a.\n" +
-          "Type single - get b.\n" +
-          "Type syllable - get c"
-          "Type count - get d";
+          "Type: rhyme - get a.\n"+
+          "Type single - get b.\n"+
+          "Type syllable - get c\n"+
+          "Type count - get d\n"+
+          "Type random - get e\n";
           break;
           case 'about':
           messageResponse = "Here is some about information: \n" +
@@ -437,7 +444,8 @@ function receivedMessage(event) {
           case 'count':
           searchWord = lc_messageText.slice(6);
           searchWord = searchWord.toUpperCase();
-          var v = countSyllables(senderID, searchWord);
+          var dictionaryIndex = findTheLine(senderID, searchWord);
+          var v = countSyllables(dictionaryIndex);
           if (v != 0) {
             messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
           } else {
@@ -445,16 +453,23 @@ function receivedMessage(event) {
           }
           break;
 
+<<<<<<< HEAD
           case 'question':
           sendQuestion(senderID);
           break;
 
           default:
+=======
+          //handle the random command
+          case 'random':
+          searchWord = lc_messageText.slice(7);
+          searchWord = searchWord.toUpperCase();
+          var dictionaryIndex = findTheLine(senderID, searchWord);
+          getRhymes(dictionaryIndex, 10);
+>>>>>>> a0ed259139a920e02660dab393c7f1d68071ae73
 
+          default:
           messageResponse = messageText + "?";
-          findTheLine(senderID, messageText);
-
-
         }
         if(instant_reply = true){
           sendTextMessage(senderID, messageResponse);
@@ -482,7 +497,7 @@ function receivedMessage(event) {
       } else {
       }
       // CODE GOES HERE AFTER FUNCTION RETURNS
-      console.log("Just received the name from Facebook, it is now: "+name +" "+last_name);
+      console.log("Received the name from Facebook, it is: "+name +" "+last_name);
 
     });
 
@@ -523,7 +538,7 @@ function receivedMessage(event) {
       fileBuffer = fs.readFileSync(dictionary, "utf-8");
       CURRENTDICTIONARY = fileBuffer.split("\n");
       var dictionary_length = CURRENTDICTIONARY.length;
-      var alphabetLength = 26;
+      var alphabetLength = 27;
       //for each line in the file
       for (var i = 0; i < dictionary_length; i++) {
         //establish which letter it is
@@ -550,49 +565,43 @@ function receivedMessage(event) {
   function StringSearch(input, key) {
 
     if (key.indexOf(input) >= 0){
-      console.log("String was found in array");
+      console.log("Command recognised");
       return true;
     }
     return false;
   }
 
   //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
-  function findTheLine(senderID, messageText){
+  function findTheLine(senderID, searchWord){
 
     // FOR testing purposes
     //var word = "QAPPLE";
-    console.log(messageText);
-
-    messageText = messageText.toUpperCase();
-    var letter = messageText.charAt(0);
+    console.log("findTheLine triggered on "+searchWord);
+    searchWord = searchWord.toUpperCase();
+    var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
       console.log("That is not one of the 26 chosen characters, Jedi - Returning: -1");
-      return -1
+      return -1;
     }
     var dictionaryIndex = -1;
-
-    console.log("Starting loop from " + ALPHABET_ARRAY[0][0]);
 
     for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
 
       console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
-
-
-
     if(letter = "A"){
-    var letterLeftIndex = 0;
+      var letterLeftIndex = 0;
     }
     else {
-    var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
-      }
+      var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
+    }
     var letterRightIndex = ALPHABET_ARRAY[i][1];
 
     console.log(letterLeftIndex);
     console.log(letterRightIndex);
 
     for (var j = letterLeftIndex; j < letterRightIndex; j++){
-      if (CURRENTDICTIONARY[j].startsWith(messageText + "  ")){
+      if (CURRENTDICTIONARY[j].startsWith(searchWord + "  ")){
 
         console.log("WE FOUND THE WORD ON LINE " + j+"... saving position");
         console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
@@ -600,14 +609,55 @@ function receivedMessage(event) {
 
       }
     }
-
     if(dictionaryIndex != -1){
       return dictionaryIndex;
       console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
+      return dictionaryIndex;
     } else {
       console.log("word not found in dictionary, returning: -1");
       return -1;
     }
+  }
+
+  //function to return the exact word as a string, when given a dictionary index
+  function getWord(dictionaryIndex){
+    if (dictionaryIndex != -1) {
+      var gotString = CURRENTDICTIONARY[dictionaryIndex];
+      var theWord = gotString.split(" ");
+    }
+    return theWord[0];
+  }
+
+  //
+  function getRhymes(dictionaryIndex, resultsReq){
+    console.log("calling getRhymes on input: "+dictionaryIndex+" \ "+resultsReq);
+    var pronunciationsFound = 0;
+    var keepLooking = true;
+    var theWord = getWord(dictionaryIndex);
+    console.log("word is "+theWord);
+    if (dictionaryIndex != -1){
+      pronunciationsFound = 1;
+      //check for multiple pronunciations in dictionary file
+      //as long as the next item isn't undefined, examine it
+      if (typeof CURRENTDICTIONARY[dictionaryIndex+1] !== "undefined") {
+        for (var j=1; keepLooking==true; j++) {
+          //if this appears to be an alternative pronunciation, log it
+          if (CURRENTDICTIONARY[dictionaryIndex+j].startsWith(theWord+"(")) {
+            pronunciationsFound++;
+            console.log("additional pronunciation found");
+          } else {
+            //if it's the end of the pronunciations, stop and send phonemes for processing
+            console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
+            var syllablesReq = countSyllables(dictionaryIndex);
+            console.log("countSyllables ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
+            console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
+            keepLooking = false;
+          }
+        }
+      }
+    }
+    console.log("made it to the end: "+RHYMEOUTPUT);
   }
 
 
@@ -617,11 +667,12 @@ function receivedMessage(event) {
     var keepLooking = true;
     var wordLength = searchWord.length;
     var startingLine = 0;
-    var processedPhonemes = "";
     var dictionaryIndex = -1;
+    var syllablesReq = 0;
     matchesFound = 0;
     pronunciationsFound = 0;
 
+    console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
       pronunciationsFound = 1;
@@ -636,9 +687,10 @@ function receivedMessage(event) {
           } else {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-            processedPhonemes = getPhonemes(CURRENTDICTIONARY[dictionaryIndex], wordLength);
-            console.log("processedPhonemes = "+processedPhonemes);
-            RHYMEOUTPUT = searchPhonemes(processedPhonemes);
+            syllablesReq = countSyllables(dictionaryIndex);
+            console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
+            console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             keepLooking = false;
           }
         }
@@ -661,75 +713,24 @@ function receivedMessage(event) {
     sendTypingOff(senderID);
   }
 
-  //function to search the dictionary for phonemeString matches and return a list
-  function searchPhonemes(phonemeString) {
-    console.log("searchPhonemes called for: "+phonemeString);
-    var arrayBin = new Array;
-    var stringBin = "";
-    //search the dictionary
-    for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
-      //if the rhyme is a match
-      if(CURRENTDICTIONARY[i].endsWith(phonemeString)) {
-        //store the word in a temp string
-        arrayBin = CURRENTDICTIONARY[i].split("  ");
-        //if the found word ends in ")"
-        if (arrayBin[0].endsWith(")")) {
-          //add the word to the list, but remove the brackets from the spelling info
-          var tmpLen = arrayBin[0].length-3;
-          arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-          arrayBin[0] = arrayBin[0].toLowerCase()
-          //if the last element added to RHYMEOUTPUT is the same, skip it
-          if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-            console.log("Additional pronunciation for "+RHYMEOUTPUT[matchesFound-1]+" found, skipped it")
-          } else {
-            //otherwise, save it
-            RHYMEOUTPUT[matchesFound] = arrayBin[0];
-            matchesFound++;
-          }
-        } else {
-          //make sure it's not the same as searchWord
-          if (arrayBin[0]==searchWord){
-            //do nothing
-          } else {
-            //otherwise save the word to the output array
-            RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
-            matchesFound++;
-          }
-        }
-      }
-    }
-    console.log("Search complete. Found: "+matchesFound+" rhyme(s).");
-    return RHYMEOUTPUT;
-
-  }
-
   //function to calculate how many syllables there are in a word and return that number
-  function countSyllables(senderID, searchWord) {
-    var wordLength = searchWord.length;
+  function countSyllables(dictionaryIndex) {
     var syllablesFound = 0;
     var char = "";
-    var dictionaryIndex = -1;
     //call findTheLine to get the index
-    dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
-      console.log("Word found in dictionary");
       //trim off the spelling and spacing from the string
-      var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
+      var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(searchWord.length+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
-      console.log("phoneme data now: "+PHONEMES);
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
         char = PHONEMES[phoLen-i-1].charAt(0);
-        //compare char to every vowel
-        for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          //if we find a vowel at character 0, increment the syllable count
-          if (char == vowels[j]){
-            syllablesFound++;
-          }
+        //count the vowels
+        if(vowels.includes(char)){
+          syllablesFound++;
         }
       }
-
       return syllablesFound;
     } else {
       return 0;
@@ -737,11 +738,11 @@ function receivedMessage(event) {
   }
 
   //function to take in a word and spit out the phonemes
-  function getPhonemes(theWord, wordLength){
-    console.log("getPhonemes called on "+theWord);
+  function getPhonemes(dictionaryIndex){
+    var theLine = CURRENTDICTIONARY[dictionaryIndex];
     var phonemeString ="";
     //trim off the spelling and spacing from the string
-    var tempPHONEMES = theWord.slice(wordLength+2);
+    var tempPHONEMES = theLine.slice(getWord(dictionaryIndex).length+2);
     //for the found word, make an array containing each phoneme sound
     var PHONEMES = tempPHONEMES.split(" ");
     //detect the first letter of phonemes sounds until you find a vowel
@@ -770,19 +771,69 @@ function receivedMessage(event) {
     return phonemeString;
   }
 
+  //function to search the dictionary for phonemeString matches and return a list
+  function searchPhonemes(dictionaryIndex, syllableLength) {
+    if (dictionaryIndex != -1) {
+      var theWord = getWord(dictionaryIndex);
+      var phonemeString = getPhonemes(dictionaryIndex);
+      var arrayBin = new Array;
+      //search the dictionary
+      console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
+      for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+        //if the rhyme is a match
+        if (CURRENTDICTIONARY[i].endsWith(phonemeString)) {
+          //store the word in a temp string array
+          arrayBin = CURRENTDICTIONARY[i].split("  ");
+          //handle cutting length to specific number of syllables
+          var sylCount = countSyllables(i);
+          if (sylCount == syllableLength) {
+            //if the found word ends in ")"
+            if (arrayBin[0].endsWith(")")) {
+              //add the word to the list, but remove the brackets from the spelling info
+              var tmpLen = arrayBin[0].length-3;
+              arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+              arrayBin[0] = arrayBin[0].toLowerCase()
+              //if the last element added to RHYMEOUTPUT is the same, skip it
+              if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+              } else {
+                //otherwise, save it
+                RHYMEOUTPUT[matchesFound] = arrayBin[0];
+                matchesFound++;
+              }
+            } else {
+              //make sure it's not the same as searchWord
+              if (arrayBin[0]==searchWord){
+                //do nothing
+              } else {
+                //otherwise save the word to the output array
+                RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
+                matchesFound++;
+              }
+            }
+          }
+        }
+
+      }
+      console.log("Search complete. Found: "+matchesFound+" rhyme(s).");
+      return RHYMEOUTPUT;
+    } else {
+      console.log("no matches found i think");
+    }
+  }
+
   //function to split an array of words into 75-word chunks and send them
   //the 75 word limit is hardcoded for now
   function splitMessage(sender, stringArray){
     var messageSplit = new Array;
     var sequence = 0;
-    var messageChunk = 0;
+    var messageChunk = 1;
     var splitCount = 0;
     var chunkTotal = matchesFound/75;
     chunkTotal = Math.round(chunkTotal);
     console.log("splitting msg, required chunks: "+chunkTotal);
     if (chunkTotal > 0){
     }
-    messageSplit[messageChunk]="message : 0\n"+stringArray[0];
+    messageSplit[messageChunk]=stringArray[0];
     //for how ever many there were words found
     for (var sequence = 1; sequence < matchesFound; sequence ++){
       //add the next word to a string in the array
@@ -796,13 +847,13 @@ function receivedMessage(event) {
         //otherwise, split the message into the next chunk
         splitCount=0;
         messageChunk++;
-        messageSplit[messageChunk]="message : "+messageChunk+"\n"+stringArray[sequence];
+        messageSplit[messageChunk]="message "+messageChunk+"\n"+stringArray[sequence];
       }
     }
     console.log("Delivering results");
     chunkTotal++;
     for (var i = 0; i < chunkTotal; i++){
-      console.log("delivering chunk "+i);
+      console.log("delivering chunk "+i+"contents: "+messageSplit[i]);
       sendTextMessage(sender, messageSplit[i]);
     }
     console.log("Results delivered");
@@ -839,7 +890,7 @@ function receivedMessage(event) {
   * Postback Event
   *
   * This event is called when a postback is tapped on a Structured Message.
-  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-received
+  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-receivedcountSY
   *
   */
   function receivedPostback(event) {
