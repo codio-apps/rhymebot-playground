@@ -852,7 +852,7 @@ function receivedMessage(event) {
           }
 
         }
-        console.log("Search complete. Searched "+i+" entries and found "+matchesFound+" rhyme(s).");
+        console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
         return RHYMEOUTPUT;
       } else {
         console.log("no matches found, I think");
