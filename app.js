@@ -663,7 +663,7 @@ function receivedMessage(event) {
       messageResponse = "I know "+inputArray.length+" words that rhyme, you asked for "+elements;
     } else {
       console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
-      if (inputArray.length=0){
+      if (inputArray.length==0){
           console.log("no rhymes found, abort");
       } else {
       var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
