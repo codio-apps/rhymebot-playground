@@ -362,7 +362,7 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("count")) {
           intent = "count";
         }
-        else if(lc_messageText.startsWith("random)")) {
+        else if(lc_messageText.startsWith("random")) {
           intent = "random";
         } else {
           //Do nothing, key is set to messageText
@@ -437,7 +437,7 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(6);
           searchWord = searchWord.toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
-          var v = countSyllables(senderID, dictionaryIndex);
+          var v = countSyllables(dictionaryIndex);
           if (v != 0) {
             messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
           } else {
@@ -632,7 +632,7 @@ function receivedMessage(event) {
           } else {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-            syllablesReq = countSyllables(senderID, dictionaryIndex);
+            syllablesReq = countSyllables(dictionaryIndex);
             console.log("countSyllables ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
@@ -671,7 +671,7 @@ function receivedMessage(event) {
           } else {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-            syllablesReq = countSyllables(senderID, dictionaryIndex);
+            syllablesReq = countSyllables(dictionaryIndex);
             console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
@@ -698,7 +698,7 @@ function receivedMessage(event) {
   }
 
   //function to calculate how many syllables there are in a word and return that number
-  function countSyllables(senderID, dictionaryIndex) {
+  function countSyllables(dictionaryIndex) {
     var syllablesFound = 0;
     var char = "";
     //call findTheLine to get the index
@@ -769,7 +769,7 @@ function receivedMessage(event) {
           //store the word in a temp string array
           arrayBin = CURRENTDICTIONARY[i].split("  ");
           //handle cutting length to specific number of syllables
-          var sylCount = countSyllables(senderID, i);
+          var sylCount = countSyllables(i);
           if (sylCount == syllableLength) {
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
