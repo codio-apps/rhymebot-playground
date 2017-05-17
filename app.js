@@ -716,7 +716,6 @@ function getWord(dictionaryIndex){
     var wordLength = searchWord.length;
     var syllablesFound = 0;
     var char = "";
-    var dictionaryIndex = -1;
     //call findTheLine to get the index
     console.log("dictionary index during countSyllables is "+dictionaryIndex);
     if (dictionaryIndex != -1) {
