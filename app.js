@@ -871,7 +871,7 @@ function receivedMessage(event) {
         }
       }
       console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-      console.log("matched ending: "+options[0]+" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+option[5]);
+      console.log("matched ending: "+options[0]+" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
       return RHYMEOUTPUT;
     } else {
       matchesFound=0;
