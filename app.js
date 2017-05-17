@@ -462,7 +462,14 @@ function receivedMessage(event) {
             var searchArray = searchWord.split(" ");
             console.log("split input array: "+searchArray);
             if (isNaN(searchArray[1])){
-              console.log("not a number");
+              console.log("No number specified, defaulting to 10");
+              var dictionaryIndex = findTheLine(senderID, searchWord);
+              if (dictionaryIndex != -1){
+                var randomString = randomRhymes(dictionaryIndex, 10);
+                messageResponse = messageResponse+randomString;
+              } else {
+                messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
+              }
             } else {
               console.log("is a number");
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
