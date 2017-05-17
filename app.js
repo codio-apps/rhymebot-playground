@@ -810,6 +810,7 @@ function receivedMessage(event) {
         var phonemeString = getPhonemes(dictionaryIndex);
         var arrayBin = new Array;
         matchesFound = 0;
+        RHYMEOUTPUT = [""];
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
         for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
@@ -842,7 +843,6 @@ function receivedMessage(event) {
                   //do nothing
                 } else {
                   //otherwise save the word to the output array
-                  console.log("is this getting triggered at all?");
                   RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
                   matchesFound++;
                 }
