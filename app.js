@@ -362,6 +362,10 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("count")) {
           intent = "count";
         }
+        // If the message starts with Rhyme, change the key to rhyme
+        else if(lc_messageText.startsWith("question")) {
+          intent = "question";
+        }
         else if(lc_messageText.startsWith("random")) {
           intent = "random";
         } else {
@@ -445,6 +449,11 @@ function receivedMessage(event) {
           }
           break;
 
+          case 'question':
+          sendQuestion(senderID);
+          break;
+
+          default:
           //handle the random command
           case 'random':
           searchWord = lc_messageText.slice(7);
@@ -1223,6 +1232,37 @@ function receivedMessage(event) {
             "content_type":"text",
             "title":"Drama",
             "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+          }
+        ]
+      }
+    };
+
+    callSendAPI(messageData);
+  }
+
+
+  function sendQuestion(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        text: "How HipHop are you??",
+        quick_replies: [
+          {
+            "content_type":"text",
+            "title":"Kinda",
+            "payload":"Kinda"
+          },
+          {
+            "content_type":"text",
+            "title":"Very",
+            "payload":"Very"
+          },
+          {
+            "content_type":"text",
+            "title":"HH",
+            "payload":"Hippidy Hop"
           }
         ]
       }
