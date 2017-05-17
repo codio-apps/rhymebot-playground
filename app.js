@@ -589,13 +589,10 @@ function receivedMessage(event) {
 
       }
     }
-<<<<<<< HEAD
     if(dictionaryIndex!=-1){
-=======
 
     if(dictionaryIndex != -1){
       return dictionaryIndex;
->>>>>>> 0e30f784072b170eb499464243ecb1a6fc1e5d4d
       console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
       return dictionaryIndex;
     } else {
