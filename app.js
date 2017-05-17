@@ -662,9 +662,6 @@ function receivedMessage(event) {
     var startingLine = 0;
     var dictionaryIndex = -1;
 
-    matchesFound = 0;
-    pronunciationsFound = 0;
-
     console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
