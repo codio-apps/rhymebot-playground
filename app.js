@@ -475,6 +475,7 @@ function receivedMessage(event) {
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               if (dictionaryIndex != -1){
                 var randomString = randomRhymes(dictionaryIndex, searchArray[1]);
+                  console.log("trying to send randomString: "+randomString);
                   splitMessage(senderID, randomString);
               } else {
                 messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -645,7 +646,7 @@ function receivedMessage(event) {
 
   //function to return 10 different random elements from an array
   function randomlyReturn(inputArray, elements){
-    var randArray = new Array;
+    var randArray = [""];
     console.log("inputArray contents at init: "+inputArray);
     randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
     var rBuffer = "";
