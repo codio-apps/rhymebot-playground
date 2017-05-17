@@ -464,7 +464,7 @@ function receivedMessage(event) {
             console.log("split input array: "+searchArray);
             if (isNaN(searchArray[1])){
               console.log("No number of results specified, defaulting to 10");
-              var dictionaryIndex = findTheLine(senderID, searchWord);
+              var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               if (dictionaryIndex != -1){
                 randomString = randomRhymes(dictionaryIndex, 10);
                   splitMessage(senderID, randomString);
@@ -809,7 +809,6 @@ function receivedMessage(event) {
         var theWord = getWord(dictionaryIndex);
         var phonemeString = getPhonemes(dictionaryIndex);
         var arrayBin = [""];
-        var excluded =0;
         matchesFound = 0;
         RHYMEOUTPUT = [""];
         //search the dictionary
@@ -833,7 +832,6 @@ function receivedMessage(event) {
                 //if the last element added to RHYMEOUTPUT is the same, skip it
                 if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
                   console.log("skipping "+arrayBin[0]);
-                  excluded++;
                 } else {
                   //otherwise, save it
                   RHYMEOUTPUT[matchesFound] = arrayBin[0];
@@ -853,7 +851,7 @@ function receivedMessage(event) {
           }
 
         }
-        console.log("Search complete. Searched "+i+" entries, excluded "+excluded+" and found "+matchesFound+" rhyme(s).");
+        console.log("Search complete. Searched "+i+" entries and found "+matchesFound+" rhyme(s).");
         return RHYMEOUTPUT;
       } else {
         console.log("no matches found, I think");
