@@ -362,17 +362,14 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("count")) {
           intent = "count";
         }
-<<<<<<< HEAD
         // If the message starts with Rhyme, change the key to rhyme
         else if(lc_messageText.startsWith("question")) {
           intent = "question";
         }
         else {
-=======
         else if(lc_messageText.startsWith("random")) {
           intent = "random";
         } else {
->>>>>>> a0ed259139a920e02660dab393c7f1d68071ae73
           //Do nothing, key is set to messageText
         }
 
@@ -453,20 +450,17 @@ function receivedMessage(event) {
           }
           break;
 
-<<<<<<< HEAD
           case 'question':
           sendQuestion(senderID);
           break;
 
           default:
-=======
           //handle the random command
           case 'random':
           searchWord = lc_messageText.slice(7);
           searchWord = searchWord.toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
           getRhymes(dictionaryIndex, 10);
->>>>>>> a0ed259139a920e02660dab393c7f1d68071ae73
 
           default:
           messageResponse = messageText + "?";
