@@ -464,7 +464,6 @@ function receivedMessage(event) {
             if (isNaN(searchArray[1])){
               console.log("No number of results specified, defaulting to 10");
               var dictionaryIndex = findTheLine(senderID, searchWord);
-              console.log("sending:"+senderID+searchWord);
               if (dictionaryIndex != -1){
                 var randomString = randomRhymes(dictionaryIndex, 10);
                   splitMessage(senderID, randomString);
@@ -474,7 +473,6 @@ function receivedMessage(event) {
             } else {
               console.log("Input array position 1 is a number");
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
-              console.log("sending:"+senderID+searchWord);
               if (dictionaryIndex != -1){
                 var randomString = randomRhymes(dictionaryIndex, searchArray[1]);
                   console.log("trying to send randomString: "+randomString);
@@ -681,6 +679,7 @@ function receivedMessage(event) {
 
   function randomRhymes(dictionaryIndex, elements){
     inputArray.length=0;
+    console.log("randomRhymes "+elements+" and "+getWord(dictionaryIndex);
     var arrayBuffer = getRhymes(dictionaryIndex);
     var randString = randomlyReturn(arrayBuffer, elements);
     return randString;
