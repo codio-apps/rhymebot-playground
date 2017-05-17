@@ -556,7 +556,7 @@ function receivedMessage(event) {
 
     messageText = messageText.toUpperCase();
     var letter = messageText.charAt(0);
-    if(!ALPHABET_ARRAY.Includes(letter)){
+    if(!ALPHABET_ARRAY.includes(letter)){
       return -1
     }
     var dictionaryIndex = -1;
