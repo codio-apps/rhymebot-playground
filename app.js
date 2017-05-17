@@ -598,7 +598,6 @@ function receivedMessage(event) {
     var keepLooking = true;
     var wordLength = searchWord.length;
     var startingLine = 0;
-    var processedPhonemes = "";
     var dictionaryIndex = -1;
     var syllablesReq = 0;
     matchesFound = 0;
@@ -619,9 +618,8 @@ function receivedMessage(event) {
           } else {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-            processedPhonemes = getPhonemes(CURRENTDICTIONARY[dictionaryIndex], wordLength);
-            console.log("triggering countSyllables from findTheRhyme: "+searchWord);
             syllablesReq = countSyllables(senderID, searchWord);
+            console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
             keepLooking = false;
