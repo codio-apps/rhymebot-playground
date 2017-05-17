@@ -454,11 +454,12 @@ function receivedMessage(event) {
           break;
           //handle the random command
           case 'random':
-          searchWord = lc_messageText.slice(7);
-          searchWord = searchWord.toUpperCase();
-          var dictionaryIndex = findTheLine(senderID, searchWord);
-          var randomString = randomRhymes(dictionaryIndex);
-          messageResponse = "ok "+randomString;
+            searchWord = lc_messageText.slice(7);
+            searchWord = searchWord.toUpperCase();
+            var dictionaryIndex = findTheLine(senderID, searchWord);
+            var randomString = randomRhymes(dictionaryIndex);
+            messageResponse = "ok "+randomString;
+          break;
 
           default:
           messageResponse = messageText + "?";
@@ -633,7 +634,7 @@ function receivedMessage(event) {
   function randomRhymes(dictionaryIndex){
     console.log("randomRhymes called");
     var testerray = getRhymes(dictionaryIndex);
-    randomlyReturn(testerray, 1);
+    randomlyReturn(testerray, 10);
   }
 
   //
