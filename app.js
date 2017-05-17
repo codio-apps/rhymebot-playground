@@ -710,6 +710,8 @@ function receivedMessage(event) {
               return RHYMEOUTPUT;
             }
           }
+        } else {
+          console.log("undefined obj found :"+CURRENTDICTIONARY[dictionaryIndex+1]);
         }
       }
   }
