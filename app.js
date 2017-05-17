@@ -634,10 +634,9 @@ function receivedMessage(event) {
     var rBuffer = "";
     if (inputArray.length > elements){
       for (var i=1; i < elements; i++){
-        console.log("word at pos "+i-1+" in array is "+randArray[i-1]);
         var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         //if the array already includes the newly randomised item
-        for (var j=0;randArray.includes(rand); j++){
+        for (var j=0; randArray.includes(rand); j++){
             rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
             console.log("randomised to the same word for the "+j+"th time, it was "+rand+". Rerolling");
         }
@@ -647,7 +646,13 @@ function receivedMessage(event) {
       console.log("Finished processing array, randomly returning: "+randArray);
       return randArray;
     } else {
-      console.log("less than "+elements+"rhymes found, returning all rhymes");
+      console.log("less than "+elements+"rhymes found, returning all rhymes in a random order");
+      for (var i=1; i < inputArray.length; i++) {
+        var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
+        for (var j=0; randArray.includes(rand); j++){
+            rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
+          }
+      }
       return inputArray;
     }
   }
