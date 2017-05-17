@@ -560,7 +560,7 @@ function receivedMessage(event) {
 
     console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
 
-    for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
+    for(var i = 1; ALPHABET_ARRAY[i][0] != letter; i++){
 
       console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
