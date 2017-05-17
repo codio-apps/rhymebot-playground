@@ -635,15 +635,12 @@ function receivedMessage(event) {
             //if this appears to be an alternative pronunciation, log it
             if (CURRENTDICTIONARY[dictionaryIndex+j].startsWith(theWord+"(")) {
               pronunciationsFound++;
-              console.log("additional pronunciation found");
             } else {
               //if it's the end of the pronunciations, stop and send phonemes for processing
               console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
               var syllablesReq = countSyllables(dictionaryIndex);
-              console.log("triggering searchPhonemes from findTheRhyme: " +dictionaryIndex+" "+syllablesReq);
               RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
               keepLooking = false;
-              console.log("Rhyme array"+RHYMEOUTPUT);
               return RHYMEOUTPUT;
             }
           }
@@ -664,24 +661,23 @@ function receivedMessage(event) {
       dictionaryIndex = findTheLine(senderID, searchWord);
       if (dictionaryIndex != -1) {
         RHYMEOUTPUT = getRhymes(dictionaryIndex);
-        console.log("getting to this bit, where pfound is "+pronunciationsFound+" and mfound is "+matchesFound);
-      //if we didnt' find the word in the dictionary at all
-      if (pronunciationsFound == 0) {
-        messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
-        //otherwise
-      }  else {
-        if (matchesFound == 0) {
-          messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
-        } else {
-          //search the dictionary for matching phoneme endings
-          messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
-          splitMessage(senderID, RHYMEOUTPUT);
+        //if we didnt' find the word in the dictionary at all
+        if (pronunciationsFound == 0) {
+          messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
+          //otherwise
+        }  else {
+          if (matchesFound == 0) {
+            messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
+          } else {
+            //search the dictionary for matching phoneme endings
+            messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
+            splitMessage(senderID, RHYMEOUTPUT);
+          }
         }
+        //now turn off the typer
+        sendTypingOff(senderID);
       }
-      //now turn off the typer
-      sendTypingOff(senderID);
     }
-  }
 
     //function to calculate how many syllables there are in a word and return that number
     function countSyllables(dictionaryIndex) {
@@ -787,7 +783,7 @@ function receivedMessage(event) {
         console.log("Search complete. Found: "+matchesFound+" rhyme(s).");
         return RHYMEOUTPUT;
       } else {
-        console.log("no matches found i think");
+        console.log("no matches found, I think");
       }
     }
 
@@ -795,14 +791,11 @@ function receivedMessage(event) {
     //the 75 word limit is hardcoded for now
     function splitMessage(sender, stringArray){
       var messageSplit = new Array;
-      var sequence = 0;
       var messageChunk = 1;
       var splitCount = 0;
       var chunkTotal = matchesFound/75;
       chunkTotal = Math.round(chunkTotal);
       console.log("splitting msg, required chunks: "+chunkTotal);
-      if (chunkTotal > 0){
-      }
       messageSplit[messageChunk]=stringArray[0];
       //for how ever many there were words found
       for (var sequence = 1; sequence < matchesFound; sequence ++){
@@ -823,7 +816,7 @@ function receivedMessage(event) {
       console.log("Delivering results");
       chunkTotal++;
       for (var i = 1; i < chunkTotal; i++){
-        console.log("delivering chunk "+i+"contents: "+messageSplit[i]);
+        console.log("delivering chunk "+i+" contents: "+messageSplit[i]);
         sendTextMessage(sender, messageSplit[i]);
       }
       console.log("Results delivered");
