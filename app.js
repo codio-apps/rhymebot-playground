@@ -635,7 +635,7 @@ function receivedMessage(event) {
             var syllablesReq = countSyllables(dictionaryIndex);
             console.log("countSyllables ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
-            RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             keepLooking = false;
           }
         }
@@ -674,7 +674,7 @@ function receivedMessage(event) {
             syllablesReq = countSyllables(dictionaryIndex);
             console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
-            RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             keepLooking = false;
           }
         }
@@ -756,7 +756,7 @@ function receivedMessage(event) {
   }
 
   //function to search the dictionary for phonemeString matches and return a list
-  function searchPhonemes(senderID, dictionaryIndex, syllableLength) {
+  function searchPhonemes(dictionaryIndex, syllableLength) {
     if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
       var phonemeString = getPhonemes(dictionaryIndex);
