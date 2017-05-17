@@ -644,8 +644,8 @@ function receivedMessage(event) {
         randArray[i] = rand;
         console.log("randArray["+i+"] is "+rand);
       }
-      console.log("Finished processing array, randomly returning: "+rand);
-      return rand;
+      console.log("Finished processing array, randomly returning: "+randArray);
+      return randArray;
     } else {
       console.log("less than "+elements+"rhymes found, returning all rhymes");
       return inputArray;
