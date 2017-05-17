@@ -867,7 +867,7 @@ function receivedMessage(event) {
       var chunkTotal = matchesFound/75;
       chunkTotal = Math.round(chunkTotal);
       console.log("splitMessage, stringArray received is "+stringArray);
-      console.log("splitting msg, required chunks: "+chunkTotal);
+      console.log("splitting msg, required chunks: "+chunkTotal+" because matchesFound: "+matchesFound);
       messageSplit[messageChunk]=stringArray[0];
       //for how ever many there were words found
       for (var sequence = 1; sequence < matchesFound; sequence ++){
