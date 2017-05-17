@@ -567,7 +567,7 @@ function receivedMessage(event) {
     console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
     console.log("THE LETTER IS: " + ALPHABET_ARRAY[i][0] + " AND THE VALUE IS: " + ALPHABET_ARRAY[i][1])
 
-    var letterLeftIndex = ALPHABET_ARRAY[i-1][1];
+    var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
     var letterRightIndex = ALPHABET_ARRAY[i][1];
     console.log(letterLeftIndex + " ALL THE WAY TO " + letterRightIndex);
     return letterLeftIndex;
