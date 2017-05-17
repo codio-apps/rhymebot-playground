@@ -556,6 +556,9 @@ function receivedMessage(event) {
 
     messageText = messageText.toUpperCase();
     var letter = messageText.charAt(0);
+    if(!ALPHABET_ARRAY.Includes(letter)){
+      return -1
+    }
     var dictionaryIndex = -1;
 
     console.log("Starting loop from " + ALPHABET_ARRAY[0][0]);
@@ -564,6 +567,8 @@ function receivedMessage(event) {
 
       console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
+
+
 
     if(letter = "A"){
     var letterLeftIndex = 0;
