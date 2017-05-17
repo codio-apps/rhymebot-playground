@@ -432,7 +432,8 @@ function receivedMessage(event) {
           case 'count':
           searchWord = lc_messageText.slice(6);
           searchWord = searchWord.toUpperCase();
-          var v = countSyllables(senderID, searchWord);
+          var dictionaryIndex = findTheLine(senderID, searchWord);
+          var v = countSyllables(senderID, dictionaryIndex);
           if (v != 0) {
             messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
           } else {
@@ -594,7 +595,7 @@ function receivedMessage(event) {
 function getWord(dictionaryIndex){
   if (dictionaryIndex != -1) {
     var gotString = CURRENTDICTIONARY[dictionaryIndex];
-    console.log("getWord: received string: "gotString);
+    console.log("getWord: received string: "+gotString);
     var theWord = gotString.split(" ");
     console.log("theWord now: "+theWord);
     theWord = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
@@ -662,7 +663,6 @@ function getWord(dictionaryIndex){
     if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
       var phonemeString = getPhonemes(theWord, wordLength);
-
       console.log("searchPhonemes called for: "+phonemeString);
       var arrayBin = new Array;
       //search the dictionary
@@ -712,13 +712,13 @@ function getWord(dictionaryIndex){
   }
 
   //function to calculate how many syllables there are in a word and return that number
-  function countSyllables(senderID, searchWord) {
+  function countSyllables(senderID, dictionaryIndex) {
     var wordLength = searchWord.length;
     var syllablesFound = 0;
     var char = "";
     var dictionaryIndex = -1;
     //call findTheLine to get the index
-    dictionaryIndex = findTheLine(senderID, searchWord);
+    dictionaryIndex = findTheLine(senderID, dictionaryIndex);
     console.log("dictionary index during countSyllables is "+dictionaryIndex);
     if (dictionaryIndex != -1) {
       //trim off the spelling and spacing from the string
@@ -843,7 +843,7 @@ function getWord(dictionaryIndex){
   * Postback Event
   *
   * This event is called when a postback is tapped on a Structured Message.
-  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-received
+  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-receivedcountSY
   *
   */
   function receivedPostback(event) {
