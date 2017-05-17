@@ -827,7 +827,7 @@ function receivedMessage(event) {
       var iX = 0;
       //search the dictionary
       console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-      for (iX = 0; iX < CURRENTDICTIONARY.length; iX++) {
+      for (iX = 0; iX < CURRENTDICTIONARY.length) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
           //store the word in a temp string array
@@ -869,6 +869,7 @@ function receivedMessage(event) {
             options[5]++;
           }
         }
+        iX++;
       }
       console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
       console.log("matched ending: "+options[0]+" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
