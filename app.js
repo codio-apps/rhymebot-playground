@@ -823,6 +823,7 @@ function receivedMessage(event) {
         var arrayBin = [""];
         RHYMEOUTPUT = [""];
         matchesFound = 0;
+        var options = [ 0, 0, 0, 0, 0 ];
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
         for (var iX = 0; iX < CURRENTDICTIONARY.length; iX++) {
@@ -833,8 +834,10 @@ function receivedMessage(event) {
             //handle cutting length to specific number of syllables
             var sylCount = countSyllables(iX);
             if (sylCount == syllableLength) {
+              options[1]++;
               //if the found word ends in ")"
               if (arrayBin[0].endsWith(")")) {
+                options[2]++;
                 console.log("removing brackets from "+arrayBin[0]);
                 //add the word to the list, but remove the brackets from the spelling info
                 var tmpLen = arrayBin[0].length-3;
@@ -842,8 +845,10 @@ function receivedMessage(event) {
                 arrayBin[0] = arrayBin[0].toLowerCase();
                 //if the last element added to RHYMEOUTPUT is the same, skip it
                 if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+                  options[3]++;
                   console.log("skipping "+arrayBin[0]);
                 } else {
+                  options[4]++;
                   //otherwise, save it
                   RHYMEOUTPUT[matchesFound] = arrayBin[0];
                   matchesFound++;
@@ -865,6 +870,7 @@ function receivedMessage(event) {
         console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
         return RHYMEOUTPUT;
       } else {
+        options[0]++;
         matchesFound=0;
         console.log("no matches found, I think");
       }
