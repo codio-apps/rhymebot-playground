@@ -611,6 +611,7 @@ function receivedMessage(event) {
           //if this appears to be an alternative pronunciation, log it
           if (CURRENTDICTIONARY[dictionaryIndex+j].startsWith(searchWord+"(")) {
             pronunciationsFound++;
+            console.log("additional pronunciation found");
           } else {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
@@ -692,7 +693,7 @@ function receivedMessage(event) {
     if (dictionaryIndex != -1) {
       console.log("Word found in dictionary");
       //trim off the spelling and spacing from the string
-      var tempPHONEMES = CURRENTDICTIONARY[i].slice(wordLength+2);
+      var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
       console.log("phoneme data now: "+PHONEMES);
