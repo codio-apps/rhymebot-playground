@@ -556,7 +556,7 @@ function receivedMessage(event) {
 
     messageText = messageText.toUpperCase();
     var letter = messageText.charAt(0);
-    var wordFound = false;
+    var dictionaryIndex = -1;
 
     console.log("Starting loop from " + ALPHABET_ARRAY[0][0]);
 
@@ -573,16 +573,15 @@ function receivedMessage(event) {
     for (var j = letterLeftIndex; j < letterRightIndex; j++){
       if (CURRENTDICTIONARY[j].startsWith(messageText + "  ")){
 
-        console.log("WE FOUND THE WORD ON LINE " + j);
+        console.log("WE FOUND THE WORD ON LINE " + j+"... saving position");
         console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
-        wordFound = true;
+        dictionaryIndex = j;
 
       }
     }
-
     if(wordFound){
-      return j;
-      console.log("returning: "+j+". Lookup index ref: "+CURRENTDICTIONARY[j]);
+      return dictionaryIndex;
+      console.log("returning: "+j+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
     } else {
       console.log("word not found in dictionary, returning: -1");
       return -1;
