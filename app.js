@@ -622,7 +622,7 @@ function receivedMessage(event) {
 
   //
   function getRhymes(dictionaryIndex){
-    console.log("calling getRhymes on input: "+dictionaryIndex+" \ "+resultsReq);
+    console.log("calling getRhymes on input: "+dictionaryIndex);
     var pronunciationsFound = 0;
     var keepLooking = true;
     var theWord = getWord(dictionaryIndex);
@@ -646,12 +646,12 @@ function receivedMessage(event) {
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             keepLooking = false;
+            console.log("made it to the end: "+RHYMEOUTPUT);
+            return RHYMEOUTPUT;
           }
         }
       }
     }
-    console.log("made it to the end: "+RHYMEOUTPUT);
-    return RHYMEOUTPUT;
   }
 
 
