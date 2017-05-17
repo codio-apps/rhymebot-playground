@@ -518,7 +518,7 @@ function receivedMessage(event) {
       //for each line in the file
       for (var i = 0; i < dictionary_length; i++) {
         //establish which letter it is
-        for (var j = 0; j < alphabetLength; j++) {
+        for (var j = 1; j < alphabetLength; j++) {
           if(CURRENTDICTIONARY[i].startsWith(alphabet[j])){
             //log the position of the last instance of letter in file
             ALPHABET_ARRAY[j] = [CURRENTDICTIONARY[i].charAt(0), i];
@@ -560,7 +560,7 @@ function receivedMessage(event) {
 
     console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
 
-    for(var i = 1; ALPHABET_ARRAY[i][0] != letter; i++){
+    for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
 
       console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
