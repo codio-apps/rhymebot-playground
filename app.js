@@ -548,7 +548,7 @@ function receivedMessage(event) {
 
     // FOR testing purposes
     //var word = "QAPPLE";
-    console.log("findTheLine triggered on "+searchWord));
+    console.log("findTheLine triggered on "+searchWord);
     searchWord = searchWord.toUpperCase();
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
