@@ -460,12 +460,13 @@ function receivedMessage(event) {
             searchWord = lc_messageText.slice(7);
             searchWord = searchWord.toUpperCase();
             var searchArray = searchWord.split(" ");
+            var randomString = [""];
             console.log("split input array: "+searchArray);
             if (isNaN(searchArray[1])){
               console.log("No number of results specified, defaulting to 10");
               var dictionaryIndex = findTheLine(senderID, searchWord);
               if (dictionaryIndex != -1){
-                var randomString = randomRhymes(dictionaryIndex, 10);
+                randomString = randomRhymes(dictionaryIndex, 10);
                   splitMessage(senderID, randomString);
               } else {
                 messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -474,8 +475,7 @@ function receivedMessage(event) {
               console.log("Input array position 1 is a number");
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               if (dictionaryIndex != -1){
-                var randomString = randomRhymes(dictionaryIndex, searchArray[1]);
-                  console.log("trying to send randomString: "+randomString);
+                randomString = randomRhymes(dictionaryIndex, searchArray[1]);
                   splitMessage(senderID, randomString);
               } else {
                 messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
