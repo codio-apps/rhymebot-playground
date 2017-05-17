@@ -574,18 +574,13 @@ function receivedMessage(event) {
       if (CURRENTDICTIONARY[j].startsWith(messageText + "  ")){
 
         console.log("WE FOUND THE WORD ON LINE " + j);
+        console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
 
     }
 
   }
 }
 
-
-  function findTheWord(word){
-
-
-
-  }
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
