@@ -34,8 +34,8 @@ var SEARCHSTRING = new Array();
 var OUTPUTSTRING = new Array();
 var PHONEMES = new Array();
 var ALPHABET_ARRAY = new Array();
-var RHYMEOUTPUT = new Array;
-var inputArray = newArray;
+var RHYMEOUTPUT = new Array();
+var inputArray = new Array();
 
 
 //file buffer
@@ -641,7 +641,7 @@ function receivedMessage(event) {
         //if the array already includes the newly randomised item, re-roll
         for (var j=0; randArray.includes(rand); j++){
             rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
-            console.log("randomised to the same word for the "+j+"th time, it was "+rand+". Rerolling");
+            console.log("randomised to a duplicate word, it was "+rand+". Rerolling");
         }
         randArray[i] = rand;
         console.log("randArray["+i+"] is "+randArray[i]);
