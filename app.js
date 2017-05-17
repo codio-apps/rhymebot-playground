@@ -464,7 +464,7 @@ function receivedMessage(event) {
             if (searchArray[1].isNaN()){
               console.log("not a number");
             } else {
-              console.log"(is a number");
+              console.log("is a number");
               var dictionaryIndex = findTheLine(senderID, searchWord);
               if (dictionaryIndex != -1){
                 var randomString = randomRhymes(dictionaryIndex, searchArray[1]);
