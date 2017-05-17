@@ -596,9 +596,7 @@ function receivedMessage(event) {
 function getWord(dictionaryIndex){
   if (dictionaryIndex != -1) {
     var gotString = CURRENTDICTIONARY[dictionaryIndex];
-    console.log("getWord called. Line in dictionary retrieved: "+gotString);
     var theWord = gotString.split(" ");
-    console.log("Extracted word: "+theWord[0]);
   }
   return theWord[0];
 }
@@ -657,13 +655,12 @@ function getWord(dictionaryIndex){
 
   //function to calculate how many syllables there are in a word and return that number
   function countSyllables(senderID, dictionaryIndex) {
-    var wordLength = searchWord.length;
     var syllablesFound = 0;
     var char = "";
     //call findTheLine to get the index
     if (dictionaryIndex != -1) {
       //trim off the spelling and spacing from the string
-      var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
+      var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(searchWord.length+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
@@ -683,11 +680,9 @@ function getWord(dictionaryIndex){
   //function to take in a word and spit out the phonemes
   function getPhonemes(dictionaryIndex){
     var theLine = CURRENTDICTIONARY[dictionaryIndex];
-    console.log("getPhonemes called on "+theLine);
-    var wordLength = getWord(dictionaryIndex).length;
     var phonemeString ="";
     //trim off the spelling and spacing from the string
-    var tempPHONEMES = theLine.slice(wordLength+2);
+    var tempPHONEMES = theLine.slice(getWord(dictionaryIndex).length+2);
     //for the found word, make an array containing each phoneme sound
     var PHONEMES = tempPHONEMES.split(" ");
     //detect the first letter of phonemes sounds until you find a vowel
@@ -720,7 +715,6 @@ function getWord(dictionaryIndex){
   function searchPhonemes(senderID, dictionaryIndex, syllableLength) {
     if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
-      var wordLength = theWord.length
       var phonemeString = getPhonemes(dictionaryIndex);
       console.log("searchPhonemes called for: "+phonemeString);
       var arrayBin = new Array;
@@ -733,7 +727,6 @@ function getWord(dictionaryIndex){
           arrayBin = CURRENTDICTIONARY[i].split("  ");
           //handle cutting length to specific number of syllables
           var sylCount = countSyllables(senderID, i);
-          console.log("match found, syllable count: "+sylCount);
           if (sylCount == syllableLength) {
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
