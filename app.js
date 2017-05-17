@@ -441,11 +441,7 @@ function receivedMessage(event) {
           break;
 
           default:
-
           messageResponse = messageText + "?";
-          findTheLine(senderID, messageText);
-
-
         }
         if(instant_reply = true){
           sendTextMessage(senderID, messageResponse);
@@ -552,8 +548,8 @@ function receivedMessage(event) {
 
     // FOR testing purposes
     //var word = "QAPPLE";
+    console.log("findTheLine triggered :")
     console.log(searchWord);
-
     searchWord = searchWord.toUpperCase();
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
