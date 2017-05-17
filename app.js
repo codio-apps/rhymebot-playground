@@ -595,10 +595,9 @@ function receivedMessage(event) {
 function getWord(dictionaryIndex){
   if (dictionaryIndex != -1) {
     var gotString = CURRENTDICTIONARY[dictionaryIndex];
-    console.log("getWord: received string: "+gotString);
+    console.log("getWord called. Line in dictionary retrieved: "+gotString);
     var theWord = gotString.split(" ");
-    console.log("theWord now: "+theWord);
-    console.log("theWord now: "+theWord[0]);
+    console.log("Extracted word: "+theWord[0]);
   }
   return theWord[0];
 }
@@ -659,6 +658,7 @@ function getWord(dictionaryIndex){
   function searchPhonemes(senderID, dictionaryIndex, stringLength) {
     if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
+      wordLength = theWord.length;
       var phonemeString = getPhonemes(theWord, wordLength);
       console.log("searchPhonemes called for: "+phonemeString);
       var arrayBin = new Array;
