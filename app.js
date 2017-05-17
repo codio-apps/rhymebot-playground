@@ -665,16 +665,17 @@ function receivedMessage(event) {
 
 
   function randomRhymes(dictionaryIndex){
-    inputArray = [""];
+    inputArray.length=0;
     console.log("randomRhymes called on array of size: "+inputArray.length);
     var arrayBuffer = getRhymes(dictionaryIndex);
-    console.log("arrayBuffer is "arrayBuffer);
+    console.log("arrayBuffer is "+arrayBuffer);
     var randString =randomlyReturn(arrayBuffer, 10);
     return randString;
   }
 
   //
   function getRhymes(dictionaryIndex){
+    RHYMEOUTPUT.length=0;
     console.log("calling getRhymes on input: "+dictionaryIndex);
     pronunciationsFound = 0;
       var keepLooking = true;
