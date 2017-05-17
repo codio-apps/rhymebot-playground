@@ -579,9 +579,9 @@ function receivedMessage(event) {
 
       }
     }
-    if(wordFound){
+    if(dictionaryIndex!=-1){
       return dictionaryIndex;
-      console.log("returning: "+j+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
+      console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
     } else {
       console.log("word not found in dictionary, returning: -1");
       return -1;
