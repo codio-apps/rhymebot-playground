@@ -605,7 +605,7 @@ function receivedMessage(event) {
     matchesFound = 0;
     pronunciationsFound = 0;
 
-
+    console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
       pronunciationsFound = 1;
@@ -622,6 +622,7 @@ function receivedMessage(event) {
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
             processedPhonemes = getPhonemes(CURRENTDICTIONARY[dictionaryIndex], wordLength);
             console.log("processedPhonemes = "+processedPhonemes);
+            console.log("calculating syllables using findTheLine: "+searchWord);
             syllablesReq = countSyllables(senderID, searchWord);
             RHYMEOUTPUT = searchPhonemes(senderID, processedPhonemes, syllablesReq);
             keepLooking = false;
