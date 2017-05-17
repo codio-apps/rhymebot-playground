@@ -846,7 +846,7 @@ function receivedMessage(event) {
               arrayBin[0] = arrayBin[0].slice(0, tmpLen);
               arrayBin[0] = arrayBin[0].toLowerCase();
               //if the last element added to RHYMEOUTPUT is the same, skip it
-              if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+            } else if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
                 options[3]++;
                 console.log("skipping "+arrayBin[0]);
               } else {
@@ -869,7 +869,6 @@ function receivedMessage(event) {
             options[5]++;
           }
         }
-        iX--;
       }
       console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
       console.log("attempted: "+options[6]+" matched ending: "+options[0]+" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
