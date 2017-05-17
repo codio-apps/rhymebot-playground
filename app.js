@@ -710,6 +710,7 @@ function receivedMessage(event) {
     var dictionaryIndex = -1;
     //call findTheLine to get the index
     dictionaryIndex = findTheLine(senderID, searchWord);
+    console.log("dictionary index during countSyllables is "+dictionaryIndex);
     if (dictionaryIndex != -1) {
       //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
