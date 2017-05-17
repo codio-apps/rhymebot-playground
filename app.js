@@ -650,11 +650,8 @@ function receivedMessage(event) {
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             keepLooking = false;
-<<<<<<< HEAD
             console.log("Rhyme array"+RHYMEOUTPUT);
             return RHYMEOUTPUT;
-=======
->>>>>>> 1adb6b991930c0f8ed1e498f95bbdc01fd50008d
           }
         }
       }
@@ -669,13 +666,10 @@ function receivedMessage(event) {
     var keepLooking = true;
     var wordLength = searchWord.length;
     var startingLine = 0;
-<<<<<<< HEAD
-=======
     var dictionaryIndex = -1;
     var syllablesReq = 0;
     matchesFound = 0;
     pronunciationsFound = 0;
->>>>>>> 1adb6b991930c0f8ed1e498f95bbdc01fd50008d
 
     console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(senderID, searchWord);
