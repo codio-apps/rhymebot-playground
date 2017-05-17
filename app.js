@@ -663,6 +663,9 @@ function receivedMessage(event) {
       messageResponse = "I know "+inputArray.length+" words that rhyme, you asked for "+elements;
     } else {
       console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
+      if (inputArray.length=0){
+          console.log("no rhymes found, abort");
+      } else {
       var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
       for (var i=0; i < inputArray.length; i++) {
         //if the array already includes the newly randomised item, re-roll
@@ -671,6 +674,7 @@ function receivedMessage(event) {
         }
         randArray[i] = rand;
       }
+    }
       messageResponse = "I only know "+inputArray.length+" words that rhyme, here they are:"
     }
     return randArray;
