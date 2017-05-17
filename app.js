@@ -591,6 +591,19 @@ function receivedMessage(event) {
     }
   }
 
+function getWord(dictionaryIndex){
+  if (dictionaryIndex != -1) {
+    var gotString = CURRENTDICTIONARY[dictionaryIndex];
+    console.log("getWord: received string: "gotString);
+    var theWord = gotString.split(" ");
+    console.log("theWord now: "+theWord);
+    theWord = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
+    console.log("theWord now: "+theWord);
+    //for the found word, make an array containing each phoneme sound
+    PHONEMES = tempPHONEMES.split(" ")
+  }
+  return theWord;
+}
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
@@ -647,9 +660,7 @@ function receivedMessage(event) {
   //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(senderID, dictionaryIndex, stringLength) {
     if (dictionaryIndex != -1) {
-      var theWord = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
-      var wordLength = theWord.length;
-      console.log("dictionaryIndex "+dictionaryIndex+". theWord "+theWord+". wordLength "+wordLength);
+      var theWord = getWord(dictionaryIndex);
       var phonemeString = getPhonemes(theWord, wordLength);
 
       console.log("searchPhonemes called for: "+phonemeString);
