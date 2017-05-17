@@ -658,7 +658,7 @@ function getWord(dictionaryIndex){
   function searchPhonemes(senderID, dictionaryIndex, stringLength) {
     if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
-      wordLength = theWord.length;
+      var wordLength = theWord.length
       var phonemeString = getPhonemes(theWord, wordLength);
       console.log("searchPhonemes called for: "+phonemeString);
       var arrayBin = new Array;
