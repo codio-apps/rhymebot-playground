@@ -671,7 +671,7 @@ function receivedMessage(event) {
     console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
-      console.log("getting to this bit, where pfound is "+pronunciationsFound" and mfound is"+matchesFound);
+      console.log("getting to this bit, where pfound is "+pronunciationsFound+" and mfound is"+matchesFound);
       RHYMEOUTPUT = getRhymes(dictionaryIndex);
       pronunciationsFound = 1;
       //check for multiple pronunciations in dictionary file
