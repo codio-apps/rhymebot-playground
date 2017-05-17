@@ -679,7 +679,6 @@ function receivedMessage(event) {
 
   function randomRhymes(dictionaryIndex, elements){
     inputArray.length=0;
-    console.log("randomRhymes "+elements+" and "+getWord(dictionaryIndex));
     var arrayBuffer = getRhymes(dictionaryIndex);
     var randString = randomlyReturn(arrayBuffer, elements);
     return randString;
@@ -820,20 +819,23 @@ function receivedMessage(event) {
             arrayBin = CURRENTDICTIONARY[i].split("  ");
             //handle cutting length to specific number of syllables
             var sylCount = countSyllables(i);
+            console.log("sylCount is "+sylCount);
             if (sylCount == syllableLength) {
               //if the found word ends in ")"
               if (arrayBin[0].endsWith(")")) {
+                console.log("removing brackets from "+arrayBin[0]);
                 //add the word to the list, but remove the brackets from the spelling info
                 var tmpLen = arrayBin[0].length-3;
                 arrayBin[0] = arrayBin[0].slice(0, tmpLen);
                 arrayBin[0] = arrayBin[0].toLowerCase()
                 //if the last element added to RHYMEOUTPUT is the same, skip it
                 if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-                  console.log("this?");
+                  console.log("skipping "+arrayBin[0]);
                 } else {
                   //otherwise, save it
                   RHYMEOUTPUT[matchesFound] = arrayBin[0];
                   matchesFound++;
+                  console.log("added to list "+arrayBin[0])
                 }
               } else {
                 //make sure it's not the same as searchWord
