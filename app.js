@@ -450,7 +450,7 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(7);
           searchWord = searchWord.toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
-          randomRhymes(dictionaryIndex, 10);
+          getRhymes(dictionaryIndex, 10);
 
           default:
           messageResponse = messageText + "?";
@@ -613,8 +613,8 @@ function receivedMessage(event) {
   }
 
   //
-  function randomRhymes(dictionaryIndex, resultsReq){
-    console.log("calling randomRhymes on input: "+dictionaryIndex+" \ "+resultsReq);
+  function getRhymes(dictionaryIndex, resultsReq){
+    console.log("calling getRhymes on input: "+dictionaryIndex+" \ "+resultsReq);
     var pronunciationsFound = 0;
     var keepLooking = true;
     var theWord = getWord(dictionaryIndex);
@@ -633,7 +633,7 @@ function receivedMessage(event) {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
             syllablesReq = countSyllables(senderID, dictionaryIndex);
-            console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
+            console.log("countSyllables ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
             keepLooking = false;
@@ -837,7 +837,7 @@ function receivedMessage(event) {
     console.log("Delivering results");
     chunkTotal++;
     for (var i = 0; i < chunkTotal; i++){
-      console.log("delivering chunk "+i);
+      console.log("delivering chunk "+i+"contents: "+messageSplit[i]);
       sendTextMessage(sender, messageSplit[i]);
     }
     console.log("Results delivered");
