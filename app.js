@@ -705,7 +705,7 @@ function receivedMessage(event) {
         pronunciationsFound = 1;
         //check for multiple pronunciations in dictionary file
         //as long as the next item isn't undefined, examine it
-        if (typeof CURRENTDICTIONARY[dictionaryIndex+1] !== "undefined") {
+        if (typeof CURRENTDICTIONARY[dictionaryIndex] !== "undefined") {
           for (var j=1; keepLooking==true; j++) {
             //if this appears to be an alternative pronunciation, log it
             if (CURRENTDICTIONARY[dictionaryIndex+j].startsWith(theWord+"(")) {
@@ -721,7 +721,7 @@ function receivedMessage(event) {
             }
           }
         } else {
-          console.log("undefined obj found :"+CURRENTDICTIONARY[dictionaryIndex+1]);
+          console.log("undefined obj found :"+CURRENTDICTIONARY[dictionaryIndex]);
         }
       }
   }
@@ -822,8 +822,8 @@ function receivedMessage(event) {
         var theWord = getWord(dictionaryIndex);
         var phonemeString = getPhonemes(dictionaryIndex);
         var arrayBin = [""];
-        var matchesFound = 0;
         RHYMEOUTPUT = [""];
+        matchesFound = 0;
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
         for (var iX = 0, len = CURRENTDICTIONARY.length; iX < len; iX++) {
@@ -866,6 +866,7 @@ function receivedMessage(event) {
         console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
         return RHYMEOUTPUT;
       } else {
+        matchesFound=0;
         console.log("no matches found, I think");
       }
     }
