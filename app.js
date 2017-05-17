@@ -642,6 +642,7 @@ function receivedMessage(event) {
             console.log("randomised to the same word for the "+j+"th time, it was "+rand+". Rerolling");
         }
         randArray[i] = rand;
+        console.log("randArray["+i+"] is "+rand);
       }
       console.log("Finished processing array, randomly returning: "+rand);
       return rand;
