@@ -869,7 +869,7 @@ function receivedMessage(event) {
       console.log("splitMessage, stringArray received is "+stringArray);
       console.log("splitting msg, required chunks: "+chunkTotal+" because matchesFound: "+matchesFound);
       messageSplit[messageChunk]=stringArray[0];
-      console.log("msmc"+messageSplit[messageChunk]);
+      console.log("msmc "+messageSplit[messageChunk]);
       //for how ever many there were words found
       for (var sequence = 1; sequence < matchesFound; sequence ++){
         //add the next word to a string in the array
@@ -879,11 +879,13 @@ function receivedMessage(event) {
           messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
           //increase the split number
           splitCount++;
+          console.log("added AAAA "+stringArray[sequence]);
         } else {
           //otherwise, split the message into the next chunk
           splitCount=0;
           messageChunk++;
           messageSplit[messageChunk]="message "+messageChunk+"\n"+stringArray[sequence];
+          console.log("added BBBB "+stringArray[sequence]);
         }
       }
       console.log("Delivering results");
