@@ -734,7 +734,7 @@ function receivedMessage(event) {
       dictionaryIndex = findTheLine(senderID, searchWord);
       if (dictionaryIndex != -1) {
         RHYMEOUTPUT = getRhymes(dictionaryIndex);
-        console.log("pFound "+pronunciationsFound)+". mFound "+matchesFound);
+        console.log("pFound "+pronunciationsFound+". mFound "+matchesFound);
         //if we didnt' find the word in the dictionary at all
         if (pronunciationsFound == 0) {
           messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
