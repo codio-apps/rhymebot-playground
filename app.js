@@ -556,7 +556,7 @@ function receivedMessage(event) {
 
     messageText = messageText.toUpperCase();
     var letter = messageText.charAt(0);
-    if(!ALPHABET_ARRAY.includes(letter)){
+    if(!alphabet.includes(letter)){
       console.log("That is not one of the 26 chosen characters, Jedi - Returning: -1");
       return -1
     }
@@ -591,7 +591,8 @@ function receivedMessage(event) {
 
       }
     }
-    if(dictionaryIndex!=-1){
+
+    if(dictionaryIndex != -1){
       return dictionaryIndex;
       console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
     } else {
