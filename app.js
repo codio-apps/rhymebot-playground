@@ -789,7 +789,7 @@ function receivedMessage(event) {
 
     //function to split an array of words into 75-word chunks and send them
     //the 75 word limit is hardcoded for now
-    function splitMessage(sender, stringArray){
+    function splitMessage(senderID, stringArray){
       var messageSplit = new Array;
       var messageChunk = 1;
       var splitCount = 0;
@@ -815,9 +815,9 @@ function receivedMessage(event) {
       }
       console.log("Delivering results");
       chunkTotal++;
-      for (var i = 1; i < chunkTotal; i++){
+      for (var i = 0; i < chunkTotal; i++){
         console.log("delivering chunk "+i+" contents: "+messageSplit[i]);
-        sendTextMessage(sender, messageSplit[i]);
+        sendTextMessage(senderID, messageSplit[i]);
       }
       console.log("Results delivered");
     }
