@@ -621,7 +621,11 @@ function receivedMessage(event) {
 
   //function to return 10 random elements from an array
   function randomlyReturn(inputArray, elements){
-    var rand = inputArray[Math.floor(Math.random() * inputArray.length)];
+  var rand = inputArray[Math.floor(Math.random() * inputArray.length)];
+    for (var i=0; i < elements; i++){
+      var rand = rand+", "+inputArray[Math.floor(Math.random() * inputArray.length)];
+    }
+    messageResponse = "Here's "+elements+" random rhyme(s): "+rand;
     console.log("Randomly returning: "+rand);
   }
 
