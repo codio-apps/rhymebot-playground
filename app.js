@@ -670,7 +670,7 @@ function getWord(dictionaryIndex){
           //store the word in a temp string
           arrayBin = CURRENTDICTIONARY[i].split("  ");
           //handle cutting length to specific number of syllables
-          var sylCount = countSyllables(senderID, dictionaryIndex);
+          var sylCount = countSyllables(senderID, i);
           if (sylCount == syllableLength) {
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
@@ -727,7 +727,6 @@ function getWord(dictionaryIndex){
           syllablesFound++;
         }
       }
-      console.log("Returning results of countSyllables")
       return syllablesFound;
     } else {
       return 0;
