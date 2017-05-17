@@ -813,7 +813,7 @@ function receivedMessage(event) {
         RHYMEOUTPUT = [""];
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-        console.log("RHYMEOUTPUT ="+RHYMEOUTPUT);
+        console.log("RHYMEOUTPUT ="+RHYMEOUTPUT+". CURRENTDICTIONARY.length ="+CURRENTDICTIONARY.length);
         for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
           //if the rhyme is a match
           if (CURRENTDICTIONARY[i].endsWith(phonemeString)) {
@@ -822,7 +822,6 @@ function receivedMessage(event) {
             //handle cutting length to specific number of syllables
             var sylCount = countSyllables(i);
             if (sylCount == syllableLength) {
-              console.log("Matched "+arrayBin[0]);
               //if the found word ends in ")"
               if (arrayBin[0].endsWith(")")) {
                 console.log("removing brackets from "+arrayBin[0]);
