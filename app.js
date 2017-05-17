@@ -556,7 +556,7 @@ function receivedMessage(event) {
 
     messageText = messageText.toUpperCase();
     var letter = messageText.charAt(0);
-    console.log(letter);
+    var wordFound = false;
 
     console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
 
@@ -575,9 +575,16 @@ function receivedMessage(event) {
 
         console.log("WE FOUND THE WORD ON LINE " + j);
         console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
+        wordFound = true;
 
     }
 
+  }
+
+  if(wordFound = true){
+    return j;
+  } else {
+    return -1;
   }
 }
 
