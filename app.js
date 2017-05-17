@@ -473,7 +473,7 @@ function receivedMessage(event) {
       } else {
       }
       // CODE GOES HERE AFTER FUNCTION RETURNS
-      console.log("Just received the name from Facebook, it is now: "+name +" "+last_name);
+      console.log("Received the name from Facebook, it is: "+name +" "+last_name);
 
     });
 
@@ -514,7 +514,7 @@ function receivedMessage(event) {
       fileBuffer = fs.readFileSync(dictionary, "utf-8");
       CURRENTDICTIONARY = fileBuffer.split("\n");
       var dictionary_length = CURRENTDICTIONARY.length;
-      var alphabetLength = 26;
+      var alphabetLength = 27;
       //for each line in the file
       for (var i = 0; i < dictionary_length; i++) {
         //establish which letter it is
@@ -541,7 +541,7 @@ function receivedMessage(event) {
   function StringSearch(input, key) {
 
     if (key.indexOf(input) >= 0){
-      console.log("String was found in array");
+      console.log("Command recognised");
       return true;
     }
     return false;
@@ -557,8 +557,6 @@ function receivedMessage(event) {
     messageText = messageText.toUpperCase();
     var letter = messageText.charAt(0);
     var dictionaryIndex = -1;
-
-    console.log("Starting loop from " + ALPHABET_ARRAY[0][0]);
 
     for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
 
@@ -580,8 +578,8 @@ function receivedMessage(event) {
       }
     }
     if(dictionaryIndex!=-1){
-      return dictionaryIndex;
       console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
+      return dictionaryIndex;
     } else {
       console.log("word not found in dictionary, returning: -1");
       return -1;
@@ -690,7 +688,6 @@ function receivedMessage(event) {
     //call findTheLine to get the index
     dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
-      console.log("Word found in dictionary");
       //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(wordLength+2);
       //for the found word, make an array containing each phoneme sound
@@ -699,15 +696,11 @@ function receivedMessage(event) {
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
         char = PHONEMES[phoLen-i-1].charAt(0);
-        //compare char to every vowel
-        for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          //if we find a vowel at character 0, increment the syllable count
-          if (char == vowels[j]){
+        //count the vowels
+        if(vowels.includes(char)){
             syllablesFound++;
-          }
         }
       }
-
       return syllablesFound;
     } else {
       return 0;
