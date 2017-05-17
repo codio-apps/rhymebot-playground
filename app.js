@@ -659,7 +659,7 @@ function receivedMessage(event) {
         randArray[i] = rand;
         console.log("randArray["+i+"] is "+randArray[i]);
       }
-      return inputArray;
+      return randArray;
     }
   }
 
