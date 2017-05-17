@@ -679,7 +679,7 @@ function receivedMessage(event) {
 
   function randomRhymes(dictionaryIndex, elements){
     inputArray.length=0;
-    console.log("randomRhymes "+elements+" and "+getWord(dictionaryIndex);
+    console.log("randomRhymes "+elements+" and "+getWord(dictionaryIndex));
     var arrayBuffer = getRhymes(dictionaryIndex);
     var randString = randomlyReturn(arrayBuffer, elements);
     return randString;
