@@ -548,8 +548,7 @@ function receivedMessage(event) {
 
     // FOR testing purposes
     //var word = "QAPPLE";
-    console.log("findTheLine triggered :")
-    console.log(searchWord);
+    console.log("findTheLine triggered on "+searchWord))
     searchWord = searchWord.toUpperCase();
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
@@ -624,7 +623,7 @@ function receivedMessage(event) {
             console.log("processedPhonemes = "+processedPhonemes);
             console.log("calculating syllables using findTheLine: "+searchWord);
             syllablesReq = countSyllables(senderID, searchWord);
-            RHYMEOUTPUT = searchPhonemes(senderID, processedPhonemes, syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
             keepLooking = false;
           }
         }
@@ -648,7 +647,12 @@ function receivedMessage(event) {
   }
 
   //function to search the dictionary for phonemeString matches and return a list
-  function searchPhonemes(senderID, phonemeString, stringLength) {
+  function searchPhonemes(senderID, dictionaryIndex, stringLength) {
+    if (dictionaryIndex != -1) {
+      var theWord = CURRENTDICTIONARY[dictionaryIndex];
+      var wordLength = CURRENTDICTIONARY[dictionaryIndex].length;
+      var phonemeString = getPhonemes(theWord, wordLength);
+
     console.log("searchPhonemes called for: "+phonemeString);
     var arrayBin = new Array;
     //search the dictionary
@@ -687,9 +691,13 @@ function receivedMessage(event) {
           }
         }
       }
+
     }
     console.log("Search complete. Found: "+matchesFound+" rhyme(s).");
     return RHYMEOUTPUT;
+  } else {
+    console.log("no matches found i think");
+  }
 
   }
 
