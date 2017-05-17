@@ -656,7 +656,7 @@ function receivedMessage(event) {
             console.log("Additional pronunciation for "+RHYMEOUTPUT[matchesFound-1]+" found, skipped it")
           } else {
             //otherwise, save it
-            RHYMEOUTPUT[matchesFound=arrayBin[0];
+            RHYMEOUTPUT[matchesFound] = arrayBin[0];
             matchesFound++;
           }
         } else {
