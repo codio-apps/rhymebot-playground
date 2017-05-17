@@ -825,7 +825,7 @@ function receivedMessage(event) {
         matchesFound = 0;
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-        for (var iX = CURRENTDICTIONARY.length-1; iX >= 0; iX--) {
+        for (var iX = 0; iX < CURRENTDICTIONARY.length; iX++) {
           //if the rhyme is a match
           if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
             //store the word in a temp string array
@@ -851,6 +851,7 @@ function receivedMessage(event) {
               } else {
                 //make sure it's not the same as searchWord
                 if (arrayBin[0]==theWord){
+                  console.log("FLAG");
                   //do nothing
                 } else {
                   //otherwise save the word to the output array
