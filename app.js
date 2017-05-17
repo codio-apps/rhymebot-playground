@@ -567,9 +567,12 @@ function receivedMessage(event) {
     console.log("WIPEEEEEEEEEEEEEE we found it at: " + i);
     console.log("THE LETTER IS: " + ALPHABET_ARRAY[i][0] + " AND THE VALUE IS: " + ALPHABET_ARRAY[i][1])
 
-    return ALPHABET_ARRAY[i][1];
+    var letterLeftIndex = ALPHABET_ARRAY[i-1][1];
+    var letterRightIndex = ALPHABET_ARRAY[i][1];
+    console.log(letterLeftIndex + " ALL THE WAY TO " + letterRightIndex);
+    return letterLeftIndex;
   }
-  
+
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
     sendTypingOn(senderID);
