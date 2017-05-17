@@ -598,12 +598,9 @@ function getWord(dictionaryIndex){
     console.log("getWord: received string: "+gotString);
     var theWord = gotString.split(" ");
     console.log("theWord now: "+theWord);
-    theWord = theWord.slice(wordLength+2);
-    console.log("theWord now: "+theWord);
-    //for the found word, make an array containing each phoneme sound
-    PHONEMES = tempPHONEMES.split(" ")
+    console.log("theWord now: "+theWord[0]);
   }
-  return theWord;
+  return theWord[0];
 }
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
