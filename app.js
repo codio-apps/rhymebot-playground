@@ -458,6 +458,7 @@ function receivedMessage(event) {
           searchWord = searchWord.toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
           getRhymes(dictionaryIndex, 10);
+          break;
 
           default:
           messageResponse = messageText + "?";
