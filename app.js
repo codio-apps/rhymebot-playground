@@ -457,7 +457,8 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(7);
           searchWord = searchWord.toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
-          randomRhymes(dictionaryIndex);
+          var randomString = randomRhymes(dictionaryIndex);
+          messageResponse = "ok "+randomString;
 
           default:
           messageResponse = messageText + "?";
@@ -625,8 +626,8 @@ function receivedMessage(event) {
     for (var i=1; i < elements; i++){
       var rand = rand+", "+inputArray[Math.floor(Math.random() * inputArray.length)];
     }
-    messageResponse = "Here's "+elements+" random rhyme(s): "+rand;
     console.log("Randomly returning: "+rand);
+    return rand;
   }
 
   function randomRhymes(dictionaryIndex){
