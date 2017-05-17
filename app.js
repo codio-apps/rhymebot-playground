@@ -661,7 +661,7 @@ function receivedMessage(event) {
       }
       console.log("Finished processing array, randomly returning: "+randArray);
       messageResponse = "I know "+inputArray.length+" words that rhyme, you asked for "+elements;
-    } else {
+    } else if (inputArray.length !==0) {
       console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
       var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
       for (var i=0; i < inputArray.length; i++) {
