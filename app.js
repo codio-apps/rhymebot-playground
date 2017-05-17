@@ -366,7 +366,6 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("question")) {
           intent = "question";
         }
-        else {
         else if(lc_messageText.startsWith("random")) {
           intent = "random";
         } else {
