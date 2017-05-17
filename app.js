@@ -457,7 +457,7 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(7);
           searchWord = searchWord.toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
-          getRhymes(dictionaryIndex);
+          randomlyReturn(dictionaryIndex);
 
           default:
           messageResponse = messageText + "?";
@@ -617,6 +617,18 @@ function receivedMessage(event) {
       var theWord = gotString.split(" ");
     }
     return theWord[0];
+  }
+
+  //function to return 10 random elements from an array
+  function randomlyReturn(inputArray, elements){
+    var rand = inputArray[Math.floor(Math.random() * inputArray.length)];
+    console.log("Randomly returning: "+rand);
+  }
+
+  function randomRhymes(dictionaryIndex){
+    console.log("randomRhymes called");
+    var testerray = getRhymes(dictionaryIndex);
+    randomlyReturn(testerray, 1);
   }
 
   //
