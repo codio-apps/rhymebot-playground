@@ -661,7 +661,7 @@ function receivedMessage(event) {
       }
       console.log("Finished processing array, randomly returning: "+randArray);
       messageResponse = "I know "+inputArray.length+" words that rhyme, you asked for "+elements;
-    } else if (inputArray.length !==0) {
+    } else {
       console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
       var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
       for (var i=0; i < inputArray.length; i++) {
@@ -680,8 +680,12 @@ function receivedMessage(event) {
   function randomRhymes(dictionaryIndex, elements){
     inputArray.length=0;
     var arrayBuffer = getRhymes(dictionaryIndex);
-    var randString = randomlyReturn(arrayBuffer, elements);
-    return randString;
+    if (arrayBuffer.length!==0){
+      var randString = randomlyReturn(arrayBuffer, elements);
+      return randString;
+    } else {
+        messageResponse = "I don't know any words that rhyme sorry";
+    }
   }
 
   //
