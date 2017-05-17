@@ -580,6 +580,7 @@ function receivedMessage(event) {
     var wordLength = searchWord.length;
     var startingLine = 0;
     var processedPhonemes = "";
+    found = 0;
     //first find the word in the dictionary
     for (var i = startingLine, len = CURRENTDICTIONARY.length; i < len; i++) {
       if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
