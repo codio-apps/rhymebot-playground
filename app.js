@@ -558,7 +558,7 @@ function receivedMessage(event) {
     var letter = messageText.charAt(0);
     var wordFound = false;
 
-    console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
+    console.log("Starting loop from " + ALPHABET_ARRAY[0][0]);
 
     for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
 
@@ -576,6 +576,7 @@ function receivedMessage(event) {
         console.log("WE FOUND THE WORD ON LINE " + j);
         console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
         wordFound = true;
+<<<<<<< HEAD
 
       }
 
@@ -588,6 +589,16 @@ function receivedMessage(event) {
       console.log("word not found in dictionary, returning: -1");
       return -1;
     }
+=======
+    }
+  }
+  if(wordFound = true){
+    return j;
+    console.log("returning: "+j+". Lookup index ref: "+CURRENTDICTIONARY[j]);
+  } else {
+    console.log("word not found in dictionary, returning: -1");
+    return -1;
+>>>>>>> e98bb5e2a9ec28ae303ad1db1b31759fb81d8120
   }
 
 
