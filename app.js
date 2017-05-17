@@ -885,6 +885,7 @@ function receivedMessage(event) {
       }
       console.log("Delivering results");
       chunkTotal++;
+      messageSplit.length=0;
       for (var i = 0; i < chunkTotal; i++){
         console.log("delivering chunk "+i+" contents: "+messageSplit[i]);
         sendTextMessage(senderID, messageSplit[i]);
