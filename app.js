@@ -819,7 +819,6 @@ function receivedMessage(event) {
             arrayBin = CURRENTDICTIONARY[i].split("  ");
             //handle cutting length to specific number of syllables
             var sylCount = countSyllables(i);
-            console.log("sylCount is "+sylCount);
             if (sylCount == syllableLength) {
               //if the found word ends in ")"
               if (arrayBin[0].endsWith(")")) {
@@ -835,7 +834,7 @@ function receivedMessage(event) {
                   //otherwise, save it
                   RHYMEOUTPUT[matchesFound] = arrayBin[0];
                   matchesFound++;
-                  console.log("added to list "+arrayBin[0])
+                  console.log("added to list "+arrayBin)
                 }
               } else {
                 //make sure it's not the same as searchWord
@@ -843,6 +842,7 @@ function receivedMessage(event) {
                   //do nothing
                 } else {
                   //otherwise save the word to the output array
+                  console.log("is this getting triggered at all?");
                   RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
                   matchesFound++;
                 }
