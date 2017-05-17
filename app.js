@@ -827,7 +827,7 @@ function receivedMessage(event) {
       var iX = 0;
       //search the dictionary
       console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-      for (iX = 0; iX < CURRENTDICTIONARY.length) {
+      for (iX = 0; iX < CURRENTDICTIONARY.length;) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
           //store the word in a temp string array
