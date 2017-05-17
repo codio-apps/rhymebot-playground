@@ -877,7 +877,7 @@ function receivedMessage(event) {
 
       // When a postback is called, we'll send a message back to the sender to
       // let them know it was successful
-      sendTextMessage(senderID, "Postback called");
+      sendTextMessage(senderID, "Postback called: ", payload);
     }
 
     /*
@@ -1255,8 +1255,9 @@ function receivedMessage(event) {
                   "title":"Visit our site"
                 },
                 {
-                  "type":"text",
-                  "title":"Start chatting"
+                  "type":"postback",
+                  "title":"Count Something",
+                  "payload":"Count Time"
                 }
               ]
             }
