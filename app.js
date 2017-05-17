@@ -548,14 +548,14 @@ function receivedMessage(event) {
   }
 
   //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
-  function findTheLine(senderID, messageText){
+  function findTheLine(senderID, searchWord){
 
     // FOR testing purposes
     //var word = "QAPPLE";
-    console.log(messageText);
+    console.log(searchWord);
 
-    messageText = messageText.toUpperCase();
-    var letter = messageText.charAt(0);
+    searchWord = searchWord.toUpperCase();
+    var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
       console.log("That is not one of the 26 chosen characters, Jedi - Returning: -1");
       return -1
