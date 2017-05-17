@@ -623,7 +623,7 @@ function receivedMessage(event) {
   //
   function getRhymes(dictionaryIndex){
     console.log("calling getRhymes on input: "+dictionaryIndex);
-    var pronunciationsFound = 0;
+    pronunciationsFound = 0;
     var keepLooking = true;
     var theWord = getWord(dictionaryIndex);
     var syllablesReq = 0;
@@ -646,7 +646,7 @@ function receivedMessage(event) {
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             keepLooking = false;
-            console.log("made it to the end: "+RHYMEOUTPUT);
+            console.log("Rhyme array"+RHYMEOUTPUT);
             return RHYMEOUTPUT;
           }
         }
@@ -660,11 +660,11 @@ function receivedMessage(event) {
     sendTypingOn(senderID);
     var wordLength = searchWord.length;
     var startingLine = 0;
-    var dictionaryIndex = -1;
 
     console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
+      console.log("getting to this bit, where pfound is "+pronunciationsFound" and mfound is"+matchesFound);
       RHYMEOUTPUT = getRhymes(dictionaryIndex);
     }
     //if we didnt' find the word in the dictionary at all
