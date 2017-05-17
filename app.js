@@ -822,7 +822,7 @@ function receivedMessage(event) {
       }
       console.log("Delivering results");
       chunkTotal++;
-      for (var i = 0; i < chunkTotal; i++){
+      for (var i = 1; i < chunkTotal; i++){
         console.log("delivering chunk "+i+"contents: "+messageSplit[i]);
         sendTextMessage(sender, messageSplit[i]);
       }
