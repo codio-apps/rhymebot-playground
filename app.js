@@ -554,8 +554,8 @@ function receivedMessage(event) {
     //var word = "QAPPLE";
     console.log(messageText);
 
+    messageText = messageText.toUpperCase();
     var letter = messageText.charAt(0);
-    letter = letter.toUpperCase();
     console.log(letter);
 
     console.log("Starting loop from "+ALPHABET_ARRAY[0][0]);
@@ -567,23 +567,20 @@ function receivedMessage(event) {
 
     var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
     var letterRightIndex = ALPHABET_ARRAY[i][1];
+    console.log(letterLeftIndex);
+    console.log(letterRightIndex);
 
-    for (j = letterLeftIndex; j < letterRightIndex; j++){
-      if (CURRENTDICTIONARY[j].startsWith(searchWord+"  ")){
+    for (var j = letterLeftIndex; j < letterRightIndex; j++){
+      if (CURRENTDICTIONARY[j].startsWith(messageText + "  ")){
 
         console.log("WE FOUND THE WORD ON LINE " + j);
+        console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
 
     }
 
   }
 }
 
-
-  function findTheWord(word){
-
-
-
-  }
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
