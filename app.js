@@ -558,7 +558,7 @@ function receivedMessage(event) {
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
       console.log("That is not one of the 26 chosen characters, Jedi - Returning: -1");
-      return -1
+      return -1;
     }
     var dictionaryIndex = -1;
 
@@ -566,9 +566,6 @@ function receivedMessage(event) {
 
       console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
-
-
-
     if(letter = "A"){
       var letterLeftIndex = 0;
     }
