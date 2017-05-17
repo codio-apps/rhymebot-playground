@@ -467,7 +467,7 @@ function receivedMessage(event) {
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               if (dictionaryIndex != -1){
                 randomString = randomRhymes(dictionaryIndex, 10);
-                  //splitMessage(senderID, randomString);
+                  splitMessage(senderID, randomString);
               } else {
                 messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
               }
@@ -476,7 +476,7 @@ function receivedMessage(event) {
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               if (dictionaryIndex != -1){
                 randomString = randomRhymes(dictionaryIndex, 10);
-                  //splitMessage(senderID, randomString);
+                  splitMessage(senderID, randomString);
               } else {
                 messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
               }
@@ -839,8 +839,7 @@ function receivedMessage(event) {
                 //add the word to the list, but remove the brackets from the spelling info
                 var tmpLen = arrayBin[0].length-3;
                 arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-                arrayBin[0] = arrayBin[0].toLowerCase()
-                matchesFound++;
+                arrayBin[0] = arrayBin[0].toLowerCase();
                 //if the last element added to RHYMEOUTPUT is the same, skip it
                 if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
                   console.log("skipping "+arrayBin[0]);
