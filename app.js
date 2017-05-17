@@ -462,7 +462,7 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(senderID, searchWord);
             if (dictionaryIndex != -1){
               var randomString = randomRhymes(dictionaryIndex);
-              messageResponse = "ok "+randomString;
+              messageResponse = messageResponse+randomString;
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+"yet";
             }
@@ -647,7 +647,7 @@ function receivedMessage(event) {
         console.log("randArray["+i+"] is "+randArray[i]);
       }
       console.log("Finished processing array, randomly returning: "+randArray);
-      return randArray;
+      messageResponse = "I know "+inputArray.length+" rhymes, you asked for "+elements+"\n");
     } else {
       console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
       randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
@@ -659,8 +659,9 @@ function receivedMessage(event) {
         randArray[i] = rand;
         console.log("randArray["+i+"] is "+randArray[i]);
       }
-      return randArray;
+      messageResponse = "I only know "+inputArray.length+" words that rhyme, here they are:\n"
     }
+    return randArray;
   }
 
 
