@@ -461,7 +461,7 @@ function receivedMessage(event) {
             searchWord = searchWord.toUpperCase();
             var searchArray = searchWord.split(" ");
             console.log(searchArray[0]+"-----searchArrays-----"+searchArray[1]);
-            if (searchArray[1].isNaN()){
+            if (isNaN(searchArray[1])){
               console.log("not a number");
             } else {
               console.log("is a number");
