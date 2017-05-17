@@ -464,6 +464,7 @@ function receivedMessage(event) {
             if (isNaN(searchArray[1])){
               console.log("No number of results specified, defaulting to 10");
               var dictionaryIndex = findTheLine(senderID, searchWord);
+              console.log("sending:"+senderID+searchWord);
               if (dictionaryIndex != -1){
                 var randomString = randomRhymes(dictionaryIndex, 10);
                   splitMessage(senderID, randomString);
@@ -473,6 +474,7 @@ function receivedMessage(event) {
             } else {
               console.log("is a number");
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
+              console.log("sending:"+senderID+searchWord);
               if (dictionaryIndex != -1){
                 var randomString = randomRhymes(dictionaryIndex, searchArray[1]);
                   console.log("trying to send randomString: "+randomString);
@@ -653,14 +655,11 @@ function receivedMessage(event) {
     if (inputArray.length > elements){
       for (var i=1; i < elements; i++){
         var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
-        console.log("randomly selected "+rand+" from inputArray");
         //if the array already includes the newly randomised item, re-roll
         for (var j=0; randArray.includes(rand); j++){
-          console.log("randomised to a duplicate word, it was "+rand+". Rerolling");
           rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         }
         randArray[i] = rand;
-        console.log("randArray["+i+"] is "+randArray[i]);
       }
       console.log("Finished processing array, randomly returning: "+randArray);
       messageResponse = "I know "+inputArray.length+" words that rhyme, you asked for "+elements;
@@ -673,7 +672,6 @@ function receivedMessage(event) {
           rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         }
         randArray[i] = rand;
-        console.log("randArray["+i+"] is "+randArray[i]);
       }
       messageResponse = "I only know "+inputArray.length+" words that rhyme, here they are:"
     }
@@ -879,13 +877,11 @@ function receivedMessage(event) {
           messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
           //increase the split number
           splitCount++;
-          console.log("added AAAA "+stringArray[sequence]);
         } else {
           //otherwise, split the message into the next chunk
           splitCount=0;
           messageChunk++;
           messageSplit[messageChunk]="message "+messageChunk+"\n"+stringArray[sequence];
-          console.log("added BBBB "+stringArray[sequence]);
         }
       }
       console.log("Delivering results");
