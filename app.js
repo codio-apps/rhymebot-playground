@@ -866,6 +866,7 @@ function receivedMessage(event) {
       var splitCount = 0;
       var chunkTotal = matchesFound/75;
       chunkTotal = Math.round(chunkTotal);
+      consolt.log("splitMessage, stringArray received is "+stringArray);
       console.log("splitting msg, required chunks: "+chunkTotal);
       messageSplit[messageChunk]=stringArray[0];
       //for how ever many there were words found
