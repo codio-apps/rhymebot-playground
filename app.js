@@ -632,7 +632,7 @@ function receivedMessage(event) {
     var randArray = new Array;
     randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
     var rBuffer = "";
-    if (testerray.length > elements){
+    if (inputArray.length > elements){
       for (var i=1; i < elements; i++){
         var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         if (randArray.includes(rand)){
@@ -650,8 +650,8 @@ function receivedMessage(event) {
 
   function randomRhymes(dictionaryIndex){
     console.log("randomRhymes called");
-    var testerray = getRhymes(dictionaryIndex);
-    var randString =randomlyReturn(testerray, 10);
+    var arrayBuffer = getRhymes(dictionaryIndex);
+    var randString =randomlyReturn(arrayBuffer, 10);
     return randString;
   }
 
