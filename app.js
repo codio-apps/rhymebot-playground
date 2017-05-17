@@ -286,7 +286,6 @@ function receivedMessage(event) {
   } else {
     // Set up the local files including references, variables and dictionaries
     setUpLocalVariables();
-    // alphabetReference();
   }
 
 
@@ -444,6 +443,9 @@ function receivedMessage(event) {
           default:
 
           messageResponse = messageText + "?";
+          findTheLine(senderID, messageText);
+
+
         }
         if(instant_reply = true){
           sendTextMessage(senderID, messageResponse);
@@ -483,6 +485,7 @@ function receivedMessage(event) {
   // Read text file data and store it into local variables for string comparisons
   function setUpLocalVariables() {
 
+    // Assign the greetings txt file values (hey, hello, hi) to the GREETINGS variable
     // Try to read from file
     try {
       fileBuffer = fs.readFileSync(greetings_file, "utf-8");
@@ -492,6 +495,7 @@ function receivedMessage(event) {
     catch(err) {
       console.log("Unable to parse greetings file: " + err);
     }
+    // Assign the rhyme typos txt file values (rhime, ryme) to the RHYME_TYPOS variable
     // Try to read from file
     try {
       fileBuffer = fs.readFileSync(rhyme_typos, "utf-8");
@@ -501,8 +505,12 @@ function receivedMessage(event) {
     catch(err) {
       console.log("Unable to parse rhyme file: " + err);
     }
+    // Read through the dictionary and do two things -
+    // a) Store the dictionary as an array broken up by a new line, in CURRENTDICTIONARY
+    // b) Cycle through the dictionary and store the letter of the alphabet, and it's last position in the array
+    // i.e. ALPHABET_ARRAY[1] = ["B", 1001]; - this means the letter B finishes on this line
+    // Try to read from file
     try {
-      //load the file
       fileBuffer = fs.readFileSync(dictionary, "utf-8");
       CURRENTDICTIONARY = fileBuffer.split("\n");
       var dictionary_length = CURRENTDICTIONARY.length;
@@ -540,13 +548,13 @@ function receivedMessage(event) {
   }
 
   //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
-  function findTheLine(){
+  function findTheLine(senderID, messageText){
 
     // FOR testing purposes
-    var word = "QAPPLE";
-    console.log(word);
+    //var word = "QAPPLE";
+    console.log(messageText);
 
-    var letter = word.charAt(0);
+    var letter = messageText.charAt(0);
     letter = letter.toUpperCase();
     console.log(letter);
 
@@ -561,6 +569,7 @@ function receivedMessage(event) {
 
     return ALPHABET_ARRAY[i][1];
   }
+  
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
     sendTypingOn(senderID);
