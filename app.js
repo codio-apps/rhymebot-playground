@@ -667,10 +667,11 @@ function getWord(dictionaryIndex){
       for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[i].endsWith(phonemeString)) {
-          //store the word in a temp string
+          //store the word in a temp string array
           arrayBin = CURRENTDICTIONARY[i].split("  ");
           //handle cutting length to specific number of syllables
           var sylCount = countSyllables(senderID, i);
+          console.log("match found, syllable count: "+sylCount);
           if (sylCount == syllableLength) {
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
