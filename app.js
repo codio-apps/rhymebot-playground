@@ -1258,10 +1258,7 @@ function receivedMessage(event) {
 
 
   function sendQuestion(recipientId) {
-    var messageData = {
-      recipient: {
-        id: recipientId
-      },
+
       var messageData = {
         recipient: {
           id: recipientId
