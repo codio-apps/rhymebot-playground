@@ -617,7 +617,6 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("found = "+matchesFound+". pronunciationsFound = "+pronunciationsFound);
     //if we didnt' find the word in the dictionary at all
     if (pronunciationsFound == 0) {
       messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
@@ -631,8 +630,9 @@ function receivedMessage(event) {
         messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
         splitMessage(senderID, RHYMEOUTPUT);
       }
-      sendTypingOff(senderID);
     }
+    //now turn off the typer
+    sendTypingOff(senderID);
   }
   //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(phonemeString) {
