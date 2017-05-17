@@ -467,7 +467,7 @@ function receivedMessage(event) {
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               if (dictionaryIndex != -1){
                 randomString = randomRhymes(dictionaryIndex, 10);
-                  splitMessage(senderID, randomString);
+                  //splitMessage(senderID, randomString);
               } else {
                 messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
               }
@@ -476,7 +476,7 @@ function receivedMessage(event) {
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               if (dictionaryIndex != -1){
                 randomString = randomRhymes(dictionaryIndex, 10);
-                  splitMessage(senderID, randomString);
+                  //splitMessage(senderID, randomString);
               } else {
                 messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
               }
