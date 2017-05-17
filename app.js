@@ -620,15 +620,12 @@ function receivedMessage(event) {
   }
 
   //
-<<<<<<< HEAD
   function getRhymes(dictionaryIndex){
     console.log("calling getRhymes on input: "+dictionaryIndex);
     pronunciationsFound = 0;
-=======
   function getRhymes(dictionaryIndex, resultsReq){
     console.log("calling getRhymes on input: "+dictionaryIndex+" \ "+resultsReq);
     var pronunciationsFound = 0;
->>>>>>> 1adb6b991930c0f8ed1e498f95bbdc01fd50008d
     var keepLooking = true;
     var theWord = getWord(dictionaryIndex);
     console.log("word is "+theWord);
@@ -674,10 +671,8 @@ function receivedMessage(event) {
     console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
-<<<<<<< HEAD
       console.log("getting to this bit, where pfound is "+pronunciationsFound" and mfound is"+matchesFound);
       RHYMEOUTPUT = getRhymes(dictionaryIndex);
-=======
       pronunciationsFound = 1;
       //check for multiple pronunciations in dictionary file
       //as long as the next item isn't undefined, examine it
@@ -698,7 +693,6 @@ function receivedMessage(event) {
           }
         }
       }
->>>>>>> 1adb6b991930c0f8ed1e498f95bbdc01fd50008d
     }
     //if we didnt' find the word in the dictionary at all
     if (pronunciationsFound == 0) {
