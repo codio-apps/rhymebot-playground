@@ -715,7 +715,7 @@ function receivedMessage(event) {
               console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
               var syllablesReq = countSyllables(dictionaryIndex);
               RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
-              console.log("CHECKPOINT: "dictionaryIndex+"    "+syllablesReq);
+              console.log("CHECKPOINT: "+dictionaryIndex+"    "+syllablesReq);
               keepLooking = false;
               return RHYMEOUTPUT;
             }
