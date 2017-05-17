@@ -576,7 +576,6 @@ function receivedMessage(event) {
         console.log("WE FOUND THE WORD ON LINE " + j);
         console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
         wordFound = true;
-<<<<<<< HEAD
 
       }
 
@@ -589,7 +588,6 @@ function receivedMessage(event) {
       console.log("word not found in dictionary, returning: -1");
       return -1;
     }
-=======
     }
   }
   if(wordFound = true){
@@ -598,7 +596,6 @@ function receivedMessage(event) {
   } else {
     console.log("word not found in dictionary, returning: -1");
     return -1;
->>>>>>> e98bb5e2a9ec28ae303ad1db1b31759fb81d8120
   }
 
 
