@@ -589,8 +589,6 @@ function receivedMessage(event) {
 
       }
     }
-    if(dictionaryIndex!=-1){
-
       if(dictionaryIndex != -1){
         return dictionaryIndex;
         console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
@@ -599,7 +597,6 @@ function receivedMessage(event) {
         console.log("word not found in dictionary, returning: -1");
         return -1;
       }
-    }
   }
 
 
