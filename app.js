@@ -460,12 +460,12 @@ function receivedMessage(event) {
             searchWord = lc_messageText.slice(7);
             searchWord = searchWord.toUpperCase();
             var searchArray = searchWord.split(" ");
-            console.log(searchArray[0]+"-----searchArrays-----"+searchArray[1]);
+            console.log("split input array: "+searchArray);
             if (isNaN(searchArray[1])){
               console.log("not a number");
             } else {
               console.log("is a number");
-              var dictionaryIndex = findTheLine(senderID, searchWord);
+              var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               if (dictionaryIndex != -1){
                 var randomString = randomRhymes(dictionaryIndex, searchArray[1]);
                 messageResponse = messageResponse+randomString;
