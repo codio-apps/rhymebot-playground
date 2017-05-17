@@ -809,6 +809,7 @@ function receivedMessage(event) {
         var theWord = getWord(dictionaryIndex);
         var phonemeString = getPhonemes(dictionaryIndex);
         var arrayBin = [""];
+        var excluded =0;
         matchesFound = 0;
         RHYMEOUTPUT = [""];
         //search the dictionary
@@ -832,10 +833,10 @@ function receivedMessage(event) {
                 //if the last element added to RHYMEOUTPUT is the same, skip it
                 if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
                   console.log("skipping "+arrayBin[0]);
+                  excluded++;
                 } else {
                   //otherwise, save it
                   RHYMEOUTPUT[matchesFound] = arrayBin[0];
-                  console.log("added to list at 1 "+arrayBin[0]);
                   matchesFound++;
                 }
               } else {
@@ -844,7 +845,6 @@ function receivedMessage(event) {
                   //do nothing
                 } else {
                   //otherwise save the word to the output array
-                  console.log("added to list at 2 "+arrayBin[0]);
                   RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
                   matchesFound++;
                 }
@@ -853,7 +853,7 @@ function receivedMessage(event) {
           }
 
         }
-        console.log("Search complete. Searched "+i+" entries and found: "+matchesFound+" rhyme(s).");
+        console.log("Search complete. Searched "+i+" entries, excluded "+excluded+" and found "+matchesFound+" rhyme(s).");
         return RHYMEOUTPUT;
       } else {
         console.log("no matches found, I think");
