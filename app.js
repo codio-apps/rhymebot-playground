@@ -570,11 +570,11 @@ function receivedMessage(event) {
 
 
     if(letter = "A"){
-    var letterLeftIndex = 0;
+      var letterLeftIndex = 0;
     }
     else {
-    var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
-      }
+      var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
+    }
     var letterRightIndex = ALPHABET_ARRAY[i][1];
 
     console.log(letterLeftIndex);
@@ -591,13 +591,14 @@ function receivedMessage(event) {
     }
     if(dictionaryIndex!=-1){
 
-    if(dictionaryIndex != -1){
-      return dictionaryIndex;
-      console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
-      return dictionaryIndex;
-    } else {
-      console.log("word not found in dictionary, returning: -1");
-      return -1;
+      if(dictionaryIndex != -1){
+        return dictionaryIndex;
+        console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
+        return dictionaryIndex;
+      } else {
+        console.log("word not found in dictionary, returning: -1");
+        return -1;
+      }
     }
   }
 
