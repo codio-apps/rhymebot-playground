@@ -630,24 +630,25 @@ function receivedMessage(event) {
   //function to return 10 different random elements from an array
   function randomlyReturn(inputArray, elements){
     var randArray = new Array;
-    console.log("randArray contents at init : "+randArray);
+    console.log("randArray contents at init: "+randArray);
     randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
     var rBuffer = "";
     if (inputArray.length > elements){
       for (var i=1; i < elements; i++){
         var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
+        console.log("randomly selected "+rand+" from inputArray");
         //if the array already includes the newly randomised item, re-roll
         for (var j=0; randArray.includes(rand); j++){
             rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
             console.log("randomised to the same word for the "+j+"th time, it was "+rand+". Rerolling");
         }
         randArray[i] = rand;
-        console.log("randArray["+i+"] is "+randArray);
+        console.log("randArray["+i+"] is "+randArray[i]);
       }
       console.log("Finished processing array, randomly returning: "+randArray);
       return randArray;
     } else {
-      console.log("less than "+elements+"rhymes found, returning all rhymes in a random order");
+      console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
       for (var i=1; i < inputArray.length; i++) {
         var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         //if the array already includes the newly randomised item, re-roll
@@ -655,6 +656,7 @@ function receivedMessage(event) {
           rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         }
         randArray[i] = rand;
+        console.log("randArray["+i+"] is "+randArray[i])
       }
       return inputArray;
     }
