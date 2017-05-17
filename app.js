@@ -457,7 +457,7 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(7);
           searchWord = searchWord.toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
-          randomlyReturn(dictionaryIndex);
+          randomRhymes(dictionaryIndex);
 
           default:
           messageResponse = messageText + "?";
