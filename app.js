@@ -632,7 +632,7 @@ function getWord(dictionaryIndex){
           } else {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-            syllablesReq = countSyllables(senderID, searchWord);
+            syllablesReq = countSyllables(senderID, dictionaryIndex);
             console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
@@ -673,7 +673,7 @@ function getWord(dictionaryIndex){
           //store the word in a temp string
           arrayBin = CURRENTDICTIONARY[i].split("  ");
           //handle cutting length to specific number of syllables
-          var sylCount = countSyllables(senderID, arrayBin);
+          var sylCount = countSyllables(senderID, dictionaryIndex);
           if (sylCount == stringLength) {
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
