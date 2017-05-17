@@ -472,7 +472,7 @@ function receivedMessage(event) {
                 messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
               }
             } else {
-              console.log("is a number");
+              console.log("Input array position 1 is a number");
               var dictionaryIndex = findTheLine(senderID, searchArray[0]);
               console.log("sending:"+senderID+searchWord);
               if (dictionaryIndex != -1){
@@ -830,6 +830,7 @@ function receivedMessage(event) {
                 arrayBin[0] = arrayBin[0].toLowerCase()
                 //if the last element added to RHYMEOUTPUT is the same, skip it
                 if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+                  console.log("this?");
                 } else {
                   //otherwise, save it
                   RHYMEOUTPUT[matchesFound] = arrayBin[0];
