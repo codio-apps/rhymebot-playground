@@ -635,11 +635,12 @@ function receivedMessage(event) {
     if (inputArray.length > elements){
       for (var i=1; i < elements; i++){
         var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
-        if (randArray.includes(rand)){
-          console.log("randomised to the same word again, it was "+rand+". Rerolling")
+        for (!randArray.includes(rand)){
+            rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
+            console.log("randomised to the same word again, it was "+rand+". Rerolling"
         }
       }
-      console.log("Randomly returning: "+rand);
+      console.log("Finished processing array, randomly returning: "+rand);
       return rand;
     } else {
       console.log("less than "+elements+"rhymes found, returning all rhymes");
