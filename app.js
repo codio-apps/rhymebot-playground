@@ -568,7 +568,7 @@ function receivedMessage(event) {
     var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
     var letterRightIndex = ALPHABET_ARRAY[i][1];
 
-    for (j = letterLeftIndex; j = letterRightIndex; j++){
+    for (j = letterLeftIndex; j < letterRightIndex; j++){
       if (CURRENTDICTIONARY[j].startsWith(searchWord+"  ")){
 
         console.log("WE FOUND THE WORD ON LINE " + j);
