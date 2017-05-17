@@ -583,7 +583,9 @@ function receivedMessage(event) {
 
   if(wordFound = true){
     return j;
+    console.log("returning: "+j+". Lookup index ref: "CURRENTDICTIONARY[j]);
   } else {
+    console.log("word not found in dictionary, returning: -1");
     return -1;
   }
 }
