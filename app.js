@@ -632,7 +632,7 @@ function receivedMessage(event) {
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
             processedPhonemes = getPhonemes(CURRENTDICTIONARY[dictionaryIndex], wordLength);
             console.log("processedPhonemes = "+processedPhonemes);
-            syllablesReq = countSyllables(CURRENTDICTIONARY[dictionaryIndex]);
+            syllablesReq = countSyllables(senderID, CURRENTDICTIONARY[dictionaryIndex]);
             RHYMEOUTPUT = searchPhonemes(processedPhonemes, syllablesReq);
             keepLooking = false;
           }
@@ -668,7 +668,7 @@ function receivedMessage(event) {
         //store the word in a temp string
         arrayBin = CURRENTDICTIONARY[i].split("  ");
         //handle cutting length to specific number of syllables
-        var sylCount = countSyllables(CURRENTDICTIONARY[i]);
+        var sylCount = countSyllables(senderID, CURRENTDICTIONARY[i]);
         if (sylCount == stringLength) {
           //if the found word ends in ")"
           if (arrayBin[0].endsWith(")")) {
