@@ -596,12 +596,13 @@ function receivedMessage(event) {
               console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
               keepLooking = false;
               processedPhonemes = getPhonemes(CURRENTDICTIONARY[i], wordLength);
+              RHYMEOUTPUT = searchPhonemes(processedPhonemes);
             }
           }
         }
       }
     }
-    console.log("found = "+found+". pronunciationsFound ="+pronunciationsFound);
+    console.log("found = "+found+". pronunciationsFound = "+pronunciationsFound);
     //if we didnt' find the word in the dictionary at all
     if (pronunciationsFound == 0) {
       messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
