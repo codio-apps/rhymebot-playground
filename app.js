@@ -1284,9 +1284,8 @@ function receivedMessage(event) {
                   "title":"Visit our site"
                 },
                 {
-                  "type":"postback",
-                  "title":"Start Chatting",
-                  "payload":"Hey RhymeBot"
+                  "type":"text",
+                  "title":"Start chatting"
                 }
               ]
             }
