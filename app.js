@@ -824,15 +824,17 @@ function receivedMessage(event) {
         RHYMEOUTPUT = [""];
         matchesFound = 0;
         var options = [ 0, 0, 0, 0, 0 ];
+        var iX = 0;
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-        for (var iX = 0; iX < CURRENTDICTIONARY.length; iX++) {
+        for (iX = 0; iX < CURRENTDICTIONARY.length; iX++) {
           //if the rhyme is a match
           if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
             //store the word in a temp string array
             arrayBin = CURRENTDICTIONARY[iX].split("  ");
             //handle cutting length to specific number of syllables
             var sylCount = countSyllables(iX);
+                  options[0]++;
             if (sylCount == syllableLength) {
               options[1]++;
               //if the found word ends in ")"
@@ -856,7 +858,6 @@ function receivedMessage(event) {
               } else {
                 //make sure it's not the same as searchWord
                 if (arrayBin[0]==theWord){
-                  console.log("FLAG");
                   //do nothing
                 } else {
                   //otherwise save the word to the output array
@@ -871,7 +872,6 @@ function receivedMessage(event) {
         console.log("options: "+options);
         return RHYMEOUTPUT;
       } else {
-        options[0]++;
         matchesFound=0;
         console.log("no matches found, I think");
       }
