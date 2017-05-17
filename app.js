@@ -668,6 +668,7 @@ function receivedMessage(event) {
     inputArray = [""];
     console.log("randomRhymes called on array of size: "+inputArray.length);
     var arrayBuffer = getRhymes(dictionaryIndex);
+    console.log("arrayBuffer is "arrayBuffer);
     var randString =randomlyReturn(arrayBuffer, 10);
     return randString;
   }
