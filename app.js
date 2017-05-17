@@ -452,8 +452,6 @@ function receivedMessage(event) {
           case 'question':
           sendQuestion(senderID);
           break;
-
-          default:
           //handle the random command
           case 'random':
           searchWord = lc_messageText.slice(7);
