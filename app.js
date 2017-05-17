@@ -361,6 +361,9 @@ function receivedMessage(event) {
         }
         else if(lc_messageText.startsWith("count")) {
           intent = "count";
+        }
+        else if(lc_messageText.startsWith("random)")) {
+          intent = "random";
         } else {
           //Do nothing, key is set to messageText
         }
@@ -391,10 +394,11 @@ function receivedMessage(event) {
 
           case 'help':
           messageResponse = "Here is some help information: \n" +
-          "Type: rhyme - get a.\n" +
-          "Type single - get b.\n" +
-          "Type syllable - get c"
-          "Type count - get d";
+          "Type: rhyme - get a.\n"+
+          "Type single - get b.\n"+
+          "Type syllable - get c\n"+
+          "Type count - get d\n"+
+          "Type random - get e\n";
           break;
           case 'about':
           messageResponse = "Here is some about information: \n" +
@@ -440,6 +444,13 @@ function receivedMessage(event) {
             messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
           }
           break;
+
+          //handle the random command
+          case 'random':
+          searchWord = lc_messageText.slice(7);
+          searchWord = searchWord.toUpperCase();
+          var dictionaryIndex = findTheLine(senderID, searchWord);
+          randomRhymes(dictionaryIndex, 10);
 
           default:
           messageResponse = messageText + "?";
@@ -592,14 +603,47 @@ function receivedMessage(event) {
     }
   }
 
-//function to return the exact word as a string, when given a dictionary index
-function getWord(dictionaryIndex){
-  if (dictionaryIndex != -1) {
-    var gotString = CURRENTDICTIONARY[dictionaryIndex];
-    var theWord = gotString.split(" ");
+  //function to return the exact word as a string, when given a dictionary index
+  function getWord(dictionaryIndex){
+    if (dictionaryIndex != -1) {
+      var gotString = CURRENTDICTIONARY[dictionaryIndex];
+      var theWord = gotString.split(" ");
+    }
+    return theWord[0];
   }
-  return theWord[0];
-}
+
+  //
+  function randomRhymes(dictionaryIndex, resultsReq){
+    console.log("calling randomRhymes on input: "+dictionaryIndex+" \ "+resultsReq);
+    var pronunciationsFound = 0;
+    var keepLooking = true;
+    var theWord = getWord(dictionaryIndex);
+    console.log("word is "+theWord);
+    if (dictionaryIndex != -1){
+      pronunciationsFound = 1;
+      //check for multiple pronunciations in dictionary file
+      //as long as the next item isn't undefined, examine it
+      if (typeof CURRENTDICTIONARY[dictionaryIndex+1] !== "undefined") {
+        for (var j=1; keepLooking==true; j++) {
+          //if this appears to be an alternative pronunciation, log it
+          if (CURRENTDICTIONARY[dictionaryIndex+j].startsWith(theWord+"(")) {
+            pronunciationsFound++;
+            console.log("additional pronunciation found");
+          } else {
+            //if it's the end of the pronunciations, stop and send phonemes for processing
+            console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
+            syllablesReq = countSyllables(senderID, dictionaryIndex);
+            console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
+            console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(senderID, dictionaryIndex, syllablesReq);
+            keepLooking = false;
+          }
+        }
+      }
+    }
+    console.log("made it to the end");
+  }
+
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
@@ -716,7 +760,6 @@ function getWord(dictionaryIndex){
     if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
       var phonemeString = getPhonemes(dictionaryIndex);
-      console.log("searchPhonemes called for: "+phonemeString);
       var arrayBin = new Array;
       //search the dictionary
       console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
@@ -736,7 +779,6 @@ function getWord(dictionaryIndex){
               arrayBin[0] = arrayBin[0].toLowerCase()
               //if the last element added to RHYMEOUTPUT is the same, skip it
               if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-                console.log("Additional pronunciation for "+RHYMEOUTPUT[matchesFound-1]+" found, skipped it")
               } else {
                 //otherwise, save it
                 RHYMEOUTPUT[matchesFound] = arrayBin[0];
@@ -761,7 +803,6 @@ function getWord(dictionaryIndex){
     } else {
       console.log("no matches found i think");
     }
-
   }
 
   //function to split an array of words into 75-word chunks and send them
