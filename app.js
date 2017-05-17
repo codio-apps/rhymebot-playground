@@ -449,16 +449,22 @@ function receivedMessage(event) {
           }
           break;
 
+          //handle the question command
           case 'question':
           sendQuestion(senderID);
           break;
+
           //handle the random command
           case 'random':
             searchWord = lc_messageText.slice(7);
             searchWord = searchWord.toUpperCase();
             var dictionaryIndex = findTheLine(senderID, searchWord);
-            var randomString = randomRhymes(dictionaryIndex);
-            messageResponse = "ok "+randomString;
+            if (dictionaryIndex != -1){
+              var randomString = randomRhymes(dictionaryIndex);
+              messageResponse = "ok "+randomString;
+            } else {
+              messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+"yet";
+            }
           break;
 
           default:
@@ -634,7 +640,8 @@ function receivedMessage(event) {
   function randomRhymes(dictionaryIndex){
     console.log("randomRhymes called");
     var testerray = getRhymes(dictionaryIndex);
-    randomlyReturn(testerray, 10);
+    var randString =randomlyReturn(testerray, 10);
+    return randString;
   }
 
   //
