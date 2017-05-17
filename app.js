@@ -46,7 +46,7 @@ var wordNumber = 0;
 var stringLength = 0;
 
 //counters for finders
-var found = 0;
+var matchesFound = 0;
 var pronunciationsFound = 0;
 
 // Graph Profile fields by senderID
@@ -592,7 +592,8 @@ function receivedMessage(event) {
     var wordLength = searchWord.length;
     var startingLine = 0;
     var processedPhonemes = "";
-    found = 0;
+    matchesFound = 0;
+    pronunciationsFound = 0;
     //first find the word in the dictionary
     for (var i = startingLine, len = CURRENTDICTIONARY.length; i < len; i++) {
       if (CURRENTDICTIONARY[i].startsWith(searchWord+"  ")){
@@ -616,18 +617,18 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("found = "+found+". pronunciationsFound = "+pronunciationsFound);
+    console.log("found = "+matchesFound+". pronunciationsFound = "+pronunciationsFound);
     //if we didnt' find the word in the dictionary at all
     if (pronunciationsFound == 0) {
       messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
       //otherwise
     }  else {
 
-      if (found == 0) {
+      if (matchesFound == 0) {
         messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
       } else {
         //search the dictionary for matching phoneme endings
-        messageResponse = "I found "+found+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
+        messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
         splitMessage(senderID, RHYMEOUTPUT);
       }
       sendTypingOff(senderID);
@@ -636,7 +637,6 @@ function receivedMessage(event) {
   //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(phonemeString) {
     console.log("searchPhonemes called for: "+phonemeString);
-    found = 0;
     var arrayBin = new Array;
     var stringBin = "";
     //search the dictionary
@@ -652,12 +652,12 @@ function receivedMessage(event) {
           arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           arrayBin[0] = arrayBin[0].toLowerCase()
           //if the last element added to RHYMEOUTPUT is the same, skip it
-          if (arrayBin[0]==RHYMEOUTPUT[found-1]){
-            console.log("Additional pronunciation for "+RHYMEOUTPUT[found-1]+" found, skipped it")
+          if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+            console.log("Additional pronunciation for "+RHYMEOUTPUT[matchesFound-1]+" found, skipped it")
           } else {
             //otherwise, save it
-            RHYMEOUTPUT[found]=arrayBin[0];
-            found++;
+            RHYMEOUTPUT[matchesFound=arrayBin[0];
+            matchesFound++;
           }
         } else {
           //make sure it's not the same as searchWord
@@ -665,13 +665,13 @@ function receivedMessage(event) {
             //do nothing
           } else {
             //otherwise save the word to the output array
-            RHYMEOUTPUT[found]=arrayBin[0].toLowerCase();
-            found++;
+            RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
+            matchesFound++;
           }
         }
       }
     }
-    console.log("Search complete. Found: "+found+" rhyme(s).");
+    console.log("Search complete. Found: "+matchesFound+" rhyme(s).");
     return RHYMEOUTPUT;
 
   }
@@ -753,14 +753,14 @@ function receivedMessage(event) {
     var sequence = 0;
     var messageChunk = 0;
     var splitCount = 0;
-    var chunkTotal = found/75;
+    var chunkTotal = matchesFound/75;
     chunkTotal = Math.round(chunkTotal);
     console.log("splitting msg, required chunks: "+chunkTotal);
     if (chunkTotal > 0){
     }
     messageSplit[messageChunk]="message : 0\n"+stringArray[0];
     //for how ever many there were words found
-    for (var sequence = 1; sequence < found; sequence ++){
+    for (var sequence = 1; sequence < matchesFound; sequence ++){
       //add the next word to a string in the array
       //if we have less than 50 in this message section
       if (splitCount < 75){
