@@ -865,10 +865,10 @@ function receivedMessage(event) {
       messageSplit.length=0;
       var messageChunk = 0;
       var splitCount = 0;
-      var chunkTotal = matchesFound/75;
+      var chunkTotal = stringArray.length/75;
       chunkTotal = Math.round(chunkTotal);
       console.log("splitMessage, stringArray received is "+stringArray);
-      console.log("splitting msg, required chunks: "+chunkTotal+" because matchesFound: "+matchesFound);
+      console.log("splitting msg, required chunks: "+chunkTotal);
       messageSplit[messageChunk]=stringArray[0];
       console.log("msmc "+messageSplit[messageChunk]);
       //for how ever many there were words found
