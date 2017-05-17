@@ -577,15 +577,16 @@ function receivedMessage(event) {
         console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
         wordFound = true;
 
-  }
-}
+      }
+    }
 
-  if(wordFound){
-    return j;
-    console.log("returning: "+j+". Lookup index ref: "+CURRENTDICTIONARY[j]);
-  } else {
-    console.log("word not found in dictionary, returning: -1");
-    return -1;
+    if(wordFound){
+      return j;
+      console.log("returning: "+j+". Lookup index ref: "+CURRENTDICTIONARY[j]);
+    } else {
+      console.log("word not found in dictionary, returning: -1");
+      return -1;
+    }
   }
 
 
@@ -637,6 +638,7 @@ function receivedMessage(event) {
     //now turn off the typer
     sendTypingOff(senderID);
   }
+
   //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(phonemeString) {
     console.log("searchPhonemes called for: "+phonemeString);
