@@ -791,10 +791,10 @@ function receivedMessage(event) {
     //the 75 word limit is hardcoded for now
     function splitMessage(senderID, stringArray){
       var messageSplit = new Array;
-      var messageChunk = 1;
+      var messageChunk = 0;
       var splitCount = 0;
       var chunkTotal = matchesFound/75;
-      chunkTotal = Math.round(chunkTotal);
+      chunkTotal = Math.round(chunkTotal)+1;
       console.log("splitting msg, required chunks: "+chunkTotal);
       messageSplit[messageChunk]=stringArray[0];
       //for how ever many there were words found
