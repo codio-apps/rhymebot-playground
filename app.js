@@ -870,9 +870,8 @@ function receivedMessage(event) {
       console.log("splitMessage, stringArray received is "+stringArray);
       console.log("splitting msg, required chunks: "+chunkTotal);
       messageSplit[messageChunk]=stringArray[0];
-      console.log("msmc "+messageSplit[messageChunk]);
       //for how ever many there were words found
-      for (var sequence = 1; sequence < matchesFound; sequence ++){
+      for (var sequence = 1; sequence < stringArray.length; sequence ++){
         //add the next word to a string in the array
         //if we have less than 50 in this message section
         if (splitCount < 75){
