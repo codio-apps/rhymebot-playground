@@ -659,7 +659,7 @@ function getWord(dictionaryIndex){
     if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
       var wordLength = theWord.length
-      var phonemeString = getPhonemes(theWord, wordLength);
+      var phonemeString = getPhonemes(dictionaryIndex);
       console.log("searchPhonemes called for: "+phonemeString);
       var arrayBin = new Array;
       //search the dictionary
@@ -736,9 +736,10 @@ function getWord(dictionaryIndex){
   }
 
   //function to take in a word and spit out the phonemes
-  function getPhonemes(dictionaryIndex, wordLength){
+  function getPhonemes(dictionaryIndex){
     var theWord = CURRENTDICTIONARY[dictionaryIndex];
     console.log("getPhonemes called on "+theWord);
+    var wordLength = getWord(dictionaryIndex).length;
     var phonemeString ="";
     //trim off the spelling and spacing from the string
     var tempPHONEMES = theWord.slice(wordLength+2);
