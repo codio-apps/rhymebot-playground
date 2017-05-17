@@ -815,14 +815,13 @@ function receivedMessage(event) {
         RHYMEOUTPUT = [""];
         //search the dictionary
         console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-        console.log("RHYMEOUTPUT ="+RHYMEOUTPUT+". CURRENTDICTIONARY.length ="+CURRENTDICTIONARY.length);
-        for (var i = 0, len = CURRENTDICTIONARY.length; i < len; i++) {
+        for (var iX = 0, len = CURRENTDICTIONARY.length; iX < len; iX++) {
           //if the rhyme is a match
-          if (CURRENTDICTIONARY[i].endsWith(phonemeString)) {
+          if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
             //store the word in a temp string array
-            arrayBin = CURRENTDICTIONARY[i].split("  ");
+            arrayBin = CURRENTDICTIONARY[iX].split("  ");
             //handle cutting length to specific number of syllables
-            var sylCount = countSyllables(i);
+            var sylCount = countSyllables(iX);
             if (sylCount == syllableLength) {
               //if the found word ends in ")"
               if (arrayBin[0].endsWith(")")) {
