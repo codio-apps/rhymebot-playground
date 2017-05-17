@@ -665,7 +665,7 @@ function receivedMessage(event) {
 
 
   function randomRhymes(dictionaryIndex){
-    inputArray.length=0;
+    inputArray = [""];
     console.log("randomRhymes called on array of size: "+inputArray.length);
     var arrayBuffer = getRhymes(dictionaryIndex);
     var randString =randomlyReturn(arrayBuffer, 10);
@@ -848,7 +848,7 @@ function receivedMessage(event) {
       var messageChunk = 0;
       var splitCount = 0;
       var chunkTotal = matchesFound/75;
-      chunkTotal = Math.round(chunkTotal)+1;
+      chunkTotal = Math.round(chunkTotal);
       console.log("splitting msg, required chunks: "+chunkTotal);
       messageSplit[messageChunk]=stringArray[0];
       //for how ever many there were words found
