@@ -592,11 +592,12 @@ function receivedMessage(event) {
             if (CURRENTDICTIONARY[i+j].startsWith(searchWord+"(")) {
               pronunciationsFound++;
             } else {
-              //if it's the end of the pronunciations, stop
+              //if it's the end of the pronunciations, stop and send phonemes for processing
               console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-              keepLooking = false;
               processedPhonemes = getPhonemes(CURRENTDICTIONARY[i], wordLength);
+              console.log("processedPhonemes = "+processedPhonemes);
               RHYMEOUTPUT = searchPhonemes(processedPhonemes);
+              keepLooking = false;
             }
           }
         }
@@ -619,9 +620,9 @@ function receivedMessage(event) {
       sendTypingOff(senderID);
     }
   }
-  //function to return the phonemes for a word in the dictionary
+  //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(phonemeString) {
-    console.log("searchPhonemes called for index: "+phonemeString);
+    console.log("searchPhonemes called for: "+phonemeString);
     found = 0;
     var arrayBin = new Array;
     var stringBin = "";
