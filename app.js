@@ -452,13 +452,12 @@ function receivedMessage(event) {
           case 'question':
           sendQuestion(senderID);
           break;
-
           //handle the random command
           case 'random':
           searchWord = lc_messageText.slice(7);
           searchWord = searchWord.toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
-          getRhymes(dictionaryIndex);
+          getRhymes(dictionaryIndex, 10);
 
           default:
           messageResponse = messageText + "?";
@@ -621,12 +620,17 @@ function receivedMessage(event) {
   }
 
   //
+<<<<<<< HEAD
   function getRhymes(dictionaryIndex){
     console.log("calling getRhymes on input: "+dictionaryIndex);
     pronunciationsFound = 0;
+=======
+  function getRhymes(dictionaryIndex, resultsReq){
+    console.log("calling getRhymes on input: "+dictionaryIndex+" \ "+resultsReq);
+    var pronunciationsFound = 0;
+>>>>>>> 1adb6b991930c0f8ed1e498f95bbdc01fd50008d
     var keepLooking = true;
     var theWord = getWord(dictionaryIndex);
-    var syllablesReq = 0;
     console.log("word is "+theWord);
     if (dictionaryIndex != -1){
       pronunciationsFound = 1;
@@ -646,26 +650,61 @@ function receivedMessage(event) {
             console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
             RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             keepLooking = false;
+<<<<<<< HEAD
             console.log("Rhyme array"+RHYMEOUTPUT);
             return RHYMEOUTPUT;
+=======
+>>>>>>> 1adb6b991930c0f8ed1e498f95bbdc01fd50008d
           }
         }
       }
     }
+    console.log("made it to the end: "+RHYMEOUTPUT);
   }
 
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
     sendTypingOn(senderID);
+    var keepLooking = true;
     var wordLength = searchWord.length;
     var startingLine = 0;
+<<<<<<< HEAD
+=======
+    var dictionaryIndex = -1;
+    var syllablesReq = 0;
+    matchesFound = 0;
+    pronunciationsFound = 0;
+>>>>>>> 1adb6b991930c0f8ed1e498f95bbdc01fd50008d
 
     console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(senderID, searchWord);
     if (dictionaryIndex != -1) {
+<<<<<<< HEAD
       console.log("getting to this bit, where pfound is "+pronunciationsFound" and mfound is"+matchesFound);
       RHYMEOUTPUT = getRhymes(dictionaryIndex);
+=======
+      pronunciationsFound = 1;
+      //check for multiple pronunciations in dictionary file
+      //as long as the next item isn't undefined, examine it
+      if (typeof CURRENTDICTIONARY[dictionaryIndex+1] !== "undefined") {
+        for (var j=1; keepLooking==true; j++) {
+          //if this appears to be an alternative pronunciation, log it
+          if (CURRENTDICTIONARY[dictionaryIndex+j].startsWith(searchWord+"(")) {
+            pronunciationsFound++;
+            console.log("additional pronunciation found");
+          } else {
+            //if it's the end of the pronunciations, stop and send phonemes for processing
+            console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
+            syllablesReq = countSyllables(dictionaryIndex);
+            console.log("countSyllabes ran from FindTheRhyme, syllablesReq came back as "+syllablesReq);
+            console.log("triggering searchPhonemes from findTheRhyme:" +dictionaryIndex+" "+syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
+            keepLooking = false;
+          }
+        }
+      }
+>>>>>>> 1adb6b991930c0f8ed1e498f95bbdc01fd50008d
     }
     //if we didnt' find the word in the dictionary at all
     if (pronunciationsFound == 0) {
@@ -1238,30 +1277,33 @@ function receivedMessage(event) {
 
 
   function sendQuestion(recipientId) {
-    var messageData = {
-      recipient: {
-        id: recipientId
-      },
-      message: {
-        text: "How HipHop are you??",
-        quick_replies: [
-          {
-            "content_type":"text",
-            "title":"Kinda",
-            "payload":"Kinda"
-          },
-          {
-            "content_type":"text",
-            "title":"Very",
-            "payload":"Very"
-          },
-          {
-            "content_type":"text",
-            "title":"HH",
-            "payload":"Hippidy Hop"
+
+      var messageData = {
+        recipient: {
+          id: recipientId
+        },
+        "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"What do you want to do next?",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"https://petersapparel.parseapp.com",
+                "title":"Show Website"
+              },
+              {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"USER_DEFINED_PAYLOAD"
+              }
+            ]
           }
-        ]
+        }
       }
+
     };
 
     callSendAPI(messageData);
