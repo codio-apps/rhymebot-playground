@@ -872,7 +872,6 @@ function receivedMessage(event) {
     console.log("attempted: "+options[6]+" matched ending: "+options[0]+" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
     return RHYMEOUTPUT;
   }
-}
 
 //function to split an array of words into 75-word chunks and send them
 //the 75 word limit is hardcoded for now
