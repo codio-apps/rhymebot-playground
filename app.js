@@ -363,9 +363,13 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("count")) {
           intent = "count";
         }
-        // If the message starts with Rhyme, change the key to rhyme
+        // If the message starts with Question, change the key to question
         else if(lc_messageText.startsWith("question")) {
           intent = "question";
+        }
+        // If the message starts with List, change the key to list
+        else if(lc_messageText.startsWith("list")) {
+          intent = "list";
         }
         else if(lc_messageText.startsWith("random")) {
           intent = "random";
@@ -455,6 +459,9 @@ function receivedMessage(event) {
           sendQuestion(senderID);
           break;
 
+          case 'list':
+          sendListData(senderID);
+          break;
           //handle the random command
           case 'random':
           searchWord = lc_messageText.slice(7);
