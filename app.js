@@ -834,6 +834,7 @@ function receivedMessage(event) {
           var sylCount = countSyllables(iX);
           if (sylCount == syllableLength) {
             options[1]++;
+            console.log(" theres a match at "+CURRENTDICTIONARY[iX]);
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
               options[2]++;
@@ -845,13 +846,13 @@ function receivedMessage(event) {
               arrayBin[0] = arrayBin[0].toLowerCase();
               //if the last element added to RHYMEOUTPUT is the same, skip it
             }
-            if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+            if (RHYMEOUTPUT.includes(arrayBin[0])){
               options[3]++;
               console.log("skipping "+arrayBin[0]);
             } else {
               options[4]++;
               //otherwise, save it
-              RHYMEOUTPUT[matchesFound] = arrayBin[0];
+              RHYMEOUTPUT[matchesFound] = arrayBin[0].toLowerCase();
               matchesFound++;
             }
           }
@@ -867,7 +868,7 @@ function receivedMessage(event) {
       }
     }
     console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-    console.log(" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
+    console.log("matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
     return RHYMEOUTPUT;
   }
 
