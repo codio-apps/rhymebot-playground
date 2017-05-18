@@ -856,7 +856,6 @@ function receivedMessage(event) {
               matchesFound++;
             }
           }
-        } else {
           //make sure it's not the same as searchWord
           if (arrayBin[0]==theWord){
             //do nothing
