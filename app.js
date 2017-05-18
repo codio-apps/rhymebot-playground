@@ -1359,10 +1359,7 @@ function sendListData(recipientId) {
   request({
     "setting_type" : "domain_whitelisting",
 "whitelisted_domains" : ["https://www.facebook.com/RhymeBot-Playground-619995748207390"],
-"domain_action_type": "add"
-
-  },
-  });
+"domain_action_type": "add"  });
 
   var messageData = {
     recipient: {
