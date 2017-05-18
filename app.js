@@ -1356,6 +1356,27 @@ function sendQuestion(recipientId) {
 */
 function sendListData(recipientId) {
   console.log("Sending a list data message");
+  request({
+    "setting_type" : "domain_whitelisting",
+"whitelisted_domains" : ["https://www.facebook.com/RhymeBot-Playground-619995748207390"],
+"domain_action_type": "add"
+
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+
+      if (messageId) {
+        console.log("Successfully sent message with id %s to recipient %s",
+        messageId, recipientId);
+      } else {
+        console.log("Successfully called Send API for recipient %s",
+        recipientId);
+      }
+    } else {
+      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+    }
+  });
 
   var messageData = {
     recipient: {
