@@ -826,7 +826,6 @@ function receivedMessage(event) {
       //search the dictionary
       console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
-
         //if the rhyme is a match
         if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
           options[6]++;
@@ -846,7 +845,8 @@ function receivedMessage(event) {
               arrayBin[0] = arrayBin[0].slice(0, tmpLen);
               arrayBin[0] = arrayBin[0].toLowerCase();
               //if the last element added to RHYMEOUTPUT is the same, skip it
-            } else if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+            }
+            if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
                 options[3]++;
                 console.log("skipping "+arrayBin[0]);
               } else {
@@ -854,6 +854,7 @@ function receivedMessage(event) {
                 //otherwise, save it
                 RHYMEOUTPUT[matchesFound] = arrayBin[0];
                 matchesFound++;
+              }
               }
             } else {
               //make sure it's not the same as searchWord
