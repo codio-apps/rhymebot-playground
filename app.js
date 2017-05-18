@@ -841,7 +841,7 @@ function receivedMessage(event) {
               //add the word to the list, but remove the brackets from the spelling info
               var tmpLen = arrayBin[0].length-3;
               arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-              arrayBin[0] = arrayBin[0].toLowerCase();
+              arrayBin[0] = arrayBin[0];
               options[2]++;
             }
             if (RHYMEOUTPUT.includes(arrayBin[0])){
