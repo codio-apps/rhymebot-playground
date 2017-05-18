@@ -865,9 +865,6 @@ function receivedMessage(event) {
                 matchesFound++;
               }
             }
-          } else {
-            options[5]++;
-          }
         }
       }
       console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
