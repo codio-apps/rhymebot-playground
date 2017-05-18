@@ -475,7 +475,7 @@ function receivedMessage(event) {
             console.log("Input array position 1 is a number");
             var dictionaryIndex = findTheLine(senderID, searchArray[0]);
             if (dictionaryIndex != -1){
-              randomString = randomRhymes(dictionaryIndex, 10);
+              randomString = randomRhymes(dictionaryIndex, searchArray[1]);
               splitMessage(senderID, randomString);
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -822,7 +822,6 @@ function receivedMessage(event) {
       var arrayBin = [""];
       RHYMEOUTPUT = [""];
       matchesFound = 0;
-      var options = [ 0, 0, 0, 0, 0, 0, 0 ];
       //search the dictionary
       console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
@@ -833,7 +832,6 @@ function receivedMessage(event) {
           //handle cutting length to specific number of syllables
           var sylCount = countSyllables(iX);
           if (sylCount == syllableLength) {
-            options[1]++;
             console.log(" theres a match at "+iX+" / "+CURRENTDICTIONARY[iX]);
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
@@ -842,13 +840,10 @@ function receivedMessage(event) {
               var tmpLen = arrayBin[0].length-3;
               arrayBin[0] = arrayBin[0].slice(0, tmpLen);
               arrayBin[0] = arrayBin[0];
-              options[2]++;
             }
             if (RHYMEOUTPUT.includes(arrayBin[0])){
-              options[3]++;
               console.log("skipping "+arrayBin[0]);
             } else {
-              options[4]++;
             }
           }
           //make sure it's not the same as searchWord
@@ -863,7 +858,6 @@ function receivedMessage(event) {
       }
     }
     console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-    console.log("matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
     return RHYMEOUTPUT;
   }
 
