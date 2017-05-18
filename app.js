@@ -822,7 +822,7 @@ function receivedMessage(event) {
       var arrayBin = [""];
       RHYMEOUTPUT = [""];
       matchesFound = 0;
-      var options = new Array[ 0, 0, 0, 0, 0, 0, 0 ];
+      var options = [ 0, 0, 0, 0, 0, 0, 0 ];
       //search the dictionary
       console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
@@ -837,13 +837,12 @@ function receivedMessage(event) {
             console.log(" theres a match at "+iX+" / "+CURRENTDICTIONARY[iX]);
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
-              options[2]++;
               console.log("removing brackets from "+arrayBin[0]);
               //add the word to the list, but remove the brackets from the spelling info
               var tmpLen = arrayBin[0].length-3;
               arrayBin[0] = arrayBin[0].slice(0, tmpLen);
               arrayBin[0] = arrayBin[0].toLowerCase();
-              //if the last element added to RHYMEOUTPUT is the same, skip it
+              options[2]++;
             }
             if (RHYMEOUTPUT.includes(arrayBin[0])){
               options[3]++;
