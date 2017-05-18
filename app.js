@@ -1372,19 +1372,19 @@ function sendListData(recipientId) {
                     "subtitle": "See all our colors",
                     "default_action": {
                         "type": "web_url",
-                        "url": "http://facebook.com/rhymebotbot",
+                        "url": "https://facebook.com/rhymebotbot",
                         "messenger_extensions": true,
                         "webview_height_ratio": "tall",
-"fallback_url": "http://facebook.com/rhymebotbot"
+"fallback_url": "https://facebook.com/rhymebotbot"
                     },
                     "buttons": [
                         {
                             "title": "View",
                             "type": "web_url",
-                        "url": "http://facebook.com/rhymebotbot",
+                        "url": "https://facebook.com/rhymebotbot",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
-"fallback_url": "http://facebook.com/rhymebotbot"
+"fallback_url": "https://facebook.com/rhymebotbot"
                         }
                     ]
                 },
@@ -1394,19 +1394,19 @@ function sendListData(recipientId) {
                     "subtitle": "100% Cotton, 200% Comfortable",
                     "default_action": {
                         "type": "web_url",
-                        "url": "http://facebook.com/rhymebotbot",
+                        "url": "https://facebook.com/rhymebotbot",
                         "messenger_extensions": true,
                         "webview_height_ratio": "tall",
-  "fallback_url": "http://facebook.com/rhymebotbot"
+  "fallback_url": "https://facebook.com/rhymebotbot"
                     },
                     "buttons": [
                         {
                             "title": "Shop Now",
                             "type": "web_url",
-                        "url": "http://facebook.com/rhymebotbot",
+                        "url": "https://facebook.com/rhymebotbot",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
-"fallback_url": "http://facebook.com/rhymebotbot"
+"fallback_url": "https://facebook.com/rhymebotbot"
                         }
                     ]
                 },
@@ -1416,19 +1416,19 @@ function sendListData(recipientId) {
                     "subtitle": "100% Cotton, 200% Comfortable",
                     "default_action": {
                         "type": "web_url",
-                        "url": "http://facebook.com/rhymebotbot",
+                        "url": "https://facebook.com/rhymebotbot",
                         "messenger_extensions": true,
                         "webview_height_ratio": "tall",
-"fallback_url": "http://facebook.com/rhymebotbot"
+"fallback_url": "https://facebook.com/rhymebotbot"
                     },
                     "buttons": [
                         {
                             "title": "Shop Now",
                             "type": "web_url",
-                        "url": "http://facebook.com/rhymebotbot",
+                        "url": "https://facebook.com/rhymebotbot",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
-"fallback_url": "http://facebook.com/rhymebotbot"
+"fallback_url": "https://facebook.com/rhymebotbot"
                         }
                     ]
                 },
@@ -1438,16 +1438,16 @@ function sendListData(recipientId) {
                     "subtitle": "100% Cotton, 200% Comfortable",
                     "default_action": {
                         "type": "web_url",
-                        "url": "http://facebook.com/rhymebotbot",
+                        "url": "https://facebook.com/rhymebotbot",
                         "messenger_extensions": true,
                         "webview_height_ratio": "tall",
-                        "fallback_url": "http://facebook.com/rhymebotbot"
+                        "fallback_url": "https://facebook.com/rhymebotbot"
                     },
                     "buttons": [
                         {
                             "title": "Shop Now",
                             "type": "web_url",
-                        "url": "http://facebook.com/rhymebotbot",
+                        "url": "https://facebook.com/rhymebotbot",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
                             "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
