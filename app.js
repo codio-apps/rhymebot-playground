@@ -532,6 +532,21 @@ function receivedMessage(event) {
   // Read text file data and store it into local variables for string comparisons
   function setUpLocalVariables() {
 
+
+    // Connect to the MongoDB server
+    try {
+      var MongoClient = require('mongodb').MongoClient;
+
+var uri = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/codio-apps?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
+MongoClient.connect(uri, function(err, db) {
+  db.close();
+  console.log("Connection to server was very successful");
+});
+    } catch(err) {
+
+      console.log("Connection to server was not successful");
+    }
+
     // Assign the greetings txt file values (hey, hello, hi) to the GREETINGS variable
     // Try to read from file
     try {
@@ -1353,125 +1368,122 @@ function sendQuestion(recipientId) {
 /* Send a list of stuffs
 *
 *
-*/
-function sendListData(recipientId) {
-  console.log("Sending a list data message");
-  request({
-    "setting_type" : "domain_whitelisting",
-"whitelisted_domains" : ["https://www.facebook.com/RhymeBot-Playground-619995748207390"],
-"domain_action_type": "add"  });
-
-  var messageData = {
-    recipient: {
-      id: recipientId
-    }, "message": {
-    "attachment": {
-        "type": "template",
-        "payload": {
-            "template_type": "list",
-            "elements": [
-                {
-                    "title": "Classic T-Shirt Collection",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
-                    "subtitle": "See all our colors",
-                    "default_action": {
-                        "type": "web_url",
-                        "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-                        "messenger_extensions": true,
-                        "webview_height_ratio": "tall",
-"fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-                    },
-                    "buttons": [
-                        {
-                            "title": "View",
-                            "type": "web_url",
-                        "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-                            "messenger_extensions": true,
-                            "webview_height_ratio": "tall",
-"fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-                        }
-                    ]
-                },
-                {
-                    "title": "Classic White T-Shirt",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/white-t-shirt.png",
-                    "subtitle": "100% Cotton, 200% Comfortable",
-                    "default_action": {
-                        "type": "web_url",
-                        "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-                        "messenger_extensions": true,
-                        "webview_height_ratio": "tall",
-  "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-                    },
-                    "buttons": [
-                        {
-                            "title": "Shop Now",
-                            "type": "web_url",
-                        "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-                            "messenger_extensions": true,
-                            "webview_height_ratio": "tall",
-"fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-                        }
-                    ]
-                },
-                {
-                    "title": "Classic Blue T-Shirt",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
-                    "subtitle": "100% Cotton, 200% Comfortable",
-                    "default_action": {
-                        "type": "web_url",
-                        "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-                        "messenger_extensions": true,
-                        "webview_height_ratio": "tall",
-"fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-                    },
-                    "buttons": [
-                        {
-                            "title": "Shop Now",
-                            "type": "web_url",
-                        "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-                            "messenger_extensions": true,
-                            "webview_height_ratio": "tall",
-"fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-                        }
-                    ]
-                },
-                {
-                    "title": "Classic Black T-Shirt",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png",
-                    "subtitle": "100% Cotton, 200% Comfortable",
-                    "default_action": {
-                        "type": "web_url",
-                        "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-                        "messenger_extensions": true,
-                        "webview_height_ratio": "tall",
-                        "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-                    },
-                    "buttons": [
-                        {
-                            "title": "Shop Now",
-                            "type": "web_url",
-                        "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-                            "messenger_extensions": true,
-                            "webview_height_ratio": "tall",
-                            "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
-                        }
-                    ]
-                }
-            ],
-             "buttons": [
-                {
-                    "title": "View More",
-                    "type": "postback",
-                    "payload": "payload"
-                }
-            ]
-        }
-    }
-}
-};
-callSendAPI(messageData);
-}
+*/ // IF THIS FUNCTION IS NEEDED WE NEED TO WHITELIST THE DOMAINS: https://developers.facebook.com/docs/messenger-platform/thread-settings/domain-whitelisting
+// function sendListData(recipientId) {
+//   console.log("Sending a list data message");
+//
+//
+//   var messageData = {
+//     recipient: {
+//       id: recipientId
+//     }, "message": {
+//     "attachment": {
+//         "type": "template",
+//         "payload": {
+//             "template_type": "list",
+//             "elements": [
+//                 {
+//                     "title": "Classic T-Shirt Collection",
+//                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+//                     "subtitle": "See all our colors",
+//                     "default_action": {
+//                         "type": "web_url",
+//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+//                         "messenger_extensions": true,
+//                         "webview_height_ratio": "tall",
+// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+//                     },
+//                     "buttons": [
+//                         {
+//                             "title": "View",
+//                             "type": "web_url",
+//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+//                             "messenger_extensions": true,
+//                             "webview_height_ratio": "tall",
+// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     "title": "Classic White T-Shirt",
+//                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/white-t-shirt.png",
+//                     "subtitle": "100% Cotton, 200% Comfortable",
+//                     "default_action": {
+//                         "type": "web_url",
+//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+//                         "messenger_extensions": true,
+//                         "webview_height_ratio": "tall",
+//   "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+//                     },
+//                     "buttons": [
+//                         {
+//                             "title": "Shop Now",
+//                             "type": "web_url",
+//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+//                             "messenger_extensions": true,
+//                             "webview_height_ratio": "tall",
+// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     "title": "Classic Blue T-Shirt",
+//                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+//                     "subtitle": "100% Cotton, 200% Comfortable",
+//                     "default_action": {
+//                         "type": "web_url",
+//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+//                         "messenger_extensions": true,
+//                         "webview_height_ratio": "tall",
+// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+//                     },
+//                     "buttons": [
+//                         {
+//                             "title": "Shop Now",
+//                             "type": "web_url",
+//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+//                             "messenger_extensions": true,
+//                             "webview_height_ratio": "tall",
+// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     "title": "Classic Black T-Shirt",
+//                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png",
+//                     "subtitle": "100% Cotton, 200% Comfortable",
+//                     "default_action": {
+//                         "type": "web_url",
+//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+//                         "messenger_extensions": true,
+//                         "webview_height_ratio": "tall",
+//                         "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+//                     },
+//                     "buttons": [
+//                         {
+//                             "title": "Shop Now",
+//                             "type": "web_url",
+//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+//                             "messenger_extensions": true,
+//                             "webview_height_ratio": "tall",
+//                             "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+//                         }
+//                     ]
+//                 }
+//             ],
+//              "buttons": [
+//                 {
+//                     "title": "View More",
+//                     "type": "postback",
+//                     "payload": "payload"
+//                 }
+//             ]
+//         }
+//     }
+// }
+// };
+// callSendAPI(messageData);
+// }
 
 /*
 * Send a read receipt to indicate the message has been read
