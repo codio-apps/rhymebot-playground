@@ -849,9 +849,6 @@ function receivedMessage(event) {
               console.log("skipping "+arrayBin[0]);
             } else {
               options[4]++;
-              //otherwise, save it
-              RHYMEOUTPUT[matchesFound] = arrayBin[0].toLowerCase();
-              matchesFound++;
             }
           }
           //make sure it's not the same as searchWord
