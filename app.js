@@ -828,17 +828,16 @@ function receivedMessage(event) {
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
-          options[6]++;
           //store the word in a temp string array
           arrayBin = CURRENTDICTIONARY[iX].split("  ");
           //handle cutting length to specific number of syllables
           var sylCount = countSyllables(iX);
-          options[0]++;
           if (sylCount == syllableLength) {
             options[1]++;
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
               options[2]++;
+              console.log("I'm in here dad")
               console.log("removing brackets from "+arrayBin[0]);
               //add the word to the list, but remove the brackets from the spelling info
               var tmpLen = arrayBin[0].length-3;
@@ -868,7 +867,7 @@ function receivedMessage(event) {
       }
     }
     console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-    console.log("attempted: "+options[6]+" matched ending: "+options[0]+" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
+    console.log(" matched syll length: "+options[1]+" ended with brackets: "+options[2]+" skipped(): "+options[3]+" saved = "+options[4]+" elsed = "+options[5]);
     return RHYMEOUTPUT;
   }
 
