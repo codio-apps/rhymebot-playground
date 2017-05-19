@@ -12,7 +12,7 @@ crypto = require('crypto'),
 express = require('express'),
 https = require('https'),
 request = require('request');
-mongo = require('mongodb');
+
 
 // Express environment
 var app = express();
