@@ -638,10 +638,10 @@ function receivedMessage(event) {
   function searchSentence(sentenceArray, totalSyllables){
     console.log("searchSentence called on:"+sentenceArray);
     var syllableArray = "";
-    for (i = 0; i < sentenceArray.length; i++){
+    for (var i = 0; i < sentenceArray.length; i++){
       syllableArray[i] = getPhonemes(sentenceArray[i], true);
     }
-    console.log("seyar:"+syllableArray);
+    console.log("syllableArray is now: "+syllableArray);
 
 
 
