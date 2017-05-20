@@ -880,7 +880,7 @@ function receivedMessage(event) {
             console.log("removing brackets from "+arrayBin[0]);
             //add the word to the list, but remove the brackets from the spelling info
             var tmpLen = arrayBin[0].length-3;
-            arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+            arrayBin[0] = arrayBin[0].slice(0, tmpLen).toLowerCase();
           }
             if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
               console.log("Duplicate found, skipping "+arrayBin[0]);
@@ -888,7 +888,7 @@ function receivedMessage(event) {
               console.log(arrayBin[0]+" not equal to "+RHYMEOUTPUT[matchesFound-1]);
               //make sure it's not the same as searchWord
               if (arrayBin[0]==theWord){
-                console.log(theWord+" found again, skipping");
+                console.log("Search term: "+theWord+" found again, skipping");
                 //do nothing
               } else {
                 //otherwise save the word to the output array
