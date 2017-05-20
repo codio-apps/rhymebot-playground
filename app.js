@@ -641,9 +641,9 @@ function receivedMessage(event) {
     //for however many phonemes there are
     for (var n = 0; n < tryer.length; n++){ // n=0; n<6; n++
       tryerString = "";
-    //cut off the first N syllables
-      for (var i = 1+n, len = tryer.length; i < len; i++){ //i=0, len=6; 0<6; i++ //i=1, len=5; 1<5; i++
-          tryerString = tryerString+" "+tryer[i]; //""=""+AA1 //AA1+
+      //cut off the first N syllables, scaling backwards
+      for (var i = 1+n, len = tryer.length; i < len; i++){
+        tryerString = tryerString+" "+tryer[i];
       }
       console.log("searching phonemes for "+tryerString);
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
@@ -652,25 +652,23 @@ function receivedMessage(event) {
           //store the word in a temp string array
           arrayBin = CURRENTDICTIONARY[iX].split("  ");
           arrayBin[0] = arrayBin[0].toLowerCase()
-            //if the found word ends in ")"
-            if (arrayBin[0].endsWith(")")) {
-              //add the word to the list, but remove the brackets from the spelling info
-              var tmpLen = arrayBin[0].length-3;
-              arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-            }
-            if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-            }     else {
-                //otherwise save the word to the output array
-                RHYMEOUTPUT[matchesFound]=arrayBin[0];
-                matchesFound++;
-              }
-            }
-
+          //if the found word ends in ")"
+          if (arrayBin[0].endsWith(")")) {
+            //add the word to the list, but remove the brackets from the spelling info
+            var tmpLen = arrayBin[0].length-3;
+            arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+          }
+          if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+          }     else {
+            //otherwise save the word to the output array
+            RHYMEOUTPUT[matchesFound]=arrayBin[0];
+            matchesFound++;
+          }
         }
       }
-      console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-      console.log(RHYMEOUTPUT);
     }
+    console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+    console.log(RHYMEOUTPUT);
   }
 
   function StringSearch(input, key) {
