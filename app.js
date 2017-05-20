@@ -859,37 +859,37 @@ function receivedMessage(event) {
 
   //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(dictionaryIndex, syllableLength) {
-      var theWord = getWord(dictionaryIndex);
-      var phonemeString = getPhonemes(dictionaryIndex);
-      var arrayBin = [""];
-      RHYMEOUTPUT = [""];
-      matchesFound = 0;
-      //search the dictionary
-      console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-      for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
-        //if the rhyme is a match
-        if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
-          //store the word in a temp string array
-          arrayBin = CURRENTDICTIONARY[iX].split("  ");
-          //handle cutting length to specific number of syllables
-          var sylCount = countSyllables(iX);
-          if (sylCount == syllableLength) {
-            console.log(" theres a match at "+iX+" / "+CURRENTDICTIONARY[iX]);
-            //if the found word ends in ")"
-            if (arrayBin[0].endsWith(")")) {
-              console.log("removing brackets from "+arrayBin[0]);
-              //add the word to the list, but remove the brackets from the spelling info
-              var tmpLen = arrayBin[0].length-3;
-              arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-              arrayBin[0] = arrayBin[0];
-            }
-            if (RHYMEOUTPUT.includes(arrayBin[0])){
-              console.log("skipping "+arrayBin[0]);
-            } else {
-            }
+    var theWord = getWord(dictionaryIndex);
+    var phonemeString = getPhonemes(dictionaryIndex);
+    var arrayBin = [""];
+    RHYMEOUTPUT = [""];
+    matchesFound = 0;
+    //search the dictionary
+    console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
+    for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
+      //if the rhyme is a match
+      if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
+        //store the word in a temp string array
+        arrayBin = CURRENTDICTIONARY[iX].split("  ");
+        //handle cutting length to specific number of syllables
+        var sylCount = countSyllables(iX);
+        if (sylCount == syllableLength) {
+          console.log(" theres a match at "+iX+" / "+CURRENTDICTIONARY[iX]);
+          //if the found word ends in ")"
+          if (arrayBin[0].endsWith(")")) {
+            console.log("removing brackets from "+arrayBin[0]);
+            //add the word to the list, but remove the brackets from the spelling info
+            var tmpLen = arrayBin[0].length-3;
+            arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+            arrayBin[0] = arrayBin[0];
+          }
+          if (RHYMEOUTPUT.includes(arrayBin[0])){
+            console.log("skipping "+arrayBin[0]);
+          } else {
           }
           //make sure it's not the same as searchWord
           if (arrayBin[0]==theWord){
+            console.log("same word found");
             //do nothing
           } else {
             //otherwise save the word to the output array
@@ -899,6 +899,7 @@ function receivedMessage(event) {
           }
         }
       }
+    }
     console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
     return RHYMEOUTPUT;
   }
