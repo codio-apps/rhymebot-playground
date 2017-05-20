@@ -291,14 +291,14 @@ function receivedMessage(event) {
   }
 
 
-//   var MongoClient = require('mongodb').MongoClient;
-// var url = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/codio-apps?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-//
-// MongoClient.connect(url, function(err, db) {
-//   if (err) throw err;
-//   console.log("Database created!");
-//   db.close();
-// });
+  //   var MongoClient = require('mongodb').MongoClient;
+  // var url = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/codio-apps?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
+  //
+  // MongoClient.connect(url, function(err, db) {
+  //   if (err) throw err;
+  //   console.log("Database created!");
+  //   db.close();
+  // });
 
 
   console.log("Getting user info. Name is currently " + name);
@@ -562,12 +562,12 @@ function receivedMessage(event) {
 
 
     // Connect to the MongoDB server
-//       var MongoClient = require('mongodb').MongoClient;
-//
-// var uri = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/codio-apps?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-// MongoClient.connect(uri, function(err, db) {
-//   db.close();
-// });
+    //       var MongoClient = require('mongodb').MongoClient;
+    //
+    // var uri = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/codio-apps?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
+    // MongoClient.connect(uri, function(err, db) {
+    //   db.close();
+    // });
 
     // Assign the greetings txt file values (hey, hello, hi) to the GREETINGS variable
     // Try to read from file
@@ -762,7 +762,7 @@ function receivedMessage(event) {
             console.log(theWord+" has "+syllablesReq+" relevant phonemes")
             RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             return RHYMEOUTPUT;
-          }  
+          }
         }
       } else {
         console.log("undefined obj found :"+CURRENTDICTIONARY[dictionaryIndex]);
@@ -820,7 +820,7 @@ function receivedMessage(event) {
           syllablesFound++;
         }
       }
-      console.log("Calculated syllables: "+syllablesFound);
+      console.log("Calculated syllables at "+dictionaryIndex" : "+syllablesFound);
       return syllablesFound;
     } else {
       return 0;
@@ -887,19 +887,19 @@ function receivedMessage(event) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
-            if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-              console.log("Duplicate found, skipping "+arrayBin[0]);
+          if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+            console.log("Duplicate found, skipping "+arrayBin[0]);
+          } else {
+            //make sure it's not the same as searchWord
+            if (arrayBin[0]==theWord.toLowerCase()){
+              console.log("Search term: "+theWord+" found again, skipping");
+              //do nothing
             } else {
-              //make sure it's not the same as searchWord
-              if (arrayBin[0]==theWord.toLowerCase()){
-                console.log("Search term: "+theWord+" found again, skipping");
-                //do nothing
-              } else {
-                //otherwise save the word to the output array
-                RHYMEOUTPUT[matchesFound]=arrayBin[0];
-                matchesFound++;
-              }
+              //otherwise save the word to the output array
+              RHYMEOUTPUT[matchesFound]=arrayBin[0];
+              matchesFound++;
             }
+          }
         }
       }
     }
@@ -907,721 +907,721 @@ function receivedMessage(event) {
     return RHYMEOUTPUT;
   }
 
-//function to split an array of words into 75-word chunks and send them
-//the 75 word limit is hardcoded for now
-function splitMessage(senderID, stringArray){
-  var messageSplit = new Array;
-  messageSplit.length=0;
-  var messageChunk = 0;
-  var splitCount = 0;
-  var chunkTotal = stringArray.length/75;
-  chunkTotal = Math.round(chunkTotal);
-  console.log("splitMessage, stringArray received is "+stringArray);
-  console.log("splitting msg, required chunks: "+chunkTotal);
-  messageSplit[messageChunk]=stringArray[0];
-  //for how ever many there were words found
-  for (var sequence = 1; sequence < stringArray.length; sequence ++){
-    //add the next word to a string in the array
-    //if we have less than 50 in this message section
-    if (splitCount < 75){
-      //assign this rhyme to the string
-      messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
-      //increase the split number
-      splitCount++;
-    } else {
-      //otherwise, split the message into the next chunk
-      splitCount=0;
-      messageChunk++;
-      messageSplit[messageChunk]="message "+messageChunk+"\n"+stringArray[sequence];
+  //function to split an array of words into 75-word chunks and send them
+  //the 75 word limit is hardcoded for now
+  function splitMessage(senderID, stringArray){
+    var messageSplit = new Array;
+    messageSplit.length=0;
+    var messageChunk = 0;
+    var splitCount = 0;
+    var chunkTotal = stringArray.length/75;
+    chunkTotal = Math.round(chunkTotal);
+    console.log("splitMessage, stringArray received is "+stringArray);
+    console.log("splitting msg, required chunks: "+chunkTotal);
+    messageSplit[messageChunk]=stringArray[0];
+    //for how ever many there were words found
+    for (var sequence = 1; sequence < stringArray.length; sequence ++){
+      //add the next word to a string in the array
+      //if we have less than 50 in this message section
+      if (splitCount < 75){
+        //assign this rhyme to the string
+        messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
+        //increase the split number
+        splitCount++;
+      } else {
+        //otherwise, split the message into the next chunk
+        splitCount=0;
+        messageChunk++;
+        messageSplit[messageChunk]="message "+messageChunk+"\n"+stringArray[sequence];
+      }
     }
-  }
-  console.log("Delivering results");
-  chunkTotal++;
-  for (var i = 0; i < chunkTotal; i++){
-    console.log("delivering chunk "+i+" contents: "+messageSplit[i]);
-    sendTextMessage(senderID, messageSplit[i]);
-  }
-  console.log("Results delivered");
-}
-
-/*
-* Delivery Confirmation Event
-*
-* This event is sent to confirm the delivery of a message. Read more about
-* these fields at https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-delivered
-*
-*/
-function receivedDeliveryConfirmation(event) {
-
-  var senderID = event.sender.id;
-  var recipientID = event.recipient.id;
-  var delivery = event.delivery;
-  var messageIDs = delivery.mids;
-  var watermark = delivery.watermark;
-  var sequenceNumber = delivery.seq;
-
-  if (messageIDs) {
-    messageIDs.forEach(function(messageID) {
-      console.log("Received delivery confirmation for message ID: %s",
-      messageID);
-    });
+    console.log("Delivering results");
+    chunkTotal++;
+    for (var i = 0; i < chunkTotal; i++){
+      console.log("delivering chunk "+i+" contents: "+messageSplit[i]);
+      sendTextMessage(senderID, messageSplit[i]);
+    }
+    console.log("Results delivered");
   }
 
-  console.log("All message before %d were delivered.", watermark);
-}
+  /*
+  * Delivery Confirmation Event
+  *
+  * This event is sent to confirm the delivery of a message. Read more about
+  * these fields at https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-delivered
+  *
+  */
+  function receivedDeliveryConfirmation(event) {
+
+    var senderID = event.sender.id;
+    var recipientID = event.recipient.id;
+    var delivery = event.delivery;
+    var messageIDs = delivery.mids;
+    var watermark = delivery.watermark;
+    var sequenceNumber = delivery.seq;
+
+    if (messageIDs) {
+      messageIDs.forEach(function(messageID) {
+        console.log("Received delivery confirmation for message ID: %s",
+        messageID);
+      });
+    }
+
+    console.log("All message before %d were delivered.", watermark);
+  }
 
 
-/*
-* Postback Event
-*
-* This event is called when a postback is tapped on a Structured Message.
-* https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-receivedcountSY
-*
-*/
-function receivedPostback(event) {
-  var senderID = event.sender.id;
-  var recipientID = event.recipient.id;
-  var timeOfPostback = event.timestamp;
+  /*
+  * Postback Event
+  *
+  * This event is called when a postback is tapped on a Structured Message.
+  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-receivedcountSY
+  *
+  */
+  function receivedPostback(event) {
+    var senderID = event.sender.id;
+    var recipientID = event.recipient.id;
+    var timeOfPostback = event.timestamp;
 
-  // The 'payload' param is a developer-defined field which is set in a postback
-  // button for Structured Messages.
-  var payload = event.postback.payload;
+    // The 'payload' param is a developer-defined field which is set in a postback
+    // button for Structured Messages.
+    var payload = event.postback.payload;
 
-  console.log("Received postback for user %d and page %d with payload '%s' " +
-  "at %d", senderID, recipientID, payload, timeOfPostback);
+    console.log("Received postback for user %d and page %d with payload '%s' " +
+    "at %d", senderID, recipientID, payload, timeOfPostback);
 
-  // When a postback is called, we'll send a message back to the sender to
-  // let them know it was successful
-  sendTextMessage(senderID, "Postback called: " + payload);
-}
+    // When a postback is called, we'll send a message back to the sender to
+    // let them know it was successful
+    sendTextMessage(senderID, "Postback called: " + payload);
+  }
 
-/*
-* Message Read Event
-*
-* This event is called when a previously-sent message has been read.
-* https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-read
-*
-*/
-function receivedMessageRead(event) {
-  var senderID = event.sender.id;
-  var recipientID = event.recipient.id;
+  /*
+  * Message Read Event
+  *
+  * This event is called when a previously-sent message has been read.
+  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-read
+  *
+  */
+  function receivedMessageRead(event) {
+    var senderID = event.sender.id;
+    var recipientID = event.recipient.id;
 
-  // All messages before watermark (a timestamp) or sequence have been seen.
-  var watermark = event.read.watermark;
-  var sequenceNumber = event.read.seq;
+    // All messages before watermark (a timestamp) or sequence have been seen.
+    var watermark = event.read.watermark;
+    var sequenceNumber = event.read.seq;
 
-  console.log("Received message read event for watermark %d and sequence " +
-  "number %d", watermark, sequenceNumber);
-}
+    console.log("Received message read event for watermark %d and sequence " +
+    "number %d", watermark, sequenceNumber);
+  }
 
-/*
-* Account Link Event
-*
-* This event is called when the Link Account or UnLink Account action has been
-* tapped.
-* https://developers.facebook.com/docs/messenger-platform/webhook-reference/account-linking
-*
-*/
-function receivedAccountLink(event) {
-  var senderID = event.sender.id;
-  var recipientID = event.recipient.id;
+  /*
+  * Account Link Event
+  *
+  * This event is called when the Link Account or UnLink Account action has been
+  * tapped.
+  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/account-linking
+  *
+  */
+  function receivedAccountLink(event) {
+    var senderID = event.sender.id;
+    var recipientID = event.recipient.id;
 
-  var status = event.account_linking.status;
-  var authCode = event.account_linking.authorization_code;
+    var status = event.account_linking.status;
+    var authCode = event.account_linking.authorization_code;
 
-  console.log("Received account link event with for user %d with status %s " +
-  "and auth code %s ", senderID, status, authCode);
-}
+    console.log("Received account link event with for user %d with status %s " +
+    "and auth code %s ", senderID, status, authCode);
+  }
 
-/*
-* Send an image using the Send API.
-*
-*/
-function sendImageMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "image",
-        payload: {
-          url: SERVER_URL + "/assets/rift.png"
+  /*
+  * Send an image using the Send API.
+  *
+  */
+  function sendImageMessage(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "image",
+          payload: {
+            url: SERVER_URL + "/assets/rift.png"
+          }
         }
       }
-    }
-  };
+    };
 
-  callSendAPI(messageData);
-}
+    callSendAPI(messageData);
+  }
 
-/*
-* Send a Gif using the Send API.
-*
-*/
-function sendGifMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "image",
-        payload: {
-          url: SERVER_URL + "/assets/instagram_logo.gif"
+  /*
+  * Send a Gif using the Send API.
+  *
+  */
+  function sendGifMessage(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "image",
+          payload: {
+            url: SERVER_URL + "/assets/instagram_logo.gif"
+          }
         }
       }
-    }
-  };
+    };
 
-  callSendAPI(messageData);
-}
+    callSendAPI(messageData);
+  }
 
-/*
-* Send audio using the Send API.
-*
-*/
-function sendAudioMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "audio",
-        payload: {
-          url: SERVER_URL + "/assets/sample.mp3"
+  /*
+  * Send audio using the Send API.
+  *
+  */
+  function sendAudioMessage(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "audio",
+          payload: {
+            url: SERVER_URL + "/assets/sample.mp3"
+          }
         }
       }
-    }
-  };
+    };
 
-  callSendAPI(messageData);
-}
+    callSendAPI(messageData);
+  }
 
-/*
-* Send a video using the Send API.
-*
-*/
-function sendVideoMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "video",
-        payload: {
-          url: SERVER_URL + "/assets/allofus480.mov"
+  /*
+  * Send a video using the Send API.
+  *
+  */
+  function sendVideoMessage(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "video",
+          payload: {
+            url: SERVER_URL + "/assets/allofus480.mov"
+          }
         }
       }
-    }
-  };
+    };
 
-  callSendAPI(messageData);
-}
+    callSendAPI(messageData);
+  }
 
-/*
-* Send a file using the Send API.
-*
-*/
-function sendFileMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "file",
-        payload: {
-          url: SERVER_URL + "/assets/test.txt"
+  /*
+  * Send a file using the Send API.
+  *
+  */
+  function sendFileMessage(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "file",
+          payload: {
+            url: SERVER_URL + "/assets/test.txt"
+          }
         }
       }
-    }
-  };
+    };
 
-  callSendAPI(messageData);
-}
+    callSendAPI(messageData);
+  }
 
-/*
-* Send a text message using the Send API.
-*
-*/
-function sendTextMessage(recipientId, messageText) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: messageText,
-      metadata: "DEVELOPER_DEFINED_METADATA"
-    }
-  };
-
-  callSendAPI(messageData);
-  name = "";
-}
-
-
-/*
-* Send a button message using the Send API.
-*
-*/
-function sendButtonMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: "This is test text",
-          buttons:[{
-            type: "web_url",
-            url: "https://www.oculus.com/en-us/rift/",
-            title: "Open Web URL"
-          }, {
-            type: "postback",
-            title: "Trigger Postback",
-            payload: "DEVELOPER_DEFINED_PAYLOAD"
-          }, {
-            type: "phone_number",
-            title: "Call Phone Number",
-            payload: "+16505551234"
-          }]
-        }
+  /*
+  * Send a text message using the Send API.
+  *
+  */
+  function sendTextMessage(recipientId, messageText) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        text: messageText,
+        metadata: "DEVELOPER_DEFINED_METADATA"
       }
-    }
-  };
+    };
 
-  callSendAPI(messageData);
-}
+    callSendAPI(messageData);
+    name = "";
+  }
 
-/*
-* Send a Structured Message (Generic Message type) using the Send API.
-*
-*/
-function sendGenericMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [{
-            title: "rift",
-            subtitle: "Next-generation virtual reality",
-            item_url: "https://www.oculus.com/en-us/rift/",
-            image_url: SERVER_URL + "/assets/rift.png",
-            buttons: [{
+
+  /*
+  * Send a button message using the Send API.
+  *
+  */
+  function sendButtonMessage(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "button",
+            text: "This is test text",
+            buttons:[{
               type: "web_url",
               url: "https://www.oculus.com/en-us/rift/",
               title: "Open Web URL"
             }, {
               type: "postback",
-              title: "Call Postback",
-              payload: "Payload for first bubble",
-            }],
-          }, {
-            title: "touch",
-            subtitle: "Your Hands, Now in VR",
-            item_url: "https://www.oculus.com/en-us/touch/",
-            image_url: SERVER_URL + "/assets/touch.png",
-            buttons: [{
-              type: "web_url",
-              url: "https://www.oculus.com/en-us/touch/",
-              title: "Open Web URL"
+              title: "Trigger Postback",
+              payload: "DEVELOPER_DEFINED_PAYLOAD"
             }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for second bubble",
+              type: "phone_number",
+              title: "Call Phone Number",
+              payload: "+16505551234"
             }]
-          }]
+          }
         }
       }
-    }
-  };
+    };
 
-  callSendAPI(messageData);
-}
+    callSendAPI(messageData);
+  }
 
-/*
-* Send a receipt message using the Send API.
-*
-*/
-function sendReceiptMessage(recipientId) {
-  // Generate a random receipt ID as the API requires a unique ID
-  var receiptId = "order" + Math.floor(Math.random()*1000);
+  /*
+  * Send a Structured Message (Generic Message type) using the Send API.
+  *
+  */
+  function sendGenericMessage(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: [{
+              title: "rift",
+              subtitle: "Next-generation virtual reality",
+              item_url: "https://www.oculus.com/en-us/rift/",
+              image_url: SERVER_URL + "/assets/rift.png",
+              buttons: [{
+                type: "web_url",
+                url: "https://www.oculus.com/en-us/rift/",
+                title: "Open Web URL"
+              }, {
+                type: "postback",
+                title: "Call Postback",
+                payload: "Payload for first bubble",
+              }],
+            }, {
+              title: "touch",
+              subtitle: "Your Hands, Now in VR",
+              item_url: "https://www.oculus.com/en-us/touch/",
+              image_url: SERVER_URL + "/assets/touch.png",
+              buttons: [{
+                type: "web_url",
+                url: "https://www.oculus.com/en-us/touch/",
+                title: "Open Web URL"
+              }, {
+                type: "postback",
+                title: "Call Postback",
+                payload: "Payload for second bubble",
+              }]
+            }]
+          }
+        }
+      }
+    };
 
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message:{
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "receipt",
-          recipient_name: "Peter Chang",
-          order_number: receiptId,
-          currency: "USD",
-          payment_method: "Visa 1234",
-          timestamp: "1428444852",
-          elements: [{
-            title: "Oculus Rift",
-            subtitle: "Includes: headset, sensor, remote",
-            quantity: 1,
-            price: 599.00,
+    callSendAPI(messageData);
+  }
+
+  /*
+  * Send a receipt message using the Send API.
+  *
+  */
+  function sendReceiptMessage(recipientId) {
+    // Generate a random receipt ID as the API requires a unique ID
+    var receiptId = "order" + Math.floor(Math.random()*1000);
+
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message:{
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "receipt",
+            recipient_name: "Peter Chang",
+            order_number: receiptId,
             currency: "USD",
-            image_url: SERVER_URL + "/assets/riftsq.png"
-          }, {
-            title: "Samsung Gear VR",
-            subtitle: "Frost White",
-            quantity: 1,
-            price: 99.99,
-            currency: "USD",
-            image_url: SERVER_URL + "/assets/gearvrsq.png"
-          }],
-          address: {
-            street_1: "1 Hacker Way",
-            street_2: "",
-            city: "Menlo Park",
-            postal_code: "94025",
-            state: "CA",
-            country: "US"
-          },
-          summary: {
-            subtotal: 698.99,
-            shipping_cost: 20.00,
-            total_tax: 57.67,
-            total_cost: 626.66
-          },
-          adjustments: [{
-            name: "New Customer Discount",
-            amount: -50
-          }, {
-            name: "$100 Off Coupon",
-            amount: -100
-          }]
-        }
-      }
-    }
-  };
-
-  callSendAPI(messageData);
-}
-
-/*
-* Send a message with Quick Reply buttons.
-*
-*/
-function sendQuickReply(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: "What's your favorite movie genre?",
-      quick_replies: [
-        {
-          "content_type":"text",
-          "title":"Action",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
-        },
-        {
-          "content_type":"text",
-          "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
-        },
-        {
-          "content_type":"text",
-          "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
-        }
-      ]
-    }
-  };
-
-  callSendAPI(messageData);
-}
-
-
-function sendQuestion(recipientId) {
-
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    "message":{
-      "attachment":{
-        "type":"template",
-        "payload":{
-          "template_type":"button",
-          "text":"What do you want to do next?",
-          "buttons":[
-            {
-              "type":"web_url",
-              "url":"http://facebook.com/rhymebotbot",
-              "title":"Visit our site"
+            payment_method: "Visa 1234",
+            timestamp: "1428444852",
+            elements: [{
+              title: "Oculus Rift",
+              subtitle: "Includes: headset, sensor, remote",
+              quantity: 1,
+              price: 599.00,
+              currency: "USD",
+              image_url: SERVER_URL + "/assets/riftsq.png"
+            }, {
+              title: "Samsung Gear VR",
+              subtitle: "Frost White",
+              quantity: 1,
+              price: 99.99,
+              currency: "USD",
+              image_url: SERVER_URL + "/assets/gearvrsq.png"
+            }],
+            address: {
+              street_1: "1 Hacker Way",
+              street_2: "",
+              city: "Menlo Park",
+              postal_code: "94025",
+              state: "CA",
+              country: "US"
             },
-            {
-              "type":"postback",
-              "title":"Count to 9",
-              "payload":"123456789"
+            summary: {
+              subtotal: 698.99,
+              shipping_cost: 20.00,
+              total_tax: 57.67,
+              total_cost: 626.66
             },
-            {
-              "type":"postback",
-              "title":"Say something",
-              "payload":"Something!"
-            }
-          ]
+            adjustments: [{
+              name: "New Customer Discount",
+              amount: -50
+            }, {
+              name: "$100 Off Coupon",
+              amount: -100
+            }]
+          }
         }
       }
-    }
+    };
 
-  };
+    callSendAPI(messageData);
+  }
 
-  callSendAPI(messageData);
-}
+  /*
+  * Send a message with Quick Reply buttons.
+  *
+  */
+  function sendQuickReply(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        text: "What's your favorite movie genre?",
+        quick_replies: [
+          {
+            "content_type":"text",
+            "title":"Action",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+          },
+          {
+            "content_type":"text",
+            "title":"Comedy",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+          },
+          {
+            "content_type":"text",
+            "title":"Drama",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+          }
+        ]
+      }
+    };
 
-/* Send a list of stuffs
-*
-*
-*/ // IF THIS FUNCTION IS NEEDED WE NEED TO WHITELIST THE DOMAINS: https://developers.facebook.com/docs/messenger-platform/thread-settings/domain-whitelisting
-// function sendListData(recipientId) {
-//   console.log("Sending a list data message");
-//
-//
-//   var messageData = {
-//     recipient: {
-//       id: recipientId
-//     }, "message": {
-//     "attachment": {
-//         "type": "template",
-//         "payload": {
-//             "template_type": "list",
-//             "elements": [
-//                 {
-//                     "title": "Classic T-Shirt Collection",
-//                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
-//                     "subtitle": "See all our colors",
-//                     "default_action": {
-//                         "type": "web_url",
-//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-//                         "messenger_extensions": true,
-//                         "webview_height_ratio": "tall",
-// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-//                     },
-//                     "buttons": [
-//                         {
-//                             "title": "View",
-//                             "type": "web_url",
-//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-//                             "messenger_extensions": true,
-//                             "webview_height_ratio": "tall",
-// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-//                         }
-//                     ]
-//                 },
-//                 {
-//                     "title": "Classic White T-Shirt",
-//                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/white-t-shirt.png",
-//                     "subtitle": "100% Cotton, 200% Comfortable",
-//                     "default_action": {
-//                         "type": "web_url",
-//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-//                         "messenger_extensions": true,
-//                         "webview_height_ratio": "tall",
-//   "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-//                     },
-//                     "buttons": [
-//                         {
-//                             "title": "Shop Now",
-//                             "type": "web_url",
-//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-//                             "messenger_extensions": true,
-//                             "webview_height_ratio": "tall",
-// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-//                         }
-//                     ]
-//                 },
-//                 {
-//                     "title": "Classic Blue T-Shirt",
-//                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
-//                     "subtitle": "100% Cotton, 200% Comfortable",
-//                     "default_action": {
-//                         "type": "web_url",
-//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-//                         "messenger_extensions": true,
-//                         "webview_height_ratio": "tall",
-// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-//                     },
-//                     "buttons": [
-//                         {
-//                             "title": "Shop Now",
-//                             "type": "web_url",
-//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-//                             "messenger_extensions": true,
-//                             "webview_height_ratio": "tall",
-// "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-//                         }
-//                     ]
-//                 },
-//                 {
-//                     "title": "Classic Black T-Shirt",
-//                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png",
-//                     "subtitle": "100% Cotton, 200% Comfortable",
-//                     "default_action": {
-//                         "type": "web_url",
-//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-//                         "messenger_extensions": true,
-//                         "webview_height_ratio": "tall",
-//                         "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
-//                     },
-//                     "buttons": [
-//                         {
-//                             "title": "Shop Now",
-//                             "type": "web_url",
-//                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
-//                             "messenger_extensions": true,
-//                             "webview_height_ratio": "tall",
-//                             "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
-//                         }
-//                     ]
-//                 }
-//             ],
-//              "buttons": [
-//                 {
-//                     "title": "View More",
-//                     "type": "postback",
-//                     "payload": "payload"
-//                 }
-//             ]
-//         }
-//     }
-// }
-// };
-// callSendAPI(messageData);
-// }
+    callSendAPI(messageData);
+  }
 
-/*
-* Send a read receipt to indicate the message has been read
-*
-*/
-function sendReadReceipt(recipientId) {
-  console.log("Sending a read receipt to mark message as seen");
 
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    sender_action: "mark_seen"
-  };
+  function sendQuestion(recipientId) {
 
-  callSendAPI(messageData);
-}
-
-/*
-* Turn typing indicator on
-*
-*/
-function sendTypingOn(recipientId) {
-  console.log("Turning typing indicator on");
-
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    sender_action: "typing_on"
-  };
-
-  callSendAPI(messageData);
-}
-
-/*
-* Turn typing indicator off
-*
-*/
-function sendTypingOff(recipientId) {
-  console.log("Turning typing indicator off");
-
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    sender_action: "typing_off"
-  };
-
-  callSendAPI(messageData);
-}
-
-/*
-* Send a message with the account linking call-to-action
-*
-*/
-function sendAccountLinking(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: "Welcome. Link your account.",
-          buttons:[{
-            type: "account_link",
-            url: SERVER_URL + "/authorize"
-          }]
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"What do you want to do next?",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"http://facebook.com/rhymebotbot",
+                "title":"Visit our site"
+              },
+              {
+                "type":"postback",
+                "title":"Count to 9",
+                "payload":"123456789"
+              },
+              {
+                "type":"postback",
+                "title":"Say something",
+                "payload":"Something!"
+              }
+            ]
+          }
         }
       }
-    }
-  };
 
-  callSendAPI(messageData);
-}
+    };
 
-/*
-* Call the Send API. The message data goes in the body. If successful, we'll
-* get the message id in a response
-*
-*/
-function callSendAPI(messageData) {
-  request({
-    uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: PAGE_ACCESS_TOKEN },
-    method: 'POST',
-    json: messageData
+    callSendAPI(messageData);
+  }
 
-  }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var recipientId = body.recipient_id;
-      var messageId = body.message_id;
+  /* Send a list of stuffs
+  *
+  *
+  */ // IF THIS FUNCTION IS NEEDED WE NEED TO WHITELIST THE DOMAINS: https://developers.facebook.com/docs/messenger-platform/thread-settings/domain-whitelisting
+  // function sendListData(recipientId) {
+  //   console.log("Sending a list data message");
+  //
+  //
+  //   var messageData = {
+  //     recipient: {
+  //       id: recipientId
+  //     }, "message": {
+  //     "attachment": {
+  //         "type": "template",
+  //         "payload": {
+  //             "template_type": "list",
+  //             "elements": [
+  //                 {
+  //                     "title": "Classic T-Shirt Collection",
+  //                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+  //                     "subtitle": "See all our colors",
+  //                     "default_action": {
+  //                         "type": "web_url",
+  //                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+  //                         "messenger_extensions": true,
+  //                         "webview_height_ratio": "tall",
+  // "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+  //                     },
+  //                     "buttons": [
+  //                         {
+  //                             "title": "View",
+  //                             "type": "web_url",
+  //                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+  //                             "messenger_extensions": true,
+  //                             "webview_height_ratio": "tall",
+  // "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+  //                         }
+  //                     ]
+  //                 },
+  //                 {
+  //                     "title": "Classic White T-Shirt",
+  //                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/white-t-shirt.png",
+  //                     "subtitle": "100% Cotton, 200% Comfortable",
+  //                     "default_action": {
+  //                         "type": "web_url",
+  //                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+  //                         "messenger_extensions": true,
+  //                         "webview_height_ratio": "tall",
+  //   "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+  //                     },
+  //                     "buttons": [
+  //                         {
+  //                             "title": "Shop Now",
+  //                             "type": "web_url",
+  //                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+  //                             "messenger_extensions": true,
+  //                             "webview_height_ratio": "tall",
+  // "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+  //                         }
+  //                     ]
+  //                 },
+  //                 {
+  //                     "title": "Classic Blue T-Shirt",
+  //                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+  //                     "subtitle": "100% Cotton, 200% Comfortable",
+  //                     "default_action": {
+  //                         "type": "web_url",
+  //                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+  //                         "messenger_extensions": true,
+  //                         "webview_height_ratio": "tall",
+  // "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+  //                     },
+  //                     "buttons": [
+  //                         {
+  //                             "title": "Shop Now",
+  //                             "type": "web_url",
+  //                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+  //                             "messenger_extensions": true,
+  //                             "webview_height_ratio": "tall",
+  // "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+  //                         }
+  //                     ]
+  //                 },
+  //                 {
+  //                     "title": "Classic Black T-Shirt",
+  //                     "image_url": "https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png",
+  //                     "subtitle": "100% Cotton, 200% Comfortable",
+  //                     "default_action": {
+  //                         "type": "web_url",
+  //                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+  //                         "messenger_extensions": true,
+  //                         "webview_height_ratio": "tall",
+  //                         "fallback_url": "https://www.facebook.com/RhymeBot-Playground-619995748207390"
+  //                     },
+  //                     "buttons": [
+  //                         {
+  //                             "title": "Shop Now",
+  //                             "type": "web_url",
+  //                         "url": "https://www.facebook.com/RhymeBot-Playground-619995748207390",
+  //                             "messenger_extensions": true,
+  //                             "webview_height_ratio": "tall",
+  //                             "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+  //                         }
+  //                     ]
+  //                 }
+  //             ],
+  //              "buttons": [
+  //                 {
+  //                     "title": "View More",
+  //                     "type": "postback",
+  //                     "payload": "payload"
+  //                 }
+  //             ]
+  //         }
+  //     }
+  // }
+  // };
+  // callSendAPI(messageData);
+  // }
 
-      if (messageId) {
-        console.log("Successfully sent message with id %s to recipient %s",
-        messageId, recipientId);
+  /*
+  * Send a read receipt to indicate the message has been read
+  *
+  */
+  function sendReadReceipt(recipientId) {
+    console.log("Sending a read receipt to mark message as seen");
+
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      sender_action: "mark_seen"
+    };
+
+    callSendAPI(messageData);
+  }
+
+  /*
+  * Turn typing indicator on
+  *
+  */
+  function sendTypingOn(recipientId) {
+    console.log("Turning typing indicator on");
+
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      sender_action: "typing_on"
+    };
+
+    callSendAPI(messageData);
+  }
+
+  /*
+  * Turn typing indicator off
+  *
+  */
+  function sendTypingOff(recipientId) {
+    console.log("Turning typing indicator off");
+
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      sender_action: "typing_off"
+    };
+
+    callSendAPI(messageData);
+  }
+
+  /*
+  * Send a message with the account linking call-to-action
+  *
+  */
+  function sendAccountLinking(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "button",
+            text: "Welcome. Link your account.",
+            buttons:[{
+              type: "account_link",
+              url: SERVER_URL + "/authorize"
+            }]
+          }
+        }
+      }
+    };
+
+    callSendAPI(messageData);
+  }
+
+  /*
+  * Call the Send API. The message data goes in the body. If successful, we'll
+  * get the message id in a response
+  *
+  */
+  function callSendAPI(messageData) {
+    request({
+      uri: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: { access_token: PAGE_ACCESS_TOKEN },
+      method: 'POST',
+      json: messageData
+
+    }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var recipientId = body.recipient_id;
+        var messageId = body.message_id;
+
+        if (messageId) {
+          console.log("Successfully sent message with id %s to recipient %s",
+          messageId, recipientId);
+        } else {
+          console.log("Successfully called Send API for recipient %s",
+          recipientId);
+        }
       } else {
-        console.log("Successfully called Send API for recipient %s",
-        recipientId);
+        console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
       }
-    } else {
-      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-    }
+    });
+  }
+
+  // Start server
+  // Webhooks must be available via SSL with a certificate signed by a valid
+  // certificate authority.
+  app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
   });
-}
 
-// Start server
-// Webhooks must be available via SSL with a certificate signed by a valid
-// certificate authority.
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
-module.exports = app;
+  module.exports = app;
