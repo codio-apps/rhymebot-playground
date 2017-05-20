@@ -468,6 +468,7 @@ function receivedMessage(event) {
           case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
+          var indexArray = [""];
           var totalSyllables = 0;
           var randomString = ["Here are three sentences that rhyme:"];
           for (var j = 0; j < 3; j++){
@@ -476,6 +477,7 @@ function receivedMessage(event) {
               var dictionaryIndex = findTheLine(senderID, searchArray[i]);
               if (dictionaryIndex != -1) {
                 randomString = randomString + " "+ randomRhymes(dictionaryIndex, 1);
+                indexArray[i] = dictionaryIndex;
               } else randomString = randomString +" UNKNOWN ";
             }
           }
@@ -485,8 +487,8 @@ function receivedMessage(event) {
             } else console.log("could not count syllables for word that is unknown");
           }
           if (dictionaryIndex != -1) {
-            console.log("Total syllables: "+totalSyllables+". sentenceArray: "+searchArray);
-            searchSentence(searchArray, totalSyllables);
+            console.log("Total syllables: "+totalSyllables+". searchArray: "+searchArray);
+            searchSentence(indexArray, totalSyllables);
             messageResponse = randomString;
           } else {
             messageResponse = "unkown word error";
