@@ -883,11 +883,9 @@ function receivedMessage(event) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
-          if (RHYMEOUTPUT.includes(arrayBin[0])){
+          if (arrayBin[0]==RHYMEOUTPUT[ix-1]){
             console.log("Duplicate found, skipping "+arrayBin[0]);
           } else {
-            console.log("I don't think I already saved "+arrayBin[0]);
-
             //make sure it's not the same as searchWord
             if (arrayBin[0]==theWord){
               console.log(theWord+" found again, skipping");
