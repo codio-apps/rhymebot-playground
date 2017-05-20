@@ -665,8 +665,7 @@ function receivedMessage(event) {
             console.log("Vowel number "+vowelCount+" found at pos: "+nextVowel);
             console.log("phonemeBuffer nextVowel = "+phonemeBuffer[nextVowel]);
             //now stick the rest of the vowels back onto the buffer
-            for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen, l++){
-
+            for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
               tempString = tempString +phonemeBuffer[l];
             }
             console.log("tempString is "+tempString);
