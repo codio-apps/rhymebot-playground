@@ -647,27 +647,26 @@ function receivedMessage(event) {
     var char = "";
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
-      var vowelCount = 0;
       //get the phonemes into an array
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
       phonemeBuffer = syllableArray[i].split(" ");
       console.log("i = "+i+" sentenceArray.length = "+sentenceArray.length)
       console.log("phonemeBuffer is "+phonemeBuffer);
-      for (var k = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
+      for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k].charAt(0);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          //if we find a vowel at character 0, log the position as the first relevant one
+          //if we find a vowel at character 0, log the position as the next relevant one
           if (char == vowels[j]){
             var nextVowel = phoLen-k;
             vowelPos[vowelCount] = nextVowel;
             vowelCount++
             console.log("Vowel number "+vowelCount+" found at pos: "+nextVowel);
             console.log("phonemeBuffer nextVowel = "+phonemeBuffer[nextVowel]);
-            console.log("vowelPos = "+vowelPos);
           }
         }
+        console.log("vowelPos = "+vowelPos);
       }
     }
   }
