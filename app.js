@@ -767,6 +767,8 @@ function receivedMessage(event) {
       } else {
         console.log("undefined obj found :"+CURRENTDICTIONARY[dictionaryIndex]);
       }
+    } else {
+      messageResponse = "I don't know the word "+theWord.toLowerCase()+" yet";
     }
   }
 
@@ -789,16 +791,16 @@ function receivedMessage(event) {
         messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
         //otherwise
       }  else if (matchesFound == 0) {
-          messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
-        } else {
-          //search the dictionary for matching phoneme endings
-          messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord.toLowerCase()+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
-          splitMessage(senderID, RHYMEOUTPUT);
-        }
+        messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
+      } else {
+        //search the dictionary for matching phoneme endings
+        messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord.toLowerCase()+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
+        splitMessage(senderID, RHYMEOUTPUT);
       }
-      //now turn off the typer
-      sendTypingOff(senderID);
     }
+    //now turn off the typer
+    sendTypingOff(senderID);
+  }
 
   //function to calculate how many syllables there are in a word and return that number
   function countSyllables(dictionaryIndex) {
