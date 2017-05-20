@@ -641,7 +641,7 @@ function receivedMessage(event) {
   //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(sentenceArray, totalSyllables){
     console.log("searchSentence called on:"+sentenceArray);
-    var phonemeArray = [""];
+    var syllableArray = [""];
     var char = "";
     for (var i = 0; i < sentenceArray.length; i++){
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
