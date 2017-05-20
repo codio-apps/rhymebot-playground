@@ -458,8 +458,7 @@ function receivedMessage(event) {
           case 'count':
           searchWord = lc_messageText.slice(6).toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
-          var v = countSyllables(dictionaryIndex);
-          if (v != 0) {
+          if (dictionaryIndex != -1) {
             messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
           } else {
             messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
@@ -675,6 +674,7 @@ function receivedMessage(event) {
       return dictionaryIndex;
     } else {
       console.log("word not found in dictionary, returning: -1");
+      messageResponse = "I don't know the word "+searchWord.toLowerCase();
       return -1;
     }
   }
@@ -767,15 +767,12 @@ function receivedMessage(event) {
       } else {
         console.log("undefined obj found :"+CURRENTDICTIONARY[dictionaryIndex]);
       }
-    } else {
-      messageResponse = "I don't know the word "+theWord.toLowerCase()+" yet";
     }
   }
 
 
   //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
   function findRhyme(senderID, searchWord) {
-    sendTypingOn(senderID);
     var dictionaryIndex = -1;
     var syllablesReq = 0;
     matchesFound = 0;
@@ -787,10 +784,7 @@ function receivedMessage(event) {
       RHYMEOUTPUT = getRhymes(dictionaryIndex);
       console.log("pFound "+pronunciationsFound+". mFound "+matchesFound);
       //if we didnt' find the word in the dictionary at all
-      if (pronunciationsFound == 0) {
-        messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
-        //otherwise
-      }  else if (matchesFound == 0) {
+      if (matchesFound == 0) {
         messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
       } else {
         //search the dictionary for matching phoneme endings
@@ -798,8 +792,6 @@ function receivedMessage(event) {
         splitMessage(senderID, RHYMEOUTPUT);
       }
     }
-    //now turn off the typer
-    sendTypingOff(senderID);
   }
 
   //function to calculate how many syllables there are in a word and return that number
