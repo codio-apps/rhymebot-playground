@@ -943,7 +943,7 @@ function receivedMessage(event) {
       phoLen = PHONEMES.length-firstVowel;
       //construct our phoneme string
       for (i = firstVowel; i < PHONEMES.length; i++){
-        phonemeString = phonemeString+PHONEMES+" "[i];
+        phonemeString = phonemeString+" "+PHONEMES[i];
       }
       console.log("Constructed phoneme string: "+phonemeString);
       return phonemeString;
