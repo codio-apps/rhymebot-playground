@@ -653,7 +653,7 @@ function receivedMessage(event) {
       console.log("phonemeBuffer is "+phonemeBuffer);
       for (var k = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
-        char = phonemeBuffer[phoLen-k-1].charAt(0);
+        char = phonemeBuffer[phoLen-k].charAt(0);
         console.log("char is "+char);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
