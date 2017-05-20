@@ -468,12 +468,15 @@ function receivedMessage(event) {
           case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
-          var randomString = ["Here's a sentence that rhymes:\n"];
-          for (var i = 0, len = searchArray.length; i < len; i++){
-            var dictionaryIndex = findTheLine(senderID, searchArray[i]);
-            if (dictionaryIndex != -1) {
-              randomString = randomString + ""+ randomRhymes(dictionaryIndex, 1);
-            } else randomString = randomString +"UNKNOWN";
+          var randomString = ["Here's are three sentences that rhyme:"];
+          for (var j = 0; j < 3; j++){
+            randomString = randomString+"\n";
+            for (var i = 0, len = searchArray.length; i < len; i++){
+              var dictionaryIndex = findTheLine(senderID, searchArray[i]);
+              if (dictionaryIndex != -1) {
+                randomString = randomString + " "+ randomRhymes(dictionaryIndex, 1);
+              } else randomString = randomString +"UNKNOWN";
+            }
           }
           messageResponse = randomString;
           break;
