@@ -760,6 +760,7 @@ function receivedMessage(event) {
             keepLooking = false;
           }
           var syllablesReq = countSyllables(dictionaryIndex);
+          console.log(theWord+" has "+syllableReq+"relevant phonemes")
           RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
           return RHYMEOUTPUT;
         }
@@ -792,7 +793,7 @@ function receivedMessage(event) {
           messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
         } else {
           //search the dictionary for matching phoneme endings
-          messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
+          messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord.toLowerCase()+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
           splitMessage(senderID, RHYMEOUTPUT);
         }
       }
