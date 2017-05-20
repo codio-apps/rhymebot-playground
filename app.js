@@ -658,7 +658,7 @@ function receivedMessage(event) {
             var nextVowel = phoLen-i-1;
           }
         }
-        console.log("first vowel in phonemeBuffer["+i+"]:"+firstVowel);
+        console.log("first vowel in phonemeBuffer["+i+"]:"+nextVowel);
       }
     }
     console.log("syllableArray is now: "+syllableArray);
