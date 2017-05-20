@@ -478,6 +478,9 @@ function receivedMessage(event) {
                 randomString = randomString + " "+ randomRhymes(dictionaryIndex, 1);
               } else randomString = randomString +" UNKNOWN ";
             }
+          }
+          for (var i = 0, len = searchArray.length; i < len; i++){
+            var dictionaryIndex = findTheLine(senderID, searchArray[i]);
             longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
           }
           console.log("longPhonemeString = "+longPhonemeString);
