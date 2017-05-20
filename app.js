@@ -758,11 +758,11 @@ function receivedMessage(event) {
             //if it's the end of the pronunciations, stop and send phonemes for processing
             console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
             keepLooking = false;
-          }
-          var syllablesReq = countSyllables(dictionaryIndex);
-          console.log(theWord+" has "+syllablesReq+" relevant phonemes")
-          RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
-          return RHYMEOUTPUT;
+            var syllablesReq = countSyllables(dictionaryIndex);
+            console.log(theWord+" has "+syllablesReq+" relevant phonemes")
+            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
+            return RHYMEOUTPUT;
+          }  
         }
       } else {
         console.log("undefined obj found :"+CURRENTDICTIONARY[dictionaryIndex]);
