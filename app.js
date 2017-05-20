@@ -486,6 +486,7 @@ function receivedMessage(event) {
               totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
             } else console.log("could not count syllables for word that is unknown");
           }
+          //tester area for nextbit
           if (dictionaryIndex != -1) {
             console.log("Total syllables: "+totalSyllables+". searchArray: "+searchArray);
             searchSentence(indexArray, totalSyllables);
@@ -639,7 +640,7 @@ function receivedMessage(event) {
 
   function searchSentence(sentenceArray, totalSyllables){
     console.log("searchSentence called on:"+sentenceArray);
-    var syllableArray = "";
+    var syllableArray = [""];
     for (var i = 0; i < sentenceArray.length; i++){
       syllableArray[i] = getPhonemes(sentenceArray[i], true);
     }
