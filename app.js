@@ -636,7 +636,7 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+phonemeString);
     var tryer = phonemeString.split(" "); //array AA1 G Z EH1 G Z
     var tryerString = "";
-    RHYMEOUTPUT.length=0;
+    var SENTENCEOUTPUT = "";
     var arrayBin = [""];
     //for however many phonemes there are
     for (var n = 0; n < tryer.length; n++){ // n=0; n<6; n++
@@ -648,8 +648,8 @@ function receivedMessage(event) {
       console.log("searching phonemes for "+tryerString);
 
     }
-    console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-    console.log(RHYMEOUTPUT);
+    //console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+    //console.log(SENTENCEOUTPUT);
   }
 
   function StringSearch(input, key) {
