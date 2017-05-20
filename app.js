@@ -482,8 +482,10 @@ function receivedMessage(event) {
           }
           for (var i = 0, len = searchArray.length; i < len; i++){
             var dictionaryIndex = findTheLine(senderID, searchArray[i]);
-            totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
-            longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
+            if (dictionaryIndex != -1) {
+              totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
+              longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
+            } else console.log("could not count syllables for word that is unknown");
           }
           console.log("Total syllables: "+totalSyllables+". longPhonemeString: "+longPhonemeString);
           searchSentence(longPhonemeString, totalSyllables);
