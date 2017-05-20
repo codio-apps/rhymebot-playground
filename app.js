@@ -642,7 +642,7 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+phonemeString);
     var tryer = phonemeString.split("/ "); //array AA1 G Z / EH1 G Z
     tryer[tryer.length-1] = tryer[tryer.length-1].slice(0, tryer[tryer.length-1].length-1);
-    console.log("quickThing "+tryer[tryer.length-1]);
+    console.log("array now "+tryer);
     var tryerString = "";
     var SENTENCEOUTPUT = [""];
     var arrayBin = [""];
