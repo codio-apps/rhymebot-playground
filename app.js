@@ -725,7 +725,7 @@ function receivedMessage(event) {
     for (var j = letterLeftIndex; j < letterRightIndex; j++){
       if (CURRENTDICTIONARY[j].startsWith(searchWord + "  ")){
 
-        console.log("Found the line "+CURRENTDICTIONARY[j]+" @ " + j+);
+        console.log("Found the line "+CURRENTDICTIONARY[j]+" @ " + j);
         dictionaryIndex = j;
       }
     }
