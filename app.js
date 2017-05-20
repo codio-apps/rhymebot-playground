@@ -643,6 +643,8 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+sentenceArray);
     var syllableArray = [""];
     var phonemeBuffer = [""];
+    var vowels = 0;
+    var vowelPos = [""];
     var char = "";
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
@@ -651,7 +653,8 @@ function receivedMessage(event) {
       phonemeBuffer = syllableArray[i].split(" ");
       console.log("i = "+i+" sentenceArray.length = "+sentenceArray.length)
       console.log("phonemeBuffer is "+phonemeBuffer);
-      for (var k = 0, phoLen = phonemeBuffer.length-2; k < phoLen; k++){
+      vowels++
+      for (var k = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k].charAt(0);
         console.log("char is "+char);
@@ -659,9 +662,12 @@ function receivedMessage(event) {
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
+            vowels++
             var nextVowel = phoLen-k;
+            vowelPos[vowels] = nextVowel;
             console.log("next vowel in phonemeBuffer["+k+"]: "+vowels[j]+" at pos: "+nextVowel);
             console.log("phonemeBuffer K = "+phonemeBuffer[nextVowel]);
+            console.log("vowels found "+vowelPos);
           }
         }
       }
