@@ -820,7 +820,7 @@ function receivedMessage(event) {
           syllablesFound++;
         }
       }
-      console.log("Calculated syllables at "+dictionaryIndex" : "+syllablesFound);
+      console.log("Calculated syllables at "+dictionaryIndex+" : "+syllablesFound);
       return syllablesFound;
     } else {
       return 0;
