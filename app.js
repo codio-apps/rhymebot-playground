@@ -641,7 +641,10 @@ function receivedMessage(event) {
   function searchSentence(phonemeString, totalSyllables){
     console.log("searchSentence called on:"+phonemeString);
     var tryer = phonemeString.split("/ "); //array AA1 G Z / EH1 G Z
-    tryer[tryer.length-1] = tryer[tryer.length-1].slice(tryer[tryer.length-1].length-1);
+    var quickThing = tryer[tryer.length];
+    console.log("quickThing "+quickThing);
+    var quickThing = tryer[tryer.length-1];
+    console.log("quickThing "+quickThing);
     var tryerString = "";
     var SENTENCEOUTPUT = [""];
     var arrayBin = [""];
@@ -719,17 +722,12 @@ function receivedMessage(event) {
       var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
     }
     var letterRightIndex = ALPHABET_ARRAY[i][1];
-
-    console.log(letterLeftIndex);
-    console.log(letterRightIndex);
-
+    console.log("Letter acquired: "+letter+". LeftIndex: "+letterLeftIndex)+", RightIndex: "+letterRightIndex);
     for (var j = letterLeftIndex; j < letterRightIndex; j++){
       if (CURRENTDICTIONARY[j].startsWith(searchWord + "  ")){
 
-        console.log("WE FOUND THE WORD ON LINE " + j+"... saving position");
-        console.log("THE WORD IS " + CURRENTDICTIONARY[j]);
+        console.log("FOUND THE WORD "+CURRENTDICTIONARY[j]+" ON LINE " + j+"... saving position");
         dictionaryIndex = j;
-
       }
     }
     if(dictionaryIndex != -1){
