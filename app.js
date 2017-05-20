@@ -652,7 +652,7 @@ function receivedMessage(event) {
         tryerString = tryerString+" "+tryer[i];
       }
       console.log("searching phonemes for "+tryerString);
-      for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
+      for (var iX = 0, dLen = CURRENTDICTIONARY.length; iX < dLen; iX++) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[iX].endsWith(tryerString)) {
           console.log(CURRENTDICTIONARY[iX]+" ends with "+tryerString);
@@ -672,15 +672,11 @@ function receivedMessage(event) {
             if (SENTENCEOUTPUT.includes(arrayBin[0])){
               console.log("Duplicate found, skipping "+arrayBin[0]);
             } else {
-              //make sure it's not the same as searchWord
-              if (arrayBin[0]==theWord.toLowerCase()){
-                console.log("Search term: "+theWord+" found again, skipping");
-                //do nothing
-              } else {
+
                 //otherwise save the word to the output array
                 SENTENCEOUTPUT[matchesFound]=arrayBin[0];
                 matchesFound++;
-              }
+
             }
           }
         }
