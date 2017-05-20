@@ -476,9 +476,9 @@ function receivedMessage(event) {
               var dictionaryIndex = findTheLine(senderID, searchArray[i]);
               if (dictionaryIndex != -1) {
                 randomString = randomString + " "+ randomRhymes(dictionaryIndex, 1);
-                longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
               } else randomString = randomString +" UNKNOWN ";
             }
+            longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
           }
           console.log("longPhonemeString = "+longPhonemeString);
           messageResponse = randomString;
@@ -874,7 +874,6 @@ function receivedMessage(event) {
         //handle cutting length to specific number of syllables
         var sylCount = countSyllables(iX);
         if (sylCount == syllableLength) {
-          console.log("Match found at "+iX+" / "+CURRENTDICTIONARY[iX]);
           //if the found word ends in ")"
           if (arrayBin[0].endsWith(")")) {
             console.log("Removing brackets from "+arrayBin[0]);
