@@ -468,6 +468,7 @@ function receivedMessage(event) {
           case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
+          var longPhonemeString = "";
           var randomString = ["Here are three sentences that rhyme:"];
           for (var j = 0; j < 3; j++){
             randomString = randomString+"\n";
@@ -475,9 +476,11 @@ function receivedMessage(event) {
               var dictionaryIndex = findTheLine(senderID, searchArray[i]);
               if (dictionaryIndex != -1) {
                 randomString = randomString + " "+ randomRhymes(dictionaryIndex, 1);
+                longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
               } else randomString = randomString +" UNKNOWN ";
             }
           }
+          console.log("longPhonemeString = "+longPhonemeString);
           messageResponse = randomString;
           break;
 
