@@ -485,7 +485,7 @@ function receivedMessage(event) {
             totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
             longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
           }
-          console.log("Total syllables: "+totalSyllables". longPhonemeString: "+longPhonemeString);
+          console.log("Total syllables: "+totalSyllables+". longPhonemeString: "+longPhonemeString);
           searchSentence(longPhonemeString);
           messageResponse = randomString;
           break;
@@ -748,6 +748,7 @@ function receivedMessage(event) {
       return randString;
     } else {
       messageResponse = "I don't know any words that rhyme sorry";
+      return "UNKNOWN";
     }
   }
 
