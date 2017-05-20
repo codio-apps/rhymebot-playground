@@ -642,25 +642,28 @@ function receivedMessage(event) {
   function searchSentence(sentenceArray, totalSyllables){
     console.log("searchSentence called on:"+sentenceArray);
     var syllableArray = [""];
+    var phonemeBuffer = [""];
     var char = "";
     for (var i = 0; i < sentenceArray.length; i++){
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
-    }
-    console.log("syllableArray is now: "+syllableArray);
-    var phonemeBuffer = syllableArray[i].split(" ");
-
-    for (var i = 0, phoLen = phonemeBuffer.length; i < phoLen; i++){
-      //set char to the first letter of the phoneme
-      char = phonemeBuffer[phoLen-i-1].charAt(0);
-      //compare char to every vowel
-      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-        //if we find a vowel at character 0, log the position as the first relevant one
-        if (char == vowels[j]){
-          var firstVowel = phoLen-i-1;
-          console.log("first vowel:"+firstVowel);
+      phonemeBuffer = syllableArray[i].split(" ");
+      for (var i = 0, phoLen = phonemeBuffer.length; i < phoLen; i++){
+        //set char to the first letter of the phoneme
+        char = phonemeBuffer[phoLen-i-1].charAt(0);
+        //compare char to every vowel
+        for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+          //if we find a vowel at character 0, log the position as the first relevant one
+          if (char == vowels[j]){
+            var firstVowel = phoLen-i-1;
+          }
         }
+        console.log("first vowel:"+firstVowel);
       }
     }
+    console.log("syllableArray is now: "+syllableArray);
+
+
+
 
 
 
