@@ -655,7 +655,7 @@ function receivedMessage(event) {
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[iX].endsWith(tryerString)) {
-          console.log(CURRENTDICTIONARY[iX]" ends wiyh "+tryerString);
+          console.log(CURRENTDICTIONARY[iX]+" ends with "+tryerString);
           //store the word in a temp string array
           arrayBin = CURRENTDICTIONARY[iX].split("  ");
           arrayBin[0] = arrayBin[0].toLowerCase()
