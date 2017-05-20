@@ -468,7 +468,7 @@ function receivedMessage(event) {
           case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
-          var longPhonemeString = "";
+          var sentenceArray= [""];
           var totalSyllables = 0;
           var randomString = ["Here are three sentences that rhyme:"];
           for (var j = 0; j < 3; j++){
@@ -481,15 +481,14 @@ function receivedMessage(event) {
             }
           }
           for (var i = 0, len = searchArray.length; i < len; i++){
-            var dictionaryIndex = findTheLine(senderID, searchArray[i]);
             if (dictionaryIndex != -1) {
               totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
-              longPhonemeString = longPhonemeString +getPhonemes(dictionaryIndex)+ "/";
+              sentenceArray[i] = getPhonemes(dictionaryIndex)+ "/";
             } else console.log("could not count syllables for word that is unknown");
           }
           if (dictionaryIndex != -1) {
-            console.log("Total syllables: "+totalSyllables+". longPhonemeString: "+longPhonemeString);
-            searchSentence(longPhonemeString, totalSyllables);
+            console.log("Total syllables: "+totalSyllables+". sentenceArray: "+sentenceArray);
+            searchSentence(sentenceArray, totalSyllables);
             messageResponse = randomString;
           } else {
             messageResponse = "unkown word error";
@@ -638,55 +637,58 @@ function receivedMessage(event) {
     }
   }
 
-  function searchSentence(phonemeString, totalSyllables){
-    console.log("searchSentence called on:"+phonemeString);
-    var tryer = phonemeString.split("/ "); //array AA1 G Z / EH1 G Z
-    tryer[tryer.length-1] = tryer[tryer.length-1].slice(0, tryer[tryer.length-1].length-1);
-    console.log("sentence phoneme array now: "+tryer);
-    var tryerString = "";
-    var SENTENCEOUTPUT = [""];
-    var arrayBin = [""];
-    matchesFound=0;
-    //for however many words there are
-    for (var n = 0; n < tryer.length-2; n++){ // n=0; n<6; n++
-      tryerString = "";
-      //cut off the first N phonemes, scaling backwards
-      for (var i = 1+n, len = tryer.length; i < len; i++){
-        tryerString = tryerString+" "+tryer[i];
-      }
-      console.log("searching phonemes for "+tryerString);
-      for (var iX = 0, dLen = CURRENTDICTIONARY.length; iX < dLen; iX++) {
-        //if the rhyme is a match
-        if (CURRENTDICTIONARY[iX].endsWith(tryerString)) {
-          console.log(CURRENTDICTIONARY[iX]+" ends with "+tryerString);
-          //store the word in a temp string array
-          arrayBin = CURRENTDICTIONARY[iX].split("  ");
-          arrayBin[0] = arrayBin[0].toLowerCase()
-          //handle cutting length to specific number of syllables
-          var sylCount = countSyllables(iX);
-          if (sylCount == totalSyllables) {
-            //if the found word ends in ")"
-            if (arrayBin[0].endsWith(")")) {
-              console.log("Removing brackets from "+arrayBin[0]);
-              //add the word to the list, but remove the brackets from the spelling info
-              var tmpLen = arrayBin[0].length-3;
-              arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-            }
-            if (SENTENCEOUTPUT.includes(arrayBin[0])){
-              console.log("Duplicate found, skipping "+arrayBin[0]);
-            } else {
+  function searchSentence(sentenceArray, totalSyllables){
+    console.log("searchSentence called on:"+sentenceArray);
+     
 
-                //otherwise save the word to the output array
-                SENTENCEOUTPUT[matchesFound]=arrayBin[0];
-                matchesFound++;
 
-            }
-          }
-        }
-      }
-    }
-    console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-    console.log("SENTENCEOUTPUT:"+SENTENCEOUTPUT);
+    // var tryer = phonemeString.split("/ "); //array AA1 G Z / EH1 G Z
+    // tryer[tryer.length-1] = tryer[tryer.length-1].slice(0, tryer[tryer.length-1].length-1);
+    // console.log("sentence phoneme array now: "+tryer);
+    // var tryerString = "";
+    // var SENTENCEOUTPUT = [""];
+    // var arrayBin = [""];
+    // matchesFound=0;
+    // //for however many words there are
+    // for (var n = 0; n < tryer.length-2; n++){ // n=0; n<6; n++
+    //   tryerString = "";
+    //   //cut off the first N phonemes, scaling backwards
+    //   for (var i = 1+n, len = tryer.length; i < len; i++){
+    //     tryerString = tryerString+" "+tryer[i];
+    //   }
+    //   console.log("searching phonemes for "+tryerString);
+    //   for (var iX = 0, dLen = CURRENTDICTIONARY.length; iX < dLen; iX++) {
+    //     //if the rhyme is a match
+    //     if (CURRENTDICTIONARY[iX].endsWith(tryerString)) {
+    //       console.log(CURRENTDICTIONARY[iX]+" ends with "+tryerString);
+    //       //store the word in a temp string array
+    //       arrayBin = CURRENTDICTIONARY[iX].split("  ");
+    //       arrayBin[0] = arrayBin[0].toLowerCase()
+    //       //handle cutting length to specific number of syllables
+    //       var sylCount = countSyllables(iX);
+    //       if (sylCount == totalSyllables) {
+    //         //if the found word ends in ")"
+    //         if (arrayBin[0].endsWith(")")) {
+    //           console.log("Removing brackets from "+arrayBin[0]);
+    //           //add the word to the list, but remove the brackets from the spelling info
+    //           var tmpLen = arrayBin[0].length-3;
+    //           arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+    //         }
+    //         if (SENTENCEOUTPUT.includes(arrayBin[0])){
+    //           console.log("Duplicate found, skipping "+arrayBin[0]);
+    //         } else {
+    //
+    //             //otherwise save the word to the output array
+    //             SENTENCEOUTPUT[matchesFound]=arrayBin[0];
+    //             matchesFound++;
+    //
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    // console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+    // console.log("SENTENCEOUTPUT:"+SENTENCEOUTPUT);
   }
 
   function StringSearch(input, key) {
