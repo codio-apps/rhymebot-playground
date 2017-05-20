@@ -716,11 +716,11 @@ function receivedMessage(event) {
 
       console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
-    if(letter = "A"){
+    if(letter == "A"){
       var letterLeftIndex = 0;
     }
     else {
-      var letterLeftIndex = (ALPHABET_ARRAY[i-1][0]) + 1;
+      var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
     }
     var letterRightIndex = ALPHABET_ARRAY[i][1];
 
