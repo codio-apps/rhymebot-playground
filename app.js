@@ -882,12 +882,10 @@ function receivedMessage(event) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
-          var tmp = matchesFound-1;
-          if (tmp >= 0 ){
-            if (arrayBin[0]==RHYMEOUTPUT[tmp]){
+            if (arrayBin[0]==CURRENTDICTIONARY[iX-1]){
               console.log("Duplicate found, skipping "+arrayBin[0]);
             } else {
-              console.log(arrayBin[0]+" not equal to "+RHYMEOUTPUT[tmp]);
+              console.log(arrayBin[0]+" not equal to "+CURRENTDICTIONARY[iX-1]);
               //make sure it's not the same as searchWord
               if (arrayBin[0]==theWord){
                 console.log(theWord+" found again, skipping");
@@ -898,7 +896,6 @@ function receivedMessage(event) {
                 matchesFound++;
               }
             }
-          }
         }
       }
     }
