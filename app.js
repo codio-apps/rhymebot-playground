@@ -384,6 +384,9 @@ function receivedMessage(event) {
         }
         else if(lc_messageText.startsWith("random")) {
           intent = "random";
+        }
+        else if(lc_messageText.startsWith("sentance")) {
+          intent = "sentance";
         } else {
           //Do nothing, key is set to messageText
         }
@@ -463,6 +466,16 @@ function receivedMessage(event) {
           } else {
             messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
           }
+          break;
+
+          case 'sentance':
+          searchWord = lc_messageText.slice(9);
+          var searchArray = searchWord.split(" ");
+          var randomString = [""];
+          for (var i = 0, len = searchArray.length; i < len; i++){
+            randomString = randomString + "::"+ randomRhymes(searchArray[i], 1);
+          }
+          messageResponse = randomString;
           break;
 
           //handle the question command
