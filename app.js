@@ -641,9 +641,9 @@ function receivedMessage(event) {
       tryerString = "";
     //cut off the first N syllables
       for (var i = 0, len = tryer.length-n; i < len; i++){
-          tryerString = tryerString +tryer[n];
-          console.log(" constructed tryerString = "+tryerString);
+          tryerString = tryerString +tryer[n-i];
       }
+      console.log(" constructed tryerString = "+tryerString);
     }
   }
 
