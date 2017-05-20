@@ -653,7 +653,7 @@ function receivedMessage(event) {
       phonemeBuffer = syllableArray[i].split(" ");
       console.log("i = "+i+" sentenceArray.length = "+sentenceArray.length)
       console.log("phonemeBuffer is "+phonemeBuffer);
-      vowels++
+      vowelCount++
       for (var k = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k].charAt(0);
@@ -666,8 +666,8 @@ function receivedMessage(event) {
             vowelCount++
             var nextVowel = phoLen-k;
             vowelPos[vowels] = nextVowel;
-            console.log("next vowel in phonemeBuffer["+k+"]: "+vowels[j]+" at pos: "+nextVowel);
-            console.log("phonemeBuffer K = "+phonemeBuffer[nextVowel]);
+            console.log("next vowel, number "+vowelCount+" found in phonemeBuffer["+k+"]: "+vowels[j]+" at pos: "+nextVowel);
+            console.log("phonemeBuffer nextVowel = "+phonemeBuffer[nextVowel]);
           }
         }
       }
