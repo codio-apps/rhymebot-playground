@@ -812,6 +812,7 @@ function receivedMessage(event) {
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(searchWord.length+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
+      console.log("phonemes: "+PHONEMES);
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
         char = PHONEMES[phoLen-i-1].charAt(0);
@@ -868,7 +869,6 @@ function receivedMessage(event) {
     var arrayBin = [""];
     RHYMEOUTPUT.length=0;
     matchesFound = 0;
-    var sylCount = 0;
     //search the dictionary
     console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
@@ -878,7 +878,7 @@ function receivedMessage(event) {
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
         //handle cutting length to specific number of syllables
-        sylCount = countSyllables(iX);
+        var sylCount = countSyllables(iX);
         if (sylCount == syllableLength) {
           console.log(" There's a "+sylCount+" syllable match at "+iX+" / "+CURRENTDICTIONARY[iX]);
           //if the found word ends in ")"
