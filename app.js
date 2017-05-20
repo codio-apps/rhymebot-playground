@@ -655,6 +655,7 @@ function receivedMessage(event) {
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[iX].endsWith(tryerString)) {
+          console.log(CURRENTDICTIONARY[iX]" ends wiyh "+tryerString);
           //store the word in a temp string array
           arrayBin = CURRENTDICTIONARY[iX].split("  ");
           arrayBin[0] = arrayBin[0].toLowerCase()
@@ -707,14 +708,11 @@ function receivedMessage(event) {
     searchWord = searchWord.toUpperCase();
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
-      console.log("That is not one of the 26 chosen characters, Jedi - Returning: -1");
+      console.log("That is not one of the 26 chosen characters, Padawan - Returning: -1");
       return -1;
     }
     var dictionaryIndex = -1;
-
     for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
-
-      console.log("In the loop, checking array at: " + i + " which is: " + ALPHABET_ARRAY[i][0]);
     }
     if(letter == "A"){
       var letterLeftIndex = 0;
