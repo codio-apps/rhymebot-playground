@@ -662,7 +662,7 @@ function receivedMessage(event) {
               var tmpLen = arrayBin[0].length-3;
               arrayBin[0] = arrayBin[0].slice(0, tmpLen);
             }
-            if (SENTENCEOUTPUT.includes(arrayBin[0]){
+            if (SENTENCEOUTPUT.includes(arrayBin[0])){
               console.log("Duplicate found, skipping "+arrayBin[0]);
             } else {
               //make sure it's not the same as searchWord
