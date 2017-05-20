@@ -647,8 +647,9 @@ function receivedMessage(event) {
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
       //get the phonemes into an array
-      syllableArray[i] = getPhonemes(sentenceArray[i+1], false);
+      syllableArray[i] = getPhonemes(sentenceArray[i], false);
       phonemeBuffer = syllableArray[i].split(" ");
+          console.log("i="+i+" sarrayleng="+sentenceArray.length)
       console.log("pBuffer is "+phonemeBuffer);
       for (var k = 0, phoLen = phonemeBuffer.length; k < phoLen; k++){
         //set char to the first letter of the phoneme
