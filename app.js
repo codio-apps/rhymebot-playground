@@ -637,6 +637,11 @@ function receivedMessage(event) {
 
   function searchSentence(sentenceArray, totalSyllables){
     console.log("searchSentence called on:"+sentenceArray);
+    var syllableArray = "";
+    for (i = 0; i < sentenceArray.length; i++){
+      syllableArray[i] = getPhonemes(sentenceArray[i], true);
+    }
+    console.log("seyar:"+syllableArray);
 
 
 
@@ -889,7 +894,7 @@ function receivedMessage(event) {
     if (all){
       for (i = 0; i < PHONEMES.length; i++){
         phonemeString = phonemeString+" "+PHONEMES[i];
-        return phonemeString
+        return phonemeString;
       }
     } else {
       //detect the first letter of phonemes sounds until you find a vowel
