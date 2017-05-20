@@ -644,6 +644,7 @@ function receivedMessage(event) {
     for (var i = 0; i < sentenceArray.length; i++){
       syllableArray[i] = getPhonemes(sentenceArray[i], true);
     }
+    syllableArray[0] = syllableArray[0].slice(0, syllableArray[0].length-1)
     console.log("syllableArray is now: "+syllableArray);
 
 
