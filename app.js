@@ -659,9 +659,9 @@ function receivedMessage(event) {
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
-            var nextVowel = phoLen-k-1;
+            var nextVowel = phoLen-k;
             console.log("next vowel in phonemeBuffer["+k+"]: "+vowels[j]+" at pos: "+nextVowel);
-            console.log("phonemeBuffer K = "+phonemeBuffer[k]);
+            console.log("phonemeBuffer K = "+phonemeBuffer[nextVowel]);
           }
         }
       }
