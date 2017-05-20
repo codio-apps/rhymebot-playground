@@ -459,7 +459,7 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(6).toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
           if (dictionaryIndex != -1) {
-            messageResponse = "There are "+v+" syllables in "+searchWord.toLowerCase();
+            messageResponse = "There are "+countSyllables(dictionaryIndex)+" syllables in "+searchWord.toLowerCase();
           } else {
             messageResponse = "I don't know the word "+searchWord.toLowerCase()+", yet";
           }
@@ -647,10 +647,10 @@ function receivedMessage(event) {
     var SENTENCEOUTPUT = [""];
     var arrayBin = [""];
     matchesFound=0;
-    //for however many phonemes there are
-    for (var n = 0; n < tryer.length-1; n++){ // n=0; n<6; n++
+    //for however many words there are
+    for (var n = 0; n < tryer.length-2; n++){ // n=0; n<6; n++
       tryerString = "";
-      //cut off the first N syllables, scaling backwards
+      //cut off the first N phonemes, scaling backwards
       for (var i = 1+n, len = tryer.length; i < len; i++){
         tryerString = tryerString+" "+tryer[i];
       }
