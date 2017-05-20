@@ -487,9 +487,13 @@ function receivedMessage(event) {
               longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
             } else console.log("could not count syllables for word that is unknown");
           }
-          console.log("Total syllables: "+totalSyllables+". longPhonemeString: "+longPhonemeString);
-          searchSentence(longPhonemeString, totalSyllables);
-          messageResponse = randomString;
+          if (dictionaryIndex != -1) {
+            console.log("Total syllables: "+totalSyllables+". longPhonemeString: "+longPhonemeString);
+            searchSentence(longPhonemeString, totalSyllables);
+            messageResponse = randomString;
+          } else {
+            messageResponse = "unkown word error";
+          }
           break;
 
           //handle the question command
@@ -680,11 +684,9 @@ function receivedMessage(event) {
           }
         }
       }
-      console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-      console.log(SENTENCEOUTPUT);
     }
-    //console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-    //console.log(SENTENCEOUTPUT);
+    console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+    console.log("SENTENCEOUTPUT:"+SENTENCEOUTPUT);
   }
 
   function StringSearch(input, key) {
