@@ -720,7 +720,7 @@ function receivedMessage(event) {
       var letterLeftIndex = 0;
     }
     else {
-      var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
+      var letterLeftIndex = (ALPHABET_ARRAY[i-1][0]) + 1;
     }
     var letterRightIndex = ALPHABET_ARRAY[i][1];
 
