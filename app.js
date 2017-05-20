@@ -659,8 +659,7 @@ function receivedMessage(event) {
               arrayBin[0] = arrayBin[0].slice(0, tmpLen);
             }
             if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-            } else {
-              else {
+            }     else {
                 //otherwise save the word to the output array
                 RHYMEOUTPUT[matchesFound]=arrayBin[0];
                 matchesFound++;
