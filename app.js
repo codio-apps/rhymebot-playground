@@ -660,7 +660,8 @@ function receivedMessage(event) {
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
             var nextVowel = phoLen-k-1;
-            console.log("next vowel in phonemeBuffer["+k+"]: "+vowel+" at pos: "+nextVowel);
+            console.log("next vowel in phonemeBuffer["+k+"]: "+vowels[j]+" at pos: "+nextVowel);
+            console.log("phonemeBuffer K = "phonemeBuffer[k]);
           }
         }
       }
