@@ -484,7 +484,7 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(senderID, searchArray[i]);
             if (dictionaryIndex != -1) {
               totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
-              longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
+              longPhonemeString = longPhonemeString + "/"+getPhonemes(dictionaryIndex);
             } else console.log("could not count syllables for word that is unknown");
           }
           if (dictionaryIndex != -1) {
