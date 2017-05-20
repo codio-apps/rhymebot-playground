@@ -641,7 +641,7 @@ function receivedMessage(event) {
   function searchSentence(phonemeString, totalSyllables){
     console.log("searchSentence called on:"+phonemeString);
     var tryer = phonemeString.split("/ "); //array AA1 G Z / EH1 G Z
-    tryer[totalSyllables] = tryer[totalSyllables].slice(tryer[totalSyllables].length-1);
+    tryer[tryer.length] = tryer[tryer.length].slice(tryer[tryer.length].length-1);
     var tryerString = "";
     var SENTENCEOUTPUT = [""];
     var arrayBin = [""];
