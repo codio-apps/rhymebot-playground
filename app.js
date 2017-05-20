@@ -442,8 +442,7 @@ function receivedMessage(event) {
           // ************************************
           case 'single':
           //test environment for single word perfect rhymes
-          searchWord = lc_messageText.slice(7)
-          searchWord = searchWord.toUpperCase();
+          searchWord = lc_messageText.slice(7).toUpperCase();
           console.log("Calling find rhyme, word is: " + searchWord);
           findRhyme(senderID, searchWord);
           break;
@@ -457,8 +456,7 @@ function receivedMessage(event) {
 
           //handle the count command
           case 'count':
-          searchWord = lc_messageText.slice(6);
-          searchWord = searchWord.toUpperCase();
+          searchWord = lc_messageText.slice(6).toUpperCase();
           var dictionaryIndex = findTheLine(senderID, searchWord);
           var v = countSyllables(dictionaryIndex);
           if (v != 0) {
@@ -871,6 +869,7 @@ function receivedMessage(event) {
       if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
         //store the word in a temp string array
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
+        arrayBin[0] = arrayBin[0].toLowerCase()
         //handle cutting length to specific number of syllables
         var sylCount = countSyllables(iX);
         if (sylCount == syllableLength) {
@@ -880,7 +879,7 @@ function receivedMessage(event) {
             console.log("removing brackets from "+arrayBin[0]);
             //add the word to the list, but remove the brackets from the spelling info
             var tmpLen = arrayBin[0].length-3;
-            arrayBin[0] = arrayBin[0].slice(0, tmpLen).toLowerCase();
+            arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
             if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
               console.log("Duplicate found, skipping "+arrayBin[0]);
@@ -892,7 +891,7 @@ function receivedMessage(event) {
                 //do nothing
               } else {
                 //otherwise save the word to the output array
-                RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
+                RHYMEOUTPUT[matchesFound]=arrayBin[0];
                 matchesFound++;
               }
             }
