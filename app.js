@@ -498,7 +498,11 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(senderID, searchWord);
             if (dictionaryIndex != -1){
               randomString = randomRhymes(dictionaryIndex, 10);
-              splitMessage(senderID, randomString);
+              if (randomString == ""){
+                messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
+              } else {
+                splitMessage(senderID, randomString);
+              }
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
