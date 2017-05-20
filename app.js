@@ -468,7 +468,6 @@ function receivedMessage(event) {
           case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
-          var sentenceArray= [""];
           var totalSyllables = 0;
           var randomString = ["Here are three sentences that rhyme:"];
           for (var j = 0; j < 3; j++){
@@ -483,12 +482,11 @@ function receivedMessage(event) {
           for (var i = 0, len = searchArray.length; i < len; i++){
             if (dictionaryIndex != -1) {
               totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
-              sentenceArray[i] = getPhonemes(dictionaryIndex)+ "/";
             } else console.log("could not count syllables for word that is unknown");
           }
           if (dictionaryIndex != -1) {
-            console.log("Total syllables: "+totalSyllables+". sentenceArray: "+sentenceArray);
-            searchSentence(sentenceArray, totalSyllables);
+            console.log("Total syllables: "+totalSyllables+". sentenceArray: "+searchArray);
+            searchSentence(searchArray, totalSyllables);
             messageResponse = randomString;
           } else {
             messageResponse = "unkown word error";
@@ -639,7 +637,7 @@ function receivedMessage(event) {
 
   function searchSentence(sentenceArray, totalSyllables){
     console.log("searchSentence called on:"+sentenceArray);
-     
+
 
 
     // var tryer = phonemeString.split("/ "); //array AA1 G Z / EH1 G Z
