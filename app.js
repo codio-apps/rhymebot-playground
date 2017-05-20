@@ -643,7 +643,6 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+sentenceArray);
     var syllableArray = [""];
     var phonemeBuffer = [""];
-    var vowelPos = [""];
     var char = "";
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
@@ -652,7 +651,7 @@ function receivedMessage(event) {
       phonemeBuffer = syllableArray[i].split(" ");
       console.log("i = "+i+" sentenceArray.length = "+sentenceArray.length)
       console.log("phonemeBuffer is "+phonemeBuffer);
-      for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
+      for (var k = 0, vowelCount = 0, vowelPos = [""], phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k].charAt(0);
         //compare char to every vowel
