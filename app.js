@@ -385,8 +385,8 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("random")) {
           intent = "random";
         }
-        else if(lc_messageText.startsWith("sentance")) {
-          intent = "sentance";
+        else if(lc_messageText.startsWith("sentence")) {
+          intent = "sentence";
         } else {
           //Do nothing, key is set to messageText
         }
@@ -435,7 +435,7 @@ function receivedMessage(event) {
           // ************************************
           case 'rhyme_typo':
           console.log("Typo time, ask for confirmation");
-          messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentance with rhyme";
+          messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentence with rhyme";
           break;
 
           // Handle the SINGLE command
@@ -466,14 +466,14 @@ function receivedMessage(event) {
           }
           break;
 
-          case 'sentance':
+          case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
-          var randomString = [""];
+          var randomString = ["Here's a sentence that rhymes:\n"];
           for (var i = 0, len = searchArray.length; i < len; i++){
             var dictionaryIndex = findTheLine(senderID, searchArray[i]);
             if (dictionaryIndex != -1) {
-              randomString = randomString + "::"+ randomRhymes(dictionaryIndex, 1);
+              randomString = randomString + ""+ randomRhymes(dictionaryIndex, 1);
             } else randomString = randomString +"UNKNOWN";
           }
           messageResponse = randomString;
@@ -804,16 +804,14 @@ function receivedMessage(event) {
 
   //function to calculate how many syllables there are in a word and return that number
   function countSyllables(dictionaryIndex) {
-    var countWord = getWord(dictionaryIndex);
-    var syllablesFound = 0;
-    var char = "";
-    //call findTheLine to get the index
     if (dictionaryIndex != -1) {
+      var countWord = getWord(dictionaryIndex);
+      var syllablesFound = 0;
+      var char = "";
       //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(countWord.length+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
-      console.log("phonemes: "+PHONEMES);
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
         char = PHONEMES[phoLen-i-1].charAt(0);
