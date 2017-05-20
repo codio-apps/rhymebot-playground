@@ -637,7 +637,7 @@ function receivedMessage(event) {
     var tryer = phonemeString.split(" "); //array AA1 G Z EH1 G Z
     var tryerString = "";
     RHYMEOUTPUT = [""];
-    arrayBin = [""];
+    var arrayBin = [""];
     //for however many phonemes there are
     for (var n = 0; n < tryer.length; n++){ // n=0; n<6; n++
       tryerString = "";
