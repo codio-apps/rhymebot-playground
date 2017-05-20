@@ -645,7 +645,7 @@ function receivedMessage(event) {
     var phonemeBuffer = [""];
     var char = "";
     // for each word in the sentence
-    for (var i = 1; i < sentenceArray.length; i++){
+    for (var i = 0; i < sentenceArray.length; i++){
       //get the phonemes into an array
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
       phonemeBuffer = syllableArray[i].split(" ");
