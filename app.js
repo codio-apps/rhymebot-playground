@@ -644,7 +644,6 @@ function receivedMessage(event) {
     var syllableArray = [""];
     var phonemeBuffer = [""];
     var char = "";
-    var tempString = "";
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
       //get the phonemes into an array
@@ -665,6 +664,7 @@ function receivedMessage(event) {
             console.log("Vowel number "+vowelCount+" found at pos: "+nextVowel);
             console.log("phonemeBuffer nextVowel = "+phonemeBuffer[nextVowel]);
             //now stick the rest of the vowels back onto the buffer
+            var tempString = "";
             for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
               tempString = tempString +phonemeBuffer[l];
             }
@@ -672,7 +672,6 @@ function receivedMessage(event) {
             console.log("restLen was "+restLen);
           }
         }
-        console.log("vowelPos = "+vowelPos);
       }
     }
   }
