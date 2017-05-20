@@ -860,7 +860,7 @@ function receivedMessage(event) {
     var theWord = getWord(dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex);
     var arrayBin = [""];
-    var RHYMEOUTPUT = [""];
+    var RHYMEOUTPUT.length=0;
     matchesFound = 0;
     //search the dictionary
     console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
@@ -873,10 +873,10 @@ function receivedMessage(event) {
         //handle cutting length to specific number of syllables
         var sylCount = countSyllables(iX);
         if (sylCount == syllableLength) {
-          console.log(" there's a "+sylCount+" syllable match at "+iX+" / "+CURRENTDICTIONARY[iX]);
+          console.log(" There's a "+sylCount+" syllable match at "+iX+" / "+CURRENTDICTIONARY[iX]);
           //if the found word ends in ")"
           if (arrayBin[0].endsWith(")")) {
-            console.log("removing brackets from "+arrayBin[0]);
+            console.log("Removing brackets from "+arrayBin[0]);
             //add the word to the list, but remove the brackets from the spelling info
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
