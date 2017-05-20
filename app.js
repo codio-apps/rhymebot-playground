@@ -486,7 +486,7 @@ function receivedMessage(event) {
             longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
           }
           console.log("Total syllables: "+totalSyllables+". longPhonemeString: "+longPhonemeString);
-          searchSentence(longPhonemeString);
+          searchSentence(longPhonemeString, totalSyllables);
           messageResponse = randomString;
           break;
 
@@ -632,7 +632,7 @@ function receivedMessage(event) {
     }
   }
 
-  function searchSentence(phonemeString){
+  function searchSentence(phonemeString, totalSyllables){
     console.log("searchSentence called on:"+phonemeString);
     var tryer = phonemeString.split(" "); //array AA1 G Z EH1 G Z
     var tryerString = "";
@@ -646,6 +646,41 @@ function receivedMessage(event) {
         tryerString = tryerString+" "+tryer[i];
       }
       console.log("searching phonemes for "+tryerString);
+      for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
+        //if the rhyme is a match
+        if (CURRENTDICTIONARY[iX].endsWith(tryerString)) {
+          //store the word in a temp string array
+          arrayBin = CURRENTDICTIONARY[iX].split("  ");
+          arrayBin[0] = arrayBin[0].toLowerCase()
+          //handle cutting length to specific number of syllables
+          var sylCount = countSyllables(iX);
+          if (sylCount == totalSyllables) {
+            //if the found word ends in ")"
+            if (arrayBin[0].endsWith(")")) {
+              console.log("Removing brackets from "+arrayBin[0]);
+              //add the word to the list, but remove the brackets from the spelling info
+              var tmpLen = arrayBin[0].length-3;
+              arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+            }
+            if (SENTENCEOUTPUT.includes(arrayBin[0]){
+              console.log("Duplicate found, skipping "+arrayBin[0]);
+            } else {
+              //make sure it's not the same as searchWord
+              if (arrayBin[0]==theWord.toLowerCase()){
+                console.log("Search term: "+theWord+" found again, skipping");
+                //do nothing
+              } else {
+                //otherwise save the word to the output array
+                SENTENCEOUTPUT[matchesFound]=arrayBin[0];
+                matchesFound++;
+              }
+            }
+          }
+        }
+      }
+      console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+      return SENTENCEOUTPUT;
+
 
     }
     //console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
