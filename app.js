@@ -656,16 +656,14 @@ function receivedMessage(event) {
       for (var k = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k].charAt(0);
-        console.log("char is "+char);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          console.log("comparing "+char+" with "+vowels[j]);
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
-            vowelCount++
             var nextVowel = phoLen-k;
-            vowelPos[vowels] = nextVowel;
-            console.log("next vowel, number "+vowelCount+" found in phonemeBuffer["+phoLen-k+"]: "+vowels[j]+" at pos: "+nextVowel);
+            vowelPos[vowelCount] = nextVowel;
+            vowelCount++
+            console.log("Vowel number "+vowelCount+" found at pos: "+nextVowel);
             console.log("phonemeBuffer nextVowel = "+phonemeBuffer[nextVowel]);
             console.log("vowelPos = "+vowelPos);
           }
