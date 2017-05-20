@@ -882,18 +882,21 @@ function receivedMessage(event) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
-          if (arrayBin[0]==RHYMEOUTPUT[iX-1]){
-            console.log("Duplicate found, skipping "+arrayBin[0]);
-          } else {
-            console.log(arrayBin[0]+" not equal to "+RHYMEOUTPUT[iX-1]);
-            //make sure it's not the same as searchWord
-            if (arrayBin[0]==theWord){
-              console.log(theWord+" found again, skipping");
-              //do nothing
+          var tmp = iX-1;
+          if (tmp > 0 ){
+            if (arrayBin[0]==RHYMEOUTPUT[tmp]){
+              console.log("Duplicate found, skipping "+arrayBin[0]);
             } else {
-              //otherwise save the word to the output array
-              RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
-              matchesFound++;
+              console.log(arrayBin[0]+" not equal to "+RHYMEOUTPUT[tmp]);
+              //make sure it's not the same as searchWord
+              if (arrayBin[0]==theWord){
+                console.log(theWord+" found again, skipping");
+                //do nothing
+              } else {
+                //otherwise save the word to the output array
+                RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
+                matchesFound++;
+              }
             }
           }
         }
