@@ -468,14 +468,14 @@ function receivedMessage(event) {
           case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
-          var randomString = ["Here's are three sentences that rhyme:"];
+          var randomString = ["Here are three sentences that rhyme:"];
           for (var j = 0; j < 3; j++){
             randomString = randomString+"\n";
             for (var i = 0, len = searchArray.length; i < len; i++){
               var dictionaryIndex = findTheLine(senderID, searchArray[i]);
               if (dictionaryIndex != -1) {
                 randomString = randomString + " "+ randomRhymes(dictionaryIndex, 1);
-              } else randomString = randomString +"UNKNOWN";
+              } else randomString = randomString +" UNKNOWN ";
             }
           }
           messageResponse = randomString;
@@ -696,7 +696,7 @@ function receivedMessage(event) {
     var randArray = [""];
     randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
     var rBuffer = "";
-    if (inputArray.length > elements){
+    if (inputArray.length >= elements){
       for (var i=1; i < elements; i++){
         var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         //if the array already includes the newly randomised item, re-roll
@@ -730,8 +730,6 @@ function receivedMessage(event) {
   function randomRhymes(dictionaryIndex, elements){
     inputArray.length=0;
     var arrayBuffer = getRhymes(dictionaryIndex);
-    console.log("array buffer length is: "+arrayBuffer.length);
-    console.log("array buffer is: "+arrayBuffer);
     if (arrayBuffer.length!==0){
       var randString = randomlyReturn(arrayBuffer, elements);
       return randString;
@@ -815,7 +813,6 @@ function receivedMessage(event) {
           syllablesFound++;
         }
       }
-      console.log("Calculated syllables at "+dictionaryIndex+" : "+syllablesFound);
       return syllablesFound;
     } else {
       return 0;
@@ -874,7 +871,7 @@ function receivedMessage(event) {
         //handle cutting length to specific number of syllables
         var sylCount = countSyllables(iX);
         if (sylCount == syllableLength) {
-          console.log(" There's a "+sylCount+" syllable match at "+iX+" / "+CURRENTDICTIONARY[iX]);
+          console.log("Match found at "+iX+" / "+CURRENTDICTIONARY[iX]);
           //if the found word ends in ")"
           if (arrayBin[0].endsWith(")")) {
             console.log("Removing brackets from "+arrayBin[0]);
