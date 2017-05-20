@@ -649,11 +649,12 @@ function receivedMessage(event) {
       //get the phonemes into an array
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
       phonemeBuffer = syllableArray[i].split(" ");
-          console.log("i="+i+" sarrayleng="+sentenceArray.length)
-      console.log("pBuffer is "+phonemeBuffer);
+      console.log("i = "+i+" sentenceArray.length = "+sentenceArray.length)
+      console.log("phonemeBuffer is "+phonemeBuffer);
       for (var k = 0, phoLen = phonemeBuffer.length; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k-1].charAt(0);
+        console.log("char is "+char);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0, log the position as the first relevant one
