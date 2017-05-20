@@ -640,6 +640,7 @@ function receivedMessage(event) {
 
 
 
+
     // var tryer = phonemeString.split("/ "); //array AA1 G Z / EH1 G Z
     // tryer[tryer.length-1] = tryer[tryer.length-1].slice(0, tryer[tryer.length-1].length-1);
     // console.log("sentence phoneme array now: "+tryer);
@@ -878,43 +879,50 @@ function receivedMessage(event) {
   }
 
   //function to take in a word and spit out the rhyming phoneme data
-  function getPhonemes(dictionaryIndex){
+  function getPhonemes(dictionaryIndex, all){
     var theLine = CURRENTDICTIONARY[dictionaryIndex];
     var phonemeString ="";
     //trim off the spelling and spacing from the string
     var tempPHONEMES = theLine.slice(getWord(dictionaryIndex).length+2);
     //for the found word, make an array containing each phoneme sound
     var PHONEMES = tempPHONEMES.split(" ");
-    //detect the first letter of phonemes sounds until you find a vowel
-    var firstVowel = 0;
-    var char = "";
-    //check the first character of each phoneme, backwards
-    for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
-      //set char to the first letter of the phoneme
-      char = PHONEMES[phoLen-i-1].charAt(0);
-      //compare char to every vowel
-      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-        //if we find a vowel at character 0, log the position as the first relevant one
-        if (char == vowels[j]){
-          firstVowel = phoLen-i-1;
+    if (all){
+      for (i = 0; i < PHONEMES.length; i++){
+        phonemeString = phonemeString+" "+PHONEMES[i];
+        return phonemeString
+      }
+    } else {
+      //detect the first letter of phonemes sounds until you find a vowel
+      var firstVowel = 0;
+      var char = "";
+      //check the first character of each phoneme, backwards
+      for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
+        //set char to the first letter of the phoneme
+        char = PHONEMES[phoLen-i-1].charAt(0);
+        //compare char to every vowel
+        for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+          //if we find a vowel at character 0, log the position as the first relevant one
+          if (char == vowels[j]){
+            firstVowel = phoLen-i-1;
+          }
         }
       }
+      //code below constucts a string of phonemes to be compared to the rest of the dictionary
+      //the current logic is that it goes from the first vowel
+      phoLen = PHONEMES.length-firstVowel;
+      //construct our phoneme string
+      for (i = firstVowel; i < PHONEMES.length; i++){
+        phonemeString = phonemeString+" "+PHONEMES[i];
+      }
+      console.log("Constructed phoneme string: "+phonemeString);
+      return phonemeString;
     }
-    //code below constucts a string of phonemes to be compared to the rest of the dictionary
-    //the current logic is that it goes from the first vowel
-    phoLen = PHONEMES.length-firstVowel;
-    //construct our phoneme string
-    for (i = firstVowel; i < PHONEMES.length; i++){
-      phonemeString = phonemeString+" "+PHONEMES[i];
-    }
-    console.log("Constructed phoneme string: "+phonemeString);
-    return phonemeString;
   }
 
   //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(dictionaryIndex, syllableLength) {
     var theWord = getWord(dictionaryIndex);
-    var phonemeString = getPhonemes(dictionaryIndex);
+    var phonemeString = getPhonemes(dictionaryIndex, false);
     var arrayBin = [""];
     RHYMEOUTPUT.length=0;
     matchesFound = 0;
