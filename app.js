@@ -860,7 +860,7 @@ function receivedMessage(event) {
     var theWord = getWord(dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex);
     var arrayBin = [""];
-    var RHYMEOUTPUT.length=0;
+    RHYMEOUTPUT.length=0;
     matchesFound = 0;
     //search the dictionary
     console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
