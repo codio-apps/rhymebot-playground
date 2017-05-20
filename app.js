@@ -484,7 +484,7 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(senderID, searchArray[i]);
             if (dictionaryIndex != -1) {
               totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
-              longPhonemeString = longPhonemeString + "/"+getPhonemes(dictionaryIndex);
+              longPhonemeString = longPhonemeString +getPhonemes(dictionaryIndex)+ "/";
             } else console.log("could not count syllables for word that is unknown");
           }
           if (dictionaryIndex != -1) {
@@ -644,6 +644,7 @@ function receivedMessage(event) {
     var tryerString = "";
     var SENTENCEOUTPUT = [""];
     var arrayBin = [""];
+    matchesFound=0;
     //for however many phonemes there are
     for (var n = 0; n < tryer.length-2; n++){ // n=0; n<6; n++
       tryerString = "";
