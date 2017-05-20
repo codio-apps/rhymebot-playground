@@ -660,7 +660,7 @@ function receivedMessage(event) {
         console.log("char is "+char);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          console.log("comparing "+char+" with "+vowels[J]);
+          console.log("comparing "+char+" with "+vowels[j]);
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
             vowelCount++
