@@ -885,6 +885,7 @@ function receivedMessage(event) {
           if (arrayBin[0]==RHYMEOUTPUT[iX-1]){
             console.log("Duplicate found, skipping "+arrayBin[0]);
           } else {
+            console.log(arrayBin[0]+" not equal to "+RHYMEOUTPUT[iX-1]);
             //make sure it's not the same as searchWord
             if (arrayBin[0]==theWord){
               console.log(theWord+" found again, skipping");
