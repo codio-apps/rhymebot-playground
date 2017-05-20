@@ -727,6 +727,7 @@ function receivedMessage(event) {
     inputArray.length=0;
     var arrayBuffer = getRhymes(dictionaryIndex);
     console.log("array buffer length is: "+arrayBuffer.length);
+    console.log("array buffer is: "+arrayBuffer);
     if (arrayBuffer.length!==0){
       var randString = randomlyReturn(arrayBuffer, elements);
       return randString;
@@ -884,18 +885,18 @@ function receivedMessage(event) {
             arrayBin[0] = arrayBin[0];
           }
           if (RHYMEOUTPUT.includes(arrayBin[0])){
-            console.log("skipping "+arrayBin[0]);
+            console.log("Duplicate found, skipping "+arrayBin[0]);
           } else {
-          }
-          //make sure it's not the same as searchWord
-          if (arrayBin[0]==theWord){
-            console.log("same word found");
-            //do nothing
-          } else {
-            //otherwise save the word to the output array
-            console.log("saving at point A: "+arrayBin[0]);
-            RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
-            matchesFound++;
+
+            //make sure it's not the same as searchWord
+            if (arrayBin[0]==theWord){
+              console.log(theWord+" found again, skipping");
+              //do nothing
+            } else {
+              //otherwise save the word to the output array
+              RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
+              matchesFound++;
+            }
           }
         }
       }
