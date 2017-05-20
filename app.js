@@ -868,6 +868,7 @@ function receivedMessage(event) {
     var arrayBin = [""];
     RHYMEOUTPUT.length=0;
     matchesFound = 0;
+    var sylCount = 0;
     //search the dictionary
     console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
@@ -877,7 +878,7 @@ function receivedMessage(event) {
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
         //handle cutting length to specific number of syllables
-        var sylCount = countSyllables(iX);
+        sylCount = countSyllables(iX);
         if (sylCount == syllableLength) {
           console.log(" There's a "+sylCount+" syllable match at "+iX+" / "+CURRENTDICTIONARY[iX]);
           //if the found word ends in ")"
