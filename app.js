@@ -897,8 +897,8 @@ function receivedMessage(event) {
     if (all){
       for (i = 0; i < PHONEMES.length; i++){
         phonemeString = phonemeString+" "+PHONEMES[i];
-        return phonemeString;
       }
+      return phonemeString;
     } else {
       //detect the first letter of phonemes sounds until you find a vowel
       var firstVowel = 0;
