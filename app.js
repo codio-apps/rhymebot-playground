@@ -637,18 +637,18 @@ function receivedMessage(event) {
     var tryer = phonemeString.split(" "); //array AA1 G Z EH1 G Z
     var tryerString = "";
     RHYMEOUTPUT = [""];
+    arrayBin = [""];
     //for however many phonemes there are
     for (var n = 0; n < tryer.length; n++){ // n=0; n<6; n++
       tryerString = "";
     //cut off the first N syllables
       for (var i = 1+n, len = tryer.length; i < len; i++){ //i=0, len=6; 0<6; i++ //i=1, len=5; 1<5; i++
           tryerString = tryerString+" "+tryer[i]; //""=""+AA1 //AA1+
-          console.log(tryerString);
       }
       console.log("searching phonemes for "+tryerString);
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
         //if the rhyme is a match
-        if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
+        if (CURRENTDICTIONARY[iX].endsWith(tryerString)) {
           //store the word in a temp string array
           arrayBin = CURRENTDICTIONARY[iX].split("  ");
           arrayBin[0] = arrayBin[0].toLowerCase()
