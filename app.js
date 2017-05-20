@@ -634,14 +634,14 @@ function receivedMessage(event) {
 
   function searchSentence(phonemeString){
     console.log("searchSentence called on:"+phonemeString);
-    var tryer = phonemeString.split(" ");
+    var tryer = phonemeString.split(" "); //array AA1 G Z EH1 G Z
     var tryerString = "";
-    //for however many syllables there are
-    for (var n = 0; n < tryer.length; n++){
+    //for however many phonemes there are
+    for (var n = 0; n < tryer.length; n++){ // n=0; n<6; n++
       tryerString = "";
     //cut off the first N syllables
-      for (var i = 0, len = tryer.length-n; i < len; i++){
-          tryerString = tryerString +tryer[len];
+      for (var i = 0, len = tryer.length-n; i < len; i++){ //i=0, len=6; 0<6; i++ //i=1, len=6; 1<6; i++
+          tryerString = tryerString+" "+tryer[i]; //""=""+AA1 //AA1+
           console.log(tryerString);
       }
       console.log(" constructed tryerString = "+tryerString);
