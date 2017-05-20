@@ -660,6 +660,7 @@ function receivedMessage(event) {
         console.log("char is "+char);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+          console.log("comparing "+char+" with "+vowels[J]);
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
             vowelCount++
@@ -669,7 +670,6 @@ function receivedMessage(event) {
             console.log("phonemeBuffer K = "+phonemeBuffer[nextVowel]);
           }
         }
-          console.log("vowels found "+vowelPos);
       }
     }
     console.log("syllableArray is now: "+syllableArray);
