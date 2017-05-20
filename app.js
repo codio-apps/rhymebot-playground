@@ -651,7 +651,7 @@ function receivedMessage(event) {
       phonemeBuffer = syllableArray[i].split(" ");
       console.log("i = "+i+" sentenceArray.length = "+sentenceArray.length)
       console.log("phonemeBuffer is "+phonemeBuffer);
-      for (var k = 0, phoLen = phonemeBuffer.length; k < phoLen; k++){
+      for (var k = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k-1].charAt(0);
         console.log("char is "+char);
@@ -660,9 +660,9 @@ function receivedMessage(event) {
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
             var nextVowel = phoLen-i-1;
+            console.log("next vowel in phonemeBuffer["+j+"]:"+nextVowel);
           }
         }
-        console.log("first vowel in phonemeBuffer["+i+"]:"+nextVowel);
       }
     }
     console.log("syllableArray is now: "+syllableArray);
