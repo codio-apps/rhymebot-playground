@@ -646,26 +646,7 @@ function receivedMessage(event) {
         tryerString = tryerString+" "+tryer[i];
       }
       console.log("searching phonemes for "+tryerString);
-      for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
-        //if the rhyme is a match
-        if (CURRENTDICTIONARY[iX].endsWith(tryerString)) {
-          //store the word in a temp string array
-          arrayBin = CURRENTDICTIONARY[iX].split("  ");
-          arrayBin[0] = arrayBin[0].toLowerCase()
-          //if the found word ends in ")"
-          if (arrayBin[0].endsWith(")")) {
-            //add the word to the list, but remove the brackets from the spelling info
-            var tmpLen = arrayBin[0].length-3;
-            arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-          }
-          if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-          }     else {
-            //otherwise save the word to the output array
-            RHYMEOUTPUT[matchesFound]=arrayBin[0];
-            matchesFound++;
-          }
-        }
-      }
+
     }
     console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
     console.log(RHYMEOUTPUT);
