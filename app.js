@@ -804,12 +804,13 @@ function receivedMessage(event) {
 
   //function to calculate how many syllables there are in a word and return that number
   function countSyllables(dictionaryIndex) {
+    var countWord = getWord(dictionaryIndex);
     var syllablesFound = 0;
     var char = "";
     //call findTheLine to get the index
     if (dictionaryIndex != -1) {
       //trim off the spelling and spacing from the string
-      var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(searchWord.length+2);
+      var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(countWord.length+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
       console.log("phonemes: "+PHONEMES);
