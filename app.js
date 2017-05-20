@@ -469,7 +469,7 @@ function receivedMessage(event) {
           break;
 
           case 'sentance':
-          searchWord = lc_messageText.slice(9).toUpperCase;
+          searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var randomString = [""];
           for (var i = 0, len = searchArray.length; i < len; i++){
