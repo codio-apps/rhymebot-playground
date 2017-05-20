@@ -638,9 +638,11 @@ function receivedMessage(event) {
     }
   }
 
+  //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(sentenceArray, totalSyllables){
     console.log("searchSentence called on:"+sentenceArray);
     var syllableArray = [""];
+    var char = "";
     for (var i = 0; i < sentenceArray.length; i++){
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
     }
@@ -653,7 +655,7 @@ function receivedMessage(event) {
       for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
         //if we find a vowel at character 0, log the position as the first relevant one
         if (char == vowels[j]){
-          firstVowel = phoLen-i-1;
+          var firstVowel = phoLen-i-1;
           console.log("first vowel:"+firstVowel);
         }
       }
