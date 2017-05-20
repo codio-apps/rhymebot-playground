@@ -641,16 +641,17 @@ function receivedMessage(event) {
   //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(sentenceArray, totalSyllables){
     console.log("searchSentence called on:"+sentenceArray);
-    var syllableArray = [""];
+    var phonemeArray = [""];
     var char = "";
     for (var i = 0; i < sentenceArray.length; i++){
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
     }
-    syllableArray[0] = syllableArray[0].slice(0, syllableArray[0].length-1);
     console.log("syllableArray is now: "+syllableArray);
-    for (var i = 0, phoLen = syllableArray.length; i < phoLen; i++){
+    var phonemeBuffer = syllableArray[i].split(" ");
+
+    for (var i = 0, phoLen = phonemeBuffer.length; i < phoLen; i++){
       //set char to the first letter of the phoneme
-      char = syllableArray[phoLen-i-1].charAt(0);
+      char = phonemeBuffer[phoLen-i-1].charAt(0);
       //compare char to every vowel
       for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
         //if we find a vowel at character 0, log the position as the first relevant one
