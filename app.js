@@ -469,11 +469,12 @@ function receivedMessage(event) {
           break;
 
           case 'sentance':
-          searchWord = lc_messageText.slice(9);
+          searchWord = lc_messageText.slice(9).toUpperCase;
           var searchArray = searchWord.split(" ");
           var randomString = [""];
           for (var i = 0, len = searchArray.length; i < len; i++){
-            randomString = randomString + "::"+ randomRhymes(searchArray[i], 1);
+            var dictionaryIndex = findTheLine(senderID, searchArray[i]);
+            randomString = randomString + "::"+ randomRhymes(dictionaryIndex, 1);
           }
           messageResponse = randomString;
           break;
