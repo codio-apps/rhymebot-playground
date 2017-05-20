@@ -882,11 +882,11 @@ function receivedMessage(event) {
             //add the word to the list, but remove the brackets from the spelling info
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-            arrayBin[0] = arrayBin[0];
           }
           if (RHYMEOUTPUT.includes(arrayBin[0])){
             console.log("Duplicate found, skipping "+arrayBin[0]);
           } else {
+            console.log("I don't think I already saved "+arrayBin[0]);
 
             //make sure it's not the same as searchWord
             if (arrayBin[0]==theWord){
