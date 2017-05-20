@@ -642,13 +642,13 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+phonemeString);
     var tryer = phonemeString.split("/ "); //array AA1 G Z / EH1 G Z
     tryer[tryer.length-1] = tryer[tryer.length-1].slice(0, tryer[tryer.length-1].length-1);
-    console.log("array now "+tryer);
+    console.log("sentence phoneme array now: "+tryer);
     var tryerString = "";
     var SENTENCEOUTPUT = [""];
     var arrayBin = [""];
     matchesFound=0;
     //for however many phonemes there are
-    for (var n = 0; n < tryer.length-2; n++){ // n=0; n<6; n++
+    for (var n = 0; n < tryer.length-1; n++){ // n=0; n<6; n++
       tryerString = "";
       //cut off the first N syllables, scaling backwards
       for (var i = 1+n, len = tryer.length; i < len; i++){
