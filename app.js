@@ -651,7 +651,7 @@ function receivedMessage(event) {
       phonemeBuffer = syllableArray[i].split(" ");
       console.log("i = "+i+" sentenceArray.length = "+sentenceArray.length)
       console.log("phonemeBuffer is "+phonemeBuffer);
-      for (var k = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
+      for (var k = 0, phoLen = phonemeBuffer.length-2; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k].charAt(0);
         console.log("char is "+char);
