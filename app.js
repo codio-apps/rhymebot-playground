@@ -642,10 +642,23 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+sentenceArray);
     var syllableArray = [""];
     for (var i = 0; i < sentenceArray.length; i++){
-      syllableArray[i] = getPhonemes(sentenceArray[i], true);
+      syllableArray[i] = getPhonemes(sentenceArray[i], false);
     }
     syllableArray[0] = syllableArray[0].slice(0, syllableArray[0].length-1);
     console.log("syllableArray is now: "+syllableArray);
+    for (var i = 0, phoLen = syllableArray.length; i < phoLen; i++){
+      //set char to the first letter of the phoneme
+      char = syllableArray[phoLen-i-1].charAt(0);
+      //compare char to every vowel
+      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+        //if we find a vowel at character 0, log the position as the first relevant one
+        if (char == vowels[j]){
+          firstVowel = phoLen-i-1;
+          console.log("first vowel:"+firstVowel);
+        }
+      }
+    }
+
 
 
 
