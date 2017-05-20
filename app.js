@@ -657,7 +657,7 @@ function receivedMessage(event) {
         char = phonemeBuffer[phoLen-k].charAt(0);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          //if we find a vowel at character 0, log the position as the next relevant one
+          //if we find a vowel at the next position down, log it as the next relevant one
           if (char == vowels[j]){
             var nextVowel = phoLen-k;
             vowelPos[vowelCount] = nextVowel;
@@ -666,15 +666,15 @@ function receivedMessage(event) {
             //now stick the rest of the vowels back into the buffer
             var tempString = "";
             for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
-              tempString = tempString +" "+phonemeBuffer[l];
-              wordEndings[vowelCount] = tempString;
+              tempString = tempString +" "+phonemeBuffer[l].slice(1);
+              wordEndings[vowelCount-1] = tempString;
             }
             console.log("tempString is "+tempString);
             console.log("vowels are at positions "+vowelPos);
           }
         }
       }
-      console.log(":::"+wordEndings);
+      console.log(wordEndings);
     }
   }
 
