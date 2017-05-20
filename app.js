@@ -636,7 +636,7 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+phonemeString);
     var tryer = phonemeString.split(" "); //array AA1 G Z EH1 G Z
     var tryerString = "";
-    RHYMEOUTPUT = [""];
+    RHYMEOUTPUT.length=0;
     var arrayBin = [""];
     //for however many phonemes there are
     for (var n = 0; n < tryer.length; n++){ // n=0; n<6; n++
@@ -652,9 +652,6 @@ function receivedMessage(event) {
           //store the word in a temp string array
           arrayBin = CURRENTDICTIONARY[iX].split("  ");
           arrayBin[0] = arrayBin[0].toLowerCase()
-          //handle cutting length to specific number of syllables
-          var sylCount = countSyllables(iX);
-          if (sylCount == syllableLength) {
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
               //add the word to the list, but remove the brackets from the spelling info
@@ -663,19 +660,17 @@ function receivedMessage(event) {
             }
             if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
             } else {
-              //make sure it's not the same as searchWord
-              if (arrayBin[0]==theWord.toLowerCase()){
-                //do nothing
-              } else {
+              else {
                 //otherwise save the word to the output array
                 RHYMEOUTPUT[matchesFound]=arrayBin[0];
                 matchesFound++;
               }
             }
-          }
+
         }
       }
       console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+      console.log(RHYMEOUTPUT);
     }
   }
 
