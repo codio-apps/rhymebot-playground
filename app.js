@@ -491,8 +491,7 @@ function receivedMessage(event) {
           break;
           //handle the random command
           case 'random':
-          searchWord = lc_messageText.slice(7);
-          searchWord = searchWord.toUpperCase();
+          searchWord = lc_messageText.slice(7).toUpperCase();
           var searchArray = searchWord.split(" ");
           var randomString = [""];
           console.log("split input array: "+searchArray);
@@ -883,7 +882,7 @@ function receivedMessage(event) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
-          if (arrayBin[0]==RHYMEOUTPUT[ix-1]){
+          if (arrayBin[0]==RHYMEOUTPUT[iX-1]){
             console.log("Duplicate found, skipping "+arrayBin[0]);
           } else {
             //make sure it's not the same as searchWord
