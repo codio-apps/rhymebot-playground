@@ -474,7 +474,9 @@ function receivedMessage(event) {
           var randomString = [""];
           for (var i = 0, len = searchArray.length; i < len; i++){
             var dictionaryIndex = findTheLine(senderID, searchArray[i]);
-            randomString = randomString + "::"+ randomRhymes(dictionaryIndex, 1);
+            if (dictionaryIndex != -1) {
+              randomString = randomString + "::"+ randomRhymes(dictionaryIndex, 1);
+            } else randomString = randomString +"UNKNOWN";
           }
           messageResponse = randomString;
           break;
@@ -857,7 +859,6 @@ function receivedMessage(event) {
 
   //function to search the dictionary for phonemeString matches and return a list
   function searchPhonemes(dictionaryIndex, syllableLength) {
-    if (dictionaryIndex != -1) {
       var theWord = getWord(dictionaryIndex);
       var phonemeString = getPhonemes(dictionaryIndex);
       var arrayBin = [""];
@@ -892,12 +893,12 @@ function receivedMessage(event) {
             //do nothing
           } else {
             //otherwise save the word to the output array
+            console.log("saving at point A: "+arrayBin[0]);
             RHYMEOUTPUT[matchesFound]=arrayBin[0].toLowerCase();
             matchesFound++;
           }
         }
       }
-    }
     console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
     return RHYMEOUTPUT;
   }
