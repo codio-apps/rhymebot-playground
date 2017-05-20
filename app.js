@@ -639,7 +639,7 @@ function receivedMessage(event) {
     var SENTENCEOUTPUT = "";
     var arrayBin = [""];
     //for however many phonemes there are
-    for (var n = 0; n < tryer.length; n++){ // n=0; n<6; n++
+    for (var n = 0; n < tryer.length-2; n++){ // n=0; n<6; n++
       tryerString = "";
       //cut off the first N syllables, scaling backwards
       for (var i = 1+n, len = tryer.length; i < len; i++){
