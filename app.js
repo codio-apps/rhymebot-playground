@@ -760,7 +760,7 @@ function receivedMessage(event) {
             keepLooking = false;
           }
           var syllablesReq = countSyllables(dictionaryIndex);
-          console.log(theWord+" has "+syllableReq+"relevant phonemes")
+          console.log(theWord+" has "+syllablesReq+"relevant phonemes")
           RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
           return RHYMEOUTPUT;
         }
