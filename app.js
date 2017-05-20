@@ -643,7 +643,7 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+sentenceArray);
     var syllableArray = [""];
     var phonemeBuffer = [""];
-    var vowels = 0;
+    var vowelCount = 0;
     var vowelPos = [""];
     var char = "";
     // for each word in the sentence
@@ -662,14 +662,14 @@ function receivedMessage(event) {
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0, log the position as the first relevant one
           if (char == vowels[j]){
-            vowels++
+            vowelCount++
             var nextVowel = phoLen-k;
             vowelPos[vowels] = nextVowel;
             console.log("next vowel in phonemeBuffer["+k+"]: "+vowels[j]+" at pos: "+nextVowel);
             console.log("phonemeBuffer K = "+phonemeBuffer[nextVowel]);
-            console.log("vowels found "+vowelPos);
           }
         }
+          console.log("vowels found "+vowelPos);
       }
     }
     console.log("syllableArray is now: "+syllableArray);
