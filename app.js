@@ -874,7 +874,7 @@ function receivedMessage(event) {
         //handle cutting length to specific number of syllables
         var sylCount = countSyllables(iX);
         if (sylCount == syllableLength) {
-          console.log(" theres a match at "+iX+" / "+CURRENTDICTIONARY[iX]);
+          console.log(" there's a match at "+iX+" / "+CURRENTDICTIONARY[iX]);
           //if the found word ends in ")"
           if (arrayBin[0].endsWith(")")) {
             console.log("removing brackets from "+arrayBin[0]);
@@ -882,8 +882,8 @@ function receivedMessage(event) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
-          var tmp = iX-1;
-          if (tmp > 0 ){
+          var tmp = matchesFound-1;
+          if (tmp >= 0 ){
             if (arrayBin[0]==RHYMEOUTPUT[tmp]){
               console.log("Duplicate found, skipping "+arrayBin[0]);
             } else {
