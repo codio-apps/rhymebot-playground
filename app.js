@@ -788,8 +788,7 @@ function receivedMessage(event) {
       if (pronunciationsFound == 0) {
         messageResponse = "I don't know the word "+searchWord.toLowerCase()+" yet, sorry";
         //otherwise
-      }  else {
-        if (matchesFound == 0) {
+      }  else if (matchesFound == 0) {
           messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
         } else {
           //search the dictionary for matching phoneme endings
@@ -800,7 +799,6 @@ function receivedMessage(event) {
       //now turn off the typer
       sendTypingOff(senderID);
     }
-  }
 
   //function to calculate how many syllables there are in a word and return that number
   function countSyllables(dictionaryIndex) {
