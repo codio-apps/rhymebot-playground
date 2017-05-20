@@ -636,15 +636,46 @@ function receivedMessage(event) {
     console.log("searchSentence called on:"+phonemeString);
     var tryer = phonemeString.split(" "); //array AA1 G Z EH1 G Z
     var tryerString = "";
+    RHYMEOUTPUT = [""];
     //for however many phonemes there are
-    for (var n = 0; n <= tryer.length; n++){ // n=0; n<6; n++
+    for (var n = 0; n < tryer.length; n++){ // n=0; n<6; n++
       tryerString = "";
     //cut off the first N syllables
       for (var i = 1+n, len = tryer.length; i < len; i++){ //i=0, len=6; 0<6; i++ //i=1, len=5; 1<5; i++
           tryerString = tryerString+" "+tryer[i]; //""=""+AA1 //AA1+
           console.log(tryerString);
       }
-      console.log(" constructed tryerString = "+tryerString);
+      console.log("searching phonemes for "+tryerString);
+      for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
+        //if the rhyme is a match
+        if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
+          //store the word in a temp string array
+          arrayBin = CURRENTDICTIONARY[iX].split("  ");
+          arrayBin[0] = arrayBin[0].toLowerCase()
+          //handle cutting length to specific number of syllables
+          var sylCount = countSyllables(iX);
+          if (sylCount == syllableLength) {
+            //if the found word ends in ")"
+            if (arrayBin[0].endsWith(")")) {
+              //add the word to the list, but remove the brackets from the spelling info
+              var tmpLen = arrayBin[0].length-3;
+              arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+            }
+            if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+            } else {
+              //make sure it's not the same as searchWord
+              if (arrayBin[0]==theWord.toLowerCase()){
+                //do nothing
+              } else {
+                //otherwise save the word to the output array
+                RHYMEOUTPUT[matchesFound]=arrayBin[0];
+                matchesFound++;
+              }
+            }
+          }
+        }
+      }
+      console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
     }
   }
 
