@@ -469,6 +469,7 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var longPhonemeString = "";
+          var totalSyllables = 0;
           var randomString = ["Here are three sentences that rhyme:"];
           for (var j = 0; j < 3; j++){
             randomString = randomString+"\n";
@@ -481,9 +482,11 @@ function receivedMessage(event) {
           }
           for (var i = 0, len = searchArray.length; i < len; i++){
             var dictionaryIndex = findTheLine(senderID, searchArray[i]);
+            totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
             longPhonemeString = longPhonemeString + getPhonemes(dictionaryIndex);
           }
-          console.log("longPhonemeString = "+longPhonemeString);
+          console.log("Total syllables: "+totalSyllables". longPhonemeString: "+longPhonemeString);
+          searchSentence(longPhonemeString);
           messageResponse = randomString;
           break;
 
@@ -629,6 +632,10 @@ function receivedMessage(event) {
     }
   }
 
+  function searchSentence(phonemeString){
+    console.log("searchSentence called on:"+phonemeString);
+
+  }
 
   function StringSearch(input, key) {
 
@@ -825,7 +832,7 @@ function receivedMessage(event) {
     }
   }
 
-  //function to take in a word and spit out the phonemes
+  //function to take in a word and spit out the rhyming phoneme data
   function getPhonemes(dictionaryIndex){
     var theLine = CURRENTDICTIONARY[dictionaryIndex];
     var phonemeString ="";
