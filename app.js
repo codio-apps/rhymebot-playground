@@ -965,6 +965,7 @@ function receivedMessage(event) {
         console.log("match found: "+arrayBin[0]);
         //handle cutting length to specific number of syllables
         var sylCount = countSyllables(iX);
+        console.log("syl: "+syllableLength+" count: "+sylCount);
         if (sylCount == syllableLength) {
           //if the found word ends in ")"
           if (arrayBin[0].endsWith(")")) {
