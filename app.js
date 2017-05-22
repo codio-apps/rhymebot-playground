@@ -643,7 +643,7 @@ function receivedMessage(event) {
     var char = "";
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
-      var complexOutput = [""];
+      var complexOutput = new Array;
       var wordEndings = [""];
       //get the phonemes into an array
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
