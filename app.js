@@ -467,7 +467,6 @@ function receivedMessage(event) {
           break;
 
           case 'sentence':
-          messageResponse = "ya I'm doing stuff in the console mate";
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
@@ -477,7 +476,7 @@ function receivedMessage(event) {
             if (dictionaryIndex != -1) {
               console.log("SearchArray: "+indexArray);
               searchSentence(indexArray);
-              messageResponse = randomString;
+              messageResponse = "sentence complex search complete";
             } else {
               messageResponse = "unknown word error";
             }
