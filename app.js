@@ -687,12 +687,22 @@ function receivedMessage(event) {
         }
       }
       console.log("vowels are at positions "+vowelPos);
-      //for however many vowel phonemes we found (syllables)
-      for (var j = vowelCount; j > 1; j--){
+      //for however many vowels we found (syllables), down to the first vowel
+      for (var j = vowelCount; j > 0; j--){
         console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
-          //starting at the maximum syllable value and working back to the second to last syllable
-          console.log("maxSYl: "+maxSyllables+" vowelCount = "+vowelCount+"j = "+j);
-            for (var k = maxSyllables; k>1; k--){
+        //once we are on the last syllable, search for exact matches only
+        if (j==1){
+              console.log("maxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
+              var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
+              if (tempArray.length!=0){
+                RHYMEOUTPUT.concat(tempArray);
+              }
+        } else {
+          //starting at the maximum syllable value and working back to the current syllable
+          console.log("maxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
+          // we only need
+          var limit = vowelCount-j;
+            for (var k = maxSyllables; k>vowelCount; k--){
               console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k);
               //append all the words that rhyme but have more syllables than the phonemeString
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
@@ -704,12 +714,13 @@ function receivedMessage(event) {
           }
           //console.log("All words that rhyme, but are longer than the original searchterm found");
           //append all the words that rhyme perfectly with the phoneme string
-          var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
-          if (tempArray.length!=0){
-            RHYMEOUTPUT.concat(tempArray);
+          //var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
+          //if (tempArray.length!=0){
+          //  RHYMEOUTPUT.concat(tempArray);
             //complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
             //console.log("tempArray = "+tempArray+" / Pushing to array:");
-          }
+          //}
+        }
 
       }
       console.log("RHYMEOUTPUT: "+RHYMEOUTPUT);
