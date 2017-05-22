@@ -675,9 +675,10 @@ function receivedMessage(event) {
           console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
           //return all the words that rhyme perfectly with the word
           var tempString = searchPhonemes(wordEndings[j-1], theWord, j);
-          var tempString2 = searchPhonemes(wordEndings[j-1], theWord, j+1);
           console.log(tempString);
-          console.log(tempString2);
+          //return all the words that rhyme closely enough to the word
+          tempString = searchPhonemes(wordEndings[j-1], theWord, j+1);
+          console.log(tempString);
       }
     }
   }
