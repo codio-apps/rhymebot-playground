@@ -50,6 +50,7 @@ var syllableLength = 0;
 //counters for finders
 var matchesFound = 0;
 var pronunciationsFound = 0;
+var maxSyllables = 0;
 
 // Graph Profile fields by senderID
 var name = "NONAMESET";
@@ -614,6 +615,7 @@ function receivedMessage(event) {
       CURRENTDICTIONARY = fileBuffer.split("\n");
       var dictionary_length = CURRENTDICTIONARY.length;
       var alphabetLength = 27;
+      maxSyllables = getMaxSyllables();
       //for each line in the file
       for (var i = 0; i < dictionary_length; i++) {
         //establish which letter it is
@@ -693,13 +695,16 @@ function receivedMessage(event) {
           }
           //ignore it for now
         } else {
-          var mostSyllables = getMaxSyllables();
-          //append all the words that rhyme but have more syllables than the phoneString
-          var tempArray = searchPhonemes(wordEndings[j-1], theWord, j+1);
-          if (tempArray.length!=0){
-            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
-            console.log("tempArray = "+tempArray+" / Pushing to array:");
+          //starting at the maximum syllable value and working back to however many syllables this word has:
+          for (var k = maxSyllables, len = vowelCount; i<len; i++){
+            //append all the words that rhyme but have more syllables than the phoneString
+            var tempArray = searchPhonemes(wordEndings[j-1], theWord, j+1);
+            if (tempArray.length!=0){
+              complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
+              console.log("tempArray = "+tempArray+" / Pushing to array:");
+            }
           }
+
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
