@@ -469,7 +469,6 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
-          var totalSyllables = 0;
           var randomString = ["Here are three sentences that rhyme:"];
           for (var j = 0; j < 3; j++){
             randomString = randomString+"\n";
@@ -483,13 +482,12 @@ function receivedMessage(event) {
           }
           for (var i = 0, len = searchArray.length; i < len; i++){
             if (dictionaryIndex != -1) {
-              totalSyllables = totalSyllables + countSyllables(dictionaryIndex);
             } else console.log("could not count syllables for word that is unknown");
           }
           //tester area for nextbit
           if (dictionaryIndex != -1) {
-            console.log("Total syllables: "+totalSyllables+". searchArray: "+searchArray);
-            searchSentence(indexArray, totalSyllables);
+            console.log("SearchArray: "+searchArray);
+            searchSentence(indexArray);
             messageResponse = randomString;
           } else {
             messageResponse = "unkown word error";
@@ -639,7 +637,7 @@ function receivedMessage(event) {
   }
 
   //function to take in an array of indexes and construct more complex rhymes
-  function searchSentence(sentenceArray, totalSyllables){
+  function searchSentence(sentenceArray){
     var syllableArray = [""];
     var phonemeBuffer = [""];
     var char = "";
@@ -804,7 +802,7 @@ function receivedMessage(event) {
             keepLooking = false;
             var syllablesReq = countSyllables(dictionaryIndex);
             console.log(theWord+" has "+syllablesReq+" relevant phonemes")
-            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
+            RHYMEOUTPUT = searchPhonemesByIndex(dictionaryIndex, syllablesReq);
             return RHYMEOUTPUT;
           }
         }
@@ -903,49 +901,55 @@ function receivedMessage(event) {
     }
   }
 
-  //function to search the dictionary for phonemeString matches and return a list
-  function searchPhonemes(dictionaryIndex, syllableLength) {
-    var theWord = getWord(dictionaryIndex);
-    var phonemeString = getPhonemes(dictionaryIndex, false);
+  function searchPhonemes(phonemeString, theWord){
     var arrayBin = [""];
-    RHYMEOUTPUT.length=0;
+    RHYMEOUTPUT.length = 0;
     matchesFound = 0;
-    //search the dictionary
-    console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
-    for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
-      //if the rhyme is a match
-      if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
-        //store the word in a temp string array
-        arrayBin = CURRENTDICTIONARY[iX].split("  ");
-        arrayBin[0] = arrayBin[0].toLowerCase()
-        //handle cutting length to specific number of syllables
-        var sylCount = countSyllables(iX);
-        if (sylCount == syllableLength) {
-          //if the found word ends in ")"
-          if (arrayBin[0].endsWith(")")) {
-            console.log("Removing brackets from "+arrayBin[0]);
-            //add the word to the list, but remove the brackets from the spelling info
-            var tmpLen = arrayBin[0].length-3;
-            arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-          }
-          if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-            console.log("Duplicate found, skipping "+arrayBin[0]);
-          } else {
-            //make sure it's not the same as searchWord
-            if (arrayBin[0]==theWord.toLowerCase()){
-              console.log("Search term: "+theWord+" found again, skipping");
-              //do nothing
+
+      //search the dictionary
+      console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
+      for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
+        //if the rhyme is a match
+        if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
+          //store the word in a temp string array
+          arrayBin = CURRENTDICTIONARY[iX].split("  ");
+          arrayBin[0] = arrayBin[0].toLowerCase()
+          //handle cutting length to specific number of syllables
+          var sylCount = countSyllables(iX);
+          if (sylCount == syllableLength) {
+            //if the found word ends in ")"
+            if (arrayBin[0].endsWith(")")) {
+              console.log("Removing brackets from "+arrayBin[0]);
+              //add the word to the list, but remove the brackets from the spelling info
+              var tmpLen = arrayBin[0].length-3;
+              arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+            }
+            if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+              console.log("Duplicate found, skipping "+arrayBin[0]);
             } else {
-              //otherwise save the word to the output array
-              RHYMEOUTPUT[matchesFound]=arrayBin[0];
-              matchesFound++;
+              //make sure it's not the same as searchWord
+              if (arrayBin[0]==theWord.toLowerCase()){
+                console.log("Search term: "+theWord+" found again, skipping");
+                //do nothing
+              } else {
+                //otherwise save the word to the output array
+                RHYMEOUTPUT[matchesFound]=arrayBin[0];
+                matchesFound++;
+              }
             }
           }
         }
       }
-    }
-    console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-    return RHYMEOUTPUT;
+      console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+      return RHYMEOUTPUT;
+  }
+
+  //function to search the dictionary for phonemeString matches by index and return a list
+  function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
+    var theWord = getWord(dictionaryIndex);
+    var phonemeString = getPhonemes(dictionaryIndex, false);
+    var output = searchPhonemes(phonemeString, theWord);
+    return output;
   }
 
   //function to split an array of words into 75-word chunks and send them
