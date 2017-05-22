@@ -656,9 +656,9 @@ function receivedMessage(event) {
     var syllableArray = [""];
     var phonemeBuffer = [""];
     var char = "";
-    RHYMEOUTPUT.length=0;
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
+      RHYMEOUTPUT.length=0;
       console.log("word number "+i);
       var wordEndings = [""];
       var theWord = getWord(sentenceArray[i]);
