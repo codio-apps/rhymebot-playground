@@ -670,6 +670,11 @@ function receivedMessage(event) {
       console.log("vowels are at positions "+vowelPos);
       console.log(wordEndings);
       console.log("longest one is "+wordEndings[wordEndings.length-1]);
+      for (var j = wordEndings.length-1; j >= 0; j--){
+          var tempString = searchPhonemes(wordEndings[j], syllableArray[i], vowelCount);
+          console.log("loop j: "+j+" / "+wordEndings[j]+" / "+syllableArray[i]+" / "+vowelCount);
+          console.log(tempString);
+      }
     }
   }
 
@@ -901,11 +906,11 @@ function receivedMessage(event) {
     }
   }
 
+  //function to search for a phonemeString matches
   function searchPhonemes(phonemeString, theWord, syllableLength){
     var arrayBin = [""];
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
-
       //search the dictionary
       console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
