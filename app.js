@@ -901,7 +901,7 @@ function receivedMessage(event) {
     }
   }
 
-  function searchPhonemes(phonemeString, theWord){
+  function searchPhonemes(phonemeString, theWord, syllableLength){
     var arrayBin = [""];
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
@@ -948,7 +948,7 @@ function receivedMessage(event) {
   function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
     var theWord = getWord(dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false);
-    var output = searchPhonemes(phonemeString, theWord);
+    var output = searchPhonemes(phonemeString, theWord, syllableLength);
     return output;
   }
 
