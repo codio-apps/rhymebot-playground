@@ -693,7 +693,7 @@ function receivedMessage(event) {
         //once we are on the last syllable, search for exact matches only
         if (j==1){
               console.log("maxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
-              var tempArray = searchPhonemes(wordEndings[j-1], theWord, vowelCount);
+              var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
               if (tempArray.length!=0){
                 RHYMEOUTPUT.concat(tempArray);
               }
