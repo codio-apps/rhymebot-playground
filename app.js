@@ -976,11 +976,8 @@ function receivedMessage(event) {
           if (iX==RHYMEOUTPUT[matchesFound-1]){
             console("error flag thing");
           } else {
-            //make sure it's not the same as searchWord
-            var theWord = getWord(iX);
-            if (arrayBin[0]==theWord.toLowerCase()){
-              //do nothing
-            } else {
+
+
               //otherwise save the word to the output array
               RHYMEOUTPUT[matchesFound]=iX;
               matchesFound++;
