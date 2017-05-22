@@ -487,8 +487,8 @@ function receivedMessage(event) {
           }
           //tester area for nextbit
           if (dictionaryIndex != -1) {
-            console.log("SearchArray: "+searchArray+" & IndexArray: "+indexArray);
-            searchSentence(indexArray);
+            console.log("SearchArray: "+searchArray);
+            searchSentence(senderID, indexArray);
             messageResponse = randomString;
           } else {
             messageResponse = "unknown word error";
@@ -652,12 +652,12 @@ function receivedMessage(event) {
     return mostSyllables;
   }
   //function to take in an array of indexes and construct more complex rhymes
-  function searchSentence(indexArray){
+  function searchSentence(senderID, sentenceArray){
     // for each word in the sentence
-    for (var i = 0; i < indexArray; i++){
+    for (var i = 0; i < sentenceArray.length; i++){
       //call the complex thing
       console.log("word number "+i);
-      complexSearch(indexArray[i]);
+      complexSearch(sentenceArray[i])
     }
     console.log("Sentence processing completed OK");
     //now sort it for presentation?
@@ -668,14 +668,15 @@ function receivedMessage(event) {
   function complexSearch(dictionaryIndex){
     var syllableArray = [""];
     var phonemeBuffer = [""];
-    var indexes = new Array();
+    var wordEndings = [""];
     var char = "";
     var COMPLEXOUTPUT = new Array();
+    var positionArray = new Array();
     var theWord = getWord(dictionaryIndex);
     // first get the phonemes into an array
     syllableArray = getPhonemes(dictionaryIndex, false);
     phonemeBuffer = syllableArray.split(" ");
-    console.log("phonemeBuffer is "+phonemeBuffer+" theWord is "+theWord);
+    console.log("phonemeBuffer is "+phonemeBuffer);
     for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
       //set char to the first letter of the phoneme
       char = phonemeBuffer[phoLen-k].charAt(0);
@@ -689,17 +690,17 @@ function receivedMessage(event) {
           var tempString = "";
           for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
             tempString = tempString +" "+phonemeBuffer[l];
-            indexes[vowelCount-1] = tempString;
+            wordEndings[vowelCount-1] = tempString;
           }
         }
       }
     }
-    //actual searching stuff:
+    //actual searching now
     //for however many vowels we found (syllables), down to the first vowel
     for (var j = vowelCount; j > 0; j--){
       //once we are on the last syllable, search for exact matches only
       if (j==1){
-        var tempArray = searchPhonemes(indexes[j-1], 1);
+        var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
         if (tempArray.length!=0){
           COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
         }
@@ -709,7 +710,7 @@ function receivedMessage(event) {
         var limit = vowelCount-j;
         for (var k = maxSyllables; k>=j; k--){
           //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(indexes[j-1], k);
+          var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
           if (tempArray.length!=0){
             COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
           }
@@ -717,7 +718,34 @@ function receivedMessage(event) {
       }
     }
     console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
+    //for every item in the words-that-rhyme array
+    for (var m = 0; m < COMPLEXOUTPUT.length; m++){
+      //find the line and count how many syllables there are
+      var dindex = findTheLine(COMPLEXOUTPUT[m])
+      var tempSyl = countSyllables(dindex);
+      console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
+      positionArray[m] = tempSyl;
+    }
+    var largest = Math.max.apply(Math, positionArray);
+    var SORTEDOUTPUT = new Array();
+    console.log("posArray: "+positionArray+". Largest is "+largest);
+    //from the highest value to the lowest
+    for (var i=largest, posIndex=0; i>0; i--){
+      //for each position in the array
+      for (var j=0; j<positionArray.length; j++){
+        //check if it's the number we're sorting for
+        if (positionArray[j]==i){
+          //if it is, reshuffle COMPLEXOUTPUT into SORTEDOUTPUT, in syllable-numerically descending order
+          console.log("got one: "+COMPLEXOUTPUT[j]);
+          SORTEDOUTPUT[posIndex] =COMPLEXOUTPUT[j];
+          posIndex++;
+        }
+      }
+    }
+    console.log(SORTEDOUTPUT);
+    //now sort that
   }
+
 
   function StringSearch(input, key) {
     if (key.indexOf(input) >= 0){
@@ -728,8 +756,8 @@ function receivedMessage(event) {
   }
 
   //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
-  function findTheLine(inputWord){
-    var searchWord = inputWord.toUpperCase();
+  function findTheLine(searchWord){
+    searchWord = searchWord.toUpperCase();
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
       console.log("That is not one of the 26 chosen characters, Padawan - Returning: -1");
@@ -764,9 +792,10 @@ function receivedMessage(event) {
   //function to return the exact word as a string, when given a dictionary index
   function getWord(dictionaryIndex){
     if (dictionaryIndex != -1) {
-      var theIndexes = CURRENTDICTIONARY[dictionaryIndex].split(" ");
+      var gotString = CURRENTDICTIONARY[dictionaryIndex];
+      var theWord = gotString.split(" ");
     }
-    return theIndexes[0];
+    return theWord[0];
   }
 
   //function to return 10 different random elements(in this case, rhymes) from an array
@@ -840,7 +869,7 @@ function receivedMessage(event) {
             keepLooking = false;
             var syllablesReq = countSyllables(dictionaryIndex);
             console.log(theWord+" has "+syllablesReq+" relevant phonemes")
-            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
+            RHYMEOUTPUT = searchPhonemesByIndex(dictionaryIndex, syllablesReq);
             return RHYMEOUTPUT;
           }
         }
@@ -898,7 +927,7 @@ function receivedMessage(event) {
     }
   }
 
-  //function to take in a word and spit out the phoneme data
+  //function to take in a word and spit out the rhyming phoneme data
   function getPhonemes(dictionaryIndex, all){
     var theLine = CURRENTDICTIONARY[dictionaryIndex];
     var phonemeString ="";
@@ -940,18 +969,15 @@ function receivedMessage(event) {
   }
 
   //function to search for a phonemeString matches
-  function searchPhonemes(dictionaryIndex, syllableLength){
-    var syllableLength = countSyllables(dictionaryIndex);
-    var phonemeString = getPhonemes(dictionaryIndex, false);
-    var theWord = getWord(dictionaryIndex);
+  function searchPhonemes(phonemeString, theWord, syllableLength){
     var arrayBin = [""];
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
-    //search the whole dictionary
+    //search the dictionary
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
       //if the rhyme is a match
       if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
-        //store the index in a temp string array
+        //store the word in a temp string array
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
         //handle cutting length to specific number of syllables
@@ -979,6 +1005,14 @@ function receivedMessage(event) {
     }
     console.log("Searching for "+phonemeString+" of length "+syllableLength+" complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
     return RHYMEOUTPUT;
+  }
+
+  //function to search the dictionary for phonemeString matches by index and return a list
+  function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
+    var theWord = getWord(dictionaryIndex);
+    var phonemeString = getPhonemes(dictionaryIndex, false);
+    var output = searchPhonemes(phonemeString, theWord, syllableLength);
+    return output;
   }
 
   //function to split an array of words into 75-word chunks and send them
