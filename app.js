@@ -709,11 +709,12 @@ function receivedMessage(event) {
       }
       console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
       SENTENCEOUTPUT[i] = COMPLEXOUTPUT;
-      //for every item in this 2d array
+      //for every item in the words-that-rhyme array
       for (var m = 0; m < COMPLEXOUTPUT.length; m++){
-        var dindex = findTheLine(senderID, COMPLEXOUTPUT[i])
+        //find the line and count how many syllables they are
+        var dindex = findTheLine(senderID, COMPLEXOUTPUT[m])
         var tempSyl = countSyllables(dindex);
-        console.log("checking @ "+COMPLEXOUTPUT[i]+" Syllables is: "+tempSyl);
+        console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
       }
       //now sort that
     }
