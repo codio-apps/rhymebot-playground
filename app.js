@@ -719,16 +719,6 @@ function receivedMessage(event) {
       }
     }
     console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
-    //for every item in the words-that-rhyme array
-    for (var m = 0; m < COMPLEXOUTPUT.length; m++){
-      //find the line and count how many syllables there are
-      var dindex = findTheLine(COMPLEXOUTPUT[m])
-      var tempSyl = countSyllables(dindex);
-      console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
-      positionArray[m] = tempSyl;
-    }
-    console.log(COMPLEXOUTPUT);
-    //now sort that
   }
 
 
