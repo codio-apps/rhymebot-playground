@@ -467,6 +467,7 @@ function receivedMessage(event) {
           break;
 
           case 'sentence':
+          messageResponse = "ya I'm doing stuff in the console mate";
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
@@ -704,7 +705,6 @@ function receivedMessage(event) {
     for (var m = 0; m < COMPLEXOUTPUT.length; m++){
       //find the line and count how many syllables there are
       var tempSyl = countSyllables(COMPLEXOUTPUT[m]);
-      console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
     }
     //now turn that back into words
     for (var i=0; i<COMPLEXOUTPUT.length; i++){
