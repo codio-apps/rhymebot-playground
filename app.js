@@ -470,7 +470,7 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
-          var randomString = ["Here are three sentences that rhyme:"];
+          var randomString = "Here are three sentences that rhyme:";
           for (var j = 0; j < 3; j++){
             randomString = randomString+"\n";
             for (var i = 0, len = searchArray.length; i < len; i++){
@@ -658,6 +658,7 @@ function receivedMessage(event) {
     var char = "";
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
+      console.log("word number "+i);
       var wordEndings = [""];
       var theWord = getWord(sentenceArray[i]);
       var complexOutput = "";
@@ -717,7 +718,7 @@ function receivedMessage(event) {
           }
         }
       }
-      console.log("complexOutput ="+complexOutput);
+      //console.log("complexOutput ="+complexOutput);
       sendTextMessage(senderID, complexOutput);
     }
   }
