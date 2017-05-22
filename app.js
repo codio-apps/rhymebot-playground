@@ -641,10 +641,11 @@ function receivedMessage(event) {
     var syllableArray = [""];
     var phonemeBuffer = [""];
     var char = "";
-    var complexOutput = new Array;
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
       var wordEndings = [""];
+      var theWord = getWord(sentenceArray[i]);
+      var complexOutput = "";
       //get the phonemes into an array
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
       phonemeBuffer = syllableArray[i].split(" ");
@@ -669,7 +670,6 @@ function receivedMessage(event) {
         }
       }
       console.log("vowels are at positions "+vowelPos);
-      var theWord = getWord(sentenceArray[i]);
       //for however many vowel phonemes we found (syllables)
       for (var j = vowelCount; j > 0; j--){
         console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
@@ -678,32 +678,27 @@ function receivedMessage(event) {
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
-            complexOutput.push(tempArray);
-            console.log("Pushing to array:");
+            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
             console.log("tempArray = "+tempArray+" / Pushing to array:");
-            console.log("complexOutput = "+complexOutput);
           }
           //ignore it for now
         } else {
           //append all the words that rhyme closely enough to the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j+1);
           if (tempArray.length!=0){
-            complexOutput.push(tempArray);
-            console.log("Pushing to array:");
+            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
             console.log("tempArray = "+tempArray+" / Pushing to array:");
-            console.log("complexOutput = "+complexOutput);
           }
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
-            complexOutput.push(tempArray);
+            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
             console.log("tempArray = "+tempArray+" / Pushing to array:");
-            console.log("complexOutput = "+complexOutput);
           }
         }
       }
-      console.log("complexOutput = "+complexOutput);
     }
+    console.log("complexOutput ="+complexOutput);
   }
 
   function StringSearch(input, key) {
