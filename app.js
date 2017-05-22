@@ -718,10 +718,10 @@ function receivedMessage(event) {
             console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
         }
+        console.log("complexOutput ="+complexOutput);
+        sendTextMessage(senderID, complexOutput);
       }
     }
-    console.log("complexOutput ="+complexOutput);
-    sendTextMessage(senderID, complexOutput);
   }
 
   function StringSearch(input, key) {
