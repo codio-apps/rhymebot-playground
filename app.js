@@ -676,19 +676,28 @@ function receivedMessage(event) {
           //if there is only one syllable left
           if (j < 2){
             //append all the words that rhyme perfectly with the phoneme string
-            var tempString2 = searchPhonemes(wordEndings[j-1], theWord, j);
-            complexOutput.push(tempString2);
-            console.log(tempString2);
+            var tempString = searchPhonemes(wordEndings[j-1], theWord, j);
+            if (tempString!=undefined){
+              complexOutput.push(tempString);
+              console.log("Pushing to array:");
+            }
+            console.log(tempString);
             //ignore it for now
           } else {
             //append all the words that rhyme closely enough to the phoneme string
-            var tempString1 = searchPhonemes(wordEndings[j-1], theWord, j+1);
-            complexOutput.push(tempString1);
-            console.log(tempString1);
+            var tempString = searchPhonemes(wordEndings[j-1], theWord, j+1);
+            if (tempString!=undefined){
+              complexOutput.push(tempString);
+              console.log("Pushing to array:");
+            }
+            console.log(tempString);
             //append all the words that rhyme perfectly with the phoneme string
-            var tempString2 = searchPhonemes(wordEndings[j-1], theWord, j);
-            complexOutput.push(tempString2);
-            console.log(tempString2);
+            var tempString = searchPhonemes(wordEndings[j-1], theWord, j);
+            if (tempString!=undefined){
+              complexOutput.push(tempString2);
+              console.log("Pushing to array:");
+            }
+            console.log(tempString);
           }
       }
       console.log("complexOutput = "+complexOutput);
