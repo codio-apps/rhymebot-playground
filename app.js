@@ -763,7 +763,7 @@ function receivedMessage(event) {
       var theWord = gotString.split(" ");
       if (theWord[0].endsWith(")")){
         theWord[0] = theWord[0].slice(0, theWord[0].length-3);
-        console.log("Slicing "+theWord(0));
+        console.log("Slicing "+theWord[0])
       }
       return theWord[0];
     } else {
