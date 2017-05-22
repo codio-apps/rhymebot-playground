@@ -708,22 +708,12 @@ function receivedMessage(event) {
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
               if (tempArray.length!=0){
                 RHYMEOUTPUT.concat(tempArray);
-                //complexOutput = complexOutput+"Words found that match "+k+" syllables:\n"+tempArray+"\n";
-                //console.log("tempArray = "+tempArray+" / Pushing to array:");
               }
           }
-          //console.log("All words that rhyme, but are longer than the original searchterm found");
-          //append all the words that rhyme perfectly with the phoneme string
-          //var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
-          //if (tempArray.length!=0){
-          //  RHYMEOUTPUT.concat(tempArray);
-            //complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
-            //console.log("tempArray = "+tempArray+" / Pushing to array:");
-          //}
         }
         console.log("RHYMEOUTPUT: "+RHYMEOUTPUT);
       }
-
+      console.log("RHYMEOUTPUT: "+RHYMEOUTPUT);
       //sendTextMessage(senderID, RHYMEOUTPUT);
     }
   }
