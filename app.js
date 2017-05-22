@@ -988,7 +988,7 @@ function receivedMessage(event) {
   return RHYMEOUTPUT;
 }
 
-//function to search the dictionary for phonemeString matches by index and return a list
+//function to search the dictionary for phonemeString matches by index and return a list. ffs
 function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
   var phonemeString = getPhonemes(dictionaryIndex, false);
   var output = searchPhonemes(phonemeString, syllableLength);
