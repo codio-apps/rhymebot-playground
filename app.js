@@ -974,7 +974,7 @@ function receivedMessage(event) {
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
           //
-          if (arrayBin[0]==getWord[iX-1]{
+          if (arrayBin[0]==getWord[iX-1]) {
             console("word already found, skipping");
           } else {
             //otherwise save the word to the output array
