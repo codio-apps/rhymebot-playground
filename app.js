@@ -721,9 +721,9 @@ function receivedMessage(event) {
             //console.log("tempArray = "+tempArray+" / Pushing to array:");
           //}
         }
-
+        console.log("RHYMEOUTPUT: "+RHYMEOUTPUT);
       }
-      console.log("RHYMEOUTPUT: "+RHYMEOUTPUT);
+
       //sendTextMessage(senderID, RHYMEOUTPUT);
     }
   }
