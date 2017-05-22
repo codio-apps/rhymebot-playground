@@ -952,7 +952,7 @@ function receivedMessage(event) {
 
   //function to search for a phonemeString matches
   function searchPhonemes(phonemeString, syllableLength){
-    var arrayBin = nwe Array();
+    var arrayBin = new Array();
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
     //search the dictionary, for every item in it
@@ -960,7 +960,7 @@ function receivedMessage(event) {
       //if the rhyme is a match
       if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
         console.log("match found");
-        //store the word in a temp string array
+        //store the word in a temp string array, then use the 0th element
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
         //handle cutting length to specific number of syllables
