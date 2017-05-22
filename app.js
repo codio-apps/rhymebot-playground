@@ -689,33 +689,25 @@ function receivedMessage(event) {
       console.log("vowels are at positions "+vowelPos);
       //for however many vowels we found (syllables), down to the first vowel
       for (var j = vowelCount; j > 0; j--){
-        console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
         //once we are on the last syllable, search for exact matches only
         if (j==1){
-              console.log("Last syllable reached:\nmaxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
               if (tempArray.length!=0){
                 COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
-                console.log("saving: "+tempArray);
-                console.log("COMPLEXOUTPUT:"+COMPLEXOUTPUT);
               }
         } else {
           //starting at the maximum syllable value and working back to the current syllable
-          console.log("maxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
-          // we only need
+          // we only need this many:
           var limit = vowelCount-j;
             for (var k = maxSyllables; k>=j; k--){
-              console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k);
               //append all the words that rhyme but have more syllables than the phonemeString
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
               if (tempArray.length!=0){
                 COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
-                console.log("saving: "+tempArray);
-                console.log("COMPLEXOUTPUT:"+COMPLEXOUTPUT);
               }
           }
         }
-        console.log("COMPLEXOUTPUT: "+COMPLEXOUTPUT);
+        console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
       }
       console.log("COMPLEXOUTPUT: "+COMPLEXOUTPUT);
       //sendTextMessage(senderID, COMPLEXOUTPUT);
