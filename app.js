@@ -657,7 +657,8 @@ function receivedMessage(event) {
     for (var i = 0; i < sentenceArray.length; i++){
       //call the complex thing
       console.log("word number "+i);
-      complexSearch(sentenceArray[i])
+      var theLine = findTheLine(sentenceArray[i]);
+      complexSearch(theLine);
     }
     console.log("Sentence processing completed OK");
     //now sort it for presentation?
