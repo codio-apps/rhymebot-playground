@@ -707,11 +707,11 @@ function receivedMessage(event) {
               }
           }
         }
-        console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
       }
-      console.log("COMPLEXOUTPUT: "+COMPLEXOUTPUT);
-      //sendTextMessage(senderID, COMPLEXOUTPUT);
+      console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
+      //now sort that
     }
+    console.log("Sentence processing complete");
   }
 
   function StringSearch(input, key) {
