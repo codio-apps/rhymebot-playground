@@ -738,8 +738,8 @@ function receivedMessage(event) {
   }
 
   //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
-  function findTheLine(searchWord){
-    searchWord = searchWord.toUpperCase();
+  function findTheLine(queryWord){
+    var searchWord = queryWord.toUpperCase();
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
       console.log("That is not one of the 26 chosen characters, Padawan - Returning: -1");
@@ -872,7 +872,7 @@ function receivedMessage(event) {
     console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(searchWord);
     if (dictionaryIndex != -1) {
-      RHYMEOUTPUT = CURRENTDICTIONARY[getRhymes(dictionaryIndex)];
+      RHYMEOUTPUT = getRhymes(dictionaryIndex);
       console.log("pFound "+pronunciationsFound+". mFound "+matchesFound);
       //if we didnt' find the word in the dictionary at all
       if (matchesFound == 0) {
