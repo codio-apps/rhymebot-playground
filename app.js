@@ -628,8 +628,8 @@ function receivedMessage(event) {
       if (mostSyllables < countSyllables(i)){
         mostSyllables = countSyllables(i);
       }
-      maxWord = getWord(mostSyllables);
     }
+    maxWord = getWord(mostSyllables);
     console.log("Highest syllable number is: "+mostSyllables+". Word is: "+maxWord);
     return mostSyllables;
   }
@@ -763,7 +763,7 @@ function receivedMessage(event) {
       var theWord = gotString.split(" ");
       if (theWord[0].endsWith(")")){
         theWord[0] = theWord[0].slice(0, theWord[0].length-3);
-        console.log("Slicing "+theWord[0])
+        console.log("slicing "+theWord[0]);
       }
       return theWord[0];
     } else {
