@@ -719,7 +719,7 @@ function receivedMessage(event) {
           }
         }
       }
-      //console.log("complexOutput ="+complexOutput);
+      console.log("complexOutput ="+complexOutput);
       sendTextMessage(senderID, complexOutput);
     }
   }
