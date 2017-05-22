@@ -905,8 +905,7 @@ function receivedMessage(event) {
           //as long as the last syllable was not a vowel aswell
           if (!prevIsVowel){
                 syllablesFound++;
-          } else {
-            prevIsVowel = true;
+                prevIsVowel = true;
           }
         } else {
           prevIsVowel = false;
