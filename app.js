@@ -488,7 +488,7 @@ function receivedMessage(event) {
           //tester area for nextbit
           if (dictionaryIndex != -1) {
             console.log("SearchArray: "+searchArray);
-            searchSentence(indexArray);
+            searchSentence(senderID, indexArray);
             messageResponse = randomString;
           } else {
             messageResponse = "unkown word error";
@@ -652,7 +652,7 @@ function receivedMessage(event) {
     return mostSyllables;
   }
   //function to take in an array of indexes and construct more complex rhymes
-  function searchSentence(sentenceArray){
+  function searchSentence(senderID, sentenceArray){
     var syllableArray = [""];
     var phonemeBuffer = [""];
     var char = "";
