@@ -698,23 +698,22 @@ function receivedMessage(event) {
           //if there is more than one syllable left
         } else {
           //starting at the maximum syllable value and working back to however many syllables this word has:
-          console.log("maxSyl:"+maxSyllables+" vowelCount:"+vowelCount);
-          for (var k = maxSyllables; k>vowelCount; k--){
+                for (var k = maxSyllables; k>vowelCount; k--){
             console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k);
             //append all the words that rhyme but have more syllables than the phonemeString
             var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
             if (tempArray.length!=0){
               complexOutput = complexOutput+"Words found that match "+k+" syllables:\n"+tempArray+"\n";
-              console.log("tempArray = "+tempArray+" / Pushing to array:");
+              //console.log("tempArray = "+tempArray+" / Pushing to array:");
             }
           }
-          console.log("All words that rhyme, but are longer than the original searchterm found");
+          //console.log("All words that rhyme, but are longer than the original searchterm found");
 
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
             complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
-            console.log("tempArray = "+tempArray+" / Pushing to array:");
+            //console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
         }
       }
