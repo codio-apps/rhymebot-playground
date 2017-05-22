@@ -691,10 +691,10 @@ function receivedMessage(event) {
         //if there is only one syllable left
         if (j < 2){
           //append all the words that rhyme perfectly with the phoneme string
-          var tempArray = searchPhonemes(wordEndings[j-1], theWord, vowelCount);
-          if (tempArray.length!=0){
-            complexOutput = complexOutput+"Words found that match exact syllables:\n"+tempArray;
-            console.log("tempArray = "+tempArray+" / Pushing to array:");
+          //var tempArray = searchPhonemes(wordEndings[j-1], theWord, vowelCount);
+          //if (tempArray.length!=0){
+          //  complexOutput = complexOutput+"Words found that match exact syllables:\n"+tempArray;
+          //  console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
           //ignore it for now
         } else {
