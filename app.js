@@ -709,6 +709,12 @@ function receivedMessage(event) {
       }
       console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
       SENTENCEOUTPUT[i] = COMPLEXOUTPUT;
+      //for every item in this 2d array
+      for (var m = 0; m < COMPLEXOUTPUT.length; m++){
+        var dindex = findTheLine(senderID, COMPLEXOUTPUT[i])
+        var tempSyl = countSyllables(dindex);
+                console.log("checking @ "+COMPLEXOUTPUT[i]+" Syllables is: "+tempSyl);
+      }
       //now sort that
     }
     console.log("Sentence processing complete. All Matches: "+SENTENCEOUTPUT);
@@ -949,7 +955,6 @@ function receivedMessage(event) {
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
       //search the dictionary
-      console.log("searching phonemes for "+phonemeString+" of length "+syllableLength);
       for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
         //if the rhyme is a match
         if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
@@ -979,7 +984,7 @@ function receivedMessage(event) {
           }
         }
       }
-      console.log("Search complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+      console.log("Searching for "+phonemeString+" of length "+syllableLengthSearch+" complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
       return RHYMEOUTPUT;
   }
 
