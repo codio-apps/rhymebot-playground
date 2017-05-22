@@ -695,7 +695,7 @@ function receivedMessage(event) {
               console.log("Last syllable reached:\nmaxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
               if (tempArray.length!=0){
-                RHYMEOUTPUT.concat(tempArray);
+                RHYMEOUTPUT = RHYMEOUTPUT.concat(tempArray);
                 console.log("saving: "+tempArray);
               }
         } else {
@@ -708,7 +708,7 @@ function receivedMessage(event) {
               //append all the words that rhyme but have more syllables than the phonemeString
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
               if (tempArray.length!=0){
-                RHYMEOUTPUT.concat(tempArray);
+                RHYMEOUTPUT = RHYMEOUTPUT.concat(tempArray);
                 console.log("saving: "+tempArray);
               }
           }
