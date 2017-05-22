@@ -653,11 +653,11 @@ function receivedMessage(event) {
   }
   //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(senderID, sentenceArray){
-    var syllableArray = [""];
-    var phonemeBuffer = [""];
-    var char = "";
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
+      var syllableArray = [""];
+      var phonemeBuffer = [""];
+      var char = "";
       RHYMEOUTPUT.length=0;
       console.log("word number "+i);
       var wordEndings = [""];
@@ -697,6 +697,7 @@ function receivedMessage(event) {
               if (tempArray.length!=0){
                 RHYMEOUTPUT = RHYMEOUTPUT.concat(tempArray);
                 console.log("saving: "+tempArray);
+                console.log("ROUT:"+RHYMEOUTPUT);
               }
         } else {
           //starting at the maximum syllable value and working back to the current syllable
@@ -710,6 +711,7 @@ function receivedMessage(event) {
               if (tempArray.length!=0){
                 RHYMEOUTPUT = RHYMEOUTPUT.concat(tempArray);
                 console.log("saving: "+tempArray);
+                console.log("ROUT:"+RHYMEOUTPUT);
               }
           }
         }
@@ -1002,7 +1004,7 @@ function receivedMessage(event) {
   //function to split an array of words into 75-word chunks and send them
   //the 75 word limit is hardcoded for now
   function splitMessage(senderID, stringArray){
-    var messageSplit = new Array;
+    var messageSplit = new Array();
     messageSplit.length=0;
     var messageChunk = 0;
     var splitCount = 0;
