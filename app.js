@@ -653,6 +653,7 @@ function receivedMessage(event) {
   }
   //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(senderID, sentenceArray){
+    var SENTENCEOUTPUT = new Array();
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
       var syllableArray = [""];
@@ -667,7 +668,7 @@ function receivedMessage(event) {
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
       phonemeBuffer = syllableArray[i].split(" ");
       console.log("phonemeBuffer is "+phonemeBuffer);
-      for (var k = 0, vowelCount = 0, vowelPos = [""], phoLen = phonemeBuffer.length-1; k < phoLen; k++){
+      for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
         char = phonemeBuffer[phoLen-k].charAt(0);
         //compare char to every vowel
@@ -675,7 +676,6 @@ function receivedMessage(event) {
           //if we find a vowel at the next position down, log it as the next relevant one
           if (char == vowels[j]){
             var nextVowel = phoLen-k;
-            vowelPos[vowelCount] = nextVowel;
             vowelCount++
             //now stick the rest of the vowels back into the buffer
             var tempString = "";
@@ -686,7 +686,6 @@ function receivedMessage(event) {
           }
         }
       }
-      console.log("vowels are at positions "+vowelPos);
       //for however many vowels we found (syllables), down to the first vowel
       for (var j = vowelCount; j > 0; j--){
         //once we are on the last syllable, search for exact matches only
@@ -700,7 +699,7 @@ function receivedMessage(event) {
           // we only need this many:
           var limit = vowelCount-j;
             for (var k = maxSyllables; k>=j; k--){
-              //append all the words that rhyme but have more syllables than the phonemeString
+              //append all the words that rhyme but have more syllables than the current phonemeString
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
               if (tempArray.length!=0){
                 COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
@@ -709,9 +708,11 @@ function receivedMessage(event) {
         }
       }
       console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
+      SENTENCEOUTPUT[i] = COMPLEXOUTPUT;
       //now sort that
     }
-    console.log("Sentence processing complete");
+    console.log("Sentence processing complete. All Matches: "+SENTENCEOUTPUT);
+    //now sort it for presentation
   }
 
   function StringSearch(input, key) {
@@ -960,17 +961,14 @@ function receivedMessage(event) {
           if (sylCount == syllableLength) {
             //if the found word ends in ")"
             if (arrayBin[0].endsWith(")")) {
-              console.log("Removing brackets from "+arrayBin[0]);
               //add the word to the list, but remove the brackets from the spelling info
               var tmpLen = arrayBin[0].length-3;
               arrayBin[0] = arrayBin[0].slice(0, tmpLen);
             }
             if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
-              console.log("Duplicate found, skipping "+arrayBin[0]);
             } else {
               //make sure it's not the same as searchWord
               if (arrayBin[0]==theWord.toLowerCase()){
-                console.log("Search term: "+theWord+" found again, skipping");
                 //do nothing
               } else {
                 //otherwise save the word to the output array
