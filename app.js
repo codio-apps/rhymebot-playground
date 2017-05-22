@@ -727,23 +727,7 @@ function receivedMessage(event) {
       console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
       positionArray[m] = tempSyl;
     }
-    var largest = Math.max.apply(Math, positionArray);
-    var SORTEDOUTPUT = new Array();
-    console.log("posArray: "+positionArray+". Largest is "+largest);
-    //from the highest value to the lowest
-    for (var i=largest, posIndex=0; i>0; i--){
-      //for each position in the array
-      for (var j=0; j<positionArray.length; j++){
-        //check if it's the number we're sorting for
-        if (positionArray[j]==i){
-          //if it is, reshuffle COMPLEXOUTPUT into SORTEDOUTPUT, in syllable-numerically descending order
-          console.log("got one: "+COMPLEXOUTPUT[j]);
-          SORTEDOUTPUT[posIndex] =COMPLEXOUTPUT[j];
-          posIndex++;
-        }
-      }
-    }
-    console.log(SORTEDOUTPUT);
+    console.log(COMPLEXOUTPUT);
     //now sort that
   }
 
