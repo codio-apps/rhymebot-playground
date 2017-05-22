@@ -635,14 +635,18 @@ function receivedMessage(event) {
   }
   //function to take in an array of indexes and search every word with the complex algorithm
   function searchSentence(sentenceArray){
+    outputArray = new Array();
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
       //call the complex thing
       console.log("word number "+i);
-      complexSearch(sentenceArray[i])
+      outputArray[i] = complexSearch(sentenceArray[i]);
     }
     console.log("Sentence processing completed OK");
     //now sort it for presentation?
+    for (var i = 0; i < outputArray.length; i++){
+      console.log("Word #"+i+" output: "+outputArray[i]);
+    }
   }
 
   //deeper search function that returns more complex rhymes as an array
@@ -677,7 +681,7 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("wordEndings is "+wordEndings);
+    console.log("wordEndings are "+wordEndings);
     //actual searching now
     //for however many vowels we found (syllables), down to the first vowel
     for (var j = vowelCount; j > 0; j--){
@@ -713,6 +717,7 @@ function receivedMessage(event) {
       }
     }
     console.log(FINALOUTPUT);
+    return FINALOUTPUT;
   }
 
   function StringSearch(input, key) {
