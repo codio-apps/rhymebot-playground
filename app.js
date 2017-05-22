@@ -687,18 +687,9 @@ function receivedMessage(event) {
       }
       console.log("vowels are at positions "+vowelPos);
       //for however many vowel phonemes we found (syllables)
-      for (var j = vowelCount; j > 0; j--){
+      for (var j = vowelCount; j > 1; j--){
         console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
-        //if there is only one syllable left
-        if (j < 2){
-          //var tempArray = searchPhonemes(wordEndings[j-1], theWord, vowelCount);
-          //if (tempArray.length!=0){
-          //  complexOutput = complexOutput+"Words found that match exact syllables:\n"+tempArray;
-          //  console.log("tempArray = "+tempArray+" / Pushing to array:");
-          //}
-          //if there is more than one syllable left
-        } else {
-          //starting at the maximum syllable value and working back to however many syllables this word has:
+          //starting at the maximum syllable value and working back to the second to last syllable
           console.log("maxSYl: "+maxSyllables+" vowelCount = "+vowelCount+"j = "+j);
             for (var k = maxSyllables; k>1; k--){
               console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k);
@@ -716,7 +707,7 @@ function receivedMessage(event) {
             complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
             //console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
-        }
+
       }
       console.log("complexOutput ="+complexOutput);
       sendTextMessage(senderID, complexOutput);
