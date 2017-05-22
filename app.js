@@ -690,13 +690,12 @@ function receivedMessage(event) {
         console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
         //if there is only one syllable left
         if (j < 2){
-          //append all the words that rhyme perfectly with the phoneme string
           //var tempArray = searchPhonemes(wordEndings[j-1], theWord, vowelCount);
           //if (tempArray.length!=0){
           //  complexOutput = complexOutput+"Words found that match exact syllables:\n"+tempArray;
           //  console.log("tempArray = "+tempArray+" / Pushing to array:");
-          }
-          //ignore it for now
+          //}
+          //if there is more than one syllable left
         } else {
           //starting at the maximum syllable value and working back to however many syllables this word has:
           console.log("maxSyl:"+maxSyllables+" vowelCount:"+vowelCount);
