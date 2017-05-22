@@ -668,7 +668,7 @@ function receivedMessage(event) {
   function complexSearch(dictionaryIndex){
     var syllableArray = [""];
     var phonemeBuffer = [""];
-    var wordEndings = [""];
+    var indexes = new Array();
     var char = "";
     var COMPLEXOUTPUT = new Array();
     var positionArray = new Array();
@@ -690,7 +690,7 @@ function receivedMessage(event) {
           var tempString = "";
           for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
             tempString = tempString +" "+phonemeBuffer[l];
-            wordEndings[vowelCount-1] = tempString;
+            indexes[vowelCount-1] = tempString;
           }
         }
       }
@@ -700,7 +700,7 @@ function receivedMessage(event) {
     for (var j = vowelCount; j > 0; j--){
       //once we are on the last syllable, search for exact matches only
       if (j==1){
-        var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
+        var tempArray = searchPhonemes(indexess[j-1], theWord, 1);
         if (tempArray.length!=0){
           COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
         }
@@ -710,7 +710,7 @@ function receivedMessage(event) {
         var limit = vowelCount-j;
         for (var k = maxSyllables; k>=j; k--){
           //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
+          var tempArray = searchPhonemes(indexes[j-1], theWord, k);
           if (tempArray.length!=0){
             COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
           }
@@ -1006,14 +1006,6 @@ function receivedMessage(event) {
     }
     console.log("Searching for "+phonemeString+" of length "+syllableLength+" complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
     return RHYMEOUTPUT;
-  }
-
-  //function to search the dictionary for phonemeString matches by index and return a list
-  function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
-    var theWord = getWord(dictionaryIndex);
-    var phonemeString = getPhonemes(dictionaryIndex, false);
-    var output = searchPhonemes(phonemeString, theWord, syllableLength);
-    return output;
   }
 
   //function to split an array of words into 75-word chunks and send them
