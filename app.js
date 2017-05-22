@@ -670,12 +670,11 @@ function receivedMessage(event) {
       console.log("vowels are at positions "+vowelPos);
       console.log(wordEndings);
       console.log("longest one is "+wordEndings[wordEndings.length-1]);
-      for (var j = wordEndings.length-1; j > 0; j--){
+      for (var j = vowelCount; j > 0; j--){
           var theWord = getWord(sentenceArray[i]);
-          var tempString = searchPhonemes(wordEndings[j], theWord, vowelCount);
-          console.log("loop j: "+j+" / "+wordEndings[j]+" / "+theWord+" / "+vowelCount);
+          var tempString = searchPhonemes(wordEndings[j], theWord, j);
+          console.log("loop j: "+j+" / "+wordEndings[j]+" / "+theWord+" / "+j);
           console.log(tempString);
-          vowelCount--;
       }
     }
   }
