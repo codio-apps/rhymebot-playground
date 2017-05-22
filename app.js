@@ -699,7 +699,7 @@ function receivedMessage(event) {
     for (var j = vowelCount; j > 0; j--){
       //once we are on the last syllable, search for exact matches only
       if (j==1){
-        var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
+        var tempArray = searchPhonemes(wordEndings[j-1], 1);
         if (tempArray.length!=0){
           COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
         }
@@ -951,7 +951,7 @@ function receivedMessage(event) {
   }
 
   //function to search for a phonemeString matches
-  function searchPhonemes(phonemeString, theWord, syllableLength){
+  function searchPhonemes(phonemeString, syllableLength){
     var arrayBin = [""];
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
@@ -974,6 +974,7 @@ function receivedMessage(event) {
           if (arrayBin[0]==CURRENTDICTIONARY[RHYMEOUTPUT[matchesFound-1]]){
           } else {
             //make sure it's not the same as searchWord
+            var theWord = getWord(iX);
             if (arrayBin[0]==theWord.toLowerCase()){
               //do nothing
             } else {
@@ -992,7 +993,7 @@ function receivedMessage(event) {
   //function to search the dictionary for phonemeString matches by index and return a list
   function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
     var phonemeString = getPhonemes(dictionaryIndex, false);
-    var output = searchPhonemes(phonemeString, theWord, syllableLength);
+    var output = searchPhonemes(phonemeString, syllableLength);
     return output;
   }
 
