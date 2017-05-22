@@ -699,15 +699,14 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
+    console.log(theWord+" processing complete");
     //for every item in the words-that-rhyme array
-    for (var m = 0; m < COMPLEXOUTPUT.length; m++){
-      //find the line and count how many syllables there are
-      var tempSyl = countSyllables(COMPLEXOUTPUT[m]);
-    }
-    //now turn that back into words
+    //turn them back into words
     for (var i=0; i<COMPLEXOUTPUT.length; i++){
-      COMPLEXOUTPUT[i]=getWord(COMPLEXOUTPUT[i]);
+      var thisWord = getWord(COMPLEXOUTPUT[i]);
+      if (!COMPLEXOUTPUT.includes(getWord)){
+        COMPLEXOUTPUT[i]=thisWord;
+      }
     }
     console.log(COMPLEXOUTPUT);
   }
