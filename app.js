@@ -761,8 +761,11 @@ function receivedMessage(event) {
     if (dictionaryIndex != -1) {
       var gotString = CURRENTDICTIONARY[dictionaryIndex];
       var theWord = gotString.split(" ");
-    }
-    return theWord[0];
+      return theWord[0];
+    } else {
+        return 0;
+      }
+
   }
 
   //function to return 10 different random elements(in this case, rhymes) from an array
