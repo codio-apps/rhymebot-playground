@@ -700,7 +700,7 @@ function receivedMessage(event) {
     for (var j = vowelCount; j > 0; j--){
       //once we are on the last syllable, search for exact matches only
       if (j==1){
-        var tempArray = searchPhonemes(indexess[j-1], theWord, 1);
+        var tempArray = searchPhonemes(indexess[j-1], 1);
         if (tempArray.length!=0){
           COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
         }
@@ -710,7 +710,7 @@ function receivedMessage(event) {
         var limit = vowelCount-j;
         for (var k = maxSyllables; k>=j; k--){
           //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(indexes[j-1], theWord, k);
+          var tempArray = searchPhonemes(indexes[j-1], k);
           if (tempArray.length!=0){
             COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
           }
@@ -969,17 +969,18 @@ function receivedMessage(event) {
   }
 
   //function to search for a phonemeString matches
-  function searchPhonemes(dictionaryIndex, theWord, syllableLength){
+  function searchPhonemes(dictionaryIndex, syllableLength){
+    var syllableLength = countSyllables(dictionaryIndex);
+    var phonemeString = getPhonemes(dictionaryIndex, false);
+    var theWord = getWord(dictionaryIndex);
     var arrayBin = [""];
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
-    var syllableLength = countSyllables(dictionaryIndex);
-    //search the dictionary
-    var phonemeString = getPhonemes(dictionaryIndex, false);
+    //search the whole dictionary
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
       //if the rhyme is a match
       if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
-        //store the word in a temp string array
+        //store the index in a temp string array
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
         //handle cutting length to specific number of syllables
