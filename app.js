@@ -651,7 +651,7 @@ function receivedMessage(event) {
     console.log("Highest syllable number is: "+mostSyllables+". Word is: "+maxWord);
     return mostSyllables;
   }
-  //function to take in an array of indexes and construct more complex rhymes
+  //function to take in an array of indexes and search every word with the complex algorithm
   function searchSentence(senderID, sentenceArray){
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
@@ -724,8 +724,11 @@ function receivedMessage(event) {
       var tempSyl = countSyllables(COMPLEXOUTPUT[m]);
       console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
     }
-    console.log(COMPLEXOUTPUT);
-    //now sort that
+    //now turn that back into words
+    for (i=0; i<COMPLEXOUTPUT.length; i++){
+      COMPLEXOUTPUT[i]=getWord(COMPLEXOUTPUT[i]);
+    }
+      console.log(COMPLEXOUTPUT);
   }
 
 
@@ -962,10 +965,8 @@ function receivedMessage(event) {
         //store the word in a temp string array, then use the 0th element
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
-        console.log("match found: "+arrayBin[0]);
         //handle cutting length to specific number of syllables
         var sylCount = countSyllables(iX);
-        console.log("syl: "+syllableLength+" count: "+sylCount);
         if (sylCount == syllableLength) {
           //if the found word ends in ")"
           if (arrayBin[0].endsWith(")")) {
@@ -988,7 +989,7 @@ function receivedMessage(event) {
   return RHYMEOUTPUT;
 }
 
-//function to search the dictionary for phonemeString matches by index and return a list. ffs
+//function to search the dictionary for phonemeString matches by index and return a list
 function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
   var phonemeString = getPhonemes(dictionaryIndex, false);
   var output = searchPhonemes(phonemeString, syllableLength);
