@@ -647,6 +647,7 @@ function receivedMessage(event) {
       }
     }
     console.log("Highest syllable number is: "+mostSyllables);
+    return mostSyllables;
   }
   //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(sentenceArray){
@@ -695,7 +696,6 @@ function receivedMessage(event) {
           }
           //ignore it for now
         } else {
-          maxSyllables = getMaxSyllables();
           //starting at the maximum syllable value and working back to however many syllables this word has:
           console.log("maxSyl:"+maxSyllables+" vowelCount:"+vowelCount);
           for (var k = maxSyllables; k>vowelCount; k--){
