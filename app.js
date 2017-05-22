@@ -658,7 +658,7 @@ function receivedMessage(event) {
       var syllableArray = [""];
       var phonemeBuffer = [""];
       var char = "";
-      var COMPLEXOUTPUT.length=0;
+      var COMPLEXOUTPUT = new Array();
       console.log("word number "+i);
       var wordEndings = [""];
       var theWord = getWord(sentenceArray[i]);
@@ -697,7 +697,7 @@ function receivedMessage(event) {
               if (tempArray.length!=0){
                 COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
                 console.log("saving: "+tempArray);
-                console.log("ROUT:"+COMPLEXOUTPUT);
+                console.log("COMPLEXOUTPUT:"+COMPLEXOUTPUT);
               }
         } else {
           //starting at the maximum syllable value and working back to the current syllable
@@ -711,7 +711,7 @@ function receivedMessage(event) {
               if (tempArray.length!=0){
                 COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
                 console.log("saving: "+tempArray);
-                console.log("ROUT:"+COMPLEXOUTPUT);
+                console.log("COMPLEXOUTPUT:"+COMPLEXOUTPUT);
               }
           }
         }
