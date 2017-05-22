@@ -959,10 +959,10 @@ function receivedMessage(event) {
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
       //if the rhyme is a match
       if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
-        console.log("match found");
         //store the word in a temp string array, then use the 0th element
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
+        console.log("match found: "+arrayBin[0]);
         //handle cutting length to specific number of syllables
         var sylCount = countSyllables(iX);
         if (sylCount == syllableLength) {
