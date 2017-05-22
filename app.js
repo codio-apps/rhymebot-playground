@@ -704,7 +704,7 @@ function receivedMessage(event) {
     //turn them back into words
     for (var i=0; i<COMPLEXOUTPUT.length; i++){
       var thisWord = getWord(COMPLEXOUTPUT[i]);
-      if (!COMPLEXOUTPUT.includes(getWord)){
+      if (!COMPLEXOUTPUT.includes(thisWord)){
         COMPLEXOUTPUT[i]=thisWord;
       }
     }
