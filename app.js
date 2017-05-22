@@ -491,7 +491,7 @@ function receivedMessage(event) {
             searchSentence(senderID, indexArray);
             messageResponse = randomString;
           } else {
-            messageResponse = "unkown word error";
+            messageResponse = "unknown word error";
           }
           break;
 
@@ -663,6 +663,8 @@ function receivedMessage(event) {
     //now sort it for presentation?
   }
 
+  //deeper search function that returns more complex rhymes as an array
+  //uses searchPhonemes
   function complexSearch(dictionaryIndex){
     var syllableArray = [""];
     var phonemeBuffer = [""];
@@ -738,10 +740,6 @@ function receivedMessage(event) {
 
   //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
   function findTheLine(searchWord){
-
-    // FOR testing purposes
-    //var word = "QAPPLE";
-    console.log("findTheLine triggered on "+searchWord);
     searchWord = searchWord.toUpperCase();
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
@@ -758,7 +756,6 @@ function receivedMessage(event) {
       var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
     }
     var letterRightIndex = ALPHABET_ARRAY[i][1];
-    console.log("Letter acquired: "+letter+". LeftIndex: "+letterLeftIndex+", RightIndex: "+letterRightIndex);
     for (var j = letterLeftIndex; j < letterRightIndex; j++){
       if (CURRENTDICTIONARY[j].startsWith(searchWord + "  ")){
 
@@ -767,8 +764,6 @@ function receivedMessage(event) {
       }
     }
     if(dictionaryIndex != -1){
-      return dictionaryIndex;
-      console.log("returning: "+dictionaryIndex+". Lookup index ref: "+CURRENTDICTIONARY[dictionaryIndex]);
       return dictionaryIndex;
     } else {
       console.log("word not found in dictionary, returning: -1");
@@ -897,16 +892,23 @@ function receivedMessage(event) {
       var countWord = getWord(dictionaryIndex);
       var syllablesFound = 0;
       var char = "";
+      var prevIsVowel = false;
       //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(countWord.length+2);
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
+        prevIsVowel = false;
         //set char to the first letter of the phoneme
         char = PHONEMES[phoLen-i-1].charAt(0);
-        //count the vowels
+        //if the vowels array includes this character
         if(vowels.includes(char)){
-          syllablesFound++;
+          //as long as the last syllable was not a vowel aswell
+          if (!prevIsVowel){
+                syllablesFound++;
+          } else {
+            prevIsVowel = true;
+          }
         }
       }
       return syllablesFound;
@@ -961,38 +963,38 @@ function receivedMessage(event) {
     var arrayBin = [""];
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
-      //search the dictionary
-      for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
-        //if the rhyme is a match
-        if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
-          //store the word in a temp string array
-          arrayBin = CURRENTDICTIONARY[iX].split("  ");
-          arrayBin[0] = arrayBin[0].toLowerCase()
-          //handle cutting length to specific number of syllables
-          var sylCount = countSyllables(iX);
-          if (sylCount == syllableLength) {
-            //if the found word ends in ")"
-            if (arrayBin[0].endsWith(")")) {
-              //add the word to the list, but remove the brackets from the spelling info
-              var tmpLen = arrayBin[0].length-3;
-              arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-            }
-            if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+    //search the dictionary
+    for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
+      //if the rhyme is a match
+      if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
+        //store the word in a temp string array
+        arrayBin = CURRENTDICTIONARY[iX].split("  ");
+        arrayBin[0] = arrayBin[0].toLowerCase()
+        //handle cutting length to specific number of syllables
+        var sylCount = countSyllables(iX);
+        if (sylCount == syllableLength) {
+          //if the found word ends in ")"
+          if (arrayBin[0].endsWith(")")) {
+            //add the word to the list, but remove the brackets from the spelling info
+            var tmpLen = arrayBin[0].length-3;
+            arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+          }
+          if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+          } else {
+            //make sure it's not the same as searchWord
+            if (arrayBin[0]==theWord.toLowerCase()){
+              //do nothing
             } else {
-              //make sure it's not the same as searchWord
-              if (arrayBin[0]==theWord.toLowerCase()){
-                //do nothing
-              } else {
-                //otherwise save the word to the output array
-                RHYMEOUTPUT[matchesFound]=arrayBin[0];
-                matchesFound++;
-              }
+              //otherwise save the word to the output array
+              RHYMEOUTPUT[matchesFound]=arrayBin[0];
+              matchesFound++;
             }
           }
         }
       }
-      console.log("Searching for "+phonemeString+" of length "+syllableLength+" complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
-      return RHYMEOUTPUT;
+    }
+    console.log("Searching for "+phonemeString+" of length "+syllableLength+" complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+    return RHYMEOUTPUT;
   }
 
   //function to search the dictionary for phonemeString matches by index and return a list
