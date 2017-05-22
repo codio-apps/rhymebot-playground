@@ -656,7 +656,7 @@ function receivedMessage(event) {
     var syllableArray = [""];
     var phonemeBuffer = [""];
     var char = "";
-    var outputStringArray = new Array;
+    RHYMEOUTPUT.length=0;
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
       console.log("word number "+i);
@@ -697,7 +697,7 @@ function receivedMessage(event) {
               //append all the words that rhyme but have more syllables than the phonemeString
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
               if (tempArray.length!=0){
-                outputStringArray.concat(tempArray);
+                RHYMEOUTPUT.concat(tempArray);
                 //complexOutput = complexOutput+"Words found that match "+k+" syllables:\n"+tempArray+"\n";
                 //console.log("tempArray = "+tempArray+" / Pushing to array:");
               }
@@ -706,14 +706,14 @@ function receivedMessage(event) {
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
-            outputStringArray.concat(tempArray);
+            RHYMEOUTPUT.concat(tempArray);
             //complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
             //console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
 
       }
-      console.log("outputStringArray: "+outputStringArray);
-      //sendTextMessage(senderID, outputStringArray);
+      console.log("RHYMEOUTPUT: "+RHYMEOUTPUT);
+      //sendTextMessage(senderID, RHYMEOUTPUT);
     }
   }
 
