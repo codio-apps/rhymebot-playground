@@ -695,6 +695,7 @@ function receivedMessage(event) {
         }
       }
     }
+    //actual searching stuff:
     //for however many vowels we found (syllables), down to the first vowel
     for (var j = vowelCount; j > 0; j--){
       //once we are on the last syllable, search for exact matches only
@@ -734,6 +735,7 @@ function receivedMessage(event) {
       for (var j=0; j<positionArray.length; j++){
         //check if it's the number we're sorting for
         if (positionArray[j]==i){
+          //if it is, reshuffle COMPLEXOUTPUT into SORTEDOUTPUT, in syllable-numerically descending order
           console.log("got one: "+COMPLEXOUTPUT[j]);
           SORTEDOUTPUT[posIndex] =COMPLEXOUTPUT[j];
           posIndex++;
@@ -867,7 +869,7 @@ function receivedMessage(event) {
             keepLooking = false;
             var syllablesReq = countSyllables(dictionaryIndex);
             console.log(theWord+" has "+syllablesReq+" relevant phonemes")
-            RHYMEOUTPUT = searchPhonemesByIndex(dictionaryIndex, syllablesReq);
+            RHYMEOUTPUT = searchPhonemes(dictionaryIndex, syllablesReq);
             return RHYMEOUTPUT;
           }
         }
@@ -967,11 +969,12 @@ function receivedMessage(event) {
   }
 
   //function to search for a phonemeString matches
-  function searchPhonemes(phonemeString, theWord, syllableLength){
+  function searchPhonemes(dictionaryIndex, theWord, syllableLength){
     var arrayBin = [""];
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
     //search the dictionary
+    var phonemeString = getPhonemes(dictionaryIndex, false);
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
       //if the rhyme is a match
       if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
