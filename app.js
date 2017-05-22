@@ -725,7 +725,12 @@ function receivedMessage(event) {
       console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
       positionArray[m] = tempSyl;
     }
-    console.log("posArray: "+positionArray);
+    var largest = Math.max.apply(Math, positionArray);
+    console.log("posArray: "+positionArray+". Largest is "+largest);
+    //for each position we now know
+    for (i=0; i>posArray.length; i++){
+
+    }
     //now sort that
   }
 
