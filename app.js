@@ -898,7 +898,6 @@ function receivedMessage(event) {
       //for the found word, make an array containing each phoneme sound
       PHONEMES = tempPHONEMES.split(" ");
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
-        prevIsVowel = false;
         //set char to the first letter of the phoneme
         char = PHONEMES[phoLen-i-1].charAt(0);
         //if the vowels array includes this character
@@ -909,6 +908,8 @@ function receivedMessage(event) {
           } else {
             prevIsVowel = true;
           }
+        } else {
+          prevIsVowel = false;
         }
       }
       return syllablesFound;
