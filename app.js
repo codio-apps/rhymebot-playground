@@ -680,6 +680,7 @@ function receivedMessage(event) {
             if (tempArray.length!=0){
               complexOutput.push(tempArray);
               console.log("Pushing to array:");
+              console.log("tempArray = "+tempArray+" / Pushing to array:");
             }
             console.log(tempArray);
             //ignore it for now
@@ -689,6 +690,7 @@ function receivedMessage(event) {
             if (tempArray.length!=0){
               complexOutput.push(tempArray);
               console.log("Pushing to array:");
+              console.log("tempArray = "+tempArray+" / Pushing to array:");
             }
             console.log(tempArray);
             //append all the words that rhyme perfectly with the phoneme string
