@@ -694,6 +694,7 @@ function receivedMessage(event) {
         }
       }
     }
+    console.log("wordEndings is "+wordEndings);
     //actual searching now
     //for however many vowels we found (syllables), down to the first vowel
     for (var j = vowelCount; j > 0; j--){
@@ -709,7 +710,7 @@ function receivedMessage(event) {
         var limit = vowelCount-j;
         for (var k = maxSyllables; k>=j; k--){
           //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
+          var tempArray = searchPhonemes(wordEndings[j-1], k);
           if (tempArray.length!=0){
             COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
           }
