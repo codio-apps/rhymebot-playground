@@ -872,7 +872,7 @@ function receivedMessage(event) {
     console.log("starting to findTheLine within findRhyme: "+searchWord);
     dictionaryIndex = findTheLine(searchWord);
     if (dictionaryIndex != -1) {
-      RHYMEOUTPUT = getRhymes(dictionaryIndex);
+      RHYMEOUTPUT = CURRENTDICTIONARY[getRhymes(dictionaryIndex)];
       console.log("pFound "+pronunciationsFound+". mFound "+matchesFound);
       //if we didnt' find the word in the dictionary at all
       if (matchesFound == 0) {
