@@ -689,7 +689,7 @@ function receivedMessage(event) {
       for (var j = vowelCount; j > 0; j--){
         console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
         //if there is only one syllable left
-        if (vowelCount < 2){
+        if (j < 2){
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, vowelCount);
           if (tempArray.length!=0){
@@ -709,7 +709,7 @@ function receivedMessage(event) {
               console.log("tempArray = "+tempArray+" / Pushing to array:");
             }
           }
-          console.log("All words that rhyme, but are longer than the original word found");
+          console.log("All words that rhyme, but are longer than the original searchterm found");
 
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
@@ -718,9 +718,9 @@ function receivedMessage(event) {
             console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
         }
-        console.log("complexOutput ="+complexOutput);
-        sendTextMessage(senderID, complexOutput);
       }
+      console.log("complexOutput ="+complexOutput);
+      sendTextMessage(senderID, complexOutput);
     }
   }
 
