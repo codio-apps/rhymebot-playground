@@ -973,6 +973,7 @@ function receivedMessage(event) {
     var arrayBin = [""];
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
+    var syllableLength = countSyllables(dictionaryIndex);
     //search the dictionary
     var phonemeString = getPhonemes(dictionaryIndex, false);
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
