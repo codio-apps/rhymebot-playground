@@ -458,7 +458,7 @@ function receivedMessage(event) {
           //handle the count command
           case 'count':
           searchWord = lc_messageText.slice(6).toUpperCase();
-          var dictionaryIndex = findTheLine(senderID, searchWord);
+          var dictionaryIndex = findTheLine(searchWord);
           if (dictionaryIndex != -1) {
             messageResponse = "There are "+countSyllables(dictionaryIndex)+" syllables in "+searchWord.toLowerCase();
           } else {
@@ -474,7 +474,7 @@ function receivedMessage(event) {
           for (var j = 0; j < 3; j++){
             randomString = randomString+"\n";
             for (var i = 0, len = searchArray.length; i < len; i++){
-              var dictionaryIndex = findTheLine(senderID, searchArray[i]);
+              var dictionaryIndex = findTheLine(searchArray[i]);
               if (dictionaryIndex != -1) {
                 randomString = randomString + " "+ randomRhymes(dictionaryIndex, 1);
                 indexArray[i] = dictionaryIndex;
@@ -511,7 +511,7 @@ function receivedMessage(event) {
           console.log("split input array: "+searchArray);
           if (isNaN(searchArray[1])){
             console.log("No number of results specified, defaulting to 10");
-            var dictionaryIndex = findTheLine(senderID, searchWord);
+            var dictionaryIndex = findTheLine(searchWord);
             if (dictionaryIndex != -1){
               randomString = randomRhymes(dictionaryIndex, 10);
               if (randomString == ""){
@@ -524,7 +524,7 @@ function receivedMessage(event) {
             }
           } else {
             console.log("Input array position 1 is a number");
-            var dictionaryIndex = findTheLine(senderID, searchArray[0]);
+            var dictionaryIndex = findTheLine(searchArray[0]);
             if (dictionaryIndex != -1){
               randomString = randomRhymes(dictionaryIndex, searchArray[1]);
               splitMessage(senderID, randomString);
@@ -718,7 +718,7 @@ function receivedMessage(event) {
     //for every item in the words-that-rhyme array
     for (var m = 0; m < COMPLEXOUTPUT.length; m++){
       //find the line and count how many syllables there are
-      var dindex = findTheLine(senderID, COMPLEXOUTPUT[m])
+      var dindex = findTheLine(COMPLEXOUTPUT[m])
       var tempSyl = countSyllables(dindex);
       console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
       positionArray[m] = tempSyl;
@@ -737,7 +737,7 @@ function receivedMessage(event) {
   }
 
   //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
-  function findTheLine(senderID, searchWord){
+  function findTheLine(searchWord){
 
     // FOR testing purposes
     //var word = "QAPPLE";
@@ -876,7 +876,7 @@ function receivedMessage(event) {
     pronunciationsFound = 0;
 
     console.log("starting to findTheLine within findRhyme: "+searchWord);
-    dictionaryIndex = findTheLine(senderID, searchWord);
+    dictionaryIndex = findTheLine(searchWord);
     if (dictionaryIndex != -1) {
       RHYMEOUTPUT = getRhymes(dictionaryIndex);
       console.log("pFound "+pronunciationsFound+". mFound "+matchesFound);
