@@ -470,35 +470,23 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
-          var randomString = "Here are three sentences that rhyme:";
-          for (var j = 0; j < 3; j++){
-            randomString = randomString+"\n";
-            for (var i = 0, len = searchArray.length; i < len; i++){
-              var dictionaryIndex = findTheLine(searchArray[i]);
-              if (dictionaryIndex != -1) {
-                randomString = randomString + " "+ randomRhymes(dictionaryIndex, 1);
-                indexArray[i] = dictionaryIndex;
-              } else randomString = randomString +" UNKNOWN ";
+          for (var i = 0, len = searchArray.length; i < len; i++){
+            var dictionaryIndex = findTheLine(searchArray[i]);
+            //tester area for nextbit
+            if (dictionaryIndex != -1) {
+              console.log("SearchArray: "+searchArray);
+              searchSentence(senderID, indexArray);
+              messageResponse = randomString;
+            } else {
+              messageResponse = "unknown word error";
             }
           }
-          for (var i = 0, len = searchArray.length; i < len; i++){
-            if (dictionaryIndex != -1) {
-            } else console.log("could not count syllables for word that is unknown");
-          }
-          //tester area for nextbit
-          if (dictionaryIndex != -1) {
-            console.log("SearchArray: "+searchArray);
-            searchSentence(senderID, indexArray);
-            messageResponse = randomString;
-          } else {
-            messageResponse = "unknown word error";
-          }
-          break;
+            break;
 
-          //handle the question command
-          case 'question':
-          sendQuestion(senderID);
-          break;
+            //handle the question command
+            case 'question':
+            sendQuestion(senderID);
+            break;
 
           case 'list':
           sendListData(senderID);
@@ -876,6 +864,9 @@ function receivedMessage(event) {
     dictionaryIndex = findTheLine(searchWord);
     if (dictionaryIndex != -1) {
       RHYMEOUTPUT = getRhymes(dictionaryIndex);
+      for (var i=0; i<RHYMEOUTPUT.length; i++){
+        RHYMEOUTPUT[i]=getWord(RHYMEOUTPUT[i]);
+      }
       console.log("pFound "+pronunciationsFound+". mFound "+matchesFound);
       //if we didnt' find the word in the dictionary at all
       if (matchesFound == 0) {
