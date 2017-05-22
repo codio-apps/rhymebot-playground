@@ -892,7 +892,6 @@ function receivedMessage(event) {
       var countWord = getWord(dictionaryIndex);
       var syllablesFound = 0;
       var char = "";
-      var prevIsVowel = false;
       //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(countWord.length+2);
       //for the found word, make an array containing each phoneme sound
@@ -902,13 +901,7 @@ function receivedMessage(event) {
         char = PHONEMES[phoLen-i-1].charAt(0);
         //if the vowels array includes this character
         if(vowels.includes(char)){
-          //as long as the last syllable was not a vowel aswell
-          if (!prevIsVowel){
-                syllablesFound++;
-                prevIsVowel = true;
-          }
-        } else {
-          prevIsVowel = false;
+          syllablesFound++;
         }
       }
       return syllablesFound;
