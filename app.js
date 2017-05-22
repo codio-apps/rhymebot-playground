@@ -921,7 +921,7 @@ function receivedMessage(event) {
     //for the found word, make an array containing each phoneme sound
     var PHONEMES = tempPHONEMES.split(" ");
     if (all){
-      for (i = 0; i < PHONEMES.length; i++){
+      for (var i = 0; i < PHONEMES.length; i++){
         phonemeString = phonemeString+" "+PHONEMES[i];
       }
       return phonemeString;
@@ -945,7 +945,7 @@ function receivedMessage(event) {
       //the current logic is that it goes from the first vowel
       phoLen = PHONEMES.length-firstVowel;
       //construct our phoneme string
-      for (i = firstVowel; i < PHONEMES.length; i++){
+      for (var i = firstVowel; i < PHONEMES.length; i++){
         phonemeString = phonemeString+" "+PHONEMES[i];
       }
       console.log("Constructed phoneme string: "+phonemeString);
