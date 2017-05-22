@@ -671,8 +671,9 @@ function receivedMessage(event) {
       console.log(wordEndings);
       console.log("longest one is "+wordEndings[wordEndings.length-1]);
       for (var j = wordEndings.length-1; j > 0; j--){
-          var tempString = searchPhonemes(wordEndings[j], syllableArray[i], vowelCount);
-          console.log("loop j: "+j+" / "+wordEndings[j]+" / "+syllableArray[i]+" / "+vowelCount);
+          var theWord = getWord(sentenceArray[i]);
+          var tempString = searchPhonemes(wordEndings[j], theWord, vowelCount);
+          console.log("loop j: "+j+" / "+wordEndings[j]+" / "+theWord+" / "+vowelCount);
           console.log(tempString);
           vowelCount--;
       }
