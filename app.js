@@ -690,13 +690,14 @@ function receivedMessage(event) {
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
-            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray;
+            complexOutput = complexOutput+"Words found that match exact syllables:\n"+tempArray;
             console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
           //ignore it for now
         } else {
           //starting at the maximum syllable value and working back to however many syllables this word has:
           for (var k = maxSyllables-j, len = 1; k>len; k--){
+            console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k+"len:"+len);
             //append all the words that rhyme but have more syllables than the phoneString
             var tempArray = searchPhonemes(wordEndings[j-1], theWord, j+k);
             if (tempArray.length!=0){
