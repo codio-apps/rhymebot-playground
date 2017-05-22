@@ -653,6 +653,7 @@ function receivedMessage(event) {
     var wordEndings = [""];
     var char = "";
     var COMPLEXOUTPUT = new Array();
+    var FINALOUTPUT = new Array();
     var theWord = getWord(dictionaryIndex);
     // first get the phonemes into an array
     syllableArray = getPhonemes(dictionaryIndex, false);
@@ -702,13 +703,14 @@ function receivedMessage(event) {
     console.log(theWord+" processing complete");
     //for every item in the words-that-rhyme array
     //turn them back into words
+
     for (var i=0; i<COMPLEXOUTPUT.length; i++){
       var thisWord = getWord(COMPLEXOUTPUT[i]);
-      if (!COMPLEXOUTPUT.includes(thisWord)){
-        COMPLEXOUTPUT[i]=thisWord;
+      if (!FINALOUTPUT.includes(thisWord)){
+        FINALOUTPUT.push(thisWord);
       }
     }
-    console.log(COMPLEXOUTPUT);
+    console.log(FINALOUTPUT);
   }
 
 
@@ -762,7 +764,6 @@ function receivedMessage(event) {
       var theWord = gotString.split(" ");
       if (theWord[0].endsWith(")")){
         theWord[0] = theWord[0].slice(0, theWord[0].length-3);
-        console.log("slicing "+theWord[0]);
       }
       return theWord[0];
     } else {
