@@ -675,14 +675,17 @@ function receivedMessage(event) {
           console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
           //if there is only one syllable left
           if (j < 2){
-            console.log("too few syllables left, skipping");
+            //append all the words that rhyme perfectly with the phoneme string
+            var tempString2 = searchPhonemes(wordEndings[j-1], theWord, j);
+            complexOutput.push(tempString2);
+            console.log(tempString2);
             //ignore it for now
           } else {
-            //return all the words that rhyme closely enough to the phoneme string
+            //append all the words that rhyme closely enough to the phoneme string
             var tempString1 = searchPhonemes(wordEndings[j-1], theWord, j+1);
             complexOutput.push(tempString1);
             console.log(tempString1);
-            //return all the words that rhyme perfectly with the phoneme string
+            //append all the words that rhyme perfectly with the phoneme string
             var tempString2 = searchPhonemes(wordEndings[j-1], theWord, j);
             complexOutput.push(tempString2);
             console.log(tempString2);
