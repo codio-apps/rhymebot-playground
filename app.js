@@ -636,6 +636,16 @@ function receivedMessage(event) {
     }
   }
 
+  //function to return the syllable value of the item in CURRENTDICTIONARY with the most syllables
+  function getMaxSyllables(){
+    var mostSyllables = 0;
+    for (var i=0, len = CURRENTDICTIONARY.length; i < len; i++){
+      if (mostSyllables < countSyllables(i)){
+        mostSyllables = countSyllables(i);
+      }
+    }
+    console.log("Highest syllable number is: "+mostSyllables);
+  }
   //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(sentenceArray){
     var syllableArray = [""];
@@ -678,15 +688,16 @@ function receivedMessage(event) {
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
-            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
+            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray;
             console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
           //ignore it for now
         } else {
-          //append all the words that rhyme closely enough to the phoneme string
+          var mostSyllables = getMaxSyllables();
+          //append all the words that rhyme but have more syllables than the phoneString
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j+1);
           if (tempArray.length!=0){
-            complexOutput = complexOutput+"Words found that match "+j+1+" syllables:\n"+tempArray+"\n";
+            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
             console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
           //append all the words that rhyme perfectly with the phoneme string
