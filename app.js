@@ -694,7 +694,7 @@ function receivedMessage(event) {
             //append all the words that rhyme perfectly with the phoneme string
             var tempString = searchPhonemes(wordEndings[j-1], theWord, j);
             if (tempString!=undefined){
-              complexOutput.push(tempString2);
+              complexOutput.push(tempString);
               console.log("Pushing to array:");
             }
             console.log(tempString);
