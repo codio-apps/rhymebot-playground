@@ -731,10 +731,10 @@ function receivedMessage(event) {
     //from the highest value to the lowest
     for (var i=largest, posIndex=0; i>0; i--){
       //for each position in the array
-      for (var j=0; j>positionArray.length; j++){
+      for (var j=0; j<positionArray.length; j++){
         //check if it's the number we're sorting for
         if (positionArray[j]==i){
-          console.log("gotttit: "+COMPLEXOUTPUT[j]);
+          console.log("got one: "+COMPLEXOUTPUT[j]);
           SORTEDOUTPUT[posIndex] =COMPLEXOUTPUT[j];
           posIndex++;
         }
