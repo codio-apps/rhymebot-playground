@@ -952,13 +952,14 @@ function receivedMessage(event) {
 
   //function to search for a phonemeString matches
   function searchPhonemes(phonemeString, syllableLength){
-    var arrayBin = [""];
+    var arrayBin = nwe Array();
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
-    //search the dictionary
+    //search the dictionary, for every item in it
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
       //if the rhyme is a match
       if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
+        console.log("match found");
         //store the word in a temp string array
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
