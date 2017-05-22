@@ -725,7 +725,7 @@ function receivedMessage(event) {
       console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
     }
     //now turn that back into words
-    for (i=0; i<COMPLEXOUTPUT.length; i++){
+    for (var i=0; i<COMPLEXOUTPUT.length; i++){
       COMPLEXOUTPUT[i]=getWord(COMPLEXOUTPUT[i]);
     }
       console.log(COMPLEXOUTPUT);
