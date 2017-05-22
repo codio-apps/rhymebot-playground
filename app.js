@@ -762,8 +762,8 @@ function receivedMessage(event) {
       var gotString = CURRENTDICTIONARY[dictionaryIndex];
       var theWord = gotString.split(" ");
       if (theWord[0].endsWith(")")){
-        theWord[0] = theWord[0].slice(3);
-        console.log("sliced "+theWord);
+        theWord[0] = theWord[0].slice(-3);
+        console.log("sliced "+theWord[0]);
       }
       return theWord[0];
     } else {
