@@ -669,13 +669,15 @@ function receivedMessage(event) {
       }
       console.log("vowels are at positions "+vowelPos);
       console.log(wordEndings);
-      console.log("longest one is "+wordEndings[wordEndings.length-1]);
+      var theWord = getWord(sentenceArray[i]);
+      //for however many vowel phonemes we found (syllables)
       for (var j = vowelCount; j > 0; j--){
-          var theWord = getWord(sentenceArray[i]);
-          console.log("theWord is "+theWord);
-          var tempString = searchPhonemes(wordEndings[j-1], theWord, vowelCount);
           console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
+          //return all the words that rhyme perfectly with the word
+          var tempString = searchPhonemes(wordEndings[j-1], theWord, j);
+          var tempString2 = searchPhonemes(wordEndings[j-1], theWord, j+1);
           console.log(tempString);
+          console.log(tempString2);
       }
     }
   }
