@@ -670,21 +670,26 @@ function receivedMessage(event) {
       console.log("vowels are at positions "+vowelPos);
       console.log(wordEndings);
       var theWord = getWord(sentenceArray[i]);
+      var complexOutput = [""];
       //for however many vowel phonemes we found (syllables)
       for (var j = vowelCount; j > 0; j--){
           console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
           //if there is only one syllable left
           if (j < 2){
-            //ignore it
+            console.log("too few syllables left, skipping");
+            //ignore it for now
           } else {
-            //return all the words that rhyme perfectly with the word
-            var tempString = searchPhonemes(wordEndings[j-1], theWord, j);
+            //return all the words that rhyme closely enough to the phoneme string
+            var tempString = searchPhonemes(wordEndings[j-1], theWord, j+1);
+            complexOutput.push(tempString);
             console.log(tempString);
-            //return all the words that rhyme closely enough to the word
-            tempString = searchPhonemes(wordEndings[j-1], theWord, j+1);
+            //return all the words that rhyme perfectly with the phoneme string
+            tempString = searchPhonemes(wordEndings[j-1], theWord, j);
+            complexOutput.push(tempString);
             console.log(tempString);
           }
       }
+      console.log("complexOutput = "+complexOutput);
     }
   }
 
