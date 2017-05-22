@@ -696,12 +696,12 @@ function receivedMessage(event) {
           //ignore it for now
         } else {
           //starting at the maximum syllable value and working back to however many syllables this word has:
-          for (var k = maxSyllables-j, len = 1; k>len; k--){
+          for (var k = maxSyllables; k>vowelCount; k--){
             console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k+"len:"+len);
             //append all the words that rhyme but have more syllables than the phoneString
-            var tempArray = searchPhonemes(wordEndings[j-1], theWord, j+k);
+            var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
             if (tempArray.length!=0){
-              complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
+              complexOutput = complexOutput+"Words found that match "+k+" syllables:\n"+tempArray+"\n";
               console.log("tempArray = "+tempArray+" / Pushing to array:");
             }
           }
