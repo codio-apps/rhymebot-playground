@@ -681,6 +681,7 @@ function receivedMessage(event) {
             complexOutput.push(tempArray);
             console.log("Pushing to array:");
             console.log("tempArray = "+tempArray+" / Pushing to array:");
+            console.log("complexOutput = "+complexOutput);
           }
           //ignore it for now
         } else {
@@ -690,12 +691,14 @@ function receivedMessage(event) {
             complexOutput.push(tempArray);
             console.log("Pushing to array:");
             console.log("tempArray = "+tempArray+" / Pushing to array:");
+            console.log("complexOutput = "+complexOutput);
           }
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
             complexOutput.push(tempArray);
             console.log("tempArray = "+tempArray+" / Pushing to array:");
+            console.log("complexOutput = "+complexOutput);
           }
         }
       }
