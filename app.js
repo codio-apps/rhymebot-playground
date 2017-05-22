@@ -471,10 +471,10 @@ function receivedMessage(event) {
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
           for (var i = 0, len = searchArray.length; i < len; i++){
-            var dictionaryIndex = findTheLine(searchArray[i]);
+            indexArray[i] = findTheLine(searchArray[i]);
             //tester area for nextbit
             if (dictionaryIndex != -1) {
-              console.log("SearchArray: "+searchArray);
+              console.log("SearchArray: "+indexArray);
               searchSentence(senderID, indexArray[i]);
               messageResponse = randomString;
             } else {
