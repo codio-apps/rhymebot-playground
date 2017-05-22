@@ -700,7 +700,7 @@ function receivedMessage(event) {
     for (var j = vowelCount; j > 0; j--){
       //once we are on the last syllable, search for exact matches only
       if (j==1){
-        var tempArray = searchPhonemes(indexess[j-1], 1);
+        var tempArray = searchPhonemes(indexes[j-1], 1);
         if (tempArray.length!=0){
           COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
         }
