@@ -757,13 +757,14 @@ function receivedMessage(event) {
   }
 
   //function to return the exact word as a string, when given a dictionary index
+  //handles brackets (removes them from the string before output)
   function getWord(dictionaryIndex){
     if (dictionaryIndex != -1) {
       var gotString = CURRENTDICTIONARY[dictionaryIndex];
       var theWord = gotString.split(" ");
       if (theWord[0].endsWith(")")){
-        console.log("slicing "+theWord[0]);
         theWord[0] = theWord[0].slice(3);
+        console.log("sliced "+theWord);
       }
       return theWord[0];
     } else {
