@@ -643,6 +643,7 @@ function receivedMessage(event) {
     var char = "";
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
+      var complexOutput = [""];
       var wordEndings = [""];
       //get the phonemes into an array
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
@@ -669,7 +670,6 @@ function receivedMessage(event) {
       }
       console.log("vowels are at positions "+vowelPos);
       var theWord = getWord(sentenceArray[i]);
-      var complexOutput = [""];
       //for however many vowel phonemes we found (syllables)
       for (var j = vowelCount; j > 0; j--){
           console.log("loop j: "+j+" / "+wordEndings[j-1]+" / "+theWord);
@@ -699,8 +699,9 @@ function receivedMessage(event) {
             }
             console.log(tempString);
           }
+          console.log("complexOutput = "+complexOutput);
       }
-      console.log("complexOutput = "+complexOutput);
+
     }
   }
 
