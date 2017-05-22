@@ -634,13 +634,13 @@ function receivedMessage(event) {
     return mostSyllables;
   }
   //function to take in an array of indexes and search every word with the complex algorithm
-  function searchSentence(sentenceArray){
+  function searchSentence(indexArray){
     var outputArray = new Array();
     // for each word in the sentence
-    for (var i = 0; i < sentenceArray.length; i++){
-      //call the complex thing
+    for (var i = 0; i < indexArray.length; i++){
+      //call the complex search function on this index
       console.log("word number "+i);
-      outputArray[i] = complexSearch(sentenceArray[i]);
+      outputArray[i] = complexSearch(indexArray[i]);
     }
     console.log("Sentence processing completed OK");
     //now sort it for presentation?
@@ -711,7 +711,7 @@ function receivedMessage(event) {
       var thisWord = getWord(COMPLEXOUTPUT[i]);
       if (thisWord != theWord){
         if (!FINALOUTPUT.includes(thisWord)){
-          FINALOUTPUT.push(thisWord);
+          FINALOUTPUT.push(thisWord.toLowerCase());
         }
       }
     }
@@ -871,7 +871,7 @@ function receivedMessage(event) {
     if (dictionaryIndex != -1) {
       RHYMEOUTPUT = getRhymes(dictionaryIndex);
       for (var i=0; i<RHYMEOUTPUT.length; i++){
-        RHYMEOUTPUT[i]=getWord(RHYMEOUTPUT[i]);
+        RHYMEOUTPUT[i]=getWord(RHYMEOUTPUT[i].toLowerCase());
       }
       console.log("pFound "+pronunciationsFound+". mFound "+matchesFound);
       //if we didnt' find the word in the dictionary at all
