@@ -713,7 +713,7 @@ function receivedMessage(event) {
       for (var m = 0; m < COMPLEXOUTPUT.length; m++){
         var dindex = findTheLine(senderID, COMPLEXOUTPUT[i])
         var tempSyl = countSyllables(dindex);
-                console.log("checking @ "+COMPLEXOUTPUT[i]+" Syllables is: "+tempSyl);
+        console.log("checking @ "+COMPLEXOUTPUT[i]+" Syllables is: "+tempSyl);
       }
       //now sort that
     }
@@ -984,7 +984,7 @@ function receivedMessage(event) {
           }
         }
       }
-      console.log("Searching for "+phonemeString+" of length "+syllableLengthSearch+" complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
+      console.log("Searching for "+phonemeString+" of length "+syllableLength+" complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
       return RHYMEOUTPUT;
   }
 
