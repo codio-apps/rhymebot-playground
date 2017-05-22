@@ -696,6 +696,7 @@ function receivedMessage(event) {
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
               if (tempArray.length!=0){
                 RHYMEOUTPUT.concat(tempArray);
+                console.log("saving: "+tempArray);
               }
         } else {
           //starting at the maximum syllable value and working back to the current syllable
@@ -708,6 +709,7 @@ function receivedMessage(event) {
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
               if (tempArray.length!=0){
                 RHYMEOUTPUT.concat(tempArray);
+                console.log("saving: "+tempArray);
               }
           }
         }
