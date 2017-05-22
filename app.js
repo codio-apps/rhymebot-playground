@@ -726,10 +726,21 @@ function receivedMessage(event) {
       positionArray[m] = tempSyl;
     }
     var largest = Math.max.apply(Math, positionArray);
+    var SORTEDOUTPUT = new Array();
     console.log("posArray: "+positionArray+". Largest is "+largest);
-    //for each position we now know
-    for (i=0; i>posArray.length; i++){
+    //from the highest value to the lowest
+    for (var i=largest, posIndex=0; i>0; i--){
+      //for each position in the array
+      for (var j=0; j>posArray.length; j++){
+        //check if it's the number we're sorting for
+        if (posArray[j]==i){
+          console.log("gotttit: "+COMPLEXOUTPUT[j]);
+          SORTEDOUTPUT[posIndex] =COMPLEXOUTPUT[j];
+          posIndex++;
+        }
+      }
     }
+    console.log(SORTEDOUTPUT);
     //now sort that
   }
 
