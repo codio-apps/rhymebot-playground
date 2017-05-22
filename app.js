@@ -640,7 +640,6 @@ function receivedMessage(event) {
 
   //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(sentenceArray, totalSyllables){
-    console.log("searchSentence called on:"+sentenceArray);
     var syllableArray = [""];
     var phonemeBuffer = [""];
     var char = "";
@@ -650,7 +649,6 @@ function receivedMessage(event) {
       //get the phonemes into an array
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
       phonemeBuffer = syllableArray[i].split(" ");
-      console.log("i = "+i+" sentenceArray.length = "+sentenceArray.length)
       console.log("phonemeBuffer is "+phonemeBuffer);
       for (var k = 0, vowelCount = 0, vowelPos = [""], phoLen = phonemeBuffer.length-1; k < phoLen; k++){
         //set char to the first letter of the phoneme
@@ -662,24 +660,22 @@ function receivedMessage(event) {
             var nextVowel = phoLen-k;
             vowelPos[vowelCount] = nextVowel;
             vowelCount++
-            console.log("phonemeBuffer nextVowel = "+phonemeBuffer[nextVowel]);
             //now stick the rest of the vowels back into the buffer
             var tempString = "";
             for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
               tempString = tempString +" "+phonemeBuffer[l];
               wordEndings[vowelCount-1] = tempString;
             }
-            console.log("tempString is "+tempString);
-            console.log("vowels are at positions "+vowelPos);
           }
         }
       }
+      console.log("vowels are at positions "+vowelPos);
       console.log(wordEndings);
+      console.log("longest one is "+wordEndings[wordEndings.length-1]);
     }
   }
 
   function StringSearch(input, key) {
-
     if (key.indexOf(input) >= 0){
       console.log("Command recognised");
       return true;
