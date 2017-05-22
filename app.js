@@ -693,7 +693,7 @@ function receivedMessage(event) {
         //once we are on the last syllable, search for exact matches only
         if (j==1){
               console.log("maxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
-              var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
+              var tempArray = searchPhonemes(wordEndings[j-1], theWord, vowelCount);
               if (tempArray.length!=0){
                 RHYMEOUTPUT.concat(tempArray);
               }
@@ -702,7 +702,7 @@ function receivedMessage(event) {
           console.log("maxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
           // we only need
           var limit = vowelCount-j;
-            for (var k = maxSyllables; k>vowelCount; k--){
+            for (var k = maxSyllables; k>=vowelCount; k--){
               console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k);
               //append all the words that rhyme but have more syllables than the phonemeString
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
