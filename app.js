@@ -984,7 +984,6 @@ function receivedMessage(event) {
         }
       }
     }
-  }
   console.log("Searching for "+phonemeString+" of length "+syllableLength+" complete. Searched "+iX+" entries and found "+matchesFound+" rhyme(s).");
   return RHYMEOUTPUT;
 }
