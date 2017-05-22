@@ -641,12 +641,14 @@ function receivedMessage(event) {
   //function to return the syllable value of the item in CURRENTDICTIONARY with the most syllables
   function getMaxSyllables(){
     var mostSyllables = 0;
+    var maxWord = "";
     for (var i=0, len = CURRENTDICTIONARY.length; i < len; i++){
       if (mostSyllables < countSyllables(i)){
         mostSyllables = countSyllables(i);
+        maxWord = getWord(i);
       }
     }
-    console.log("Highest syllable number is: "+mostSyllables);
+    console.log("Highest syllable number is: "+mostSyllables+". Word is: "+maxWord);
     return mostSyllables;
   }
   //function to take in an array of indexes and construct more complex rhymes
@@ -700,7 +702,7 @@ function receivedMessage(event) {
           console.log("maxSyl:"+maxSyllables+" vowelCount:"+vowelCount);
           for (var k = maxSyllables; k>vowelCount; k--){
             console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k);
-            //append all the words that rhyme but have more syllables than the phoneString
+            //append all the words that rhyme but have more syllables than the phonemeString
             var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
             if (tempArray.length!=0){
               complexOutput = complexOutput+"Words found that match "+k+" syllables:\n"+tempArray+"\n";
