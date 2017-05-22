@@ -653,74 +653,80 @@ function receivedMessage(event) {
   }
   //function to take in an array of indexes and construct more complex rhymes
   function searchSentence(senderID, sentenceArray){
-    var SENTENCEOUTPUT = new Array();
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
-      var syllableArray = [""];
-      var phonemeBuffer = [""];
-      var char = "";
-      var COMPLEXOUTPUT = new Array();
+      //call the complex thing
       console.log("word number "+i);
-      var wordEndings = [""];
-      var theWord = getWord(sentenceArray[i]);
-      //var complexOutput = "";
-      //get the phonemes into an array
-      syllableArray[i] = getPhonemes(sentenceArray[i], false);
-      phonemeBuffer = syllableArray[i].split(" ");
-      console.log("phonemeBuffer is "+phonemeBuffer);
-      for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
-        //set char to the first letter of the phoneme
-        char = phonemeBuffer[phoLen-k].charAt(0);
-        //compare char to every vowel
-        for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-          //if we find a vowel at the next position down, log it as the next relevant one
-          if (char == vowels[j]){
-            var nextVowel = phoLen-k;
-            vowelCount++
-            //now stick the rest of the vowels back into the buffer
-            var tempString = "";
-            for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
-              tempString = tempString +" "+phonemeBuffer[l];
-              wordEndings[vowelCount-1] = tempString;
-            }
-          }
-        }
-      }
-      //for however many vowels we found (syllables), down to the first vowel
-      for (var j = vowelCount; j > 0; j--){
-        //once we are on the last syllable, search for exact matches only
-        if (j==1){
-              var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
-              if (tempArray.length!=0){
-                COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
-              }
-        } else {
-          //starting at the maximum syllable value and working back to the current syllable
-          // we only need this many:
-          var limit = vowelCount-j;
-            for (var k = maxSyllables; k>=j; k--){
-              //append all the words that rhyme but have more syllables than the current phonemeString
-              var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
-              if (tempArray.length!=0){
-                COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
-              }
-          }
-        }
-      }
-      console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
-      SENTENCEOUTPUT[i] = COMPLEXOUTPUT;
-      //for every item in the words-that-rhyme array
-      for (var m = 0; m < COMPLEXOUTPUT.length; m++){
-        //find the line and count how many syllables they are
-        var dindex = findTheLine(senderID, COMPLEXOUTPUT[m])
-        var tempSyl = countSyllables(dindex);
-        console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
-      }
-      //now sort that
+      complexSearch(sentenceArray[i])
     }
-    console.log("Sentence processing complete. All Matches: "+SENTENCEOUTPUT);
-    //now sort it for presentation
+    console.log("Sentence processing completed OK");
+    //now sort it for presentation?
   }
+
+  function complexSearch(dictionaryIndex){
+    var syllableArray = [""];
+    var phonemeBuffer = [""];
+    var wordEndings = [""];
+    var char = "";
+    var COMPLEXOUTPUT = new Array();
+    var positionArray = new Array();
+    var theWord = getWord(dictionaryIndex);
+    // first get the phonemes into an array
+    syllableArray = getPhonemes(dictionaryIndex, false);
+    phonemeBuffer = syllableArray.split(" ");
+    console.log("phonemeBuffer is "+phonemeBuffer);
+    for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
+      //set char to the first letter of the phoneme
+      char = phonemeBuffer[phoLen-k].charAt(0);
+      //compare char to every vowel
+      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+        //if we find a vowel at the next position down, log it as the next relevant one
+        if (char == vowels[j]){
+          var nextVowel = phoLen-k;
+          vowelCount++
+          //now stick the rest of the vowels back into the buffer
+          var tempString = "";
+          for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
+            tempString = tempString +" "+phonemeBuffer[l];
+            wordEndings[vowelCount-1] = tempString;
+          }
+        }
+      }
+    }
+    //for however many vowels we found (syllables), down to the first vowel
+    for (var j = vowelCount; j > 0; j--){
+      //once we are on the last syllable, search for exact matches only
+      if (j==1){
+        var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
+        if (tempArray.length!=0){
+          COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
+        }
+      } else {
+        //starting at the maximum syllable value and working back to the current syllable
+        // we only need this many:
+        var limit = vowelCount-j;
+        for (var k = maxSyllables; k>=j; k--){
+          //append all the words that rhyme but have more syllables than the current phonemeString
+          var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
+          if (tempArray.length!=0){
+            COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
+          }
+        }
+      }
+    }
+    console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
+    //for every item in the words-that-rhyme array
+    for (var m = 0; m < COMPLEXOUTPUT.length; m++){
+      //find the line and count how many syllables there are
+      var dindex = findTheLine(senderID, COMPLEXOUTPUT[m])
+      var tempSyl = countSyllables(dindex);
+      console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
+      positionArray[m] = tempSyl;
+    }
+    console.log("posArray: "+positionArray);
+    //now sort that
+  }
+
 
   function StringSearch(input, key) {
     if (key.indexOf(input) >= 0){
