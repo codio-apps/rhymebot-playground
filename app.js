@@ -927,7 +927,7 @@ function receivedMessage(event) {
     }
   }
 
-  //function to take in a word and spit out the rhyming phoneme data
+  //function to take in a word and spit out the phoneme data
   function getPhonemes(dictionaryIndex, all){
     var theLine = CURRENTDICTIONARY[dictionaryIndex];
     var phonemeString ="";
