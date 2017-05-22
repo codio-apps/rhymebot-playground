@@ -662,7 +662,7 @@ function receivedMessage(event) {
       console.log("word number "+i);
       var wordEndings = [""];
       var theWord = getWord(sentenceArray[i]);
-      var complexOutput = "";
+      //var complexOutput = "";
       //get the phonemes into an array
       syllableArray[i] = getPhonemes(sentenceArray[i], false);
       phonemeBuffer = syllableArray[i].split(" ");
@@ -698,7 +698,7 @@ function receivedMessage(event) {
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
               if (tempArray.length!=0){
                 outputStringArray.concat(tempArray);
-                complexOutput = complexOutput+"Words found that match "+k+" syllables:\n"+tempArray+"\n";
+                //complexOutput = complexOutput+"Words found that match "+k+" syllables:\n"+tempArray+"\n";
                 //console.log("tempArray = "+tempArray+" / Pushing to array:");
               }
           }
@@ -707,13 +707,13 @@ function receivedMessage(event) {
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
             outputStringArray.concat(tempArray);
-            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
+            //complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
             //console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
 
       }
       console.log("outputStringArray: "+outputStringArray);
-      sendTextMessage(senderID, outputStringArray);
+      //sendTextMessage(senderID, outputStringArray);
     }
   }
 
