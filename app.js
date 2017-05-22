@@ -635,7 +635,7 @@ function receivedMessage(event) {
   }
   //function to take in an array of indexes and search every word with the complex algorithm
   function searchSentence(sentenceArray){
-    outputArray = new Array();
+    var outputArray = new Array();
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
       //call the complex thing
@@ -706,8 +706,7 @@ function receivedMessage(event) {
     }
     console.log(theWord+" processing complete");
     //for every item in the words-that-rhyme array
-    //turn them back into words
-
+    //turn them back into words in a new array
     for (var i=0; i<COMPLEXOUTPUT.length; i++){
       var thisWord = getWord(COMPLEXOUTPUT[i]);
       if (thisWord != theWord){
