@@ -971,7 +971,9 @@ function receivedMessage(event) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
-          if (arrayBin[0]==CURRENTDICTIONARY[RHYMEOUTPUT[matchesFound-1]]){
+          var bindex = RHYMEOUTPUT[matchesFound-1];
+          if (arrayBin[0]==iX){
+            console("error flag thing");
           } else {
             //make sure it's not the same as searchWord
             var theWord = getWord(iX);
