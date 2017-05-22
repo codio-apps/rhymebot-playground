@@ -709,6 +709,7 @@ function receivedMessage(event) {
               console.log("tempArray = "+tempArray+" / Pushing to array:");
             }
           }
+          console.log("All words that rhyme, but are longer than the original word found");
 
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
@@ -720,6 +721,7 @@ function receivedMessage(event) {
       }
     }
     console.log("complexOutput ="+complexOutput);
+    sendTextMessage(senderID, complexOutput);
   }
 
   function StringSearch(input, key) {
