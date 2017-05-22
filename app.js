@@ -652,12 +652,12 @@ function receivedMessage(event) {
     return mostSyllables;
   }
   //function to take in an array of indexes and construct more complex rhymes
-  function searchSentence(sentenceArray){
+  function searchSentence(indexArray){
     // for each word in the sentence
-    for (var i = 0; i < sentenceArray.length; i++){
+    for (var i = 0; i < indexArray; i++){
       //call the complex thing
       console.log("word number "+i);
-      complexSearch(sentenceArray[i]);
+      complexSearch(indexArray[i]);
     }
     console.log("Sentence processing completed OK");
     //now sort it for presentation?
@@ -671,7 +671,6 @@ function receivedMessage(event) {
     var indexes = new Array();
     var char = "";
     var COMPLEXOUTPUT = new Array();
-    var positionArray = new Array();
     var theWord = getWord(dictionaryIndex);
     // first get the phonemes into an array
     syllableArray = getPhonemes(dictionaryIndex, false);
@@ -765,10 +764,9 @@ function receivedMessage(event) {
   //function to return the exact word as a string, when given a dictionary index
   function getWord(dictionaryIndex){
     if (dictionaryIndex != -1) {
-      var gotString = CURRENTDICTIONARY[dictionaryIndex];
-      var theWord = gotString.split(" ");
+      var theIndexes = CURRENTDICTIONARY[dictionaryIndex].split(" ");
     }
-    return theWord[0];
+    return theIndexes[0];
   }
 
   //function to return 10 different random elements(in this case, rhymes) from an array
