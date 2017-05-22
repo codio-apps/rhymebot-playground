@@ -729,7 +729,6 @@ function receivedMessage(event) {
     console.log("posArray: "+positionArray+". Largest is "+largest);
     //for each position we now know
     for (i=0; i>posArray.length; i++){
-
     }
     //now sort that
   }
