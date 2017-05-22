@@ -700,7 +700,7 @@ function receivedMessage(event) {
         } else {
           //starting at the maximum syllable value and working back to however many syllables this word has:
           console.log("masSYl: "+maxSyllables+" vowelCount = "+vowelCount);
-            for (var k = maxSyllables; k>vowelCount; k--){
+            for (var k = maxSyllables; k>1; k--){
               console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k);
               //append all the words that rhyme but have more syllables than the phonemeString
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
@@ -710,7 +710,6 @@ function receivedMessage(event) {
               }
           }
           //console.log("All words that rhyme, but are longer than the original searchterm found");
-
           //append all the words that rhyme perfectly with the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j);
           if (tempArray.length!=0){
