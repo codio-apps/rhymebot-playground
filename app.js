@@ -723,7 +723,6 @@ function receivedMessage(event) {
       var dindex = findTheLine(COMPLEXOUTPUT[m])
       var tempSyl = countSyllables(dindex);
       console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
-
     }
     console.log(COMPLEXOUTPUT);
     //now sort that
@@ -972,14 +971,14 @@ function receivedMessage(event) {
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
           }
-          if (arrayBin[0]==RHYMEOUTPUT[matchesFound-1]){
+          if (arrayBin[0]==CURRENTDICTIONARY[RHYMEOUTPUT[matchesFound-1]]){
           } else {
             //make sure it's not the same as searchWord
             if (arrayBin[0]==theWord.toLowerCase()){
               //do nothing
             } else {
               //otherwise save the word to the output array
-              RHYMEOUTPUT[matchesFound]=arrayBin[0];
+              RHYMEOUTPUT[matchesFound]=iX;
               matchesFound++;
             }
           }
@@ -992,7 +991,6 @@ function receivedMessage(event) {
 
   //function to search the dictionary for phonemeString matches by index and return a list
   function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
-    var theWord = getWord(dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false);
     var output = searchPhonemes(phonemeString, theWord, syllableLength);
     return output;
