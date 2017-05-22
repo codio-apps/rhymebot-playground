@@ -475,7 +475,7 @@ function receivedMessage(event) {
             //tester area for nextbit
             if (dictionaryIndex != -1) {
               console.log("SearchArray: "+indexArray);
-              searchSentence(senderID, indexArray[i]);
+              searchSentence(indexArray);
               messageResponse = randomString;
             } else {
               messageResponse = "unknown word error";
@@ -634,7 +634,7 @@ function receivedMessage(event) {
     return mostSyllables;
   }
   //function to take in an array of indexes and search every word with the complex algorithm
-  function searchSentence(senderID, sentenceArray){
+  function searchSentence(sentenceArray){
     // for each word in the sentence
     for (var i = 0; i < sentenceArray.length; i++){
       //call the complex thing
