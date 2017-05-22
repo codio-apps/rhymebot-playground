@@ -720,8 +720,7 @@ function receivedMessage(event) {
     //for every item in the words-that-rhyme array
     for (var m = 0; m < COMPLEXOUTPUT.length; m++){
       //find the line and count how many syllables there are
-      var dindex = findTheLine(COMPLEXOUTPUT[m])
-      var tempSyl = countSyllables(dindex);
+      var tempSyl = countSyllables(COMPLEXOUTPUT[m]);
       console.log("checking @ "+COMPLEXOUTPUT[m]+" Syllables is: "+tempSyl);
     }
     console.log(COMPLEXOUTPUT);
