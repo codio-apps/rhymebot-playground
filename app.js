@@ -658,7 +658,7 @@ function receivedMessage(event) {
       var syllableArray = [""];
       var phonemeBuffer = [""];
       var char = "";
-      RHYMEOUTPUT.length=0;
+      var COMPLEXOUTPUT.length=0;
       console.log("word number "+i);
       var wordEndings = [""];
       var theWord = getWord(sentenceArray[i]);
@@ -695,9 +695,9 @@ function receivedMessage(event) {
               console.log("Last syllable reached:\nmaxSYl: "+maxSyllables+" vowelCount = "+vowelCount+" j = "+j);
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, 1);
               if (tempArray.length!=0){
-                RHYMEOUTPUT = RHYMEOUTPUT.concat(tempArray);
+                COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
                 console.log("saving: "+tempArray);
-                console.log("ROUT:"+RHYMEOUTPUT);
+                console.log("ROUT:"+COMPLEXOUTPUT);
               }
         } else {
           //starting at the maximum syllable value and working back to the current syllable
@@ -709,16 +709,16 @@ function receivedMessage(event) {
               //append all the words that rhyme but have more syllables than the phonemeString
               var tempArray = searchPhonemes(wordEndings[j-1], theWord, k);
               if (tempArray.length!=0){
-                RHYMEOUTPUT = RHYMEOUTPUT.concat(tempArray);
+                COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
                 console.log("saving: "+tempArray);
-                console.log("ROUT:"+RHYMEOUTPUT);
+                console.log("ROUT:"+COMPLEXOUTPUT);
               }
           }
         }
-        console.log("RHYMEOUTPUT: "+RHYMEOUTPUT);
+        console.log("COMPLEXOUTPUT: "+COMPLEXOUTPUT);
       }
-      console.log("RHYMEOUTPUT: "+RHYMEOUTPUT);
-      //sendTextMessage(senderID, RHYMEOUTPUT);
+      console.log("COMPLEXOUTPUT: "+COMPLEXOUTPUT);
+      //sendTextMessage(senderID, COMPLEXOUTPUT);
     }
   }
 
