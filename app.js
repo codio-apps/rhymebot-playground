@@ -721,7 +721,6 @@ function receivedMessage(event) {
     console.log(theWord+" processing complete. Matches: "+COMPLEXOUTPUT);
   }
 
-
   function StringSearch(input, key) {
     if (key.indexOf(input) >= 0){
       console.log("Command recognised");
@@ -731,8 +730,8 @@ function receivedMessage(event) {
   }
 
   //FUNCTION TO FIND THE LINE WORD IN THE DICTIONARY USING OPTIMISED STARTING POINT
-  function findTheLine(searchWord){
-    searchWord = searchWord.toUpperCase();
+  function findTheLine(inputWord){
+    var searchWord = inputWord.toUpperCase();
     var letter = searchWord.charAt(0);
     if(!alphabet.includes(letter)){
       console.log("That is not one of the 26 chosen characters, Padawan - Returning: -1");
