@@ -696,6 +696,7 @@ function receivedMessage(event) {
           //ignore it for now
         } else {
           //starting at the maximum syllable value and working back to however many syllables this word has:
+          console.log("maxSyl:"+maxSyllables+" vowelCount:"+vowelCount);
           for (var k = maxSyllables; k>vowelCount; k--){
             console.log("maxSyl:"+maxSyllables+"j:"+j+" k:"+k+"len:"+len);
             //append all the words that rhyme but have more syllables than the phoneString
