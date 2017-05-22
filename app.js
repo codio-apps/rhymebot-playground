@@ -686,7 +686,7 @@ function receivedMessage(event) {
           //append all the words that rhyme closely enough to the phoneme string
           var tempArray = searchPhonemes(wordEndings[j-1], theWord, j+1);
           if (tempArray.length!=0){
-            complexOutput = complexOutput+"Words found that match "+j+" syllables:\n"+tempArray+"\n";
+            complexOutput = complexOutput+"Words found that match "+j+1+" syllables:\n"+tempArray+"\n";
             console.log("tempArray = "+tempArray+" / Pushing to array:");
           }
           //append all the words that rhyme perfectly with the phoneme string
