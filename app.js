@@ -458,8 +458,7 @@ function receivedMessage(event) {
               messageString = messageString+searchSentence(indexArray)+"\n";
             }
           }
-          sendTextMessage(senderID, messageString);
-          messageResponse = "";
+          messageResponse = messageString;
           break;
 
           //handle the question command
