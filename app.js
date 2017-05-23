@@ -621,7 +621,7 @@ function receivedMessage(event) {
     console.log("Sorting 2d array differently. Current syllable set to "+currentSyllable);
     sortedArray[0][0]=currentSyllable;
     //for every item in the 0th array
-    for (var i = 0; i< twoDarray[0].length, i++){
+    for (var i = 0; i< twoDarray[0].length; i++){
         //if the syllable in the next position of the array is the same
         if (currentSyllable == twoDarray[1][i]){
             //push the word
@@ -633,7 +633,7 @@ function receivedMessage(event) {
           sortedArray[currentIndex].push(twoDarray[0][i])
         }
     }
-    console.log("resort complete: "+sortedArray);
+    console.log("Re-sort complete: "+sortedArray);
   }
 
   //function to take in an array of indexes and search each word with the complex algorithm, returning an array of presentable strings
