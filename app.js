@@ -612,6 +612,14 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
+  //function to take in a 2d array of words and their syllable count and return a differencly ordered array that sorts the words by syllables
+  function sort2dArray(twoDarray){
+    //init an empty 2d array for this
+    var sortedArray = (function(sortedArray){ while(sortedArray.push([]) < 2); return sortedArray})([]);
+    var currentSyllable = twoDarray[1][0];
+    console.log("Sorting 2d array differently. Current syllable set to "+currentSyllable);
+  }
+
   //function to take in an array of indexes and search each word with the complex algorithm, returning an array of presentable strings
   function searchSentence(indexArray){
     var outputArray = new Array();
@@ -622,11 +630,12 @@ function receivedMessage(event) {
       //if the index is valid
       if (indexArray[i] != -1){
         //call the complex search function on this index
-        console.log("word number "+i);
+        console.log("Word number "+i);
         indexOutputArray[i] = complexSearch(indexArray[i]);
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
+        sort2dArray(outputArray[i]);
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
@@ -698,26 +707,28 @@ function receivedMessage(event) {
     return COMPLEXOUTPUT;
   }
 
-  //function to turn an array of indexes into a more presentable 3d array of words
-  //includes duplicate handling and counts syllables as well, putting them into the second array
+  //function to turn an array of indexes into a more presentable 2d array of words and syllable counts
+  //includes duplicate handling
   function indexesToWords(indexArray, dictionaryIndex){
     //init an empty 2d array the only way I know how :/
     var FINALOUTPUT = (function(FINALOUTPUT){ while(FINALOUTPUT.push([]) < 2); return FINALOUTPUT})([]);
     //for every item in the words-that-rhyme array
-    //turn them back into words in a new array
     for (var i=0; i<indexArray.length; i++){
       var thisWord = getWord(indexArray[i]);
       var theWord = getWord(dictionaryIndex);
+      //as long as the word isn't the same as the original search term
       if (thisWord != theWord){
         thisWord = thisWord.toLowerCase();
         //as long as this isn't already in our list, save it and it's syllables to arrays
         if (!FINALOUTPUT.includes(thisWord)){
+          //turn them back into words in a new array
           FINALOUTPUT[0].push(thisWord);
+          //turn them into syllable counts in a new array
           FINALOUTPUT[1].push(countSyllables(indexArray[i]));
         }
       }
     }
-    console.log("all indexes sorted, had their syllables counted and turned back into words")
+    console.log("All indexes sorted, syllables counted and transformed into words")
     console.log("[0]"+FINALOUTPUT[0]);
     console.log("[1]"+FINALOUTPUT[1]);
     return FINALOUTPUT;
