@@ -454,7 +454,7 @@ function receivedMessage(event) {
           for (var i = 0, len = searchArray.length; i < len; i++){
             indexArray[i] = findTheLine(searchArray[i]);
             //tester area for nextbit
-            if (dictionaryIndex != -1) {
+            if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
               rhymeArray = searchSentence(indexArray);
               outputString = outputString+"I found "+rhymeArray[i].length+" rhyme(s) for "+searchArray[i]+"\n"+rhymeArray[i]+"\n";
