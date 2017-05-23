@@ -991,7 +991,7 @@ function receivedMessage(event) {
           console.log("(backslash n) found at pos "+i+", splitting");
           var cutTo = string.length-i;
           var tmp = string.slice(cutFrom, i);
-          console.log("////////////////////////////"+tmp);
+          console.log("////////////////////////////"+tmp+"\n//////////////////////////////");
           arrayOfStrings.push(tmp);
           cutFrom = i;
           i=i+399;
