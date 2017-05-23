@@ -31,8 +31,6 @@ var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 var CURRENTDICTIONARY = "";
 var RHYME_TYPOS = "";
 var GREETINGS = "";
-var SEARCHSTRING = new Array();
-var OUTPUTSTRING = new Array();
 var PHONEMES = new Array();
 var ALPHABET_ARRAY = new Array();
 var RHYMEOUTPUT = new Array();
@@ -451,17 +449,20 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
+          var rhymeArray = new Array();
+          var outputString = "";
           for (var i = 0, len = searchArray.length; i < len; i++){
             indexArray[i] = findTheLine(searchArray[i]);
             //tester area for nextbit
             if (dictionaryIndex != -1) {
               console.log("SearchArray: "+indexArray);
-              searchSentence(indexArray);
-              messageResponse = "sentence complex search complete";
+              rhymeArray = searchSentence(indexArray);
+              outputString = outputString+"I found "+rhymeArray.length+" rhymes for "+searchArray[i]+"\n";
             } else {
               messageResponse = "unknown word error";
             }
           }
+          messageResponse = outputString;
           break;
 
           //handle the question command
@@ -629,6 +630,7 @@ function receivedMessage(event) {
     for (var i = 0; i < outputArray.length; i++){
       console.log("Word #"+i+" output: "+outputArray[i]);
     }
+    return outputArray;
   }
 
   //deeper search function that returns more complex rhymes as an array
