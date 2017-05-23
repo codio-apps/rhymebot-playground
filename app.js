@@ -483,6 +483,7 @@ function receivedMessage(event) {
               if (randomArray.length==0){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
+                randomArray = indexesToWords(randomArray);
                 randomArray = makeArrayReadable(randomArray);
                 sendTextMessage(senderID, randomArray);
               }
@@ -494,6 +495,7 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(searchArray[0]);
             if (dictionaryIndex != -1){
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
+              randomArray = indexesToWords(randomArray);
               randomArray = makeArrayReadable(randomArray);
               sendTextMessage(senderID, randomArray);
             } else {
@@ -614,7 +616,6 @@ function receivedMessage(event) {
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
-    var tmp = "I know "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     //if there are more than 100 results trim to 100, for simplicity's sake
     if (twoDarray[0].length>25){
       tmp = tmp +"Here are my top 25\n"
@@ -869,8 +870,8 @@ function receivedMessage(event) {
     inputArray.length=0;
     var arrayBuffer = complexSearch(dictionaryIndex);
     if (arrayBuffer.length!==0){
-      var randString = randomlyReturn(arrayBuffer, elements);
-      return randString;
+      var randArray = randomlyReturn(arrayBuffer, elements);
+      return randArray;
     } else {
       messageResponse = "I don't know any words that rhyme sorry";
       return "UNKNOWN";
