@@ -457,8 +457,8 @@ function receivedMessage(event) {
               console.log("SearchArray: "+indexArray);
               messageString = searchSentence(indexArray)+"\n";
             }
-            sendTextMessage(senderID, messageString);
           }
+          sendTextMessage(senderID, messageString);
           messageResponse = "";
           break;
 
