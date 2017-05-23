@@ -707,10 +707,10 @@ function receivedMessage(event) {
     return COMPLEXOUTPUT;
   }
 
-  //function to turn an array of indexes into a more presentable array of words
-  //includes duplicate handling
+  //function to turn an array of indexes into a more presentable 3d array of words
+  //includes duplicate handling and counts syllables as well, putting them into the second element
   function indexesToWords(indexArray, dictionaryIndex){
-    var FINALOUTPUT = new Array;
+    var FINALOUTPUT = new Array [["Words", "syllables"]];
     //for every item in the words-that-rhyme array
     //turn them back into words in a new array
     for (var i=0; i<indexArray.length; i++){
@@ -720,7 +720,7 @@ function receivedMessage(event) {
         thisWord = thisWord.toLowerCase();
         //as long as this isn't already in our list, save it and it's syllables to arrays
         if (!FINALOUTPUT.includes(thisWord)){
-          FINALOUTPUT[0].push(thisWord);
+          FINALOUTPUT[0]push(thisWord);
           FINALOUTPUT[1].push(countSyllables(dictionaryIndex));
         }
       }
