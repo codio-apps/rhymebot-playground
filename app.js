@@ -629,6 +629,7 @@ function receivedMessage(event) {
         outputArray[i]="UNKNOWN";
       }
       //word processing complete
+      console.log("Word processing completed OK");
       var curSyl = countSyllables(outputArray[i][0]);
       console.log("curSyl is"+curSyl);
       for (var j = 0; j < outputArray[i].length; j++){
