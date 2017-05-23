@@ -457,9 +457,7 @@ function receivedMessage(event) {
               console.log("SearchArray: "+indexArray);
               messageString = searchSentence(indexArray)+"\n";
             }
-            for (var j = 0; j < messageArray.length; j++){
-              sendTextMessage(senderID, messageString);
-            }
+            sendTextMessage(senderID, messageString);
           }
           messageResponse = "";
           break;
@@ -1225,7 +1223,6 @@ function receivedMessage(event) {
         }
       };
       callSendAPI(messageData);
-      name = "";
     }
   }
 
