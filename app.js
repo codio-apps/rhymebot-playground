@@ -1232,18 +1232,7 @@ function receivedMessage(event) {
 
     }
 
-    var messageData = {
-      recipient: {
-        id: recipientId
-      },
-      message: {
-        text: messageText,
-        metadata: "RhymeBot Response Unit"
-      }
-    };
-    callSendAPI(messageData);
-    name = "";
-  }
+
 
 
   /*
