@@ -673,7 +673,7 @@ function receivedMessage(event) {
         outputArray[i] = ["UNKNOWN"];
       }
     }
-    console.log("Sentence processing completed OK");
+    console.log("searchSentence() completed OK");
     //now sort the sentence breakdown? for presentation?
     for (var i = 0; i < outputArray.length; i++){
     }
@@ -1202,6 +1202,27 @@ function receivedMessage(event) {
     callSendAPI(messageData);
   }
 
+  //function to attempt to call itself recursively to send messages?
+  function recursivelySendMessage(recipientId, messageArray, alpha) {
+    if (alpha<messageArray.length){
+      for (var i = 0; i < messageArray.length; i++){
+        console.log("sending msg "+i+" of "+messageArray.length);
+        var messageData = {
+          recipient: {
+            id: recipientId
+          },
+          message: {
+            text: messageArray[i],
+            metadata: "RhymeBot Response Unit"
+          }
+        };
+        callSendAPI(messageData);
+        recursivelySendMessage(recipientId, messageArray, alpha+1);
+        console.log("Message sent: "+messageArray[i]);
+      }
+    }
+  }
+
   /*
   * Send a text message using the Send API.
   //now I'm trying to make it do it recursively to avoid the message getting jumbled up
@@ -1209,20 +1230,21 @@ function receivedMessage(event) {
   function sendTextMessage(recipientId, messageText) {
     //now natively handles splitting a long string into array chunks of length 400+
     var messageArray = splitMessage(messageText);
-    for (var i = 0; i < messageArray.length; i++){
-      console.log("sending msg "+i+" of "+messageArray.length);
-      var messageData = {
-        recipient: {
-          id: recipientId
-        },
-        message: {
-          text: messageArray[i],
-          metadata: "RhymeBot Response Unit"
-        }
-      };
-      callSendAPI(messageData);
-      console.log("Message sent: "+messageArray[i]);
-    }
+    recursivelySendMessage(messageArray, 0);
+    // for (var i = 0; i < messageArray.length; i++){
+    //   console.log("sending msg "+i+" of "+messageArray.length);
+    //   var messageData = {
+    //     recipient: {
+    //       id: recipientId
+    //     },
+    //     message: {
+    //       text: messageArray[i],
+    //       metadata: "RhymeBot Response Unit"
+    //     }
+    //   };
+    //   callSendAPI(messageData);
+    //   console.log("Message sent: "+messageArray[i]);
+    // }
   }
 
 
