@@ -626,7 +626,7 @@ function receivedMessage(event) {
         if (currentSyllable == twoDarray[1][i]){
             //push the word
             sortedArray[currentIndex].push(twoDarray[0][i]);
-            console.log("added "+twoDarray[0][i]+" from pos "+i+" of "+twoDarray[0].length);
+            console.log("added "+twoDarray[0][i]+" from pos "+i+" of "+twoDarray[0].length+" to sortedArray["+currentIndex+"]");
         } else {
           console.log("succesfully processed:"+sortedArray[currentSyllable]);
           //increase the index and push the word
@@ -636,6 +636,7 @@ function receivedMessage(event) {
           sortedArray[currentIndex].push(twoDarray[1][i]);
           console.log("Current syllable set to "+currentSyllable+", index is now "+currentIndex);
           sortedArray[currentIndex].push(twoDarray[0][i])
+          console.log("added "+twoDarray[0][i]+" from pos "+i+" of "+twoDarray[0].length+" to sortedArray["+currentIndex+"]");
         }
     }
     console.log("Re-sort complete: "+sortedArray);
