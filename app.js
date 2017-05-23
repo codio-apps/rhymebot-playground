@@ -997,6 +997,9 @@ function receivedMessage(event) {
           i=i+399;
         }
       }
+      var tmp = string.slice(cutFrom, string.length);
+      console.log("////////////////////////////"+tmp+"\n//////////////////////////////");
+      arrayOfStrings.push(tmp);
     } else {
       arrayOfStrings.push(string);
     }
