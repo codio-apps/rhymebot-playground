@@ -457,7 +457,7 @@ function receivedMessage(event) {
             if (dictionaryIndex != -1) {
               console.log("SearchArray: "+indexArray);
               rhymeArray = searchSentence(indexArray);
-              outputString = outputString+"I found "+rhymeArray[i].length+" rhyme(s) for "+searchArray[i]+"\n";
+              outputString = outputString+"I found "+rhymeArray[i].length+" rhyme(s) for "+searchArray[i]+"\n"+rhymeArray[i];
             } else {
               messageResponse = "unknown word error";
             }
