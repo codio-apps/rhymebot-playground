@@ -678,7 +678,6 @@ function receivedMessage(event) {
         var tempArray = searchPhonemes(wordEndings[j-1], 1);
         if (tempArray.length!=0){
           COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
-          syllableCountArray.push(1);
         }
       } else {
         //starting at the maximum syllable value and working back to the current syllable
@@ -689,7 +688,6 @@ function receivedMessage(event) {
           var tempArray = searchPhonemes(wordEndings[j-1], k);
           if (tempArray.length!=0){
             COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
-            syllableCountArray.push(k);
           }
         }
       }
@@ -703,6 +701,7 @@ function receivedMessage(event) {
         thisWord = thisWord.toLowerCase();
         if (!FINALOUTPUT.includes(thisWord)){
           FINALOUTPUT.push(thisWord);
+          syllableCountArray.push(countSyllables(COMPLEXOUTPUT[i]));
         }
       }
     }
