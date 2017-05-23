@@ -620,10 +620,21 @@ function receivedMessage(event) {
     var tmp = "";
     if (twoDarray[0].length>25){
       tmp = tmp +"Here are my top 25\n"
-      twoDarray[0].length=25;
-      twoDarray[1].length=25;
+      twoDarray[0].length=25; //0 is words
+      twoDarray[1].length=25; //1 is syllables
     }
-    //first, figure out how many arrays (individual syllables) we need
+    //first, reorder everything in the 2d array by number of syllables
+    twoDarray.sort(compareSyllables);
+    function compareSyllables(a, b) {
+      if (a[1] === b[1]) {
+        return 0;
+      }
+      else {
+        return (a[1] < b[1]) ? -1 : 1;
+      }
+    }
+    console.log("Syllable stuff resorted:"+twoDarray[0]+"///"+twoDarray[1]);
+    //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
     var req = 1;
     for (var i = 0; i<twoDarray[0].length; i++){
