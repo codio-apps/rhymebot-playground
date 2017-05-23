@@ -1204,25 +1204,22 @@ function receivedMessage(event) {
 
   /*
   * Send a text message using the Send API.
-  //now does it recursively to avoid the message getting jumbled up
+  //now I'm trying to make it do it recursively to avoid the message getting jumbled up
   */
   function sendTextMessage(recipientId, messageText) {
     //now natively handles splitting a long string into array chunks of length 400+
     var messageArray = splitMessage(messageText);
-    for (var i = 0; i < messageArray.length; i++){
-      console.log("sending msg "+i+" of "+messageArray.length);
-      var messageData = {
-        recipient: {
-          id: recipientId
-        },
-        message: {
-          text: messageArray[i],
-          metadata: "RhymeBot Response Unit"
-        }
-      };
-      callSendAPI(messageData);
-      console.log("Message sent: "+messageArray[i]);
-    }
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        text: messageArray[i],
+        metadata: "RhymeBot Response Unit"
+      }
+    };
+    callSendAPI(messageArray);
+    console.log("Message sent: "+messageArray[i]);
   }
 
 
@@ -1538,12 +1535,13 @@ function receivedMessage(event) {
   * get the message id in a response
   *
   */
-  function callSendAPI(messageData) {
+  function callSendAPI(messageData, i) {
+    if (i<messageData.length){
     request({
       uri: 'https://graph.facebook.com/v2.6/me/messages',
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: 'POST',
-      json: messageData
+      json: messageData[i];
 
     }, function (error, response, body) {
       if (!error && response.statusCode == 200) {
@@ -1560,7 +1558,9 @@ function receivedMessage(event) {
       } else {
         console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
       }
+      callSendAPI(messageData, i+1);
     });
+    }
   }
 
   // Start server
