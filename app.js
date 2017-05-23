@@ -613,10 +613,11 @@ function receivedMessage(event) {
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending
   function makeArrayReadable(twoDarray, theWord){
     var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
-    if (twoDarray[0].length>100){
-      tmp = tmp +"***TODO***Here are my top 100\n"
-      twoDarray[0].length=100;
-      twoDarray[1].length=100;
+    //if there are more than 100 results trim to 100, for simplicity's sake
+    if (twoDarray[0].length>10){
+      tmp = tmp +"***TODO***Here are my top 10\n"
+      twoDarray[0].length=10;
+      twoDarray[1].length=10;
     }
     //first, figure out how many arrays (individual syllables) we need
     var currentSyllable = twoDarray[1][0];
