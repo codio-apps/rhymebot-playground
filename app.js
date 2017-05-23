@@ -648,11 +648,12 @@ function receivedMessage(event) {
     for (var i = 0; i < req; i++){
       tmp = tmp+"Words that match "+sortedArray[i][0]+" syllables:\n";
       for (var j=1; j < sortedArray[i].length; j++){
-        tmp = tmp+", "+sortedArray[i][j];
+        tmp = tmp+sortedArray[i][j]+", ";
       }
-      tmp = tmp +"\n";
-      console.log(tmp);
+      tmp = tmp.slice(2); 
+      tmp = tmp+"\n";
     }
+    console.log(tmp);
   }
 
   //function to take in an array of indexes and search each word with the complex algorithm, returning an array of presentable strings
@@ -678,7 +679,6 @@ function receivedMessage(event) {
     console.log("Sentence processing completed OK");
     //now sort the sentence breakdown? for presentation?
     for (var i = 0; i < outputArray.length; i++){
-      console.log("Word #"+i+" output: "+outputArray[i]);
     }
     return outputArray;
   }
