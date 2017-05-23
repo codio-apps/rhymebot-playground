@@ -628,7 +628,7 @@ function receivedMessage(event) {
             sortedArray[currentIndex].push(twoDarray[0][i]);
             console.log("added "+twoDarray[0][i]+" from pos "+i+" of "+twoDarray[0].length+" to sortedArray["+currentIndex+"]");
         } else {
-          console.log("succesfully processed:"+sortedArray[currentSyllable]);
+          console.log("succesfully processed:"+sortedArray[currentIndex]);
           //increase the index and push the word
           currentIndex++;
           currentSyllable = twoDarray[1][i];
