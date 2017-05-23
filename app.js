@@ -1212,7 +1212,7 @@ function receivedMessage(event) {
             id: recipientId
           },
           message: {
-            text: messageArray[a],
+            text: messageArray[alpha],
           }
         };
         callSendAPI(messageData);
