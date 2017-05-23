@@ -615,8 +615,8 @@ function receivedMessage(event) {
   //function to take in a 2d array of words with their syllable count, and return a differencly ordered 2d array, grouping words by syllables instead
   function sort2dArray(twoDarray){
     //first, figure out how many arrays (individual syllables) we need
-    var req = 0;
     var currentSyllable = twoDarray[1][0];
+    var req = 1;
     for (var i = 0; i<twoDarray[0].length; i++){
         if (twoDarray[1][i]!=currentSyllable){
           req++;
@@ -624,7 +624,7 @@ function receivedMessage(event) {
         }
     }
     console.log("first bit complete, arrays req: "+req);
-    //init an empty 2d array for this
+    //init an empty set of arrays for the sorting process
     var sortedArray = (function(sortedArray){ while(sortedArray.push([]) < req); return sortedArray})([]);
     currentSyllable = twoDarray[1][0];
     var currentIndex = 0;
