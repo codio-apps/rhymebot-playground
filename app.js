@@ -994,10 +994,11 @@ function receivedMessage(event) {
           arrayOfStrings.push(tmp);
           cutFrom = i+1;
           i=i+399;
-        }
-        if (limit>500){
+        } else if (limit>500){
+          //if we don't seem to be finding a space....
           console.log("painfully close to the limit, artificially splitting");
-          for ( j = i, done = false; !done; j++){
+          //go searching for the next comma
+          for (var j = i, done = false; !done; j++){
             if (string.charAt(j)==","){
               console.log("found a comma, splitting here instead");
               var cutTo = string.length-j;
@@ -1005,6 +1006,8 @@ function receivedMessage(event) {
               arrayOfStrings.push(tmp);
               cutFrom = j+1;
               i=j;
+              limit = 0;
+              done = true;
             }
           }
         }
