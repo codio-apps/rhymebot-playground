@@ -473,17 +473,18 @@ function receivedMessage(event) {
           case 'random':
           searchWord = lc_messageText.slice(7).toUpperCase();
           var searchArray = searchWord.split(" ");
-          var randomString = [""];
+          var randomArray = new Array();
           console.log("split input array: "+searchArray);
           if (isNaN(searchArray[1])){
             console.log("No number of results specified, defaulting to 10");
             var dictionaryIndex = findTheLine(searchWord);
             if (dictionaryIndex != -1){
-              randomString = randomRhymes(dictionaryIndex, 10);
-              if (randomString == ""){
+              randomArray = randomRhymes(dictionaryIndex, 10);
+              if (randomString.length==0){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
-                sendTextMessage(senderID, randomString);
+                randomArray = makeArrayReadable(randomArray);
+                sendTextMessage(senderID, randomArray);
               }
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -610,23 +611,23 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending
+  //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
-    var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
+    var tmp = "I know "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     //if there are more than 100 results trim to 100, for simplicity's sake
-    if (twoDarray[0].length>10){
-      tmp = tmp +"***TODO***Here are my top 10\n"
-      twoDarray[0].length=10;
-      twoDarray[1].length=10;
+    if (twoDarray[0].length>25){
+      tmp = tmp +"Here are my top 25\n"
+      twoDarray[0].length=25;
+      twoDarray[1].length=25;
     }
     //first, figure out how many arrays (individual syllables) we need
     var currentSyllable = twoDarray[1][0];
     var req = 1;
     for (var i = 0; i<twoDarray[0].length; i++){
-        if (twoDarray[1][i]!=currentSyllable){
-          req++;
-          currentSyllable=twoDarray[1][i];
-        }
+      if (twoDarray[1][i]!=currentSyllable){
+        req++;
+        currentSyllable=twoDarray[1][i];
+      }
     }
     //init an empty set of arrays for the sorting process
     var sortedArray = (function(sortedArray){ while(sortedArray.push([]) < req); return sortedArray})([]);
@@ -635,28 +636,27 @@ function receivedMessage(event) {
     sortedArray[0][0]=currentSyllable;
     //for every item in the 0th array
     for (var i = 0; i< twoDarray[0].length; i++){
-        //if the syllable value in the next position of the array is the same
-        if (currentSyllable == twoDarray[1][i]){
-            //push the word
-            sortedArray[currentIndex].push(twoDarray[0][i]);
-        } else {
-          //increase the index and push the syllable count and the word
-          currentIndex++;
-          currentSyllable = twoDarray[1][i];
-          sortedArray[currentIndex].push(twoDarray[1][i]);
-          sortedArray[currentIndex].push(twoDarray[0][i]);
-        }
+      //if the syllable value in the next position of the array is the same
+      if (currentSyllable == twoDarray[1][i]){
+        //push the word
+        sortedArray[currentIndex].push(twoDarray[0][i]);
+      } else {
+        //increase the index and push the syllable count and the word
+        currentIndex++;
+        currentSyllable = twoDarray[1][i];
+        sortedArray[currentIndex].push(twoDarray[1][i]);
+        sortedArray[currentIndex].push(twoDarray[0][i]);
+      }
+    }
+    for (var i = 0; i < req; i++){
+      tmp = tmp +"\nWords that match "+sortedArray[i][0]+" syllables:\n";
+      for (var j=1; j < sortedArray[i].length; j++){
+        tmp = tmp + sortedArray[i][j]+", ";
+      }
+      tmp = tmp.slice(0, tmp.length-2);
+      tmp = tmp+"\n";
     }
     console.log("Re-sort and parse to string complete");
-      for (var i = 0; i < req; i++){
-        tmp = tmp +"\nWords that match "+sortedArray[i][0]+" syllables:\n";
-        for (var j=1; j < sortedArray[i].length; j++){
-          tmp = tmp + sortedArray[i][j]+", ";
-        }
-        tmp = tmp.slice(0, tmp.length-2);
-        tmp = tmp+"\n";
-      }
-
     return tmp;
   }
 
@@ -1247,23 +1247,10 @@ function receivedMessage(event) {
 
   //used to send a text message using the Send API.
   //now I'm trying to make it do it recursively to avoid the message getting jumbled up
+  //takes in a string, turns it into an array and passes it to recursivelySendMessage
   function sendTextMessage(recipientId, messageText) {
     var messageArray = splitMessage(messageText);
     recursivelySendMessage(recipientId, messageArray, 0);
-    // for (var i = 0; i < messageArray.length; i++){
-    //   console.log("sending msg "+i+" of "+messageArray.length);
-    //   var messageData = {
-    //     recipient: {
-    //       id: recipientId
-    //     },
-    //     message: {
-    //       text: messageArray[i],
-    //       metadata: "RhymeBot Response Unit"
-    //     }
-    //   };
-    //   callSendAPI(messageData);
-    //   console.log("Message sent: "+messageArray[i]);
-    // }
   }
 
 
