@@ -627,7 +627,10 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        console.log("outPutArray 000"+outputArray[i][0][0]);
+        console.log("outPutArray 000 "+outputArray[i][0][0]);//words
+          console.log("outPutArray 000 "+outputArray[i][0][1]);//words
+            console.log("outPutArray 000 "+outputArray[i][1][0]);//words
+              console.log("outPutArray 000 "+outputArray[i][1][1]);//words
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
