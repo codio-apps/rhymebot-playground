@@ -650,10 +650,10 @@ function receivedMessage(event) {
       for (var j=1; j < sortedArray[i].length; j++){
         tmp = tmp+sortedArray[i][j]+", ";
       }
-      tmp = tmp.slice(2);
+      tmp = tmp.slice(0, tmp.length-2);
       tmp = tmp+"\n";
     }
-    tmp = tmp.slice(2);
+    tmp = tmp.slice(0, tmp.length-2);
     console.log(tmp);
   }
 
@@ -765,8 +765,6 @@ function receivedMessage(event) {
       }
     }
     console.log("All indexes sorted, syllables counted and transformed into words")
-    console.log("[0]"+FINALOUTPUT[0]);
-    console.log("[1]"+FINALOUTPUT[1]);
     return FINALOUTPUT;
   }
 
