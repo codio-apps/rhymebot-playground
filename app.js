@@ -1221,12 +1221,9 @@ function receivedMessage(event) {
     }
   }
 
-  /*
-  * Send a text message using the Send API.
+  //used to send a text message using the Send API.
   //now I'm trying to make it do it recursively to avoid the message getting jumbled up
-  */
   function sendTextMessage(recipientId, messageText) {
-    //now natively handles splitting a long string into array chunks of length 400+
     var messageArray = splitMessage(messageText);
     recursivelySendMessage(recipientId, messageArray, 0);
     // for (var i = 0; i < messageArray.length; i++){
