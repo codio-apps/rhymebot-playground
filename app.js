@@ -613,7 +613,8 @@ function receivedMessage(event) {
     console.log("Highest syllable number is: "+mostSyllables+". Word is: "+maxWord);
     return mostSyllables;
   }
-  //function to take in an array of indexes and search every word with the complex algorithm
+
+  //function to take in an array of indexes and search each word with the complex algorithm, returning an array of presentable strings
   function searchSentence(indexArray){
     var outputArray = new Array();
     var output
@@ -627,9 +628,18 @@ function receivedMessage(event) {
       } else {
         outputArray[i]="UNKNOWN";
       }
+      //word processing complete
+      var curSyl = countSyllables(outputArray[i][0]);
+      console.log("curSyl is"+curSyl);
+      for (var j = 0; j < outputArray[i].length; j++){
+          if (curSyl > countSyllables(outputArray[i][j])){
+            curSyl = countSyllables(outputArray[i][j]);
+            console.log("next step down is "+curSyl);
+          }
+      }
     }
     console.log("Sentence processing completed OK");
-    //now sort it for presentation?
+    //now sort the sentence breakdown? for presentation?
     for (var i = 0; i < outputArray.length; i++){
       console.log("Word #"+i+" output: "+outputArray[i]);
     }
