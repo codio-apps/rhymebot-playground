@@ -626,10 +626,11 @@ function receivedMessage(event) {
         //call the complex search function on this index
         console.log("word number "+i);
         indexOutputArray[i] = complexSearch(indexArray[i]);
+        //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
       } else {
-        outputArray[i]="UNKNOWN";
+        outputArray[i] = ["UNKNOWN"];
       }
     }
     console.log("Sentence processing completed OK");
@@ -702,7 +703,7 @@ function receivedMessage(event) {
   //function to turn an array of indexes into a more presentable 3d array of words
   //includes duplicate handling and counts syllables as well, putting them into the second element
   function indexesToWords(indexArray, dictionaryIndex){
-    var FINALOUTPUT = new Array [["Words", "syllables"]];
+    var FINALOUTPUT = [["Words", "syllables"]];
     //for every item in the words-that-rhyme array
     //turn them back into words in a new array
     for (var i=0; i<indexArray.length; i++){
