@@ -650,9 +650,10 @@ function receivedMessage(event) {
       for (var j=1; j < sortedArray[i].length; j++){
         tmp = tmp+sortedArray[i][j]+", ";
       }
-      tmp = tmp.slice(2); 
+      tmp = tmp.slice(2);
       tmp = tmp+"\n";
     }
+    tmp = tmp.slice(2);
     console.log(tmp);
   }
 
