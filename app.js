@@ -513,7 +513,7 @@ function receivedMessage(event) {
         }
 
 
-      // Message has attachments, handle response here
+        // Message has attachments, handle response here
       } else if (messageAttachments) {
         //moved the below two lines here instead of within getUserInfo function as I want to call that elsewhere without returning this message
         var message = "Nice attachment;"
@@ -621,9 +621,14 @@ function receivedMessage(event) {
     var output
     // for each word in the sentence
     for (var i = 0; i < indexArray.length; i++){
-      //call the complex search function on this index
-      console.log("word number "+i);
-      outputArray[i] = complexSearch(indexArray[i]);
+      //if the index is valid
+      if (indexArray[i] != -1){
+        //call the complex search function on this index
+        console.log("word number "+i);
+        outputArray[i] = complexSearch(indexArray[i]);
+      } else {
+        outputArray[i]="UNKNOWN";
+      }
     }
     console.log("Sentence processing completed OK");
     //now sort it for presentation?
@@ -757,8 +762,8 @@ function receivedMessage(event) {
       }
       return theWord[0];
     } else {
-        return 0;
-      }
+      return 0;
+    }
 
   }
 
