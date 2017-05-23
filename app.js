@@ -483,7 +483,7 @@ function receivedMessage(event) {
               if (randomString == ""){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
-                //splitMessage(senderID, randomString);
+                sendTextMessage(senderID, randomString);
               }
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -493,7 +493,7 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(searchArray[0]);
             if (dictionaryIndex != -1){
               randomString = randomRhymes(dictionaryIndex, searchArray[1]);
-              //splitMessage(senderID, randomString);
+              sendTextMessage(senderID, randomString);
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
@@ -986,7 +986,7 @@ function receivedMessage(event) {
       var i = 400;
       //go through the string
       for (; i < string.length; i++){
-        if (string.charAt(i)=="\n"){
+        if (string.charAt(i)=="W"){
           var cutTo = string.length-i;
           var tmp = string.slice(cutFrom, i);
           arrayOfStrings.push(tmp);
