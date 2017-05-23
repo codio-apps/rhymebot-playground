@@ -1211,31 +1211,38 @@ function receivedMessage(event) {
   *
   */
   function sendTextMessage(recipientId, messageText) {
-    const send = (recipientId, messageText)  => {
 
-      return new Promise((resolve, reject) => {
-        request
-        (
-            {
-                url     : BASE_URL + "me/messages",
-                qs      : { access_token : PAGE_ACCESS_TOKEN },
-                method  : "POST",
-                json    :
-                        {
-                            recipient: { id : recipientId },
-                            message: messageText,
-                        }
-            }, (error, response, body) =>
-            {
-                if (error) { console.log("Error sending message: " + response.error); return reject(response.error); }
-                else if (response.body.error) { console.log('Response body Error: ' + response.body.error); return reject(response.body.error); }
 
-                console.log("Message sent successfully to " + recipientId);
-                return resolve(response);
-            }
-        );
-    });
-};
+            request({
+                url: 'https://graph.facebook.com/v2.6/me/messages',
+                qs: {access_token:token},
+                method: 'POST',
+                json: {
+                    recipient: {id:recipientId},
+                    message: {text:messageText},
+                }
+            }, function(error, response, body) {
+                if (error) {
+                    console.log('Error sending messages: ', error)
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error)
+                }
+                //sendTextMessages(recipientId, messageText)
+            })
+
+    }
+
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        text: messageText,
+        metadata: "RhymeBot Response Unit"
+      }
+    };
+    callSendAPI(messageData);
+    name = "";
   }
 
 
