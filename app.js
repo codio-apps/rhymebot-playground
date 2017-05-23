@@ -607,12 +607,12 @@ function receivedMessage(event) {
         mostSyllables = countSyllables(i);
       }
     }
-    maxWord = getWord(mostSyllables);
-    console.log("Highest syllable number is: "+mostSyllables+". Word is: "+maxWord);
+
+    console.log("Highest syllable count in currentdictionary is: "+mostSyllables);
     return mostSyllables;
   }
 
-  //function to take in a 2d array of words with their syllable count, and return a differencly ordered 2d array, grouping words by syllables instead
+  //function to take in a 2d array of words with their syllable count, and return a differencly ordered 2d array, grouping words by syllables instead :s
   function sort2dArray(twoDarray){
     //init an empty 2d array for this
     var sortedArray = (function(sortedArray){ while(sortedArray.push([]) < 2); return sortedArray})([]);
