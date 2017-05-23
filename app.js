@@ -1210,7 +1210,9 @@ function receivedMessage(event) {
   *
   */
   function sendTextMessage(recipientId, messageText) {
+    //now natively handles splitting a long string into array chunks of length 400+
     var messageArray = splitMessage(messageText);
+    console.log("in sendTextMessage, array is "+messageArray);
     for (var i = 0; i < messageArray.length; i++){
       console.log("sending msg "+i+" of "+messageArray.length);
       var messageData = {
