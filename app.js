@@ -455,7 +455,7 @@ function receivedMessage(event) {
             //tester area for nextbit
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
-              messageString = searchSentence(indexArray)+"\n";
+              messageString = messageString+searchSentence(indexArray)+"\n";
             }
           }
           sendTextMessage(senderID, messageString);
