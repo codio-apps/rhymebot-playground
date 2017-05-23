@@ -632,6 +632,7 @@ function receivedMessage(event) {
           //increase the index and push the word
           currentIndex++;
           currentSyllable = twoDarray[1][i];
+          console.log("content of twoDarray[1][i] = "+twoDarray[1][i]);
           sortedArray[currentIndex].push(twoDarray[1][i]);
           console.log("Current syllable set to "+currentSyllable+", index is now "+currentIndex);
           sortedArray[currentIndex].push(twoDarray[0][i])
