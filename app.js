@@ -644,12 +644,12 @@ function receivedMessage(event) {
     var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     if (twoDarray[0].length>100){
       tmp = tmp +"Here are my top 100\n"
-      sortedArray.length=100;
+      sortedArray[i].length=100;
     }
       for (var i = 0; i < req; i++){
-        tmp = tmp+"\nWords that match "+sortedArray[i][0]+" syllables:\n";
+        tmp = tmp +"\nWords that match "+sortedArray[i][0]+" syllables:\n";
         for (var j=1; j < sortedArray[i].length; j++){
-          tmp = tmp+sortedArray[i][j]+", ";
+          tmp = tmp + sortedArray[i][j]+", ";
         }
         tmp = tmp.slice(0, tmp.length-2);
         tmp = tmp+"\n";
