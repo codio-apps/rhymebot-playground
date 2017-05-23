@@ -623,7 +623,7 @@ function receivedMessage(event) {
       if (indexArray[i] != -1){
         //call the complex search function on this index
         console.log("word number "+i);
-        outputArray[i] = complexSearch(indexArray[i]);
+        outputArray[i] = indexesToWords(complexSearch(indexArray[i]), indexArray[i]);
       } else {
         outputArray[i]="UNKNOWN";
       }
@@ -645,7 +645,6 @@ function receivedMessage(event) {
     var char = "";
     var COMPLEXOUTPUT = new Array();
     var FINALOUTPUT = new Array();
-    var syllableCountArray = new Array();
     var theWord = getWord(dictionaryIndex);
     // first get the phonemes into an array
     syllableArray = getPhonemes(dictionaryIndex, false);
@@ -693,21 +692,28 @@ function receivedMessage(event) {
       }
     }
     console.log(theWord+" processing complete");
+    return COMPLEXOUTPUT;
+  }
+
+  //function to turn an array of indexes into a more presentable array of words
+  //includes duplicate handling
+  function indexesToWords(indexArray, dictionaryIndex){
+    var FINALOUTPUT = new Array();
     //for every item in the words-that-rhyme array
     //turn them back into words in a new array
-    for (var i=0; i<COMPLEXOUTPUT.length; i++){
-      var thisWord = getWord(COMPLEXOUTPUT[i]);
+    for (var i=0; i<indexArray.length; i++){
+      var thisWord = getWord(indexArray[i]);
+      var theWord = getWord(dictionaryIndex);
       if (thisWord != theWord){
         thisWord = thisWord.toLowerCase();
+        //as long as this isn't already in our list, save it and it's syllables to arrays
         if (!FINALOUTPUT.includes(thisWord)){
           FINALOUTPUT.push(thisWord);
-          syllableCountArray.push(countSyllables(COMPLEXOUTPUT[i]));
         }
       }
     }
     console.log(FINALOUTPUT);
     console.log("syllableCountArray: "+syllableCountArray);
-    return FINALOUTPUT;
   }
 
   function StringSearch(input, key) {
