@@ -701,7 +701,8 @@ function receivedMessage(event) {
   //function to turn an array of indexes into a more presentable 3d array of words
   //includes duplicate handling and counts syllables as well, putting them into the second array
   function indexesToWords(indexArray, dictionaryIndex){
-    var FINALOUTPUT = (function(FINALOUTPUT){ while(FINALOUTPUT.push([]) < 2); return a})([]);
+    //init an empty 2d array the only way I know how :/
+    var FINALOUTPUT = (function(FINALOUTPUT){ while(FINALOUTPUT.push([]) < 2); return FINALOUTPUT})([]);
     //for every item in the words-that-rhyme array
     //turn them back into words in a new array
     for (var i=0; i<indexArray.length; i++){
