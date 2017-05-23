@@ -643,8 +643,8 @@ function receivedMessage(event) {
     console.log("Re-sort and parse to string complete");
     var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     if (twoDarray[0].length>200){
-      tmp = tmp +"Here are my best 200\n"
-      twoDarray = twoDarray[0].slice(0,200);
+      tmp = tmp +"Here are my top 200\n"
+      twoDarray.length=200;
     }
       for (var i = 0; i < req; i++){
         tmp = tmp+"\nWords that match "+sortedArray[i][0]+" syllables:\n";
