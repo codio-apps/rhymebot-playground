@@ -493,8 +493,9 @@ function receivedMessage(event) {
             console.log("Input array position 1 is a number");
             var dictionaryIndex = findTheLine(searchArray[0]);
             if (dictionaryIndex != -1){
-              randomString = randomRhymes(dictionaryIndex, searchArray[1]);
-              sendTextMessage(senderID, randomString);
+              randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
+              randomArray = makeArrayReadable(randomArray);
+              sendTextMessage(senderID, randomArray);
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
