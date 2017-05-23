@@ -1202,8 +1202,9 @@ function receivedMessage(event) {
     callSendAPI(messageData);
   }
 
-  //function to attempt to call itself recursively to send messages?
+  //function to attempt to call itself recursively to send messages in the right order?
   function recursivelySendMessage(recipientId, messageArray, alpha) {
+    console.log("made it into recursivelySendMessage");
     if (alpha<messageArray.length){
       for (var i = 0; i < messageArray.length; i++){
         console.log("sending msg "+i+" of "+messageArray.length);
@@ -1213,7 +1214,6 @@ function receivedMessage(event) {
           },
           message: {
             text: messageArray[i],
-            metadata: "RhymeBot Response Unit"
           }
         };
         callSendAPI(messageData);
