@@ -629,10 +629,10 @@ function receivedMessage(event) {
         } else {
           console.log("sorted array so far:"+sortedArray);
           //increase the index and push the word
-          currentSyllable = twoDarray[1][i];
           currentIndex++;
-          sortedArray[currentIndex].push(currentSyllable);
-          console.log("Current syllable set to "+currentSyllable);
+          currentSyllable = twoDarray[1][i];
+          sortedArray[currentIndex].push(twoDarray[1][i]);
+          console.log("Current syllable set to "+currentSyllable+", index is now "+currentIndex);
           sortedArray[currentIndex].push(twoDarray[0][i])
         }
     }
