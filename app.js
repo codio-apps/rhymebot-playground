@@ -617,6 +617,7 @@ function receivedMessage(event) {
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
     //if there are more than 100 results trim to 100, for simplicity's sake
+    var tmp = "";
     if (twoDarray[0].length>25){
       tmp = tmp +"Here are my top 25\n"
       twoDarray[0].length=25;
