@@ -984,14 +984,29 @@ function receivedMessage(event) {
     if (string.length>600){
       var cutFrom = 0;
       var i = 400;
-      //go through the string
+      var limit=0;
+      //go through the string looking for a space
       for (; i < string.length; i++){
-        if (string.charAt(i)=="W"){
+        limit++;
+        if (string.charAt(i)=="\n"){
           var cutTo = string.length-i;
           var tmp = string.slice(cutFrom, i);
           arrayOfStrings.push(tmp);
           cutFrom = i+1;
           i=i+399;
+        }
+        if (limit>500){
+          console.log("painfully close to the limit, artificially splitting");
+          for ( j = i, done = false; !done; j++){
+            if (string.charAt(j)==","){
+              console.log("found a comma, splitting here instead");
+              var cutTo = string.length-j;
+              var tmp = string.slice(cutFrom, j);
+              arrayOfStrings.push(tmp);
+              cutFrom = j+1;
+              i=j;
+            }
+          }
         }
       }
       var tmp = string.slice(cutFrom, string.length);
