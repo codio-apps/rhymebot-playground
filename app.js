@@ -455,8 +455,8 @@ function receivedMessage(event) {
             //tester area for nextbit
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
-              messageString = splitMessage(messageString);
               messageString = searchSentence(indexArray)+"\n";
+              messageString = splitMessage(messageString);
             }
           }
           messageResponse = messageString;
@@ -484,7 +484,7 @@ function receivedMessage(event) {
               if (randomString == ""){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
-                splitMessage(senderID, randomString);
+                //splitMessage(senderID, randomString);
               }
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -494,7 +494,7 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(searchArray[0]);
             if (dictionaryIndex != -1){
               randomString = randomRhymes(dictionaryIndex, searchArray[1]);
-              splitMessage(senderID, randomString);
+              //splitMessage(senderID, randomString);
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
