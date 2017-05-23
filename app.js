@@ -457,7 +457,18 @@ function receivedMessage(event) {
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
               rhymeArray = searchSentence(indexArray);
-              outputString = outputString+"I found "+rhymeArray[i][0].length+" rhyme(s) for "+searchArray[i]+"\n"+rhymeArray[i][0]+"\n";
+              var sortedArray = sort2dArray(rhymeArray);
+              var tmp = "";
+              for (var i = 0; i < req; i++){
+                tmp = tmp+"Words that match "+sortedArray[i][0]+" syllables:\n";
+                for (var j=1; j < sortedArray[i].length; j++){
+                  tmp = tmp+sortedArray[i][j]+", ";
+                }
+                tmp = tmp.slice(0, tmp.length-2);
+                tmp = tmp+"\n";
+              }
+              tmp = tmp.slice(0, tmp.length-2);
+              outputString = outputString+"I found "+rhymeArray[i][0].length+" rhyme(s) for "+searchArray[i]+"\n"+tmp+"\n";
             }
           }
           messageResponse = outputString;
@@ -618,10 +629,10 @@ function receivedMessage(event) {
     var currentSyllable = twoDarray[1][0];
     var req = 1;
     for (var i = 0; i<twoDarray[0].length; i++){
-        if (twoDarray[1][i]!=currentSyllable){
-          req++;
-          currentSyllable=twoDarray[1][i];
-        }
+      if (twoDarray[1][i]!=currentSyllable){
+        req++;
+        currentSyllable=twoDarray[1][i];
+      }
     }
     //init an empty set of arrays for the sorting process
     var sortedArray = (function(sortedArray){ while(sortedArray.push([]) < req); return sortedArray})([]);
@@ -630,31 +641,20 @@ function receivedMessage(event) {
     sortedArray[0][0]=currentSyllable;
     //for every item in the 0th array
     for (var i = 0; i< twoDarray[0].length; i++){
-        //if the syllable value in the next position of the array is the same
-        if (currentSyllable == twoDarray[1][i]){
-            //push the word
-            sortedArray[currentIndex].push(twoDarray[0][i]);
-        } else {
-          //increase the index and push the syllable count and the word
-          currentIndex++;
-          currentSyllable = twoDarray[1][i];
-          sortedArray[currentIndex].push(twoDarray[1][i]);
-          sortedArray[currentIndex].push(twoDarray[0][i])
-
-        }
+      //if the syllable value in the next position of the array is the same
+      if (currentSyllable == twoDarray[1][i]){
+        //push the word
+        sortedArray[currentIndex].push(twoDarray[0][i]);
+      } else {
+        //increase the index and push the syllable count and the word
+        currentIndex++;
+        currentSyllable = twoDarray[1][i];
+        sortedArray[currentIndex].push(twoDarray[1][i]);
+        sortedArray[currentIndex].push(twoDarray[0][i])
+      }
     }
     console.log("Re-sort complete:");
-    var tmp = "";
-    for (var i = 0; i < req; i++){
-      tmp = tmp+"Words that match "+sortedArray[i][0]+" syllables:\n";
-      for (var j=1; j < sortedArray[i].length; j++){
-        tmp = tmp+sortedArray[i][j]+", ";
-      }
-      tmp = tmp.slice(0, tmp.length-2);
-      tmp = tmp+"\n";
-    }
-    tmp = tmp.slice(0, tmp.length-2);
-    console.log(tmp);
+    return sortedArray;
   }
 
   //function to take in an array of indexes and search each word with the complex algorithm, returning an array of presentable strings
@@ -672,7 +672,6 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        sort2dArray(outputArray[i]);
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
