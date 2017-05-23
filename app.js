@@ -619,8 +619,8 @@ function receivedMessage(event) {
     var currentSyllable = twoDarray[1][0];
     var currentIndex = 0;
     ///
-    console.log("***LOG1 ":twoDarray[0][14]);
-    console.log("***LOG2 ":twoDarray[1][14]);
+    console.log("***LOG1 "+twoDarray[0][14]);
+    console.log("***LOG2 "+twoDarray[1][14]);
     ///
     console.log("Sorting 2d array differently. Current syllable set to "+currentSyllable);
     sortedArray[0][0]=currentSyllable;
@@ -633,7 +633,7 @@ function receivedMessage(event) {
             console.log("added "+twoDarray[0][i]+" from pos "+i+" of "+twoDarray[0].length+" to sortedArray["+currentIndex+"]");
         } else {
           console.log("succesfully processed:"+sortedArray[currentIndex]);
-          //increase the index and push the word
+          //increase the index and push the syllable count and the word
           currentIndex++;
           currentSyllable = twoDarray[1][i];
           console.log("content of twoDarray[1][i] = "+twoDarray[1][i]);
