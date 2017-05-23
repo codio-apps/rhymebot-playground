@@ -999,7 +999,7 @@ function receivedMessage(event) {
     } else {
       arrayOfStrings.push(string);
     }
-    console.log("Results processed");
+    console.log("Message split into arrays of suitable length");
     return arrayOfStrings;
   }
 
