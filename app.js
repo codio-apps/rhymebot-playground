@@ -480,7 +480,7 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(searchWord);
             if (dictionaryIndex != -1){
               randomArray = randomRhymes(dictionaryIndex, 10);
-              if (randomString.length==0){
+              if (randomArray.length==0){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
                 randomArray = makeArrayReadable(randomArray);
