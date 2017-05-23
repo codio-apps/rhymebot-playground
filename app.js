@@ -617,6 +617,7 @@ function receivedMessage(event) {
   //function to take in an array of indexes and search each word with the complex algorithm, returning an array of presentable strings
   function searchSentence(indexArray){
     var outputArray = new Array();
+    var indexOutputArray = new Array();
     var output
     // for each word in the sentence
     for (var i = 0; i < indexArray.length; i++){
@@ -624,17 +625,18 @@ function receivedMessage(event) {
       if (indexArray[i] != -1){
         //call the complex search function on this index
         console.log("word number "+i);
-        outputArray[i] = indexesToWords(complexSearch(indexArray[i]), indexArray[i]);
+        indexOutputArray[i] = complexSearch(indexArray[i]);
+        outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
       } else {
         outputArray[i]="UNKNOWN";
       }
       //word processing complete
       console.log("Word processing completed OK");
-      var curSyl = countSyllables(outputArray[i][0]);
+      var curSyl = countSyllables(indexOutputArray[i][0]);
       console.log("curSyl is"+curSyl);
       for (var j = 0; j < outputArray[i].length; j++){
-          if (curSyl > countSyllables(outputArray[i][j])){
-            curSyl = countSyllables(outputArray[i][j]);
+          if (curSyl > countSyllables(indexOutputArray[i][j])){
+            curSyl = countSyllables(indexOutputArray[i][j]);
             console.log("next step down is "+curSyl);
           }
       }
