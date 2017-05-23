@@ -720,8 +720,8 @@ function receivedMessage(event) {
         thisWord = thisWord.toLowerCase();
         //as long as this isn't already in our list, save it and it's syllables to arrays
         if (!FINALOUTPUT.includes(thisWord)){
-          FINALOUTPUT[0]push(thisWord);
-          FINALOUTPUT[1].push(countSyllables(dictionaryIndex));
+          FINALOUTPUT[0].push(thisWord);
+          FINALOUTPUT[1].push(countSyllables(indexArray[i]));
         }
       }
     }
