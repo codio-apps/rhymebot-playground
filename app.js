@@ -993,7 +993,7 @@ function receivedMessage(event) {
           var tmp = string.slice(cutFrom, i);
           console.log("////////////////////////////"+tmp+"\n//////////////////////////////");
           arrayOfStrings.push(tmp);
-          cutFrom = i;
+          cutFrom = i+1;
           i=i+399;
         }
       }
@@ -1004,7 +1004,6 @@ function receivedMessage(event) {
       arrayOfStrings.push(string);
     }
     console.log("Results processed");
-    console.log("arrayOfStrings: "+arrayOfStrings);
     return string;
   }
 
