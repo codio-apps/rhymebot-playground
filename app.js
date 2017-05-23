@@ -1206,7 +1206,7 @@ function receivedMessage(event) {
   function recursivelySendMessage(recipientId, messageArray, alpha) {
     console.log("made it into recursivelySendMessage");
     if (alpha<messageArray.length){
-        console.log("sending msg "+i+" of "+messageArray.length);
+        console.log("sending msg "+alpha+" of "+messageArray.length);
         var messageData = {
           recipient: {
             id: recipientId
@@ -1217,7 +1217,7 @@ function receivedMessage(event) {
         };
         callSendAPI(messageData);
         recursivelySendMessage(recipientId, messageArray, alpha+1);
-        console.log("Message sent: "+messageArray[i]);
+        console.log("Message sent: "+messageArray[alpha]);
     }
   }
 
