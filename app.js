@@ -612,12 +612,28 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in a 2d array of words and their syllable count and return a differencly ordered array that sorts the words by syllables
+  //function to take in a 2d array of words with their syllable count in a 2d array and return a differencly ordered 2d array, grouping words by syllables
   function sort2dArray(twoDarray){
     //init an empty 2d array for this
     var sortedArray = (function(sortedArray){ while(sortedArray.push([]) < 2); return sortedArray})([]);
     var currentSyllable = twoDarray[1][0];
+    var currentIndex = 0;
     console.log("Sorting 2d array differently. Current syllable set to "+currentSyllable);
+    sortedArray[0][0]=currentSyllable;
+    //for every item in the 0th array
+    for (var i = 0; i< twoDarray[0].length, i++){
+        //if the syllable in the next position of the array is the same
+        if (currentSyllable == twoDarray[1][i]){
+            //push the word
+            sortedArray[currentIndex].push(twoDarray[0][i]);
+        } else {
+          //increase the index and push the word
+          currentSyllable = twoDarray[1][i];
+          currentIndex++;
+          sortedArray[currentIndex].push(twoDarray[0][i])
+        }
+    }
+    console.log("resort complete: "+sortedArray);
   }
 
   //function to take in an array of indexes and search each word with the complex algorithm, returning an array of presentable strings
