@@ -449,19 +449,16 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
-          var rhymeArray = new Array();
-          var outputString = "";
+          var messageString = "";
           for (var i = 0, len = searchArray.length; i < len; i++){
             indexArray[i] = findTheLine(searchArray[i]);
             //tester area for nextbit
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
-              rhymeArray = searchSentence(indexArray);
-              var tempstring = sort2dArray(rhymeArray);
-              outputString = outputString+"I found "+rhymeArray[i][0].length+" rhyme(s) for "+searchArray[i]+"\n"+tempstring+"\n";
+              messageString = searchSentence(indexArray)+"\n";
             }
           }
-          messageResponse = outputString;
+          messageResponse = messageString;
           break;
 
           //handle the question command
@@ -662,7 +659,7 @@ function receivedMessage(event) {
   function searchSentence(indexArray){
     var outputArray = new Array();
     var indexOutputArray = new Array();
-    var output
+    var output = "";
     // for each word in the sentence
     for (var i = 0; i < indexArray.length; i++){
       //if the index is valid
@@ -673,6 +670,7 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
+        output = sort2dArray(outputArray[i]);
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
@@ -681,7 +679,7 @@ function receivedMessage(event) {
     //now sort the sentence breakdown? for presentation?
     for (var i = 0; i < outputArray.length; i++){
     }
-    return outputArray;
+    return output;
   }
 
   //deeper search function that returns more complex rhymes as an array
