@@ -456,10 +456,13 @@ function receivedMessage(event) {
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
               messageString = searchSentence(indexArray)+"\n";
-              messageString = splitMessage(messageString);
+              var messageArray = splitMessage(messageString);
+            }
+            for (var j = 0; j < messageArray.length; j++){
+              sendTextMessage(senderID, messageArray[j]);
             }
           }
-          messageResponse = messageString;
+          messageResponse = "";
           break;
 
           //handle the question command
@@ -988,23 +991,20 @@ function receivedMessage(event) {
       //go through the string
       for (; i < string.length; i++){
         if (string.charAt(i)=="\n"){
-          console.log("(backslash n) found at pos "+i+", splitting");
           var cutTo = string.length-i;
           var tmp = string.slice(cutFrom, i);
-          console.log("////////////////////////////"+tmp+"\n//////////////////////////////");
           arrayOfStrings.push(tmp);
           cutFrom = i+1;
           i=i+399;
         }
       }
       var tmp = string.slice(cutFrom, string.length);
-      console.log("////////////////////////////"+tmp+"\n//////////////////////////////");
       arrayOfStrings.push(tmp);
     } else {
       arrayOfStrings.push(string);
     }
     console.log("Results processed");
-    return string;
+    return arrayOfStrings;
   }
 
   /*
