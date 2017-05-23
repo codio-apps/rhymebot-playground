@@ -627,6 +627,7 @@ function receivedMessage(event) {
             //push the word
             sortedArray[currentIndex].push(twoDarray[0][i]);
         } else {
+          console.log("sorted array so far:"+sortedArray);
           //increase the index and push the word
           currentSyllable = twoDarray[1][i];
           currentIndex++;
