@@ -694,10 +694,9 @@ function receivedMessage(event) {
     for (var i=0; i<COMPLEXOUTPUT.length; i++){
       var thisWord = getWord(COMPLEXOUTPUT[i]);
       if (thisWord != theWord){
-        if (FINALOUTPUT.includes(thisWord)){
-          console.log("dupe founs, skipping");
-        } else {
-          FINALOUTPUT.push(thisWord.toLowerCase());
+        thisWord = thisWord.toLowerCase();
+        if (!FINALOUTPUT.includes(thisWord)){
+          FINALOUTPUT.push(thisWord);
         }
       }
     }
