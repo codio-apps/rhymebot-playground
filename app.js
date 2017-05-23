@@ -38,14 +38,9 @@ var ALPHABET_ARRAY = new Array();
 var RHYMEOUTPUT = new Array();
 var inputArray = new Array();
 
-
 //file buffer
 var fileBuffer = "";
 var filesBuffered = false;
-
-//integers for array counting in sentences
-var wordNumber = 0;
-var syllableLength = 0;
 
 //counters for finders
 var matchesFound = 0;
@@ -58,7 +53,6 @@ var last_name = "";
 var nameFound = false;
 
 //blank strings
-var rhymeString = "";
 var searchWord = "";
 var lc_messageText = "";
 
@@ -364,10 +358,6 @@ function receivedMessage(event) {
           intent = "rhyme_typo";
           instant_reply = true;
         }
-        // If the message starts with Single, change the key to "single"
-        else if(lc_messageText.startsWith("single")) {
-          intent = "single";
-        }
         // If the message starts with Rhyme, change the key to rhyme
         else if(lc_messageText.startsWith("rhyme")) {
           intent = "rhyme";
@@ -419,7 +409,6 @@ function receivedMessage(event) {
           case 'help':
           messageResponse = "Here is some help information: \n" +
           "Type: rhyme - get a.\n"+
-          "Type single - get b.\n"+
           "Type syllable - get c\n"+
           "Type count - get d\n"+
           "Type random - get e\n";
@@ -439,14 +428,6 @@ function receivedMessage(event) {
           messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentence with rhyme";
           break;
 
-          // Handle the SINGLE command
-          // ************************************
-          case 'single':
-          //test environment for single word perfect rhymes
-          searchWord = lc_messageText.slice(7).toUpperCase();
-          console.log("Calling find rhyme, word is: " + searchWord);
-          findRhyme(senderID, searchWord);
-          break;
           // Handle the RHYME command
           // ************************************
           case 'rhyme':
@@ -636,6 +617,7 @@ function receivedMessage(event) {
   //function to take in an array of indexes and search every word with the complex algorithm
   function searchSentence(indexArray){
     var outputArray = new Array();
+    var output
     // for each word in the sentence
     for (var i = 0; i < indexArray.length; i++){
       //call the complex search function on this index
@@ -815,73 +797,13 @@ function receivedMessage(event) {
 
   function randomRhymes(dictionaryIndex, elements){
     inputArray.length=0;
-    var arrayBuffer = getRhymes(dictionaryIndex);
+    var arrayBuffer = complexSearch(dictionaryIndex);
     if (arrayBuffer.length!==0){
       var randString = randomlyReturn(arrayBuffer, elements);
       return randString;
     } else {
       messageResponse = "I don't know any words that rhyme sorry";
       return "UNKNOWN";
-    }
-  }
-
-  //
-  function getRhymes(dictionaryIndex){
-    RHYMEOUTPUT.length=0;
-    console.log("calling getRhymes on input: "+dictionaryIndex);
-    pronunciationsFound = 0;
-    var keepLooking = true;
-    var theWord = getWord(dictionaryIndex);
-    console.log("word is "+theWord);
-    if (dictionaryIndex != -1){
-      pronunciationsFound = 1;
-      //check for multiple pronunciations in dictionary file
-      //as long as the next item isn't undefined, examine it
-      if (typeof CURRENTDICTIONARY[dictionaryIndex] !== "undefined") {
-        for (var j=1; keepLooking==true; j++) {
-          //if this appears to be an alternative pronunciation, log it
-          if (CURRENTDICTIONARY[dictionaryIndex+j].startsWith(theWord+"(")) {
-            pronunciationsFound++;
-          } else {
-            //if it's the end of the pronunciations, stop and send phonemes for processing
-            console.log("Word found in dictionary. There are "+pronunciationsFound+" pronunciations");
-            keepLooking = false;
-            var syllablesReq = countSyllables(dictionaryIndex);
-            console.log(theWord+" has "+syllablesReq+" relevant phonemes")
-            RHYMEOUTPUT = searchPhonemesByIndex(dictionaryIndex, syllablesReq);
-            return RHYMEOUTPUT;
-          }
-        }
-      } else {
-        console.log("undefined obj found :"+CURRENTDICTIONARY[dictionaryIndex]);
-      }
-    }
-  }
-
-
-  //FUNCTION TO SEARCH FOR ALL PERFECT RHYMES - doesn't work as intended yet
-  function findRhyme(senderID, searchWord) {
-    var dictionaryIndex = -1;
-    var syllablesReq = 0;
-    matchesFound = 0;
-    pronunciationsFound = 0;
-
-    console.log("starting to findTheLine within findRhyme: "+searchWord);
-    dictionaryIndex = findTheLine(searchWord);
-    if (dictionaryIndex != -1) {
-      RHYMEOUTPUT = getRhymes(dictionaryIndex);
-      for (var i=0; i<RHYMEOUTPUT.length; i++){
-        RHYMEOUTPUT[i]=getWord(RHYMEOUTPUT[i].toLowerCase());
-      }
-      console.log("pFound "+pronunciationsFound+". mFound "+matchesFound);
-      //if we didnt' find the word in the dictionary at all
-      if (matchesFound == 0) {
-        messageResponse = "I'm sorry, I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
-      } else {
-        //search the dictionary for matching phoneme endings
-        messageResponse = "I found "+matchesFound+" word(s) that rhyme with "+searchWord.toLowerCase()+", and "+pronunciationsFound+" way(s) of pronouncing it.\nResults are currently for the first pronunciation only";
-        splitMessage(senderID, RHYMEOUTPUT);
-      }
     }
   }
 
