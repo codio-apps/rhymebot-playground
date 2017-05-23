@@ -1214,11 +1214,11 @@ function receivedMessage(event) {
         id: recipientId
       },
       message: {
-        text: messageArray[i],
+        text: messageArray,
         metadata: "RhymeBot Response Unit"
       }
     };
-    callSendAPI(messageArray);
+    callSendAPI(messageArray, 0);
     console.log("Message sent: "+messageArray[i]);
   }
 
