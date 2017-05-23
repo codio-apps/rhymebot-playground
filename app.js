@@ -713,7 +713,7 @@ function receivedMessage(event) {
       }
     }
     console.log(FINALOUTPUT);
-    console.log("syllableCountArray: "+syllableCountArray);
+    return FINALOUTPUT;
   }
 
   function StringSearch(input, key) {
