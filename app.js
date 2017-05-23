@@ -1206,25 +1206,22 @@ function receivedMessage(event) {
   * Send a text message using the Send API.
   //now I'm trying to make it do it recursively to avoid the message getting jumbled up
   */
-  function sendTextMessage(recipientId, messageText, a) {
+  function sendTextMessage(recipientId, messageText) {
     //now natively handles splitting a long string into array chunks of length 400+
     var messageArray = splitMessage(messageText);
-    if (a < messageArray.length){
-      for (var i = 0; i < messageArray.length; i++){
-        console.log("sending msg "+i+" of "+messageArray.length);
-        var messageData = {
-          recipient: {
-            id: recipientId
-          },
-          message: {
-            text: messageArray[a],
-            metadata: "RhymeBot Response Unit"
-          }
-        };
-        callSendAPI(messageData);
-        console.log("Message sent: "+messageArray[i]);
-        sendTextMessage(recipientId, messageText, a+1);
-      }
+    for (var i = 0; i < messageArray.length; i++){
+      console.log("sending msg "+i+" of "+messageArray.length);
+      var messageData = {
+        recipient: {
+          id: recipientId
+        },
+        message: {
+          text: messageArray[i],
+          metadata: "RhymeBot Response Unit"
+        }
+      };
+      callSendAPI(messageData);
+      console.log("Message sent: "+messageArray[i]);
     }
   }
 
