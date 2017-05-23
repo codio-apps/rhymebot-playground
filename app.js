@@ -641,7 +641,7 @@ function receivedMessage(event) {
           sortedArray[currentIndex].push(twoDarray[0][i]);
         }
     }
-    console.log("Re-sort complete:");
+    console.log("Re-sort and parse to string complete");
     var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     for (var i = 0; i < req; i++){
       tmp = tmp+"\nWords that match "+sortedArray[i][0]+" syllables:\n";
@@ -1211,7 +1211,7 @@ function receivedMessage(event) {
     //now natively handles splitting a long string into array chunks of length 400+
     var messageArray = splitMessage(messageText);
     console.log("in sendTextMessage, array is "+messageArray);
-    for (var i = 0; i < messageArray.length; i++){
+    for (var i = 0; i < messageArray.length-1; i++){
       console.log("sending msg "+i+" of "+messageArray.length);
       var messageData = {
         recipient: {
