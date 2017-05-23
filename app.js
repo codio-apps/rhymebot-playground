@@ -627,10 +627,10 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        console.log("outPutArray 000 "+outputArray[i][0][0]);//words
-          console.log("outPutArray 000 "+outputArray[i][0][1]);//words
-            console.log("outPutArray 000 "+outputArray[i][1][0]);//words
-              console.log("outPutArray 000 "+outputArray[i][1][1]);//words
+        console.log("outPutArray i00 "+outputArray[i][0][0]);//words
+        console.log("outPutArray i01 "+outputArray[i][0][1]);//1st rhyme
+        console.log("outPutArray i10 "+outputArray[i][1][0]);//syllables
+        console.log("outPutArray i11 "+outputArray[i][1][1]);//1st syllable
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
@@ -705,7 +705,7 @@ function receivedMessage(event) {
   //function to turn an array of indexes into a more presentable 3d array of words
   //includes duplicate handling and counts syllables as well, putting them into the second array
   function indexesToWords(indexArray, dictionaryIndex){
-    var FINALOUTPUT = [["Words"], ["syllables"]];
+    var FINALOUTPUT = new Array();
     //for every item in the words-that-rhyme array
     //turn them back into words in a new array
     for (var i=0; i<indexArray.length; i++){
