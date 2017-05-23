@@ -455,6 +455,7 @@ function receivedMessage(event) {
             //tester area for nextbit
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
+              messageString = splitMessage(messageString);
               messageString = searchSentence(indexArray)+"\n";
             }
           }
@@ -643,14 +644,14 @@ function receivedMessage(event) {
     console.log("Re-sort complete:");
     var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     for (var i = 0; i < req; i++){
-      tmp = tmp+"Words that match "+sortedArray[i][0]+" syllables:\n";
+      tmp = tmp+"\nWords that match "+sortedArray[i][0]+" syllables:\n";
       for (var j=1; j < sortedArray[i].length; j++){
         tmp = tmp+sortedArray[i][j]+", ";
       }
       tmp = tmp.slice(0, tmp.length-2);
       tmp = tmp+"\n";
     }
-    tmp = tmp.slice(0, tmp.length-2);
+    tmp = tmp.slice(0, tmp.length-1);
     console.log(tmp);
     return tmp;
   }
@@ -980,45 +981,16 @@ function receivedMessage(event) {
     return output;
   }
 
-  //function to split an array of words into 75-word chunks and send them
-  //the 75 word limit is hardcoded for now
-  function splitMessage(senderID, stringArray){
-    var messageSplit = new Array();
-    messageSplit.length=0;
-    var messageChunk = 0;
-    var splitCount = 0;
-    if (stringArray.length > 75){
-      var chunkTotal = stringArray.length/75;
-      chunkTotal = Math.round(chunkTotal);
-    } else {
-      chunkTotal = 0;
-    }
-    console.log("splitMessage, stringArray received is "+stringArray);
-    console.log("splitting msg, required chunks: "+chunkTotal);
-    messageSplit[messageChunk]=stringArray[0];
-    //for how ever many there were words found
-    for (var sequence = 1; sequence < stringArray.length; sequence ++){
-      //add the next word to a string in the array
-      //if we have less than 50 in this message section
-      if (splitCount < 75){
-        //assign this rhyme to the string
-        messageSplit[messageChunk] = messageSplit[messageChunk]+", "+stringArray[sequence];
-        //increase the split number
-        splitCount++;
-      } else {
-        //otherwise, split the message into the next chunk
-        splitCount=0;
-        messageChunk++;
-        messageSplit[messageChunk]="message "+messageChunk+"\n"+stringArray[sequence];
+  //function to split a string into 600(ish) word chunks
+  function splitMessage(string){
+    //go through the string
+    for (var i = 0; i < string.length; i++){
+      if (string.charAt(i)=="\n"){
+        console.log("(backslash n) found");
       }
     }
-    console.log("Delivering results");
-    chunkTotal++;
-    for (var i = 0; i < chunkTotal; i++){
-      console.log("delivering chunk "+i+" contents: "+messageSplit[i]);
-      sendTextMessage(senderID, messageSplit[i]);
-    }
     console.log("Results delivered");
+    return string;
   }
 
   /*
