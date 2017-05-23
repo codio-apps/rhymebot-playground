@@ -483,7 +483,7 @@ function receivedMessage(event) {
               if (randomArray.length==0){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
-                randomArray = indexesToWords(randomArray);
+                randomArray = indexesToWords(randomArray, dictionaryIndex);
                 randomArray = makeArrayReadable(randomArray);
                 sendTextMessage(senderID, randomArray);
               }
@@ -495,7 +495,7 @@ function receivedMessage(event) {
             var dictionaryIndex = findTheLine(searchArray[0]);
             if (dictionaryIndex != -1){
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
-              randomArray = indexesToWords(randomArray);
+              randomArray = indexesToWords(randomArray, dictionaryIndex);
               randomArray = makeArrayReadable(randomArray);
               sendTextMessage(senderID, randomArray);
             } else {
@@ -943,7 +943,8 @@ function receivedMessage(event) {
     }
   }
 
-  //function to search for a phonemeString matches
+  //function to search for phonemeString matches
+  //returns an array of indexes
   function searchPhonemes(phonemeString, syllableLength){
     var arrayBin = new Array();
     RHYMEOUTPUT.length = 0;
