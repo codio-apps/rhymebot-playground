@@ -984,7 +984,7 @@ function receivedMessage(event) {
     if (string.length>600){
       var cutFrom = 0;
       var i = 400;
-      var limit = 0;
+      var limit = i;
       //go through the string looking for a space
       for (; i < string.length; i++){
         limit++;
