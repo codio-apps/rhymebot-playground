@@ -622,7 +622,7 @@ function receivedMessage(event) {
     sortedArray[0][0]=currentSyllable;
     //for every item in the 0th array
     for (var i = 0; i< twoDarray[0].length; i++){
-        //if the syllable in the next position of the array is the same
+        //if the syllable value in the next position of the array is the same
         if (currentSyllable == twoDarray[1][i]){
             //push the word
             sortedArray[currentIndex].push(twoDarray[0][i]);
@@ -630,7 +630,7 @@ function receivedMessage(event) {
           //increase the index and push the word
           currentSyllable = twoDarray[1][i];
           currentIndex++;
-          sortedArray[currentIndex][0]=currentSyllable
+          sortedArray[currentIndex][0]=currentSyllable;
           console.log("Current syllable set to "+currentSyllable);
           sortedArray[currentIndex].push(twoDarray[0][i])
         }
