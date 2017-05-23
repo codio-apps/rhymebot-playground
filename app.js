@@ -612,6 +612,12 @@ function receivedMessage(event) {
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending
   function makeArrayReadable(twoDarray, theWord){
+    var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
+    if (twoDarray[0].length>100){
+      tmp = tmp +"***TODO***Here are my top 100\n"
+      twoDarray[0].length=100;
+      twoDarray[1].length=100;
+    }
     //first, figure out how many arrays (individual syllables) we need
     var currentSyllable = twoDarray[1][0];
     var req = 1;
@@ -641,11 +647,6 @@ function receivedMessage(event) {
         }
     }
     console.log("Re-sort and parse to string complete");
-    var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
-    if (twoDarray[0].length>100){
-      tmp = tmp +"***TODO***Here are my top 100\n"
-      //sortedArray[].length=100;
-    }
       for (var i = 0; i < req; i++){
         tmp = tmp +"\nWords that match "+sortedArray[i][0]+" syllables:\n";
         for (var j=1; j < sortedArray[i].length; j++){
