@@ -644,12 +644,13 @@ function receivedMessage(event) {
         }
     }
     console.log("Re-sort complete:");
+    var tmp = "";
     for (var i = 0; i < req; i++){
-      console.log("Matches found of length "+sortedArray[0][0]);
-      var tmp = "";
+      tmp = tmp+"Words that match "+sortedArray[i][0]+" syllables:\n";
       for (var j=1; j < sortedArray[i].length; j++){
         tmp = tmp+", "+sortedArray[i][j];
       }
+      tmp = tmp +"\n";
       console.log(tmp);
     }
   }
