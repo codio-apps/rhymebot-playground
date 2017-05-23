@@ -725,9 +725,7 @@ function receivedMessage(event) {
       } else {
         //starting at the maximum syllable value and working back to the current syllable
         // we only need this many:
-        var limit = vowelCount-j;
-        ;
-        for (var k = maxSyllables; k>=limit; k--){
+        for (var k = maxSyllables; k>=j; k--){
           //append all the words that rhyme but have more syllables than the current phonemeString
           var tempArray = searchPhonemes(wordEndings[j-1], k);
           if (tempArray.length!=0){
