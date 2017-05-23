@@ -703,7 +703,7 @@ function receivedMessage(event) {
   //function to turn an array of indexes into a more presentable 3d array of words
   //includes duplicate handling and counts syllables as well, putting them into the second element
   function indexesToWords(indexArray, dictionaryIndex){
-    var FINALOUTPUT = [["Words", "syllables"]];
+    var FINALOUTPUT = [["Words"], ["syllables"]];
     //for every item in the words-that-rhyme array
     //turn them back into words in a new array
     for (var i=0; i<indexArray.length; i++){
