@@ -1210,8 +1210,7 @@ function receivedMessage(event) {
   function sendTextMessage(recipientId, messageText) {
     //now natively handles splitting a long string into array chunks of length 400+
     var messageArray = splitMessage(messageText);
-    console.log("in sendTextMessage, array is "+messageArray);
-    for (var i = 0; i < messageArray.length-1; i++){
+    for (var i = 0; i <= messageArray.length-1; i++){
       console.log("sending msg "+i+" of "+messageArray.length);
       var messageData = {
         recipient: {
@@ -1223,6 +1222,7 @@ function receivedMessage(event) {
         }
       };
       callSendAPI(messageData);
+      console.log("Message sent: "+messageArray[i]);
     }
   }
 
