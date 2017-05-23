@@ -612,12 +612,16 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in a 2d array of words with their syllable count, and return a differencly ordered 2d array, grouping words by syllables instead :s
+  //function to take in a 2d array of words with their syllable count, and return a differencly ordered 2d array, grouping words by syllables instead
   function sort2dArray(twoDarray){
     //init an empty 2d array for this
     var sortedArray = (function(sortedArray){ while(sortedArray.push([]) < 2); return sortedArray})([]);
     var currentSyllable = twoDarray[1][0];
     var currentIndex = 0;
+    ///
+    console.log("***LOG1 ":twoDarray[0][14]);
+    console.log("***LOG2 ":twoDarray[1][14]);
+    ///
     console.log("Sorting 2d array differently. Current syllable set to "+currentSyllable);
     sortedArray[0][0]=currentSyllable;
     //for every item in the 0th array
