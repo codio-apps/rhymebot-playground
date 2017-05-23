@@ -592,8 +592,6 @@ function receivedMessage(event) {
     catch(err) {
       console.log("Unable to parse dictionary and alphabet index: " + err);
     }
-
-
     if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""){
       console.log("All files buffered succesfully");
       filesBuffered=true;
@@ -629,6 +627,7 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
+        console.log("outPutArray 000"+outPutArray[i][0][0]);
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
@@ -701,7 +700,7 @@ function receivedMessage(event) {
   }
 
   //function to turn an array of indexes into a more presentable 3d array of words
-  //includes duplicate handling and counts syllables as well, putting them into the second element
+  //includes duplicate handling and counts syllables as well, putting them into the second array
   function indexesToWords(indexArray, dictionaryIndex){
     var FINALOUTPUT = [["Words"], ["syllables"]];
     //for every item in the words-that-rhyme array
@@ -718,7 +717,7 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("all indexes turned into words")
+    console.log("all indexes sorted, had their syllables counted and turned back into words")
     console.log("[0]"+FINALOUTPUT[0]);
     console.log("[1]"+FINALOUTPUT[1]);
     return FINALOUTPUT;
