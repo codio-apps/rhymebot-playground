@@ -628,14 +628,6 @@ function receivedMessage(event) {
         indexOutputArray[i] = complexSearch(indexArray[i]);
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        var curSyl = countSyllables(indexOutputArray[i][0]);
-        console.log("curSyl is"+curSyl);
-        for (var j = 0; j < indexOutputArray[i].length; j++){
-          if (curSyl > countSyllables(indexOutputArray[i][j])){
-            curSyl = countSyllables(indexOutputArray[i][j]);
-            console.log("next step down is "+curSyl);
-          }
-        }
       } else {
         outputArray[i]="UNKNOWN";
       }
