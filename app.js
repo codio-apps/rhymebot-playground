@@ -457,7 +457,7 @@ function receivedMessage(event) {
             if (dictionaryIndex != -1) {
               console.log("SearchArray: "+indexArray);
               rhymeArray = searchSentence(indexArray);
-              outputString = outputString+"I found "+rhymeArray[i].length+" rhyme(s) for "+searchArray[i]+"\n"+rhymeArray[i];
+              outputString = outputString+"I found "+rhymeArray[i].length+" rhyme(s) for "+searchArray[i]+"\n"+rhymeArray[i]+"\n";
             } else {
               messageResponse = "unknown word error";
             }
@@ -694,7 +694,9 @@ function receivedMessage(event) {
     for (var i=0; i<COMPLEXOUTPUT.length; i++){
       var thisWord = getWord(COMPLEXOUTPUT[i]);
       if (thisWord != theWord){
-        if (!FINALOUTPUT.includes(thisWord)){
+        if (FINALOUTPUT.includes(thisWord)){
+          console.log("dupe founs, skipping");
+        } else {
           FINALOUTPUT.push(thisWord.toLowerCase());
         }
       }
