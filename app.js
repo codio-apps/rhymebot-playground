@@ -984,7 +984,7 @@ function receivedMessage(event) {
     if (string.length>600){
       var cutFrom = 0;
       var i = 400;
-      var limit=0;
+      var limit = 0;
       //go through the string looking for a space
       for (; i < string.length; i++){
         limit++;
@@ -996,11 +996,11 @@ function receivedMessage(event) {
           i=i+399;
         } else if (limit>500){
           //if we don't seem to be finding a space....
-          console.log("painfully close to the limit, artificially splitting");
+          console.log("painfully close to the limit, artificially splitting at"+i);
           //go searching for the next comma
           for (var j = i, done = false; !done; j++){
             if (string.charAt(j)==","){
-              console.log("found a comma, splitting here instead");
+              console.log("found a comma, splitting at "+j+" instead");
               var cutTo = string.length-j;
               var tmp = string.slice(cutFrom, j);
               arrayOfStrings.push(tmp);
