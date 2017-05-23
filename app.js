@@ -990,6 +990,7 @@ function receivedMessage(event) {
         if (string.charAt(i)=="\n"){
           console.log("(backslash n) found at pos "+i+", splitting");
           var tmp = string.slice(cutFrom, i);
+          arrayOfStrings.push(tmp);
           cutFrom = i;
           i=i+399;
         }
@@ -998,7 +999,7 @@ function receivedMessage(event) {
       arrayOfStrings.push(string);
     }
     console.log("Results processed");
-    console.log("arrayOfStrings"+arrayOfStrings);
+    console.log("arrayOfStrings: "+arrayOfStrings);
     return string;
   }
 
