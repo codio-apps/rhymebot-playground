@@ -610,8 +610,8 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in a 2d array of words with their syllable count, and return a differencly ordered 2d array, grouping words by syllables instead
-  function sort2dArray(twoDarray){
+  //function to take in a 2d array of words with their syllable count, and return a nice ly structured string with details
+  function stringSort2dArray(twoDarray, theWord){
     //first, figure out how many arrays (individual syllables) we need
     var currentSyllable = twoDarray[1][0];
     var req = 1;
@@ -641,7 +641,7 @@ function receivedMessage(event) {
         }
     }
     console.log("Re-sort complete:");
-    var tmp = "";
+    var tmp = "I found "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     for (var i = 0; i < req; i++){
       tmp = tmp+"Words that match "+sortedArray[i][0]+" syllables:\n";
       for (var j=1; j < sortedArray[i].length; j++){
@@ -670,7 +670,7 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        output = sort2dArray(outputArray[i]);
+        output = stringSort2dArray(outputArray[i], getWord(indexArray[i]).toLowerCase());
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
