@@ -989,9 +989,9 @@ function receivedMessage(event) {
       for (; i < string.length; i++){
         if (string.charAt(i)=="\n"){
           console.log("(backslash n) found at pos "+i+", splitting");
-          console.log("////////////////////////////"+tmp);
           var cutTo = string.length-i;
           var tmp = string.slice(cutFrom, i);
+          console.log("////////////////////////////"+tmp);
           arrayOfStrings.push(tmp);
           cutFrom = i;
           i=i+399;
