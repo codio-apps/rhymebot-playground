@@ -651,8 +651,6 @@ function receivedMessage(event) {
       tmp = tmp.slice(0, tmp.length-2);
       tmp = tmp+"\n";
     }
-    tmp = tmp.slice(0, tmp.length-1);
-    console.log(tmp);
     return tmp;
   }
 
@@ -983,13 +981,24 @@ function receivedMessage(event) {
 
   //function to split a string into 600(ish) word chunks
   function splitMessage(string){
-    //go through the string
-    for (var i = 0; i < string.length; i++){
-      if (string.charAt(i)=="\n"){
-        console.log("(backslash n) found");
+    var arrayOfStrings = new Array();
+    if (string.length>600){
+      var cutFrom = 0;
+      var i = 400;
+      //go through the string
+      for (i < string.length; i++){
+        if (string.charAt(i)=="\n"){
+          console.log("(backslash n) found at pos "+i+", splitting");
+          var tmp = string.slice(cutFrom, i);
+          cutFrom = i;
+          i=i+399;
+        }
       }
+    } else {
+      arrayOfStrings.push(string);
     }
-    console.log("Results delivered");
+    console.log("Results processed");
+    console.log("arrayOfStrings"+arrayOfStrings);
     return string;
   }
 
