@@ -456,10 +456,9 @@ function receivedMessage(event) {
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
               messageString = searchSentence(indexArray)+"\n";
-              var messageArray = splitMessage(messageString);
             }
             for (var j = 0; j < messageArray.length; j++){
-              sendTextMessage(senderID, messageArray[j]);
+              sendTextMessage(senderID, messageString);
             }
           }
           messageResponse = "";
@@ -1211,28 +1210,22 @@ function receivedMessage(event) {
   *
   */
   function sendTextMessage(recipientId, messageText) {
-
-
-            request({
-                url: 'https://graph.facebook.com/v2.6/me/messages',
-                qs: {access_token:token},
-                method: 'POST',
-                json: {
-                    recipient: {id:recipientId},
-                    message: {text:messageText},
-                }
-            }, function(error, response, body) {
-                if (error) {
-                    console.log('Error sending messages: ', error)
-                } else if (response.body.error) {
-                    console.log('Error: ', response.body.error)
-                }
-                //sendTextMessages(recipientId, messageText)
-            })
-
+    var messageArray = splitMessage(messageText);
+    for (var i = 0; i < messageArray.length; i++){
+      console.log("sending msg "+i+" of "+messageArray.length);
+      var messageData = {
+        recipient: {
+          id: recipientId
+        },
+        message: {
+          text: messageArray[i],
+          metadata: "RhymeBot Response Unit"
+        }
+      };
+      callSendAPI(messageData);
+      name = "";
     }
-
-
+  }
 
 
   /*
