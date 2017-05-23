@@ -458,7 +458,7 @@ function receivedMessage(event) {
               console.log("SearchArray: "+indexArray);
               rhymeArray = searchSentence(indexArray);
               outputString = outputString+"I found "+rhymeArray[i].length+" rhyme(s) for "+searchArray[i]+"\n"+rhymeArray[i]+"\n";
-            } 
+            }
           }
           messageResponse = outputString;
           break;
@@ -645,6 +645,7 @@ function receivedMessage(event) {
     var char = "";
     var COMPLEXOUTPUT = new Array();
     var FINALOUTPUT = new Array();
+    var syllableCountArray = new Array();
     var theWord = getWord(dictionaryIndex);
     // first get the phonemes into an array
     syllableArray = getPhonemes(dictionaryIndex, false);
@@ -677,6 +678,7 @@ function receivedMessage(event) {
         var tempArray = searchPhonemes(wordEndings[j-1], 1);
         if (tempArray.length!=0){
           COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
+          syllableCountArray.push(1);
         }
       } else {
         //starting at the maximum syllable value and working back to the current syllable
@@ -687,6 +689,7 @@ function receivedMessage(event) {
           var tempArray = searchPhonemes(wordEndings[j-1], k);
           if (tempArray.length!=0){
             COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
+            syllableCountArray.push(k);
           }
         }
       }
@@ -704,6 +707,7 @@ function receivedMessage(event) {
       }
     }
     console.log(FINALOUTPUT);
+    console.log("syllableCountArray: "+syllableCountArray);
     return FINALOUTPUT;
   }
 
