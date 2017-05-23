@@ -627,18 +627,17 @@ function receivedMessage(event) {
         console.log("word number "+i);
         indexOutputArray[i] = complexSearch(indexArray[i]);
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
-      } else {
-        outputArray[i]="UNKNOWN";
-      }
-      //word processing complete
-      console.log("Word processing completed OK");
-      var curSyl = countSyllables(indexOutputArray[i][0]);
-      console.log("curSyl is"+curSyl);
-      for (var j = 0; j < outputArray[i].length; j++){
+        console.log("Word searching completed OK");
+        var curSyl = countSyllables(indexOutputArray[i][0]);
+        console.log("curSyl is"+curSyl);
+        for (var j = 0; j < indexOutputArray[i].length; j++){
           if (curSyl > countSyllables(indexOutputArray[i][j])){
             curSyl = countSyllables(indexOutputArray[i][j]);
             console.log("next step down is "+curSyl);
           }
+        }
+      } else {
+        outputArray[i]="UNKNOWN";
       }
     }
     console.log("Sentence processing completed OK");
@@ -704,14 +703,14 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log(theWord+" processing complete");
+    console.log(theWord+" complex search complete");
     return COMPLEXOUTPUT;
   }
 
   //function to turn an array of indexes into a more presentable array of words
   //includes duplicate handling
   function indexesToWords(indexArray, dictionaryIndex){
-    var FINALOUTPUT = new Array();
+    var FINALOUTPUT = new Array;
     //for every item in the words-that-rhyme array
     //turn them back into words in a new array
     for (var i=0; i<indexArray.length; i++){
@@ -721,11 +720,14 @@ function receivedMessage(event) {
         thisWord = thisWord.toLowerCase();
         //as long as this isn't already in our list, save it and it's syllables to arrays
         if (!FINALOUTPUT.includes(thisWord)){
-          FINALOUTPUT.push(thisWord);
+          FINALOUTPUT[0].push(thisWord);
+          FINALOUTPUT[1].push(countSyllables(dictionaryIndex));
         }
       }
     }
-    console.log(FINALOUTPUT);
+    console.log("all indexes turned into words")
+    console.log("[0]"+FINALOUTPUT[0]);
+    console.log("[1]"+FINALOUTPUT[1]);
     return FINALOUTPUT;
   }
 
