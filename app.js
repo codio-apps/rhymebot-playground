@@ -1204,7 +1204,7 @@ function receivedMessage(event) {
 
   //function to attempt to call itself recursively to send messages in the right order?
   function recursivelySendMessage(recipientId, messageArray, alpha) {
-    console.log("made it into recursivelySendMessage");
+    console.log("made it into recursivelySendMessage, messageArray.length="+messageArray.length);
     if (alpha<messageArray.length){
         console.log("sending msg "+alpha+" of "+messageArray.length);
         var messageData = {
