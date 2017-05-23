@@ -623,16 +623,10 @@ function receivedMessage(event) {
           currentSyllable=twoDarray[1][i];
         }
     }
-    console.log("first bit complete, arrays req: "+req);
     //init an empty set of arrays for the sorting process
     var sortedArray = (function(sortedArray){ while(sortedArray.push([]) < req); return sortedArray})([]);
     currentSyllable = twoDarray[1][0];
     var currentIndex = 0;
-    ///
-    console.log("***LOG1 "+twoDarray[0][14]);
-    console.log("***LOG2 "+twoDarray[1][14]);
-    ///
-    console.log("Sorting 2d array differently. Current syllable set to "+currentSyllable);
     sortedArray[0][0]=currentSyllable;
     //for every item in the 0th array
     for (var i = 0; i< twoDarray[0].length; i++){
@@ -640,20 +634,24 @@ function receivedMessage(event) {
         if (currentSyllable == twoDarray[1][i]){
             //push the word
             sortedArray[currentIndex].push(twoDarray[0][i]);
-            console.log("added "+twoDarray[0][i]+" from pos "+i+" of "+twoDarray[0].length+" to sortedArray["+currentIndex+"]");
         } else {
-          console.log("succesfully processed: "+sortedArray[currentIndex]);
           //increase the index and push the syllable count and the word
           currentIndex++;
           currentSyllable = twoDarray[1][i];
-          console.log("content of twoDarray[1][i] = "+twoDarray[1][i]);
           sortedArray[currentIndex].push(twoDarray[1][i]);
-          console.log("Current syllable set to "+currentSyllable+", index is now "+currentIndex);
           sortedArray[currentIndex].push(twoDarray[0][i])
-          console.log("added "+twoDarray[0][i]+" from pos "+i+" of "+twoDarray[0].length+" to sortedArray["+currentIndex+"]");
+
         }
     }
-    console.log("Re-sort complete: "+sortedArray);
+    console.log("Re-sort complete:");
+    for (var i = 0; i < req; i++){
+      console.log("Matches found of length "+sortedArray[0][0]);
+      var tmp = "";
+      for (var j=1; j < sortedArray[i].length; j++){
+        tmp = tmp+", "+sortedArray[i][j];
+      }
+      console.log(tmp);
+    }
   }
 
   //function to take in an array of indexes and search each word with the complex algorithm, returning an array of presentable strings
