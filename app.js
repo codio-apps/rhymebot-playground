@@ -653,7 +653,8 @@ function receivedMessage(event) {
         //for every phoneme in the word we are looking at
         for (var k = 0; k < tmpArray.length; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
-          for (var l = 0; l < splitSoundalikes.length && !stopCon; l++){
+          for (var l = 0; l < splitSoundalikes.length; l++){
+            stopCon = false;
             var tmpPhoArray = splitSoundalikes[l].split(" ") ;
             console.log("tmpPhoArray is: "+tmpPhoArray);
             //for every phoneme in the tmpPhoArray
@@ -662,7 +663,7 @@ function receivedMessage(event) {
                 console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
               } else {
                 stopCon = true;
-                console.log("stopCon triggered!");
+                console.log("stopCon is now true because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
               }
             }
             //if the phonemes are a match
