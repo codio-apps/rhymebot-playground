@@ -27,14 +27,16 @@ var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var vowels = new Array('A', 'E', 'I', 'O', 'U');
 var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-//array initialisation
+//files array initialisation
 var CURRENTDICTIONARY = "";
 var RHYME_TYPOS = "";
 var GREETINGS = "";
+var SOUNDALIKES = "");
+
+//global arrays - THIS NEEDS THINNING DOWN, MOST COULD BE LOCAL PROBABLE
 var PHONEMES = new Array();
 var ALPHABET_ARRAY = new Array();
 var RHYMEOUTPUT = new Array();
-var SOUNDALIKES = new Array();
 var inputArray = new Array();
 
 //file buffer
@@ -611,7 +613,6 @@ function receivedMessage(event) {
     catch(err) {
       console.log("Unable to parse soundalike file: " + err);
     }
-    )
     if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""&&SOUNDALIKES!=""){
       console.log("All files buffered succesfully");
       filesBuffered=true;
