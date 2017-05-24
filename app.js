@@ -376,10 +376,11 @@ function receivedMessage(event) {
         }
         else if(lc_messageText.startsWith("sentence")) {
           intent = "sentence";
-        } else {
-          //Do nothing, key is set to messageText
         }
-
+        else if (lc_messageText.startsWith("close")){
+        } else {
+            //Do nothing, key is set to messageText
+        }
 
         // We convert the incoming message into a key, or we leave it as is and respond accordingly.
         // We use a key so we can take multiple messages (hi, hello hey) and convert them into the same
@@ -460,6 +461,15 @@ function receivedMessage(event) {
           messageResponse = messageString;
           break;
 
+          case 'close':
+          searchWord = lc_messageText.slice(6).toUpperCase();
+          var indexString = findTheLine(searchWord);
+          if (indexString != -1){
+            var messageString = "You asked for words that nearly rhyme with "+searchWord.toLowerCase();
+            closeRhymes(indexString);
+          } else {
+            messageResponse = "I don't know the word "+searchWord+" yet";
+          }
           //handle the question command
           case 'question':
           sendQuestion(senderID);
@@ -503,7 +513,7 @@ function receivedMessage(event) {
               randomArray = indexesToWords(randomArray, dictionaryIndex);
               randomArray = makeArrayReadable(randomArray, searchWord);
               var t = totalFound-1;
-              messageResponse = "I only know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
+              messageResponse = "I know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
@@ -540,21 +550,8 @@ function receivedMessage(event) {
 
   }
 
-  /* ************************************************************************************************************************************
-  */
-
   // Read text file data and store it into local variables for string comparisons
   function setUpLocalVariables() {
-
-
-    // Connect to the MongoDB server
-    //       var MongoClient = require('mongodb').MongoClient;
-    //
-    // var uri = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/codio-apps?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-    // MongoClient.connect(uri, function(err, db) {
-    //   db.close();
-    // });
-
     // Assign the greetings txt file values (hey, hello, hi) to the GREETINGS variable
     // Try to read from file
     try {
@@ -617,6 +614,12 @@ function receivedMessage(event) {
     }
     console.log("Highest syllable count in currentdictionary is: "+mostSyllables);
     return mostSyllables;
+  }
+
+  function closeRhymes(dictionaryIndex){
+    console.log("closeRhymes called on "+dictionaryIndex);
+    var phonemeString = getPhonemes(dictionaryIndex, false);
+    console.log("constructed phonemeString: "+phonemeString);
   }
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
@@ -915,7 +918,7 @@ function receivedMessage(event) {
     }
   }
 
-  //function to take in a word and spit out the rhyming phoneme data
+  //function to take in a word and spit out the rhyming phoneme data as a string
   function getPhonemes(dictionaryIndex, all){
     var theLine = CURRENTDICTIONARY[dictionaryIndex];
     var phonemeString ="";
