@@ -616,9 +616,12 @@ function receivedMessage(event) {
 
   //function to compare syllables
   function sortBySyllables(a, b) {
-    a = a[1];
-    b = b[1];
-    return a == b ? 0 : (a < b ? -1 : 1)
+    if (isArray(a)) {
+        a.sort(sortBySyllables);
+        b.sort(sortBySyllables);
+    } else {
+        return a == b ? 0 : (a < b ? -1 : 1);
+    }
   }
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
