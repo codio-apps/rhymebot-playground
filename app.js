@@ -624,6 +624,7 @@ function receivedMessage(event) {
     var phonemeArray = phonemeString.split(" ");
     var wordEnding = "";
     var vowelFound = false;
+    //first we need to trim off just the bit of the rhyme we need for comparisons
     //for however many phonemes there are in the returned string, working backwards from the end
     for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
       //set char to the first letter of the phoneme
@@ -645,7 +646,7 @@ function receivedMessage(event) {
 
     //find out where the last vowel is and search for everything after that
     console.log("phonemeArray is "+phonemeArray+" last one is "+wordEndings);
-    var unsortedResults = searchPhonemes(phonemeArray[wordEndings, countSyllables(dictionaryIndex));
+    var unsortedResults = searchPhonemes(phonemeArray[wordEnding, countSyllables(dictionaryIndex);
     console.log("unsortedResults is "+unsortedResults);
 
 
