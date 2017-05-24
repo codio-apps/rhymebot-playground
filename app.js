@@ -32,7 +32,7 @@ var CURRENTDICTIONARY = "";
 var RHYME_TYPOS = "";
 var GREETINGS = "";
 var SOUNDALIKES = "";
-var ALPHABET_ARRAY = "";
+var ALPHABET_ARRAY = new Array();
 var SIMPLEDICTIONARY = "";
 
 //global arrays - THIS NEEDS THINNING DOWN, MOST COULD BE LOCAL PROBABLE
@@ -867,7 +867,7 @@ function receivedMessage(event) {
     var dictionaryIndex = -1;
     for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
     }
-    if(letter == "A"){
+    if(leALPHAtter == "A"){
       var letterLeftIndex = 0;
     }
     else {
