@@ -864,17 +864,12 @@ function receivedMessage(event) {
       console.log("Finished processing array, randomly returning: "+randArray);
       messageResponse = "I know "+inputArray.length+" words that rhyme, you asked for "+elements;
     } else {
-      console.log("less than "+elements+" rhymes found, returning all rhymes in a random order");
+      console.log("less than "+elements+" rhymes found, returning all rhymes");
       if (inputArray.length==0){
         console.log("no rhymes found, abort");
       } else {
-        var rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
-        for (var i=0; i < inputArray.length; i++) {
-          //if the array already includes the newly randomised item, re-roll
-          for (var j=0; randArray.includes(rand); j++){
-            rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
-          }
-          randArray[i] = rand;
+        //basically, just return the original
+        return inputArray;
         }
       }
       messageResponse = "I only know "+inputArray.length+" words that rhyme, here they are:"
