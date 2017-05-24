@@ -616,24 +616,18 @@ function receivedMessage(event) {
 
   //function to compare syllables
   function sortBySyllables(a, b) {
-    console.log("in sortBySyllables, comparing "+a[0]+" to "+a[1]);
-    if (a[0] === a[1]) {
-      return 0;
-    }
-    else {
-      return (a[0] < a[1]) ? -1 : 1;
-    }
+      return a - b;
   }
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
     //if there are more than 100 results trim to 100, for simplicity's sake
     var tmp = "";
-    if (twoDarray[0].length>25){
-      tmp = tmp +"Here are my top 25\n"
-      twoDarray[0].length=25; //0 is words
-      twoDarray[1].length=25; //1 is syllables
-    }
+    // if (twoDarray[0].length>25){
+    //   tmp = tmp +"Here are my top 25\n"
+    //   twoDarray[0].length=25; //0 is words
+    //   twoDarray[1].length=25; //1 is syllables
+    // }
     //first, reorder everything in the 2d array by number of syllables
     console.log("twoDarraynow:"+twoDarray[0]+"///"+twoDarray[1]);
     twoDarray.sort(sortBySyllables);
