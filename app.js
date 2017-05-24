@@ -485,7 +485,8 @@ function receivedMessage(event) {
               } else {
                 randomArray = indexesToWords(randomArray, dictionaryIndex);
                 randomArray = makeArrayReadable(randomArray, searchWord);
-                messageResponse = "I know "+totalFound-1+" words that rhyme, you asked for 10, here they are:\n"+randomArray;
+                var t = totalFound-1;
+                messageResponse = "I know "+t+" words that rhyme, you asked for 10, here they are:\n"+randomArray;
               }
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -501,7 +502,8 @@ function receivedMessage(event) {
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
               randomArray = indexesToWords(randomArray, dictionaryIndex);
               randomArray = makeArrayReadable(randomArray, searchWord);
-              messageResponse = "I only know "+totalFound-1+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
+              var t = totalFound-1;
+              messageResponse = "I only know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
@@ -682,7 +684,7 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        output = "I know "+outputArray[i][0].length+" words that rhyme with "+getWord(indexArray[i])+", here they are:\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
+        output = "I know "+outputArray[i][0].length+" words that rhyme with "+getWord(indexArray[i])+"\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
