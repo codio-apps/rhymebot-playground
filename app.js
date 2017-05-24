@@ -1,3 +1,22 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+ @ohmegamega
+ Sign out
+ Watch 1
+  Star 0
+ Fork 0 codio-apps/rhymebot-playground
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Settings Insights
+Tree: 3dc01cb387 Find file Copy pathrhymebot-playground/app.js
+3dc01cb  36 minutes ago
+@ohmegamega ohmegamega chris sorting arrays
+1 contributor
+RawBlameHistory
+1654 lines (1500 sloc)  55.6 KB
 /* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
 
@@ -377,8 +396,8 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("sentence")) {
           intent = "sentence";
         }
-        else if (lc_messageText.startsWith("fuzzy")){
-          intent = "fuzzy";
+        else if (lc_messageText.startsWith("close")){
+          intent = "close";
         } else {
             //Do nothing, key is set to messageText
         }
@@ -462,12 +481,12 @@ function receivedMessage(event) {
           messageResponse = messageString;
           break;
 
-          case 'fuzzy':
+          case 'close':
           searchWord = lc_messageText.slice(6).toUpperCase();
           var indexString = findTheLine(searchWord);
           if (indexString != -1){
             var messageString = "You asked for words that nearly rhyme with "+searchWord.toLowerCase();
-            fuzzyRhymes(indexString);
+            closeRhymes(indexString);
           } else {
             messageResponse = "I don't know the word "+searchWord+" yet";
           }
@@ -618,8 +637,8 @@ function receivedMessage(event) {
   }
 
   //function to take in an index from our dictionary and return everything that nearly rhymes in an array
-  function fuzzyRhymes(dictionaryIndex){
-    console.log("fuzzyRhymes called on "+dictionaryIndex);
+  function closeRhymes(dictionaryIndex){
+    console.log("closeRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     var wordEnding = "";
@@ -990,7 +1009,7 @@ function receivedMessage(event) {
 
   //function to search for phonemeString matches
   //returns an array of indexes
-  //if syllableLength is zero, return all matches. If it's a number, limit to matches of that length
+  //if syllableLength is zero, return all matches
   function searchPhonemes(phonemeString, syllableLength){
     var arrayBin = new Array();
     RHYMEOUTPUT.length = 0;
@@ -1002,7 +1021,7 @@ function receivedMessage(event) {
         //store the word in a temp string array, then use the 0th element
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
-        //if input syllableLength is zero, return everything that rhymes
+        //handle zero on syllable length, return everything
         if (syllableLength == 0){
           var sylCount = 0;
         } else {
@@ -1014,6 +1033,8 @@ function receivedMessage(event) {
             //add the word to the list, but remove the brackets from the spelling info
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
+          }
+          //
           if (arrayBin[0]==getWord[iX-1]) {
             console("word already found, skipping");
           } else {
@@ -1649,3 +1670,5 @@ function receivedMessage(event) {
   });
 
   module.exports = app;
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
