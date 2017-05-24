@@ -635,6 +635,7 @@ function receivedMessage(event) {
     for (var k = 0; k < list.length; k++) {
     twoDarray[0][k] = list[k].word;
     twoDarray[1][k] = list[k].syllable;
+    }
 
     //twoDarray.sort(sortBySyllables);
     console.log("Syllable stuff re-sorted:"+twoDarray[0]+"///"+twoDarray[1]);
