@@ -1,4 +1,4 @@
-/* RhymeBot is a Codio Apps Production */
+fuzzyRhymes/* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
 
 /*rhymebot mk0.03 alpha */
@@ -467,7 +467,7 @@ function receivedMessage(event) {
           var indexString = findTheLine(searchWord);
           if (indexString != -1){
             messageResponse = "You asked for words that nearly rhyme with "+searchWord.toLowerCase();
-            closeRhymes(indexString);
+            fuzzyRhymes(indexString);
           } else {
             messageResponse = "I don't know the word "+searchWord+" yet";
           }
@@ -620,8 +620,8 @@ function receivedMessage(event) {
   }
 
   //function to take in an index from our dictionary and return everything that nearly rhymes in an array
-  function closeRhymes(dictionaryIndex){
-    console.log("closeRhymes called on "+dictionaryIndex);
+  function fuzzyRhymes(dictionaryIndex){
+    console.log("fuzzyRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     var wordEnding = "";
