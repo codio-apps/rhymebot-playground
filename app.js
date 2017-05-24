@@ -651,8 +651,11 @@ function receivedMessage(event) {
     for (var i = 0; i<unsortedResults.length; i++){
       var tempPHONEMES = getPhonemes(unsortedResults[i], false);
       console.log("comparing "+phonemeArray[1]+" to "+tempPHONEMES[1]);
+      if (phonemeArray[1]==tempPHONEMES[1]){
+        sortedResults.push(tempPHONEMES[1]);
+      }
     }
-
+    console.log("sortedResults: "+sortedResults);
   }
 
   //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
