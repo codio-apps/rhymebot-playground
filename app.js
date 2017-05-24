@@ -627,16 +627,16 @@ function receivedMessage(event) {
     }
     //first, reorder everything in the 2d array by number of syllables
     //this method seems somewhat convoluted :/
-    for (var j = 0, list = [];; j < twoDarray[0].length; j++) {
-      list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]});
-    }
-    list.sort(function(a, b) {
+    // for (var j = 0, list = []; j < twoDarray[0].length; j++) {
+    //   list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]});
+    // }
+    twoDarray.sort(function(a, b) {
       return ((a.syllable > b.syllable) ? -1 : ((a.syllable == b.syllable) ? 0 : 1));
     });
-    for (var k = 0; k < list.length; k++) {
-      twoDarray[0][k] = list[k].word;
-      twoDarray[1][k] = list[k].syllable;
-    }
+    // for (var k = 0; k < list.length; k++) {
+    //   twoDarray[0][k] = list[k].word;
+    //   twoDarray[1][k] = list[k].syllable;
+    // }
 
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
