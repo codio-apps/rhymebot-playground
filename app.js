@@ -484,7 +484,7 @@ function receivedMessage(event) {
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
                 randomArray = indexesToWords(randomArray, dictionaryIndex);
-                randomArray = makeArrayReadable(randomArray);
+                randomArray = makeArrayReadable(randomArray, searchWord);
                 sendTextMessage(senderID, randomArray);
               }
             } else {
@@ -499,7 +499,7 @@ function receivedMessage(event) {
               }
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
               randomArray = indexesToWords(randomArray, dictionaryIndex);
-              randomArray = makeArrayReadable(randomArray);
+              randomArray = makeArrayReadable(randomArray, searchWord);
               sendTextMessage(senderID, randomArray);
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -621,9 +621,9 @@ function receivedMessage(event) {
     //if there are more than 100 results trim to 100, for simplicity's sake
     var tmp = "I know "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     if (twoDarray[0].length>=25){
-      tmp = tmp +"My current limit is 25\n"
-      twoDarray[0].length=25; //0 is words
-      twoDarray[1].length=25; //1 is syllables
+      tmp = tmp +"The current limit I can show is 25\n"
+      twoDarray[0].length=25; //[0] is words
+      twoDarray[1].length=25; //[1] is syllables
     }
     //first, reorder everything in the 2d array by number of syllables
     //this method seems somewhat convoluted :/
