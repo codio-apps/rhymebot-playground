@@ -703,8 +703,8 @@ function receivedMessage(event) {
   //Using as a testing ground for stuff atm
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
-    var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
-    var phonemeArray = phonemeString.split(" ");
+    //var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
+    //var phonemeArray = phonemeString.split(" ");
     spawnSimpleDictionary();
 
     //var wordEnding = "";
