@@ -638,11 +638,16 @@ function receivedMessage(event) {
   //function to take in an index from dictionary and return everything that nearly rhymes in an array
   //DOESN'T DO MUCH TBH YET
   function fuzzyRhymes(dictionaryIndex){
-    console.log("fuzzyRhymes called on "+dictionaryIndex+". SOUNDALIKES:"+SOUNDALIKES);
+    console.log("fuzzyRhymes called on "+dictionaryIndex+"\nSOUNDALIKES:"+SOUNDALIKES);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     console.log("trying to save to simpledictionary.txt now");
-    fs.writeFileSync(simpledictionary.txt, 'Hello world!')
+    try {
+      fs.writeFileSync(simpledictionary.txt, 'Hello world!');
+    }
+    catch {
+      console.log('Error writing simpledictionary.txt' + err.message);
+    }
     console.log('Saved!');
 
     //var wordEnding = "";
