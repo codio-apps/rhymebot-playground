@@ -639,7 +639,7 @@ function receivedMessage(event) {
   function spawnSimpleDictionary(){
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
-    var i = 60288;
+    var i = 62325;
     var stopCon = false;
     var halt = false;
     //for every line in the dictionary
@@ -674,7 +674,7 @@ function receivedMessage(event) {
             }
             //if the phonemes are a match
             if (!stopCon){
-              console.log ("match found at "+getWord(i));
+              console.log ("match found at "+getWord(i)+" transforming...");
               console.log(tmpArray);
               for (var n = 0; n < tmpPhoArray.length; n++){
                 tmpPhoArray = splitSoundalikes[0].split(" ");
