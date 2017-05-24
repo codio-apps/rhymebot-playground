@@ -778,9 +778,9 @@ function receivedMessage(event) {
         //as long as this isn't already in our list, save it and it's syllables to arrays
         if (!FINALOUTPUT.includes(thisWord)){
           //turn them back into words in a new array
-          FINALOUTPUT[0].push({word:thisWord});
+          FINALOUTPUT[0].push({'word':thisWord});
           //turn them into syllable counts in a new array
-          FINALOUTPUT[1].push({syllable:countSyllables(indexArray[i])});
+          FINALOUTPUT[1].push({'syllable':countSyllables(indexArray[i])});
         }
       }
     }
