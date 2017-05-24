@@ -624,14 +624,13 @@ function receivedMessage(event) {
     var phonemeArray = phonemeString.split(" ");
     var wordEnding = "";
     var vowelFound = false;
-    //first we need to trim off just the bit of the rhyme we need for comparisons
-    //for however many phonemes there are in the returned string, working backwards from the end until we find a vowel
+    //first we need to trim off just the bit of the rhyme we need for the first comparisons
     for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
       //set char to the first letter of the phoneme
       var char = phonemeArray[phoLen-k].charAt(0);
       //compare char to every vowel
       for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-        //if we find a vowel at the next position down, log it as the last one
+        //if we find a vowel at the next position , log it as the last one and end the loop
         if (char == vowels[j]){
           var lastVowel = phoLen-k;
           //now stick everything after and including the last vowel into a string
@@ -643,28 +642,15 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("wordEnding "+wordEnding);
     console.log("phonemeArray is "+phonemeArray+" last part is "+wordEnding);
 
-    //take everything after the last vowel as a string
+    //take everything after the last vowel into an array so we can do loops
     //look at whole rhyme except for last vowel sound or something?
     var endingArray = wordEnding.split(" ");
     console.log("endingArray: "+endingArray);
-    //if (endingArray[endingArray.length-1])
 
-    //make one huge array of everything that has this ending
-    //var unsortedResults = searchPhonemes(wordEnding, countSyllables(dictionaryIndex));
-    //console.log("unsortedResults is "+unsortedResults);
-    //var sortedResults = new Array();
-    //for (var i = 0; i<unsortedResults.length; i++){
-    //  var tempPHONEMES = getPhonemes(unsortedResults[i], false);
-    //  var tempArray = phonemeString.split(" ")
-    //console.log("comparing "+phonemeArray[1]+" to "+tempArray[1]);
-    //  if (phonemeArray[1]==tempArray[1]){
-    //    sortedResults.push(unsortedResults[i]);
-    //  }
-    //}
-    //console.log("sortedResults: "+sortedResults);
+    //ok, that wasn't working the way I wanted it to, go away and think about it.
+    //I think we need to have a stream of else ifs, handling specific word endings etc etc??
   }
 
   //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
