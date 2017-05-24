@@ -645,7 +645,7 @@ function receivedMessage(event) {
     console.log("wordEnding "+wordEnding);
 
     //find out where the last vowel is and search for everything after that
-    console.log("phonemeArray is "+phonemeArray+" last one is "+wordEndings);
+    console.log("phonemeArray is "+phonemeArray+" last one is "+wordEnding);
     var unsortedResults = searchPhonemes(phonemeArray[wordEnding], countSyllables(dictionaryIndex));
     console.log("unsortedResults is "+unsortedResults);
 
