@@ -377,8 +377,8 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("sentence")) {
           intent = "sentence";
         }
-        else if (lc_messageText.startsWith("close")){
-          intent = "close";
+        else if (lc_messageText.startsWith("fuzzy")){
+          intent = "fuzzy";
         } else {
             //Do nothing, key is set to messageText
         }
@@ -462,12 +462,12 @@ function receivedMessage(event) {
           messageResponse = messageString;
           break;
 
-          case 'close':
+          case 'fuzzy':
           searchWord = lc_messageText.slice(6).toUpperCase();
           var indexString = findTheLine(searchWord);
           if (indexString != -1){
             var messageString = "You asked for words that nearly rhyme with "+searchWord.toLowerCase();
-            closeRhymes(indexString);
+            fuzzyRhymes(indexString);
           } else {
             messageResponse = "I don't know the word "+searchWord+" yet";
           }
@@ -618,8 +618,8 @@ function receivedMessage(event) {
   }
 
   //function to take in an index from our dictionary and return everything that nearly rhymes in an array
-  function closeRhymes(dictionaryIndex){
-    console.log("closeRhymes called on "+dictionaryIndex);
+  function fuzzyRhymes(dictionaryIndex){
+    console.log("fuzzyRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     var wordEnding = "";
@@ -653,7 +653,7 @@ function receivedMessage(event) {
     //I think we need to have a stream of else ifs, handling specific word endings etc etc??
   }
 
-  //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
+  //function to take in a 2d array of [words] with their [syllable count], and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
     var tmp = "";
     //if there are more than 25 results trim to 25, for simplicity's sake for now
@@ -990,7 +990,7 @@ function receivedMessage(event) {
 
   //function to search for phonemeString matches
   //returns an array of indexes
-  //if syllableLength is zero, return all matches
+  //if syllableLength is zero, return all matches. If it's a number, limit to matches of that length
   function searchPhonemes(phonemeString, syllableLength){
     var arrayBin = new Array();
     RHYMEOUTPUT.length = 0;
@@ -1002,7 +1002,7 @@ function receivedMessage(event) {
         //store the word in a temp string array, then use the 0th element
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
-        //handle zero on syllable length, return everything
+        //if input syllableLength is zero, return everything that rhymes
         if (syllableLength == 0){
           var sylCount = 0;
         } else {
@@ -1014,8 +1014,6 @@ function receivedMessage(event) {
             //add the word to the list, but remove the brackets from the spelling info
             var tmpLen = arrayBin[0].length-3;
             arrayBin[0] = arrayBin[0].slice(0, tmpLen);
-          }
-          //
           if (arrayBin[0]==getWord[iX-1]) {
             console("word already found, skipping");
           } else {
