@@ -618,25 +618,13 @@ function receivedMessage(event) {
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
-    //if there are more than 100 results trim to 100, for simplicity's sake
     var tmp = "I know "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
+    //if there are more than 25 results trim to 25, for simplicity's sake for now
     if (twoDarray[0].length>=25){
-      tmp = tmp +"The current limit I can show is 25\n"
+      tmp = tmp +"The current limit I can show you is 25\n"
       twoDarray[0].length=25; //[0] is words
       twoDarray[1].length=25; //[1] is syllables
     }
-    //first, reorder everything in the 2d array by number of syllables
-    //this method seems somewhat convoluted :/
-    // for (var j = 0, list = []; j < twoDarray[0].length; j++) {
-    //   list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]});
-    // }
-    twoDarray.sort(function(a, b) {
-      return ((a.syllable > b.syllable) ? -1 : ((a.syllable == b.syllable) ? 0 : 1));
-    });
-    // for (var k = 0; k < list.length; k++) {
-    //   twoDarray[0][k] = list[k].word;
-    //   twoDarray[1][k] = list[k].syllable;
-    // }
 
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
@@ -778,13 +766,26 @@ function receivedMessage(event) {
         //as long as this isn't already in our list, save it and it's syllables to arrays
         if (!FINALOUTPUT.includes(thisWord)){
           //turn them back into words in a new array
-          FINALOUTPUT[0].push({'word':thisWord});
+          FINALOUTPUT[0].push(thisWord);
           //turn them into syllable counts in a new array
-          FINALOUTPUT[1].push({'syllable':countSyllables(indexArray[i])});
+          FINALOUTPUT[1].push(countSyllables(indexArray[i]));
         }
       }
     }
-    console.log("All indexes sorted, syllables counted and transformed into words")
+    //now reorder everything in the 2d array by the number of syllables
+    //this method seems somewhat convoluted, but it works:/
+    //what I'm doing is turning [1,2,3][one,two,three] into [1,one][2,two][3,three], sorting and then turing it back again
+    for (var j = 0, list = []; j < FINALOUTPUT[0].length; j++) {
+      list.push({'word': FINALOUTPUT[0][j], 'syllable': FINALOUTPUT[1][j]});
+    }
+    list.sort(function(a, b) {
+      return ((a.syllable > b.syllable) ? -1 : ((a.syllable == b.syllable) ? 0 : 1));
+    });
+    for (var k = 0; k < list.length; k++) {
+      FINALOUTPUT[0][k] = list[k].word;
+      FINALOUTPUT[1][k] = list[k].syllable;
+    }
+    console.log("All indexes sorted, syllables counted and sorted, and indexes transformed into words")
     return FINALOUTPUT;
   }
 
