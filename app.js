@@ -677,6 +677,7 @@ function receivedMessage(event) {
               console.log ("match found at "+getWord(i));
               console.log(tmpArray);
               for (var n = 0; n < tmpPhoArray.length; n++){
+                tmpPhoArray = splitSoundalikes[0].split(" ");
                 tmpArray[k+n]=tmpPhoArray[n];
               }
               console.log(tmpArray);
