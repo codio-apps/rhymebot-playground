@@ -33,6 +33,7 @@ var RHYME_TYPOS = "";
 var GREETINGS = "";
 var SOUNDALIKES = "";
 var ALPHABET_ARRAY = "";
+var SIMPLEDICTIONARY = "";
 
 //global arrays - THIS NEEDS THINNING DOWN, MOST COULD BE LOCAL PROBABLE
 var PHONEMES = new Array();
@@ -72,6 +73,8 @@ var dictionary = "public/dictionarymain.txt";
 var abcdef = "public/abcdef.txt";
 //setup soundalike file
 var soundalike_file = "public/soundalikes.txt";
+//setup simplified dictionary file
+var simple_dictionary = "public/simpledictionary.txt";
 
 /*
 * Be sure to setup your config values before running this code. You can
@@ -591,9 +594,7 @@ function receivedMessage(event) {
       var dictionary_length = CURRENTDICTIONARY.length;
       var alphabetLength = 27;
       maxSyllables = getMaxSyllables();
-      //for each line in the file
       for (var i = 0; i < dictionary_length; i++) {
-        //establish which letter it is
         for (var j = 0; j < alphabetLength; j++) {
           if(CURRENTDICTIONARY[i].startsWith(alphabet[j])){
             //log the position of the last instance of letter in file
@@ -613,7 +614,15 @@ function receivedMessage(event) {
     catch(err) {
       console.log("Unable to parse soundalike file: " + err);
     }
-    if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""&&SOUNDALIKES!=""){
+    try {
+      fileBuffer = fs.readFileSync(simple_dictionary, "utf-8");
+      SIMPLEDICTIONARY = fileBuffer.split("\n");
+    }
+    catch(err) {
+      console.log("Unable to parse simplified dictionary file");
+    }
+    //FINAL CHECK THAT EVERYTHING WORKED
+    if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""&&SOUNDALIKES!=""&&SIMPLEDICTIONARY!=""){
       console.log("All files buffered succesfully");
       filesBuffered=true;
     }
@@ -632,40 +641,46 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in an index from our dictionary and return everything that nearly rhymes in an array
+  //function to take in an index from dictionary and return everything that nearly rhymes in an array
+  //DOESN'T DO MUCH TBH YET
   function fuzzyRhymes(dictionaryIndex){
-    console.log("fuzzyRhymes called on "+dictionaryIndex+". SOUNDALIKES:"+SOUNDALIKES);//
+    console.log("fuzzyRhymes called on "+dictionaryIndex+". SOUNDALIKES:"+SOUNDALIKES);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
-    var wordEnding = "";
-    var vowelFound = false;
-    //first we need to trim off just the bit of the rhyme we need for the first comparisons
-    for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
-      //set char to the first letter of the phoneme
-      var char = phonemeArray[phoLen-k].charAt(0);
-      //compare char to every vowel
-      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-        //if we find a vowel at the next position , log it as the last one and end the loop
-        if (char == vowels[j]){
-          var lastVowel = phoLen-k;
-          //now stick everything after and including the last vowel into a string
-          for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
-            wordEnding = wordEnding +" "+phonemeArray[l];
-          }
-          wordEnding = wordEnding.slice(1);
-          vowelFound = true;
-        }
-      }
-    }
-    console.log("phonemeArray is "+phonemeArray+" last part is "+wordEnding);
-
-    //take everything after the last vowel into an array so we can do loops
-    //look at whole rhyme except for last vowel sound or something?
-    var endingArray = wordEnding.split(" ");
-    console.log("endingArray: "+endingArray);
-
-    //ok, that wasn't working the way I wanted it to, go away and think about it.
-    //I think we need to have a stream of else ifs, handling specific word endings etc etc??
+    console.log("trying to save to simpledictionary.txt now");
+    fs.writeFileSync(simple_dictionary, 'Hello world!', function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+    });
+    //var wordEnding = "";
+    //var vowelFound = false;
+    // //first we need to trim off just the bit of the rhyme we need for the first comparisons
+    // for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
+    //   //set char to the first letter of the phoneme
+    //   var char = phonemeArray[phoLen-k].charAt(0);
+    //   //compare char to every vowel
+    //   for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+    //     //if we find a vowel at the next position , log it as the last one and end the loop
+    //     if (char == vowels[j]){
+    //       var lastVowel = phoLen-k;
+    //       //now stick everything after and including the last vowel into a string
+    //       for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
+    //         wordEnding = wordEnding +" "+phonemeArray[l];
+    //       }
+    //       wordEnding = wordEnding.slice(1);
+    //       vowelFound = true;
+    //     }
+    //   }
+    // }
+    // console.log("phonemeArray is "+phonemeArray+" last part is "+wordEnding);
+    //
+    // //take everything after the last vowel into an array so we can do loops
+    // //look at whole rhyme except for last vowel sound or something?
+    // var endingArray = wordEnding.split(" ");
+    // console.log("endingArray: "+endingArray);
+    //
+    // //ok, that wasn't working the way I wanted it to, go away and think about it.
+    // //I think we need to have a stream of else ifs, handling specific word endings etc etc??
   }
 
   //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
