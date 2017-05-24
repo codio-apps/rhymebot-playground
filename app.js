@@ -677,7 +677,7 @@ function receivedMessage(event) {
               console.log ("match found at "+getWord(i));
               console.log(tmpArray);
               for (var n = 0; n < tmpPhoArray.length; n++){
-                tmpArray[k+n]=tmpPhoArray[0];
+                tmpArray[k+n]=tmpPhoArray[n];
               }
               console.log(tmpArray);
               halt = true;
