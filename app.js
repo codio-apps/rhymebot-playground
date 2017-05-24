@@ -635,7 +635,7 @@ function receivedMessage(event) {
       twoDarray[1].length=25; //1 is syllables
     }
     //first, reorder everything in the 2d array by number of syllables
-    //twoDarray.sort(sortBySyllables);
+    twoDarray.sort(sortBySyllables);
     console.log("Syllable stuff resorted:"+twoDarray[0]+"///"+twoDarray[1]);
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
@@ -1246,7 +1246,6 @@ function receivedMessage(event) {
 
   //function to attempt to call itself recursively to send messages in the right order?
   function recursivelySendMessage(recipientId, messageArray, alpha) {
-    console.log("made it into recursivelySendMessage, messageArray.length="+messageArray.length);
     if (alpha<messageArray.length){
         console.log("sending msg "+alpha+" of "+messageArray.length);
         var messageData = {
