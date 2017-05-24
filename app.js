@@ -639,7 +639,7 @@ function receivedMessage(event) {
   function spawnSimpleDictionary(){
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
-    var i = 62325;
+    var i = 57325;
     var stopCon = false;
     var halt = false;
     //for every line in the dictionary
