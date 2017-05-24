@@ -34,6 +34,7 @@ var GREETINGS = "";
 var PHONEMES = new Array();
 var ALPHABET_ARRAY = new Array();
 var RHYMEOUTPUT = new Array();
+var SOUNDALIKES = new Array();
 var inputArray = new Array();
 
 //file buffer
@@ -67,6 +68,8 @@ var rhyme_typos = "public/nearly_a_rhyme.txt";
 var dictionary = "public/dictionarymain.txt";
 //setup dictionary file
 var abcdef = "public/abcdef.txt";
+//setup soundalike file
+var soundalike_file = "public/soundalikes.txt";
 
 /*
 * Be sure to setup your config values before running this code. You can
@@ -377,8 +380,8 @@ function receivedMessage(event) {
         else if(lc_messageText.startsWith("sentence")) {
           intent = "sentence";
         }
-        else if (lc_messageText.startsWith("close")){
-          intent = "close";
+        else if (lc_messageText.startsWith("fuzzy")){
+          intent = "fuzzy";
         } else {
             //Do nothing, key is set to messageText
         }
@@ -462,11 +465,11 @@ function receivedMessage(event) {
           messageResponse = messageString;
           break;
 
-          case 'close':
+          case 'fuzzy':
           searchWord = lc_messageText.slice(6).toUpperCase();
           var indexString = findTheLine(searchWord);
           if (indexString != -1){
-            messageResponse = "You asked for words that nearly rhyme with "+searchWord.toLowerCase();
+            messageResponse = "You asked for words that fuzzy rhyme with "+searchWord.toLowerCase();
             fuzzyRhymes(indexString);
           } else {
             messageResponse = "I don't know the word "+searchWord+" yet";
@@ -600,7 +603,16 @@ function receivedMessage(event) {
     catch(err) {
       console.log("Unable to parse dictionary and alphabet index: " + err);
     }
-    if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""){
+    try {
+      fileBuffer = fs.readFileSync(soundalike_file, "utf-8");
+      SOUNDALIKES = fileBuffer.split("\n");
+      console.log("soundalikes.txt loaded: "+SOUNDALIKES);
+    }
+    catch(err) {
+      console.log("Unable to parse soundalike file: " + err);
+    }
+    )
+    if (GREETINGS!=""&&RHYME_TYPOS!=""&&CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""&&SOUNDALIKES!=""){
       console.log("All files buffered succesfully");
       filesBuffered=true;
     }
