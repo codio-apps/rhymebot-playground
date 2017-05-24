@@ -620,7 +620,7 @@ function receivedMessage(event) {
   //function to take in an index from our dictionary and return everything that nearly rhymes in an array
   function closeRhymes(dictionaryIndex){
     console.log("closeRhymes called on "+dictionaryIndex);
-    var phonemeString = getPhonemes(dictionaryIndex, false);
+    var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     var wordEnding = "";
     var vowelFound = false;
@@ -634,9 +634,9 @@ function receivedMessage(event) {
         //if we find a vowel at the next position down, log it as the last one
         if (char == vowels[j]){
           var lastVowel = phoLen-k;
-          //now stick everything after and inclusing the last vowel into a string
+          //now stick everything after and including the last vowel into a string
           for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
-            wordEnding = wordEnding +" "+phonemeArray[l];
+            wordEnding = phonemeArray[l];
           }
           vowelFound = true;
         }
