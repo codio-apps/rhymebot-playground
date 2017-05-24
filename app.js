@@ -616,11 +616,12 @@ function receivedMessage(event) {
 
   //function to compare syllables
   function sortBySyllables(a, b) {
-    if (a[0] === b[0]) {
+    if (a[1] === b[1]) {
+      console.log("in sortBySyllables, comparing "+a[1]+" to "+b[1]);
       return 0;
     }
     else {
-      return (a[0] < b[0]) ? -1 : 1;
+      return (a[1] < b[1]) ? -1 : 1;
     }
   }
 
