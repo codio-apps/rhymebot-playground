@@ -32,10 +32,10 @@ var CURRENTDICTIONARY = "";
 var RHYME_TYPOS = "";
 var GREETINGS = "";
 var SOUNDALIKES = "";
+var ALPHABET_ARRAY "";
 
 //global arrays - THIS NEEDS THINNING DOWN, MOST COULD BE LOCAL PROBABLE
 var PHONEMES = new Array();
-var ALPHABET_ARRAY = new Array();
 var RHYMEOUTPUT = new Array();
 var inputArray = new Array();
 
@@ -634,7 +634,7 @@ function receivedMessage(event) {
 
   //function to take in an index from our dictionary and return everything that nearly rhymes in an array
   function fuzzyRhymes(dictionaryIndex){
-    console.log("fuzzyRhymes called on "+dictionaryIndex);
+    console.log("fuzzyRhymes called on "+dictionaryIndex+". SOUNDALIKES:"+SOUNDALIKES);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     var wordEnding = "";
