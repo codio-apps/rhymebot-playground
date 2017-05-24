@@ -648,9 +648,9 @@ function receivedMessage(event) {
       var tmpArray = tmpString.split(" ");
       console.log("tmpArray is: "+tmpArray);
       //for every line in soundalikes
-      for (var j = 0; j < SOUNDALIKES.length; j++){
+      for (var j = 0; j < SOUNDALIKES.length-1 && !halt; j++){
         splitSoundalikes = SOUNDALIKES[j].split(",");
-        console.log("splitSoundalikes is: "+splitSoundalikes);
+        console.log("splitSoundalikes loop #"+j+" is: "+splitSoundalikes);
         //for every phoneme in the word we are looking at
         for (var k = 0; k < tmpArray.length && !halt; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
@@ -660,7 +660,7 @@ function receivedMessage(event) {
             console.log("tmpPhoArray is: "+tmpPhoArray);
             //for every phoneme in the tmpPhoArray
             for (var m = 0; m < tmpPhoArray.length; m++){
-              if (tmpArray.length >= tmpPhoArray.length){
+              if (tmpArray.length-k >= tmpPhoArray.length){
                 if (tmpArray[k+m]==tmpPhoArray[m]){
                   console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
                 } else {
