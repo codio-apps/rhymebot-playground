@@ -616,12 +616,12 @@ function receivedMessage(event) {
 
   //function to compare syllables
   function sortBySyllables(a, b) {
-    console.log("in sortBySyllables, comparing "+a[1]+" to "+b[1]);
-    if (a[1] === b[1]) {
+    console.log("in sortBySyllables, comparing "+a[0]+" to "+a[1]);
+    if (a[0] === a[1]) {
       return 0;
     }
     else {
-      return (a[1] < b[1]) ? -1 : 1;
+      return (a[0] < a[1]) ? -1 : 1;
     }
   }
 
@@ -635,6 +635,7 @@ function receivedMessage(event) {
       twoDarray[1].length=25; //1 is syllables
     }
     //first, reorder everything in the 2d array by number of syllables
+    console.log("twoDarraynow:"+twoDarray[0]+"///"+twoDarray[1]);
     twoDarray.sort(sortBySyllables);
     console.log("Syllable stuff resorted:"+twoDarray[0]+"///"+twoDarray[1]);
     //now, figure out how many arrays (individual syllable sets) we need
