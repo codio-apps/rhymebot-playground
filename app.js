@@ -867,7 +867,7 @@ function receivedMessage(event) {
     var dictionaryIndex = -1;
     for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
     }
-    if(leALPHAtter == "A"){
+    if(letter == "A"){
       var letterLeftIndex = 0;
     }
     else {
