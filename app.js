@@ -640,6 +640,7 @@ function receivedMessage(event) {
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
     var i = 57325;
+    var stop = false;
     //for every line in the dictionary
     //for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var tmpString = getPhonemes(i, false).slice(1);
@@ -653,7 +654,7 @@ function receivedMessage(event) {
         for (var k = 0; k < tmpArray.length; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
           for (var l = 0; l < splitSoundalikes.length; l++){
-            var tmpPhoArray = splitSoundalikes[0].split(" ") ;
+            var tmpPhoArray = splitSoundalikes[l].split(" ") ;
             console.log("tmpPhoArray is: "+tmpPhoArray);
             //if the phoneme is a match
             if (tmpArray[k+l]==tmpPhoArray[l]){
