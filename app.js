@@ -642,7 +642,7 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("wordEndings "+wordEndings);
+    console.log("wordEnding "+wordEnding);
 
     //find out where the last vowel is and search for everything after that
     console.log("phonemeArray is "+phonemeArray+" last one is "+wordEndings);
