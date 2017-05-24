@@ -478,12 +478,14 @@ function receivedMessage(event) {
             console.log("No number of results specified, defaulting to 10");
             var dictionaryIndex = findTheLine(searchWord);
             if (dictionaryIndex != -1){
+              var totalFound = complexSearch(dictionaryIndex).length;
               randomArray = randomRhymes(dictionaryIndex, 10);
               if (randomArray.length==0){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
                 randomArray = indexesToWords(randomArray, dictionaryIndex);
                 randomArray = makeArrayReadable(randomArray, searchWord);
+                messageResponse = "I only know "+complexSearch+" words that rhyme, here they are:"
                 sendTextMessage(senderID, randomArray);
               }
             } else {
@@ -493,12 +495,14 @@ function receivedMessage(event) {
             console.log("Input array position 1 is a number");
             var dictionaryIndex = findTheLine(searchArray[0]);
             if (dictionaryIndex != -1){
+              var totalFound = complexSearch(dictionaryIndex).length;
               if (searchArray[1]>25){
                 searchArray[i]=25;
               }
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
               randomArray = indexesToWords(randomArray, dictionaryIndex);
               randomArray = makeArrayReadable(randomArray, searchWord);
+              messageResponse = "I only know "+totalFound+" words that rhyme, here they are:"
               sendTextMessage(senderID, randomArray);
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -680,7 +684,7 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        output = "I know "+indexArray.length+" words that rhyme, here they are:\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
+        output = "I know "+indexArray[i].length+" words that rhyme, here they are:\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
@@ -871,7 +875,6 @@ function receivedMessage(event) {
         return inputArray;
       }
     }
-    messageResponse = "I only know "+inputArray.length+" words that rhyme, here they are:"
     return randArray;
   }
 
