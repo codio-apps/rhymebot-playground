@@ -614,16 +614,6 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to compare syllables
-  function sortBySyllables(a, b) {
-    if (isArray(a)) {
-        a.sort(sortBySyllables);
-        b.sort(sortBySyllables);
-    } else {
-        return a == b ? 0 : (a < b ? -1 : 1);
-    }
-  }
-
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
     //if there are more than 100 results trim to 100, for simplicity's sake
@@ -635,7 +625,18 @@ function receivedMessage(event) {
     // }
     //first, reorder everything in the 2d array by number of syllables
     console.log("twoDarraynow:"+twoDarray[0]+"///"+twoDarray[1]);
-    twoDarray.sort(sortBySyllables);
+
+    var list = [];
+    for (var j = 0; j < twoDarray[0].length; j++) {
+      list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]);
+    }
+    list.sort(function(a, b) {
+    return ((a.syllable < b.syllable) ? -1 : ((a.syllable == b.syllable) ? 0 : 1));
+    //Sort could be modified to, for example, sort on the age
+    // if the name is the same.
+    });
+    twoDarray = list;
+    //twoDarray.sort(sortBySyllables);
     console.log("Syllable stuff re-sorted:"+twoDarray[0]+"///"+twoDarray[1]);
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
