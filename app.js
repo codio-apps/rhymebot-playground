@@ -642,9 +642,9 @@ function receivedMessage(event) {
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     console.log("trying to save to simpledictionary.txt now");
-    fs.writeFileSync(simple_dictionary, 'Hello world!');
-      console.log('Saved!');
-    });
+    fs.writeFileSync(simple_dictionary, 'Hello world!')
+    console.log('Saved!');
+
     //var wordEnding = "";
     //var vowelFound = false;
     // //first we need to trim off just the bit of the rhyme we need for the first comparisons
