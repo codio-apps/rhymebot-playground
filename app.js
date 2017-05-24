@@ -622,35 +622,33 @@ function receivedMessage(event) {
     console.log("fuzzyRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
-    var wordEnding = "";
-    var vowelFound = false;
-    //first we need to trim off just the bit of the rhyme we need for the first comparisons
-    for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
-      //set char to the first letter of the phoneme
-      var char = phonemeArray[phoLen-k].charAt(0);
-      //compare char to every vowel
-      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-        //if we find a vowel at the next position , log it as the last one and end the loop
-        if (char == vowels[j]){
-          var lastVowel = phoLen-k;
-          //now stick everything after and including the last vowel into a string
-          for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
-            wordEnding = wordEnding +" "+phonemeArray[l];
-          }
-          wordEnding = wordEnding.slice(1);
-          vowelFound = true;
-        }
-      }
-    }
-    console.log("phonemeArray is "+phonemeArray+" last part is "+wordEnding);
-
+    console.log("phonemeArray is "+phonemeArray);
+    // var wordEnding = "";
+    // var vowelFound = false;
+    // //first we need to trim off just the bit of the rhyme we need for the first comparisons
+    // for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
+    //   //set char to the first letter of the phoneme
+    //   var char = phonemeArray[phoLen-k].charAt(0);
+    //   //compare char to every vowel
+    //   for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+    //     //if we find a vowel at the next position , log it as the last one and end the loop
+    //     if (char == vowels[j]){
+    //       var lastVowel = phoLen-k;
+    //       //now stick everything after and including the last vowel into a string
+    //       for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
+    //         wordEnding = wordEnding +" "+phonemeArray[l];
+    //       }
+    //       wordEnding = wordEnding.slice(1);
+    //       vowelFound = true;
+    //     }
+    //   }
+    // }
+    //I DON'T KNOW IF WE NEED THIS STUFF
     //take everything after the last vowel into an array so we can do loops
     //look at whole rhyme except for last vowel sound or something?
-    var endingArray = wordEnding.split(" ");
-    console.log("endingArray: "+endingArray);
-
+    // var endingArray = wordEnding.split(" ");
+    // console.log("endingArray: "+endingArray)
     //ok, that wasn't working the way I wanted it to, go away and think about it.
-    //I think we need to have a stream of else ifs, handling specific word endings etc etc??
   }
 
   //function to take in a 2d array of [words] with their [syllable count], and return a nicely structured string for sending to the user
