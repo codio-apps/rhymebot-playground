@@ -452,7 +452,6 @@ function receivedMessage(event) {
           var messageString = "";
           for (var i = 0, len = searchArray.length; i < len; i++){
             indexArray[i] = findTheLine(searchArray[i]);
-            //tester area for nextbit
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
               messageString = messageString+searchSentence(indexArray)+"\n";
@@ -618,7 +617,7 @@ function receivedMessage(event) {
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
-    var tmp = "I know "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
+    var tmp = "";
     //if there are more than 25 results trim to 25, for simplicity's sake for now
     if (twoDarray[0].length>=25){
       tmp = tmp +"The current limit I can show you is 25\n"
@@ -681,7 +680,7 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        output = makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
+        output = "I know "+indexArray.length+" words that rhyme, here they are:\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
