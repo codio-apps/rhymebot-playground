@@ -630,14 +630,13 @@ function receivedMessage(event) {
       list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]});
     }
     list.sort(function(a, b) {
-    return ((a.syllable < b.syllable) ? -1 : ((a.syllable == b.syllable) ? 0 : 1));
+      return ((a.syllable > b.syllable) ? -1 : ((a.syllable == b.syllable) ? 0 : 1));
     });
     for (var k = 0; k < list.length; k++) {
-    twoDarray[0][k] = list[k].word;
-    twoDarray[1][k] = list[k].syllable;
+      twoDarray[0][k] = list[k].word;
+      twoDarray[1][k] = list[k].syllable;
     }
 
-    //twoDarray.sort(sortBySyllables);
     console.log("Syllable stuff re-sorted:"+twoDarray[0]+"///"+twoDarray[1]);
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
