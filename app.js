@@ -616,8 +616,8 @@ function receivedMessage(event) {
 
   //function to compare syllables
   function sortBySyllables(a, b) {
+    console.log("in sortBySyllables, comparing "+a[1]+" to "+b[1]);
     if (a[1] === b[1]) {
-      console.log("in sortBySyllables, comparing "+a[1]+" to "+b[1]);
       return 0;
     }
     else {
