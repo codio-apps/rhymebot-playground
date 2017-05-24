@@ -609,7 +609,6 @@ function receivedMessage(event) {
         mostSyllables = countSyllables(i);
       }
     }
-
     console.log("Highest syllable count in currentdictionary is: "+mostSyllables);
     return mostSyllables;
   }
@@ -632,10 +631,11 @@ function receivedMessage(event) {
     }
     list.sort(function(a, b) {
     return ((a.syllable < b.syllable) ? -1 : ((a.syllable == b.syllable) ? 0 : 1));
-    //Sort could be modified to, for example, sort on the age
-    // if the name is the same.
     });
-    twoDarray = list;
+    for (var k = 0; k < list.length; k++) {
+    twoDarray[0][k] = list[k].word;
+    twoDarray[1][k] = list[k].syllable;
+
     //twoDarray.sort(sortBySyllables);
     console.log("Syllable stuff re-sorted:"+twoDarray[0]+"///"+twoDarray[1]);
     //now, figure out how many arrays (individual syllable sets) we need
