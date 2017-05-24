@@ -378,6 +378,7 @@ function receivedMessage(event) {
           intent = "sentence";
         }
         else if (lc_messageText.startsWith("close")){
+          intent = "close";
         } else {
             //Do nothing, key is set to messageText
         }
@@ -616,6 +617,7 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
+  //function to take in an index from our dictionary and return everything that nearly rhymes in an array
   function closeRhymes(dictionaryIndex){
     console.log("closeRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false);
