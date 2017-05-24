@@ -643,10 +643,10 @@ function receivedMessage(event) {
     var phonemeArray = phonemeString.split(" ");
     console.log("trying to save to simpledictionary.txt now");
     try {
-      fs.writeFileSync(simpledictionary.txt, 'Hello world!');
+      fs.writeFileSync(simple_dictionary, 'Hello world!');
     }
-    catch {
-      console.log('Error writing simpledictionary.txt' + err.message);
+    catch(err) {
+      console.log('Error writing simpledictionary.txt' + err);
     }
     console.log('Saved!');
 
