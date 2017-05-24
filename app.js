@@ -675,7 +675,7 @@ function receivedMessage(event) {
             //if the phonemes are a match
             if (!stopCon){
               console.log ("match found at "+getWord(i));
-              halt = true;
+              //halt = true;
             }
           }
         }
