@@ -625,7 +625,7 @@ function receivedMessage(event) {
     var wordEnding = "";
     var vowelFound = false;
     //first we need to trim off just the bit of the rhyme we need for comparisons
-    //for however many phonemes there are in the returned string, working backwards from the end
+    //for however many phonemes there are in the returned string, working backwards from the end until we find a vowel
     for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
       //set char to the first letter of the phoneme
       var char = phonemeArray[phoLen-k].charAt(0);
@@ -634,7 +634,7 @@ function receivedMessage(event) {
         //if we find a vowel at the next position down, log it as the last one
         if (char == vowels[j]){
           var lastVowel = phoLen-k;
-          //now stick the rest of the vowels back into the buffer
+          //now stick everything after and inclusing the last vowel into a string
           for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
             wordEnding = wordEnding +" "+phonemeArray[l];
           }
@@ -650,9 +650,10 @@ function receivedMessage(event) {
     var sortedResults = new Array();
     for (var i = 0; i<unsortedResults.length; i++){
       var tempPHONEMES = getPhonemes(unsortedResults[i], false);
-      console.log("comparing "+phonemeArray[1]+" to "+tempPHONEMES[1]);
-      if (phonemeArray[1]==tempPHONEMES[1]){
-        sortedResults.push(tempPHONEMES[1]);
+      var tempArray = phonemeString.split(" ")
+      console.log("comparing "+phonemeArray[1]+" to "+tempArray[1]);
+      if (phonemeArray[1]==tempArray[1]){
+        sortedResults.push(tempArray[1]);
       }
     }
     console.log("sortedResults: "+sortedResults);
