@@ -627,7 +627,7 @@ function receivedMessage(event) {
 
     for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
       //set char to the first letter of the phoneme
-      var char = phonemeBuffer[phoLen-k].charAt(0);
+      var char = phonemeArray[phoLen-k].charAt(0);
       //compare char to every vowel
       for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
         //if we find a vowel at the next position down, log it as the last one
@@ -636,17 +636,17 @@ function receivedMessage(event) {
           vowelFound = true;
           //now stick the rest of the vowels back into the buffer
           var tempString = "";
-          for (var l = lastVowel, restLen = phonemeBuffer.length; l < restLen; l++){
-            wordEnding = wordEnding +" "+phonemeBuffer[l];
+          for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
+            wordEnding = wordEnding +" "+phonemeArray[l];
           }
         }
       }
     }
-    console.log("wordEndings "+wordEndings)
+    console.log("wordEndings "+wordEndings);
 
     //find out where the last vowel is and search for everything after that
-    console.log("phonemeArray is "+phonemeArray+" last one is "+phonemeArray[phonemeArray.length-1]);
-    var unsortedResults = searchPhonemes(phonemeArray[phonemeArray.length-1], countSyllables(dictionaryIndex));
+    console.log("phonemeArray is "+phonemeArray+" last one is "+wordEndings);
+    var unsortedResults = searchPhonemes(phonemeArray[wordEndings, countSyllables(dictionaryIndex));
     console.log("unsortedResults is "+unsortedResults);
 
 
