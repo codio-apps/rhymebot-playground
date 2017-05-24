@@ -645,7 +645,7 @@ function receivedMessage(event) {
     console.log("trying to save to simpledictionary.txt now");
     try {
       var writeFile = "This works then";
-      fs.writeFileSync(simple_dictionary, writeFile);
+      fs.writeFileSync('public/simpledictionary.txt', writeFile, 'utf8');
     }
     catch(err) {
       console.log('Error writing simpledictionary.txt' + err);
