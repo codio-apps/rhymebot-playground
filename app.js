@@ -640,7 +640,7 @@ function receivedMessage(event) {
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
     var i = 57324;
-    var stop = true;
+    var stop = false;
     //for every line in the dictionary
     //for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var tmpString = getPhonemes(i, false).slice(1);
@@ -659,14 +659,13 @@ function receivedMessage(event) {
             //for every phoneme in the tmpPhoArray
             for (var m = 0; m < tmpPhoArray; m++){
               if (tmpArray[k+m]==tmpPhoArray[m]){
-                //all is well if so
+                console.log("stop is still false because: "+tmpArray[k+m]"!="+tmpPhoArray[m]);
               } else {
-                stop = false;
-                console.log("I was told to stop");
+                stop = true;
               }
             }
             //if the phonemes are a match
-            if (stop){
+            if (!stop){
               console.log ("match found at "+getWord(i));
             }
           }
