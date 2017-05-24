@@ -646,13 +646,13 @@ function receivedMessage(event) {
 
     //find out where the last vowel is and search for everything after that
     console.log("phonemeArray is "+phonemeArray+" last one is "+wordEnding);
-    var unsortedResults = searchPhonemes(phonemeArray[wordEnding], countSyllables(dictionaryIndex));
+    var unsortedResults = searchPhonemes(wordEnding, countSyllables(dictionaryIndex));
     console.log("unsortedResults is "+unsortedResults);
 
 
   }
 
-  //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
+  //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
     var tmp = "";
     //if there are more than 25 results trim to 25, for simplicity's sake for now
@@ -661,7 +661,6 @@ function receivedMessage(event) {
       twoDarray[0].length=25; //[0] is words
       twoDarray[1].length=25; //[1] is syllables
     }
-
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
     var req = 1;
