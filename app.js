@@ -622,8 +622,32 @@ function receivedMessage(event) {
     console.log("closeRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false);
     var phonemeArray = phonemeString.split(" ");
+    var wordEnding = "";
+    var vowelFound = false;
+
+    for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
+      //set char to the first letter of the phoneme
+      var char = phonemeBuffer[phoLen-k].charAt(0);
+      //compare char to every vowel
+      for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
+        //if we find a vowel at the next position down, log it as the last one
+        if (char == vowels[j]){
+          var lastVowel = phoLen-k;
+          vowelFound = true;
+          //now stick the rest of the vowels back into the buffer
+          var tempString = "";
+          for (var l = lastVowel, restLen = phonemeBuffer.length; l < restLen; l++){
+            tempString = tempString +" "+phonemeBuffer[l];
+            wordEnding = tempString;
+          }
+        }
+      }
+    }
+    console.log("wordEndings "+wordEndings)
+
+    //find out where the last vowel is and search for everything after that
     console.log("phonemeArray is "+phonemeArray+" last one is "+phonemeArray[phonemeArray.length-1]);
-    var unsortedResults = searchPhonemes(phonemeArray.length-1, countSyllables(dictionaryIndex));
+    var unsortedResults = searchPhonemes(phonemeArray[phonemeArray.length-1], countSyllables(dictionaryIndex));
     console.log("unsortedResults is "+unsortedResults);
 
 
