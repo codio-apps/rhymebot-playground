@@ -847,7 +847,7 @@ function receivedMessage(event) {
 
   }
 
-  //function to return 10 different random elements(in this case, rhymes) from an array
+  //function to return an array of n different random elements from an array
   function randomlyReturn(inputArray, elements){
     var randArray = [""];
     randArray[0] = inputArray[Math.floor(Math.random() * inputArray.length)];
@@ -870,12 +870,12 @@ function receivedMessage(event) {
       } else {
         //basically, just return the original
         return inputArray;
-        }
       }
-      messageResponse = "I only know "+inputArray.length+" words that rhyme, here they are:"
     }
+    messageResponse = "I only know "+inputArray.length+" words that rhyme, here they are:"
     return randArray;
   }
+
 
 
   function randomRhymes(dictionaryIndex, elements){
