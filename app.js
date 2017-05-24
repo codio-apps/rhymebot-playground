@@ -485,7 +485,7 @@ function receivedMessage(event) {
               } else {
                 randomArray = indexesToWords(randomArray, dictionaryIndex);
                 randomArray = makeArrayReadable(randomArray, searchWord);
-                messageResponse = "I know "+totalFound+" words that rhyme, you asked for "+elements+", here they are:\n"+randomArray);
+                messageResponse = "I know "+totalFound+" words that rhyme, you asked for 10, here they are:\n"+randomArray);
               }
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -501,7 +501,7 @@ function receivedMessage(event) {
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
               randomArray = indexesToWords(randomArray, dictionaryIndex);
               randomArray = makeArrayReadable(randomArray, searchWord);
-              messageResponse = "I only know "+totalFound+" words that rhyme, you asked for "+elements+", here they are:\n"+randomArray);
+              messageResponse = "I only know "+totalFound+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray);
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
