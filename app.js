@@ -773,14 +773,13 @@ function receivedMessage(event) {
         }
       } else {
         //starting at the maximum syllable value and working back to the current syllable
-        // we only need this many:
-        for (var k = maxSyllables; k>=j; k--){
+        //for (var k = maxSyllables; k>=j; k--){
           //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(wordEndings[j-1], k);
+          var tempArray = searchPhonemes(wordEndings[j-1], 0);
           if (tempArray.length!=0){
             COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
           }
-        }
+        //}
       }
     }
     console.log(theWord+" complex search complete");
@@ -991,6 +990,7 @@ function receivedMessage(event) {
 
   //function to search for phonemeString matches
   //returns an array of indexes
+  //if syllableLength is zero, return all matches
   function searchPhonemes(phonemeString, syllableLength){
     var arrayBin = new Array();
     RHYMEOUTPUT.length = 0;
@@ -1002,8 +1002,12 @@ function receivedMessage(event) {
         //store the word in a temp string array, then use the 0th element
         arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
-        //handle cutting length to specific number of syllables
-        var sylCount = countSyllables(iX);
+        //handle zero on syllable length, return everything
+        if (syllableLength == 0){
+          var sylCount = 0;
+        } else {
+          var sylCount = countSyllables(iX);
+        }
         if (sylCount == syllableLength) {
           //if the found word ends in ")"
           if (arrayBin[0].endsWith(")")) {
