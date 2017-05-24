@@ -619,7 +619,7 @@ function receivedMessage(event) {
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
     //if there are more than 100 results trim to 100, for simplicity's sake
-    var tmp = "";
+    var tmp = "I know "+twoDarray[0].length+" words that rhyme with "+theWord+"\n";
     if (twoDarray[0].length>=25){
       tmp = tmp +"My current limit is 25\n"
       twoDarray[0].length=25; //0 is words
@@ -627,7 +627,6 @@ function receivedMessage(event) {
     }
     //first, reorder everything in the 2d array by number of syllables
     //this method seems somewhat convoluted :/
-    console.log("twoDarraynow:"+twoDarray[0]+"///"+twoDarray[1]);
     var list = [];
     for (var j = 0; j < twoDarray[0].length; j++) {
       list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]});
@@ -640,7 +639,6 @@ function receivedMessage(event) {
       twoDarray[1][k] = list[k].syllable;
     }
 
-    console.log("Syllable stuff re-sorted:"+twoDarray[0]+"///"+twoDarray[1]);
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
     var req = 1;
@@ -1251,18 +1249,18 @@ function receivedMessage(event) {
   //function to attempt to call itself recursively to send messages in the right order?
   function recursivelySendMessage(recipientId, messageArray, alpha) {
     if (alpha<messageArray.length){
-        console.log("sending msg "+alpha+" of "+messageArray.length);
-        var messageData = {
-          recipient: {
-            id: recipientId
-          },
-          message: {
-            text: messageArray[alpha],
-          }
-        };
-        callSendAPI(messageData);
-        recursivelySendMessage(recipientId, messageArray, alpha+1);
-        console.log("Message sent: "+messageArray[alpha]);
+      console.log("sending msg "+alpha+" of "+messageArray.length);
+      var messageData = {
+        recipient: {
+          id: recipientId
+        },
+        message: {
+          text: messageArray[alpha],
+        }
+      };
+      callSendAPI(messageData);
+      recursivelySendMessage(recipientId, messageArray, alpha+1);
+      console.log("Message sent: "+messageArray[alpha]);
     }
   }
 
