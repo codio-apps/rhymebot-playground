@@ -642,7 +642,7 @@ function receivedMessage(event) {
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     console.log("trying to save to simpledictionary.txt now");
-    fs.writeFileSync(simple_dictionary, 'Hello world!')
+    fs.writeFileSync(simpledictionary.txt, 'Hello world!')
     console.log('Saved!');
 
     //var wordEnding = "";
