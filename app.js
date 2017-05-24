@@ -31,7 +31,7 @@ var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 var CURRENTDICTIONARY = "";
 var RHYME_TYPOS = "";
 var GREETINGS = "";
-var SOUNDALIKES = "");
+var SOUNDALIKES = "";
 
 //global arrays - THIS NEEDS THINNING DOWN, MOST COULD BE LOCAL PROBABLE
 var PHONEMES = new Array();
