@@ -641,6 +641,7 @@ function receivedMessage(event) {
     var splitSoundalikes = new Array();
     var i = 54580;
     var stopCon = false;
+    var halt = false;
     //for every line in the dictionary
     //for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var tmpString = getPhonemes(i, false).slice(1);
@@ -651,9 +652,9 @@ function receivedMessage(event) {
         splitSoundalikes = SOUNDALIKES[j].split(",");
         console.log("splitSoundalikes is: "+splitSoundalikes);
         //for every phoneme in the word we are looking at
-        for (var k = 0; k < tmpArray.length; k++){
+        for (var k = 0; k < tmpArray.length && !halt; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
-          for (var l = 0; l < splitSoundalikes.length; l++){
+          for (var l = 0; l < splitSoundalikes.length && !halt; l++){
             stopCon = false;
             var tmpPhoArray = splitSoundalikes[l].split(" ") ;
             console.log("tmpPhoArray is: "+tmpPhoArray);
@@ -669,10 +670,12 @@ function receivedMessage(event) {
             //if the phonemes are a match
             if (!stopCon){
               console.log ("match found at "+getWord(i));
+              halt = true;
             }
           }
         }
       }
+      console.log("stopped");
     //}
     // console.log("trying to save to simpledictionary.txt now");
     // try {
