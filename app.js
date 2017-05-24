@@ -32,7 +32,7 @@ var CURRENTDICTIONARY = "";
 var RHYME_TYPOS = "";
 var GREETINGS = "";
 var SOUNDALIKES = "";
-var ALPHABET_ARRAY "";
+var ALPHABET_ARRAY = "";
 
 //global arrays - THIS NEEDS THINNING DOWN, MOST COULD BE LOCAL PROBABLE
 var PHONEMES = new Array();
