@@ -616,7 +616,10 @@ function receivedMessage(event) {
 
   //function to compare syllables
   function sortBySyllables(a, b) {
-      return a - b;
+    a = a[1];
+b = b[1];
+return a == b ? 0 : (a < b ? -1 : 1)
+}
   }
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
@@ -631,7 +634,7 @@ function receivedMessage(event) {
     //first, reorder everything in the 2d array by number of syllables
     console.log("twoDarraynow:"+twoDarray[0]+"///"+twoDarray[1]);
     twoDarray.sort(sortBySyllables);
-    console.log("Syllable stuff resorted:"+twoDarray[0]+"///"+twoDarray[1]);
+    console.log("Syllable stuff re-sorted:"+twoDarray[0]+"///"+twoDarray[1]);
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
     var req = 1;
