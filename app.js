@@ -637,8 +637,7 @@ function receivedMessage(event) {
           //now stick the rest of the vowels back into the buffer
           var tempString = "";
           for (var l = lastVowel, restLen = phonemeBuffer.length; l < restLen; l++){
-            tempString = tempString +" "+phonemeBuffer[l];
-            wordEnding = tempString;
+            wordEnding = wordEnding +" "+phonemeBuffer[l];
           }
         }
       }
