@@ -627,8 +627,7 @@ function receivedMessage(event) {
     }
     //first, reorder everything in the 2d array by number of syllables
     //this method seems somewhat convoluted :/
-    var list = [];
-    for (var j = 0; j < twoDarray[0].length; j++) {
+    for (var j = 0, list = [];; j < twoDarray[0].length; j++) {
       list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]});
     }
     list.sort(function(a, b) {
@@ -779,9 +778,9 @@ function receivedMessage(event) {
         //as long as this isn't already in our list, save it and it's syllables to arrays
         if (!FINALOUTPUT.includes(thisWord)){
           //turn them back into words in a new array
-          FINALOUTPUT[0].push(thisWord);
+          FINALOUTPUT[0].push({word:thisWord});
           //turn them into syllable counts in a new array
-          FINALOUTPUT[1].push(countSyllables(indexArray[i]));
+          FINALOUTPUT[1].push({syllable:countSyllables(indexArray[i])});
         }
       }
     }
