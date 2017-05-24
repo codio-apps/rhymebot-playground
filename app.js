@@ -639,7 +639,7 @@ function receivedMessage(event) {
   function spawnSimpleDictionary(){
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
-    var i = 57325;
+    var i = 57324;
     var stop = false;
     //for every line in the dictionary
     //for (var i = 0; i < CURRENTDICTIONARY.length; i++){
@@ -656,9 +656,17 @@ function receivedMessage(event) {
           for (var l = 0; l < splitSoundalikes.length; l++){
             var tmpPhoArray = splitSoundalikes[l].split(" ") ;
             console.log("tmpPhoArray is: "+tmpPhoArray);
-            //if the phoneme is a match
-            if (tmpArray[k+l]==tmpPhoArray[l]){
-              console.log ("match at "+getWord(i));
+            //for every phoneme in the tmpPhoArray
+            for (var m = 0; m < tmpPhoArray; m++){
+              if (tmpArray[k+m]==tmpPhoArray[m]){
+              } else {
+                stop = true;
+                console.log("I was told to stop");
+              }
+            }
+            //if the phonemes are a match
+            if (!stop){
+              console.log ("match found at "+getWord(i));
             }
           }
         }
