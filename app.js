@@ -643,20 +643,27 @@ function receivedMessage(event) {
       }
     }
     console.log("wordEnding "+wordEnding);
-    //find out where the last vowel is and search for everything after that
-    console.log("phonemeArray is "+phonemeArray+" last one is "+wordEnding);
-    var unsortedResults = searchPhonemes(wordEnding, countSyllables(dictionaryIndex));
-    console.log("unsortedResults is "+unsortedResults);
-    var sortedResults = new Array();
-    for (var i = 0; i<unsortedResults.length; i++){
-      var tempPHONEMES = getPhonemes(unsortedResults[i], false);
-      var tempArray = phonemeString.split(" ")
-      console.log("comparing "+phonemeArray[1]+" to "+tempArray[1]);
-      if (phonemeArray[1]==tempArray[1]){
-        sortedResults.push(tempArray[1]);
-      }
-    }
-    console.log("sortedResults: "+sortedResults);
+    console.log("phonemeArray is "+phonemeArray+" last part is "+wordEnding);
+
+    //take everything after the last vowel as a string
+    //look at whole rhyme except for last vowel sound or something?
+    var endingArray = wordEnding.split(" ");
+    console.log("endingArray: "+endingArray);
+    //if (endingArray[endingArray.length-1])
+
+    //make one huge array of everything that has this ending
+    //var unsortedResults = searchPhonemes(wordEnding, countSyllables(dictionaryIndex));
+    //console.log("unsortedResults is "+unsortedResults);
+    //var sortedResults = new Array();
+    //for (var i = 0; i<unsortedResults.length; i++){
+    //  var tempPHONEMES = getPhonemes(unsortedResults[i], false);
+    //  var tempArray = phonemeString.split(" ")
+    //console.log("comparing "+phonemeArray[1]+" to "+tempArray[1]);
+    //  if (phonemeArray[1]==tempArray[1]){
+    //    sortedResults.push(unsortedResults[i]);
+    //  }
+    //}
+    //console.log("sortedResults: "+sortedResults);
   }
 
   //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
