@@ -636,8 +636,9 @@ function receivedMessage(event) {
           var lastVowel = phoLen-k;
           //now stick everything after and including the last vowel into a string
           for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
-            wordEnding = phonemeArray[l];
+            wordEnding = wordEnding +" "phonemeArray[l];
           }
+          wordEnding = wordEnding.slice(1);
           vowelFound = true;
         }
       }
