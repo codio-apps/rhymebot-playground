@@ -490,6 +490,8 @@ function receivedMessage(event) {
           } else {
             messageResponse = "I don't know the word "+searchWord+" yet";
           }
+          break;
+          
           //handle the question command
           case 'question':
           sendQuestion(senderID);
