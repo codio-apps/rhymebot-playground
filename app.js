@@ -583,11 +583,6 @@ function receivedMessage(event) {
     catch(err) {
       console.log("Unable to parse rhyme file: " + err);
     }
-    // Read through the dictionary and do two things -
-    // a) Store the dictionary as an array broken up by a new line, in CURRENTDICTIONARY
-    // b) Cycle through the dictionary and store the letter of the alphabet, and it's last position in the array
-    // i.e. ALPHABET_ARRAY[1] = ["B", 1001]; - this means the letter B finishes on this line
-    // Try to read from file
     try {
       fileBuffer = fs.readFileSync(dictionary, "utf-8");
       CURRENTDICTIONARY = fileBuffer.split("\n");
@@ -609,7 +604,6 @@ function receivedMessage(event) {
     try {
       fileBuffer = fs.readFileSync(soundalike_file, "utf-8");
       SOUNDALIKES = fileBuffer.split("\n");
-      console.log("soundalikes.txt loaded: "+SOUNDALIKES);
     }
     catch(err) {
       console.log("Unable to parse soundalike file: " + err);
