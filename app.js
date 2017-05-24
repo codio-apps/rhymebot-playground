@@ -628,7 +628,7 @@ function receivedMessage(event) {
 
     var list = [];
     for (var j = 0; j < twoDarray[0].length; j++) {
-      list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]);
+      list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]});
     }
     list.sort(function(a, b) {
     return ((a.syllable < b.syllable) ? -1 : ((a.syllable == b.syllable) ? 0 : 1));
