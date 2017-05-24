@@ -624,7 +624,7 @@ function receivedMessage(event) {
     var phonemeArray = phonemeString.split(" ");
     var wordEnding = "";
     var vowelFound = false;
-
+    //for however many phonemes there are in the returned string, working backwards from the end
     for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
       //set char to the first letter of the phoneme
       var char = phonemeArray[phoLen-k].charAt(0);
@@ -633,12 +633,11 @@ function receivedMessage(event) {
         //if we find a vowel at the next position down, log it as the last one
         if (char == vowels[j]){
           var lastVowel = phoLen-k;
-          vowelFound = true;
           //now stick the rest of the vowels back into the buffer
-          var tempString = "";
           for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
             wordEnding = wordEnding +" "+phonemeArray[l];
           }
+          vowelFound = true;
         }
       }
     }
