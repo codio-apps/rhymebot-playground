@@ -635,15 +635,17 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in an index from dictionary and return everything that nearly rhymes in an array
+  //function to take in an index from the dictionary and return everything that nearly rhymes in an array
   //DOESN'T DO MUCH TBH YET
+  //Using as a testing ground for stuff atm
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex+"\nSOUNDALIKES:"+SOUNDALIKES);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     console.log("trying to save to simpledictionary.txt now");
     try {
-      fs.writeFileSync(simple_dictionary, 'Hello world!');
+      var writeFile = "This works then";
+      fs.writeFileSync(simple_dictionary, writeFile);
     }
     catch(err) {
       console.log('Error writing simpledictionary.txt' + err);
