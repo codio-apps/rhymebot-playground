@@ -1,26 +1,7 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Gist
- @ohmegamega
- Sign out
- Watch 1
-  Star 0
- Fork 0 codio-apps/rhymebot-playground
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Settings Insights
-Tree: 3dc01cb387 Find file Copy pathrhymebot-playground/app.js
-3dc01cb  36 minutes ago
-@ohmegamega ohmegamega chris sorting arrays
-1 contributor
-RawBlameHistory
-1654 lines (1500 sloc)  55.6 KB
 /* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
 
-/*rhymebot mk0.02 alpha */
+/*rhymebot mk0.03 alpha */
 'use strict';
 
 // Set up constants
@@ -485,13 +466,13 @@ function receivedMessage(event) {
           searchWord = lc_messageText.slice(6).toUpperCase();
           var indexString = findTheLine(searchWord);
           if (indexString != -1){
-            var messageString = "You asked for words that nearly rhyme with "+searchWord.toLowerCase();
+            messageResponse = "You asked for words that nearly rhyme with "+searchWord.toLowerCase();
             closeRhymes(indexString);
           } else {
             messageResponse = "I don't know the word "+searchWord+" yet";
           }
           break;
-          
+
           //handle the question command
           case 'question':
           sendQuestion(senderID);
