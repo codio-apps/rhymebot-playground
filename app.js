@@ -494,6 +494,9 @@ function receivedMessage(event) {
             console.log("Input array position 1 is a number");
             var dictionaryIndex = findTheLine(searchArray[0]);
             if (dictionaryIndex != -1){
+              if (searchArray[1]>25){
+                searchArray[i]=25;
+              }
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
               randomArray = indexesToWords(randomArray, dictionaryIndex);
               randomArray = makeArrayReadable(randomArray);
@@ -617,14 +620,14 @@ function receivedMessage(event) {
   function makeArrayReadable(twoDarray, theWord){
     //if there are more than 100 results trim to 100, for simplicity's sake
     var tmp = "";
-    // if (twoDarray[0].length>25){
-    //   tmp = tmp +"Here are my top 25\n"
-    //   twoDarray[0].length=25; //0 is words
-    //   twoDarray[1].length=25; //1 is syllables
-    // }
+    if (twoDarray[0].length>=25){
+      tmp = tmp +"My current limit is 25\n"
+      twoDarray[0].length=25; //0 is words
+      twoDarray[1].length=25; //1 is syllables
+    }
     //first, reorder everything in the 2d array by number of syllables
+    //this method seems somewhat convoluted :/
     console.log("twoDarraynow:"+twoDarray[0]+"///"+twoDarray[1]);
-
     var list = [];
     for (var j = 0; j < twoDarray[0].length; j++) {
       list.push({'word': twoDarray[0][j], 'syllable': twoDarray[1][j]});
