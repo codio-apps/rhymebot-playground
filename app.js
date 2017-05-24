@@ -621,7 +621,12 @@ function receivedMessage(event) {
   function closeRhymes(dictionaryIndex){
     console.log("closeRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false);
-    console.log("constructed phonemeString: "+phonemeString);
+    var phonemeArray = phonemeString.split(" ");
+    console.log("phonemeArray is "+phonemeArray+" last one is "+phonemeArray[phonemeArray.length-1]);
+    var unsortedResults = searchPhonemes(phonemeArray.length-1, countSyllables(dictionaryIndex));
+    console.log("unsortedResults is "+unsortedResults);
+
+
   }
 
   //function to take in a 2d array of words with their syllable count, and return a nicely structured string for sending to the user
