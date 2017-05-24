@@ -643,12 +643,15 @@ function receivedMessage(event) {
       }
     }
     console.log("wordEnding "+wordEnding);
-
     //find out where the last vowel is and search for everything after that
     console.log("phonemeArray is "+phonemeArray+" last one is "+wordEnding);
     var unsortedResults = searchPhonemes(wordEnding, countSyllables(dictionaryIndex));
     console.log("unsortedResults is "+unsortedResults);
-
+    var sortedResults = new Array();
+    for (var i = 0; i<unsortedResults.length; i++){
+      var tempPHONEMES = getPhonemes(unsortedResults[i], false);
+      console.log("comparing "+phonemeArray[1]+" to "+tempPHONEMES[1]);
+    }
 
   }
 
