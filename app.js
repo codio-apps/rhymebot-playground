@@ -639,8 +639,8 @@ function receivedMessage(event) {
   function spawnSimpleDictionary(){
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
-    var i = 57324;
-    var stop = false;
+    var i = 54580;
+    var failCon = false;
     //for every line in the dictionary
     //for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var tmpString = getPhonemes(i, false).slice(1);
@@ -653,19 +653,20 @@ function receivedMessage(event) {
         //for every phoneme in the word we are looking at
         for (var k = 0; k < tmpArray.length; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
-          for (var l = 0; l < splitSoundalikes.length; l++){
+          for (var l = 0; l < splitSoundalikes.length && !failCon; l++){
             var tmpPhoArray = splitSoundalikes[l].split(" ") ;
             console.log("tmpPhoArray is: "+tmpPhoArray);
             //for every phoneme in the tmpPhoArray
             for (var m = 0; m < tmpPhoArray; m++){
               if (tmpArray[k+m]==tmpPhoArray[m]){
-                console.log("stop is still false because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
+                console.log("failCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
               } else {
-                stop = true;
+                failCon = true;
+                console.log("failCon triggered!");
               }
             }
             //if the phonemes are a match
-            if (!stop){
+            if (!failCon){
               console.log ("match found at "+getWord(i));
             }
           }
