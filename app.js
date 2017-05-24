@@ -660,11 +660,16 @@ function receivedMessage(event) {
             console.log("tmpPhoArray is: "+tmpPhoArray);
             //for every phoneme in the tmpPhoArray
             for (var m = 0; m < tmpPhoArray.length; m++){
-              if (tmpArray[k+m]==tmpPhoArray[m]){
-                console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
+              if (tmpArray.length >= tmpPhoArray.length){
+                if (tmpArray[k+m]==tmpPhoArray[m]){
+                  console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
+                } else {
+                  stopCon = true;
+                  console.log("stopCon is now true because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
+                }
               } else {
                 stopCon = true;
-                console.log("stopCon is now true because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
+                console.log("stopCon is now true because: "+tmpArray.length+"!>="+tmpPhoArray.length);
               }
             }
             //if the phonemes are a match
