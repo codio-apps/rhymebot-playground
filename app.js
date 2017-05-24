@@ -682,7 +682,7 @@ function receivedMessage(event) {
         //turn the indexarray back into words, obtain the syllables in this array as well
         outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        output = "I know "+indexArray[i].length+" words that rhyme, here they are:\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
+        output = "I know "+outputArray[i].length+" words that rhyme, here they are:\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
