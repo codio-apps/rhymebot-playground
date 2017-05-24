@@ -635,22 +635,53 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
+  //function to create data for simpledictionary.txt and write it to the file(eventually)
+  function spawnSimpleDictionary(){
+    var simpleOutput = new Array();
+    var splitSoundalikes = new Array();
+    var i = 57325;
+    //for every line in the dictionary
+    //for (var i = 0; i < CURRENTDICTIONARY.length; i++){
+      var tmpString = getPhonemes(i, false).slice(1);
+      var tmpArray = tmpString.split(" ");
+      console.log("tmpArray is: "+tmpArray);
+      //for every line in soundalikes
+      for (var j = 0; j < SOUNDALIKES.length; j++){
+        splitSoundalikes = SOUNDALIKES[j].split(",");
+        console.log("splitSoundalikes is: "+splitSoundalikes);
+        //for every phoneme in the word we are looking at
+        for (var k = 0; k < tmpArray.length; k++){
+          //for every phoneme set in the splitup line from SOUNDALIKES
+          for (var l = 0; l < splitSoundalikes.length; l++){
+            var tmpPhoArray = splitSoundalikes[0].split(" ") ;
+            console.log("tmpPhoArray is: "+tmpPhoArray);
+            //if the phoneme is a match
+            if (tmpArray[k+l]==tmpPhoArray[l]){
+              console.log ("match at "+getWord(i));
+            }
+          }
+        }
+      }
+    //}
+    // console.log("trying to save to simpledictionary.txt now");
+    // try {
+    //   var writeFile = "This works then";
+    //   fs.writeFileSync('public/simpledictionary.txt', writeFile, 'utf8');
+    // }
+    // catch(err) {
+    //   console.log('Error writing simpledictionary.txt' + err);
+    // }
+    // console.log('Saved!');
+  }
+
   //function to take in an index from the dictionary and return everything that nearly rhymes in an array
   //DOESN'T DO MUCH TBH YET
   //Using as a testing ground for stuff atm
   function fuzzyRhymes(dictionaryIndex){
-    console.log("fuzzyRhymes called on "+dictionaryIndex+"\nSOUNDALIKES:"+SOUNDALIKES);
+    console.log("fuzzyRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
-    console.log("trying to save to simpledictionary.txt now");
-    try {
-      var writeFile = "This works then";
-      fs.writeFileSync('public/simpledictionary.txt', writeFile, 'utf8');
-    }
-    catch(err) {
-      console.log('Error writing simpledictionary.txt' + err);
-    }
-    console.log('Saved!');
+    spawnSimpleDictionary();
 
     //var wordEnding = "";
     //var vowelFound = false;
