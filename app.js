@@ -651,7 +651,7 @@ function receivedMessage(event) {
       var compareString = SIMPLEDICTIONARY[i];
       if (compareString == fuzzyString){
         console.log("match found at "+getWord(i));
-        indexArray.push(i);
+        indexArray.push(getWord(i));
         syllableArray.push(countSyllables(i));
         //outputArray[0].push(getWord(i));
         //outputArray[1].push(countSyllables(i));
