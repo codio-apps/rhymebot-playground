@@ -521,15 +521,15 @@ function receivedMessage(event) {
           }
           break;
 
-          case: 'startPlaying'
+          case 'startPlaying':
           startPlaying();
           break;
 
-          case: 'stopPlaying'
+          case 'stopPlaying':
           stopPlaying();
           break;
 
-          case: 'playing'
+          case 'playing':
           messageResponse = "Still, playing. Say quit to to quit."
           break;
 
