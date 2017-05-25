@@ -475,7 +475,6 @@ function receivedMessage(event) {
           var indexString = findTheLine(searchWord);
           var messageString = "";
           if (indexString != -1){
-            messageString = "You asked for words that fuzzy rhyme with "+searchWord+"\n";
             messageString = messageString+fuzzyRhymes(indexString);
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
