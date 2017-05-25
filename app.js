@@ -647,7 +647,7 @@ function receivedMessage(event) {
     var outputString = "";
     var OGphonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
-
+    console.log("OGphonemeString is "+OGphonemeString);
     var vowelCount = countSyllables(dictionaryIndex);
 
     var syllableString = SIMPLEDICTIONARY[dictionaryIndex]; //OW, T, A
@@ -1055,7 +1055,7 @@ function receivedMessage(event) {
     //search the dictionary, for every item in it
     for (var iX = 0, n = whichDictionary.length; iX < n; iX++) {
       //if the rhyme is a match
-      console.log(whichDictionary[iX]+"*****"+phonemeString);
+      //console.log(whichDictionary[iX]+"*****"+phonemeString);
       if (whichDictionary[iX].endsWith(phonemeString)) {
         //store the word in a temp string array, then use the 0th element
         arrayBin = whichDictionary[iX].split(splitCase);
