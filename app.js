@@ -639,37 +639,35 @@ function receivedMessage(event) {
   function spawnSimpleDictionary(){
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
-    var i = 57325;
-    var stopCon = false;
-    var halt = false;
     //for every line in the dictionary
-    //for (var i = 0; i < CURRENTDICTIONARY.length; i++){
+    for (var i = 0; i < CURRENTDICTIONARY.length; i++){
+      var halt = false;
+      var stopCon = false;
       var tmpString = getPhonemes(i, false).slice(1);
       var tmpArray = tmpString.split(" ");
-      console.log("tmpArray is: "+tmpArray);
+      //console.log("tmpArray is: "+tmpArray);
       //for every line in soundalikes
       for (var j = 0; j < SOUNDALIKES.length-1 && !halt; j++){
         splitSoundalikes = SOUNDALIKES[j].split(",");
-        console.log("splitSoundalikes loop #"+j+" is: "+splitSoundalikes);
+        //console.log("splitSoundalikes loop #"+j+" is: "+splitSoundalikes);
         //for every phoneme in the word we are looking at
         for (var k = 0; k < tmpArray.length && !halt; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
           for (var l = 1; l < splitSoundalikes.length && !halt; l++){
-            stopCon = false;
             var tmpPhoArray = splitSoundalikes[l].split(" ") ;
-            console.log("tmpPhoArray is: "+tmpPhoArray);
+            //console.log("tmpPhoArray is: "+tmpPhoArray);
             //for every phoneme in the tmpPhoArray
             for (var m = 0; m < tmpPhoArray.length; m++){
               if (tmpArray.length-k >= tmpPhoArray.length){
                 if (tmpArray[k+m]==tmpPhoArray[m]){
-                  console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
+                  //console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
                 } else {
                   stopCon = true;
-                  console.log("stopCon is now true because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
+                  //console.log("stopCon is now true because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
                 }
               } else {
                 stopCon = true;
-                console.log("stopCon is now true because: "+tmpArray.length+"!>="+tmpPhoArray.length);
+                //console.log("stopCon is now true because: "+tmpArray.length+"!>="+tmpPhoArray.length);
               }
             }
             //if the phonemes are a match
@@ -686,8 +684,9 @@ function receivedMessage(event) {
           }
         }
       }
-      console.log("stopped");
-    //}
+      //end of word is here
+    }
+    console.log("finished whole dictionary");
     // console.log("trying to save to simpledictionary.txt now");
     // try {
     //   var writeFile = "This works then";
