@@ -509,7 +509,6 @@ function receivedMessage(event) {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
           }
-
           break;
 
           default:
@@ -517,7 +516,7 @@ function receivedMessage(event) {
           messageResponse = messageText + "?";
         }
         if(instant_reply = true){
-          sendTypingOff();
+          sendTypingOff(senderID);
           sendTextMessage(senderID, messageResponse);
         }
 

@@ -48,7 +48,7 @@ catch(err) {
 }
 //FINAL CHECK THAT EVERYTHING WORKED
 if (CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""&&SOUNDALIKES!=""&&SIMPLEDICTIONARY!=""){
-  console.log("All files buffered succesfully");
+  console.log("All files buffered succesfully\nProcessing...");
   filesBuffered=true;
 }
 
