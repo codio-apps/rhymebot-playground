@@ -437,7 +437,7 @@ function receivedMessage(event) {
             indexArray[i] = findTheLine(searchArray[i]);
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
-              messageString = messageString+"🎤 "+searchSentence(indexArray[i])+"\n"+fuzzyRhymes(indexArray[i]);
+              messageString = messageString+searchSentence(indexArray[i])+"\n"+fuzzyRhymes(indexArray[i]);
             }
           }
           messageResponse = messageString;
@@ -448,7 +448,7 @@ function receivedMessage(event) {
           var indexString = findTheLine(searchWord);
           var messageString = "";
           if (indexString != -1){
-            messageString = messageString+"🎤 "+fuzzyRhymes(indexString);
+            messageString = messageString+fuzzyRhymes(indexString);
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
           }
@@ -498,7 +498,7 @@ function receivedMessage(event) {
               randomArray = indexAndSortInto2d(randomArray, dictionaryIndex);
               randomArray = make2dArrayPresentable(randomArray, searchWord);
               var t = totalFound-1;
-              messageResponse = "🎤 I know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
+              messageResponse = "I know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
