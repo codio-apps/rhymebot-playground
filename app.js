@@ -782,7 +782,7 @@ function receivedMessage(event) {
     console.log("phonemeBuffer is "+phonemeBuffer);
     wordEndings = breakdownPhonemes(phonemeBuffer);
     console.log("breakdownPhonemes "+wordEndings);
-    var vowelCount = wordEndings.length-1;
+    var vowelCount = wordEndings.length;
     //actual searching now
     //for however many vowels we found (syllables), down to the first vowel
     for (var j = vowelCount; j > 0; j--){
