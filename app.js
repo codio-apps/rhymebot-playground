@@ -22,7 +22,7 @@ app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
 
-// Keyword initialisation
+// Keyword and letter initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
 var vowels = new Array('A', 'E', 'I', 'O', 'U');
 var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -35,18 +35,11 @@ var SOUNDALIKES = "";
 var ALPHABET_ARRAY = new Array();
 var SIMPLEDICTIONARY = "";
 
-//global arrays - THIS NEEDS THINNING DOWN, MOST COULD BE LOCAL PROBABLE
-var PHONEMES = new Array();
-var RHYMEOUTPUT = new Array();
-var inputArray = new Array();
-
 //file buffer
 var fileBuffer = "";
 var filesBuffered = false;
 
 //counters for finders
-var matchesFound = 0;
-var pronunciationsFound = 0;
 var maxSyllables = 0;
 
 // Graph Profile fields by senderID
@@ -75,12 +68,6 @@ var abcdef = "public/abcdef.txt";
 var soundalike_file = "public/soundalikes.txt";
 //setup simplified dictionary file
 var simple_dictionary = "public/simpledictionary.txt";
-
-/*
-* Be sure to setup your config values before running this code. You can
-* set them using environment variables or modifying the config file in /config.
-*
-*/
 
 // App Secret can be retrieved from the App Dashboard
 const APP_SECRET = (process.env.MESSENGER_APP_SECRET) ?
@@ -291,30 +278,16 @@ function receivedMessage(event) {
     setUpLocalVariables();
   }
 
-
-  //   var MongoClient = require('mongodb').MongoClient;
-  // var url = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/codio-apps?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-  //
-  // MongoClient.connect(url, function(err, db) {
-  //   if (err) throw err;
-  //   console.log("Database created!");
-  //   db.close();
-  // });
-
-
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
 
   request(
-    ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
-
+    ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN)
     function(error, response, body) {
-
       var bodyObj = JSON.parse(body);
       console.log(bodyObj);
       name = bodyObj.first_name;
       last_name = bodyObj.last_name;
-
       if (isEcho) {
         // Just logging message echoes to console
         console.log("Received echo for message %s and app %d with metadata %s",
@@ -328,10 +301,6 @@ function receivedMessage(event) {
         sendTextMessage(senderID, "Quick reply tapped");
         return;
       }
-
-
-
-
 
       if (messageText) {
         // If we receive a text message, check to see if it matches any special
@@ -350,12 +319,12 @@ function receivedMessage(event) {
           instant_reply = true;
         }
         // If help, set the key to "help"
-        if(StringSearch(lc_messageText, "--help")){
+        if(StringSearch(lc_messageText, "help")){
           intent = "help";
           instant_reply = true;
         }
         // If about, set the key to "help"
-        if(StringSearch(lc_messageText, "--about")){
+        if(StringSearch(lc_messageText, "about")){
           intent = "about";
           instant_reply = true;
         }
@@ -458,7 +427,7 @@ function receivedMessage(event) {
           case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
-          var indexArray = [""];
+          var indexArray = new Array();
           var messageString = "";
           for (var i = 0, len = searchArray.length; i < len; i++){
             indexArray[i] = findTheLine(searchArray[i]);
@@ -466,6 +435,7 @@ function receivedMessage(event) {
               console.log("SearchArray: "+indexArray);
               messageString = messageString+searchSentence(indexArray)+"\n";
             }
+            messageSting = messageString+fuzzyRhymes(indexString);
           }
           messageResponse = messageString;
           break;
@@ -505,8 +475,8 @@ function receivedMessage(event) {
               if (randomArray.length==0){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
-                randomArray = indexAndSort(randomArray, dictionaryIndex);
-                randomArray = makeArrayReadable(randomArray, searchWord);
+                randomArray = indexAndSortInto2d(randomArray, dictionaryIndex);
+                randomArray = make2dArrayPresentable(randomArray, searchWord);
                 var t = totalFound-1;
                 messageResponse = "I know "+t+" words that rhyme, you asked for 10, here they are:\n"+randomArray;
               }
@@ -522,17 +492,16 @@ function receivedMessage(event) {
                 searchArray[i]=25;
               }
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
-              randomArray = indexAndSort(randomArray, dictionaryIndex);
-              randomArray = makeArrayReadable(randomArray, searchWord);
+              randomArray = indexAndSortInto2d(randomArray, dictionaryIndex);
+              randomArray = make2dArrayPresentable(randomArray, searchWord);
               var t = totalFound-1;
-              messageResponse = "I know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
+              messageResponse = "I know "+t+" words that rhyme, you asked for "+searchArray[1]+"\n"+randomArray;
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
           }
 
           break;
-
           default:
           messageResponse = messageText + "?";
         }
@@ -548,7 +517,6 @@ function receivedMessage(event) {
         sendTextMessage(senderID, message);
         //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
       }
-
       if (error) {
         name = "";
         last_name = "";
@@ -557,30 +525,22 @@ function receivedMessage(event) {
       }
       // CODE GOES HERE AFTER FUNCTION RETURNS
       console.log("Received the name from Facebook, it is: "+name +" "+last_name);
-
     });
-
   }
 
   // Read text file data and store it into local variables for string comparisons
   function setUpLocalVariables() {
-    // Assign the greetings txt file values (hey, hello, hi) to the GREETINGS variable
-    // Try to read from file
     try {
       fileBuffer = fs.readFileSync(greetings_file, "utf-8");
       GREETINGS = fileBuffer.split("\n");
     }
-    // Catch an error and set default
     catch(err) {
       console.log("Unable to parse greetings file: " + err);
     }
-    // Assign the rhyme typos txt file values (rhime, ryme) to the RHYME_TYPOS variable
-    // Try to read from file
     try {
       fileBuffer = fs.readFileSync(rhyme_typos, "utf-8");
       RHYME_TYPOS = fileBuffer.split("\n");
     }
-    // Catch an error and set default
     catch(err) {
       console.log("Unable to parse rhyme file: " + err);
     }
@@ -589,6 +549,7 @@ function receivedMessage(event) {
       CURRENTDICTIONARY = fileBuffer.split("\n");
       var dictionary_length = CURRENTDICTIONARY.length;
       var alphabetLength = 27;
+      //find out what the highest syllable number is in the dictionary
       maxSyllables = getMaxSyllables();
       for (var i = 0; i < dictionary_length; i++) {
         for (var j = 0; j < alphabetLength; j++) {
@@ -623,7 +584,7 @@ function receivedMessage(event) {
     }
   }
 
-  //function to return the syllable value of the item in CURRENTDICTIONARY with the most syllables
+  //function to find the word with the most syllables in the dictionary and return it's value
   function getMaxSyllables(){
     var mostSyllables = 0;
     var maxWord = "";
@@ -655,21 +616,17 @@ function receivedMessage(event) {
           console.log("this is a regular match, skipping");
         } else {
         indexArray.push(i);
-        //syllableArray.push(countSyllables(i));
       }
       }
     }
-    //outputArray[0] = indexArray;
-    //outputArray[1] = syllableArray;
-    outputArray = indexAndSort(indexArray, dictionaryIndex);
+    outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
     console.log("finished searching");
-    outputString = "DATA: "+SIMPLEDICTIONARY[dictionaryIndex]+"\nI know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
     return outputString;
   }
 
 
   //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
-  function makeArrayReadable(twoDarray, theWord){
+  function make2dArrayPresentable(twoDarray, theWord){
     var tmp = "";
     //if there are more than 25 results trim to 25, for simplicity's sake for now
     if (twoDarray[0].length>=50){
@@ -730,9 +687,9 @@ function receivedMessage(event) {
         console.log("Word number "+i);
         indexOutputArray[i] = complexSearch(indexArray[i]);
         //turn the indexarray back into words, obtain the syllables in this array as well
-        outputArray[i] = indexAndSort(indexOutputArray[i], indexArray[i]);
+        outputArray[i] = indexAndSortInto2d(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
-        output = "I know "+outputArray[i][0].length+" words that rhyme with "+getWord(indexArray[i])+"\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
+        output = "I know "+outputArray[i][0].length+" words that rhyme with "+getWord(indexArray[i])+"\n"+make2dArrayPresentable(outputArray[i], getWord(indexArray[i]).toLowerCase());
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
@@ -811,7 +768,7 @@ function receivedMessage(event) {
 
   //function to turn an array of indexes into a more presentable 2d array of words and syllable counts
   //includes duplicate handling
-  function indexAndSort(indexArray, dictionaryIndex){
+  function indexAndSortInto2d(indexArray, dictionaryIndex){
     //init an empty 2d array the only way I know how :/
     var FINALOUTPUT = (function(FINALOUTPUT){ while(FINALOUTPUT.push([]) < 2); return FINALOUTPUT})([]);
     //for every item in the words-that-rhyme array
@@ -934,7 +891,7 @@ function receivedMessage(event) {
 
 
   function randomRhymes(dictionaryIndex, elements){
-    inputArray.length=0;
+    var inputArray = new Array();
     var arrayBuffer = complexSearch(dictionaryIndex);
     if (arrayBuffer.length!==0){
       var randArray = randomlyReturn(arrayBuffer, elements);
@@ -954,10 +911,10 @@ function receivedMessage(event) {
       //trim off the spelling and spacing from the string
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(countWord.length+2);
       //for the found word, make an array containing each phoneme sound
-      PHONEMES = tempPHONEMES.split(" ");
+      var phonemes = tempPHONEMES.split(" ");
       for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
-        char = PHONEMES[phoLen-i-1].charAt(0);
+        char = phonemes[phoLen-i-1].charAt(0);
         //if the vowels array includes this character
         if(vowels.includes(char)){
           syllablesFound++;
@@ -976,9 +933,9 @@ function receivedMessage(event) {
     //trim off the spelling and spacing from the string
     var tempPHONEMES = theLine.slice(getWord(dictionaryIndex).length+2);
     //for the found word, make an array containing each phoneme sound
-    var PHONEMES = tempPHONEMES.split(" ");
+    var phonemes = tempPHONEMES.split(" ");
     if (all){
-      for (var i = 0; i < PHONEMES.length; i++){
+      for (var i = 0; i < phonemes.length; i++){
         phonemeString = phonemeString+" "+PHONEMES[i];
       }
       return phonemeString;
@@ -987,9 +944,9 @@ function receivedMessage(event) {
       var firstVowel = 0;
       var char = "";
       //check the first character of each phoneme, backwards
-      for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
+      for (var i = 0, phoLen = phonemes.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
-        char = PHONEMES[phoLen-i-1].charAt(0);
+        char = phonemes[phoLen-i-1].charAt(0);
         //compare char to every vowel
         for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
           //if we find a vowel at character 0, log the position as the first relevant one
@@ -1000,10 +957,10 @@ function receivedMessage(event) {
       }
       //code below constucts a string of phonemes to be compared to the rest of the dictionary
       //the current logic is that it goes from the first vowel
-      phoLen = PHONEMES.length-firstVowel;
+      phoLen = phonemes.length-firstVowel;
       //construct our phoneme string
-      for (var i = firstVowel; i < PHONEMES.length; i++){
-        phonemeString = phonemeString+" "+PHONEMES[i];
+      for (var i = firstVowel; i < phonemes.length; i++){
+        phonemeString = phonemeString+" "+phonemes[i];
       }
       return phonemeString;
     }
@@ -1014,8 +971,8 @@ function receivedMessage(event) {
   //if syllableLength is zero, return all matches
   function searchPhonemes(phonemeString, syllableLength){
     var arrayBin = new Array();
-    RHYMEOUTPUT.length = 0;
-    matchesFound = 0;
+    var RHYMEOUTPUT = new Array();
+    var matchesFound = 0;
     //search the dictionary, for every item in it
     for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
       //if the rhyme is a match
