@@ -691,15 +691,15 @@ function receivedMessage(event) {
       simpleOutput[i]=tmpString;
     }
     console.log("finished whole dictionary");
-    // console.log("trying to save to simpledictionary.txt now");
-    // try {
-    //   var writeFile = "This works then";
-    //   fs.writeFileSync('public/simpledictionary.txt', writeFile, 'utf8');
-    // }
-    // catch(err) {
-    //   console.log('Error writing simpledictionary.txt' + err);
-    // }
-    // console.log('Saved!');
+    console.log("trying to save to simpledictionary.txt now");
+    try {
+      var writeFile = simpleOutput.toString();
+      fs.writeFileSync('public/simpledictionary.txt', writeFile, 'utf8');
+    }
+    catch(err) {
+      console.log('Error writing simpledictionary.txt' + err);
+    }
+    console.log('Saved!');
   }
 
   //function to take in an index from the dictionary and return everything that nearly rhymes in an array
