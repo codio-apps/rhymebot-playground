@@ -645,16 +645,18 @@ function receivedMessage(event) {
     var syllableArray = new Array();
     var outputString = "";
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
-    var phonemeArray = phonemeString.split(" ");
+    var normalSearchArray = searchPhonemes(phonemeString, 0);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var compareString = SIMPLEDICTIONARY[i];
       if (compareString == fuzzyString){
         console.log("match found at "+getWord(i));
-        indexArray.push(getWord(i));
+        if (normalSearchArray.includes(i)){
+          console.log("this is a regular match, skipping");
+        } else {
+        indexArray.push(getWord(i).toLowerCase());
         syllableArray.push(countSyllables(i));
-        //outputArray[0].push(getWord(i));
-        //outputArray[1].push(countSyllables(i));
+      }
       }
     }
     outputArray[0] = indexArray;
