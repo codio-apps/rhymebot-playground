@@ -617,7 +617,7 @@ function receivedMessage(event) {
     var syllableArray = new Array();
     var outputString = "";
     var phonemes = getPhonemes(dictionaryIndex, false).slice(1);
-    var ordinarySearchResults = searchPhonemes(phonemes, 0);
+    var ordinarySearchResultsy = searchPhonemes(phonemes, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
@@ -630,7 +630,7 @@ function receivedMessage(event) {
       }
       }
     }
-    if (indexArray.length = 0){
+    if (indexArray.length == 0){
       return "I couldn't find any fuzzy rhymes sorry";
     }
     outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
