@@ -435,6 +435,7 @@ function receivedMessage(event) {
               console.log("SearchArray: "+indexArray);
               messageString = messageString+searchSentence(indexArray)+"\n";
             }
+            //append fuzzy rhyme data
             messageSting = messageString+fuzzyRhymes(indexString);
           }
           messageResponse = messageString;
