@@ -1,7 +1,7 @@
 /* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
-
-/*rhymebot mk0.03 alpha */
+/*rhymebot */
+var version = "mk0.03 alpha";
 'use strict';
 
 // Set up constants
@@ -395,9 +395,9 @@ function receivedMessage(event) {
           "Type random - get e\n";
           break;
           case 'about':
-          messageResponse = "Here is some about information: \n" +
-          "We are here to help you rhyme.\n" +
-          "We are ajstevens and ohmegamega.\n" +
+          messageResponse = "About: \n" +
+          "This is RhymeBot version "+version+".\n" +
+          "We are codio-apps \uD83D\uDC31/ajstevens && \uD83D\uDC36/ohmegamega.\n" +
           "You feel the rhythm, we feel the rhyme.";
           break;
 
