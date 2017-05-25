@@ -644,34 +644,46 @@ function receivedMessage(event) {
     var syllableArray = new Array();
     var outputString = "";
     var OGphonemeString = getPhonemes(dictionaryIndex, false).slice(1);
-    var normalSearchArray = searchPhonemes(OGphonemeString, 0);
+    var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyArray = SIMPLEDICTIONARY[dictionaryIndex].split(",");
 
     var wordEndings = breakdownPhonemes(fuzzyArray);
     console.log("***WORDENDINGS***"+wordEndings);
-    //for every permutation of the syllable lengths
-    for (var j =0; j < wordEndings.length; j++){
-        //look at every item in the dictionary
-        for (var i = 0; i < CURRENTDICTIONARY.length; i++){
-            var compareString = SIMPLEDICTIONARY[i];
-            if (compareString == fuzzyArray[j]){
-              console.log("match found at "+getWord(i));
-              if (normalSearchArray.includes(i)){
-                console.log("this is a regular match, skipping");
-              } else {
-              indexArray.push(getWord(i).toLowerCase());
-              syllableArray.push(countSyllables(i));
-            }
-            }
+    var vowelCount = wordEndings.length;
+    //actual searching now
+    //for however many vowels we found (syllables), down to the first vowel
+    for (var j = vowelCount; j > 0; j--){
+      //once we are on the last syllable, search for exact matches only
+      if (j==1){
+        var tempArray = searchPhonemes(wordEndings[j-1], 1, 1);
+        if (tempArray.length!=0){
+          if (normalSearchArray.includes(i)){
+            console.log("this is a regular match, skipping");
+          } else {
+          indexArray.push(getWord(i).toLowerCase());
+          syllableArray.push(countSyllables(i));
         }
+        }
+      } else {
+          //append all the words that rhyme but have more syllables than the current phonemeString
+          var tempArray = searchPhonemes(wordEndings[j-1], 0, 1);
+          if (tempArray.length!=0){
+            if (normalSearchArray.includes(i)){
+              console.log("this is a regular match, skipping");
+            } else {
+            indexArray.push(getWord(i).toLowerCase());
+            syllableArray.push(countSyllables(i));
+          }
+          }
+      }
     }
+    console.log(theWord+" fuzzy search complete");
     outputArray[0] = indexArray;
     outputArray[1] = syllableArray;
     console.log("finished searching");
     outputString = "DATA: "+SIMPLEDICTIONARY[dictionaryIndex]+"\nI know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
     return outputString;
-
   }
 
 
@@ -797,7 +809,7 @@ function receivedMessage(event) {
     for (var j = vowelCount; j > 0; j--){
       //once we are on the last syllable, search for exact matches only
       if (j==1){
-        var tempArray = searchPhonemes(wordEndings[j-1], 1);
+        var tempArray = searchPhonemes(wordEndings[j-1], 1, 0);
         if (tempArray.length!=0){
           COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
         }
@@ -805,7 +817,7 @@ function receivedMessage(event) {
         //starting at the maximum syllable value and working back to the current syllable
         //for (var k = maxSyllables; k>=j; k--){
           //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(wordEndings[j-1], 0);
+          var tempArray = searchPhonemes(wordEndings[j-1], 0, 0);
           if (tempArray.length!=0){
             COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
           }
@@ -1019,16 +1031,21 @@ function receivedMessage(event) {
   //function to search for phonemeString matches
   //returns an array of indexes
   //if syllableLength is zero, return all matches
-  function searchPhonemes(phonemeString, syllableLength){
+  function searchPhonemes(phonemeString, syllableLength, whichDictionary){
+    if (whichDictionary == 0){
+      whichDictionary = CURRENTDICTIONARY;
+    } else {
+      whichDictionary = SIMPLEDICTIONARY;
+    }
     var arrayBin = new Array();
     RHYMEOUTPUT.length = 0;
     matchesFound = 0;
     //search the dictionary, for every item in it
-    for (var iX = 0, n = CURRENTDICTIONARY.length; iX < n; iX++) {
+    for (var iX = 0, n = whichDictionary.length; iX < n; iX++) {
       //if the rhyme is a match
-      if (CURRENTDICTIONARY[iX].endsWith(phonemeString)) {
+      if (whichDictionary[iX].endsWith(phonemeString)) {
         //store the word in a temp string array, then use the 0th element
-        arrayBin = CURRENTDICTIONARY[iX].split("  ");
+        arrayBin = whichDictionary[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
         //handle zero on syllable length, return everything
         if (syllableLength == 0){
@@ -1061,7 +1078,7 @@ function receivedMessage(event) {
   //function to search the dictionary for phonemeString matches by index and return a list
   function searchPhonemesByIndex(dictionaryIndex, syllableLength) {
     var phonemeString = getPhonemes(dictionaryIndex, false);
-    var output = searchPhonemes(phonemeString, syllableLength);
+    var output = searchPhonemes(phonemeString, syllableLength, 0);
     return output;
   }
 
