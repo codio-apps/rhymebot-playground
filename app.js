@@ -513,7 +513,7 @@ function receivedMessage(event) {
 
           default:
           sendTypingOn(senderID);
-          messageResponse = messageText + "?";
+          messageResponse = messageText + "?🎙️";
         }
         if(instant_reply = true){
           sendTypingOff(senderID);
