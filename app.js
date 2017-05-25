@@ -1556,7 +1556,6 @@ function receivedMessage(event) {
 
   /*
   * Turn typing indicator on
-  *
   */
   function sendTypingOn(recipientId) {
     console.log("Turning typing indicator on");
@@ -1573,7 +1572,6 @@ function receivedMessage(event) {
 
   /*
   * Turn typing indicator off
-  *
   */
   function sendTypingOff(recipientId) {
     console.log("Turning typing indicator off");
