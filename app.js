@@ -635,7 +635,7 @@ function receivedMessage(event) {
     }
     outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
     console.log("finished searching");
-    var presentable = make2dArrayPresentable(outputArray);
+    var presentable = "I know "+indexArray.length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(outputArray);
     return presentable;
   }
 
