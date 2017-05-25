@@ -648,8 +648,10 @@ function receivedMessage(event) {
     var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     console.log("dindex "+SIMPLEDICTIONARY[dictionaryIndex]);
-    var fuzzyArray = SIMPLEDICTIONARY[dictionaryIndex].split(",");
-    var wordEndings = breakdownPhonemes(fuzzyArray);
+    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
+    //AH,S,EH,NgNM,T
+    fuzzyString.replace(/,/g, " ");
+    var wordEndings = breakdownPhonemes(fuzzyString);
     console.log("breakdownPhonemes "+wordEndings);
     var vowelCount = wordEndings.length;
     //actual searching now
