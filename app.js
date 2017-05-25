@@ -647,9 +647,10 @@ function receivedMessage(event) {
     var OGphonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
     var vowelCount = countSyllables(dictionaryIndex);
-    var fuzzyArray = SIMPLEDICTIONARY[dictionaryIndex].split(",");
-    var wordEndings = breakdownPhonemes(fuzzyArray);
-    console.log("***WORDENDINGS***"+wordEndings);
+    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex].split();
+    var wordEndings = breakdownPhonemes(fuzzyString);
+    console.log("phonemeBuffer is "+phonemeBuffer);
+    console.log("breakdownPhonemes "+wordEndings);
     var vowelCount = wordEndings.length;
     //actual searching now
     //for however many vowels we found (syllables), down to the first vowel
