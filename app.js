@@ -655,12 +655,13 @@ function receivedMessage(event) {
           console.log("this is a regular match, skipping");
         } else {
         indexArray.push(getWord(i).toLowerCase());
-        syllableArray.push(countSyllables(i));
+        //syllableArray.push(countSyllables(i));
       }
       }
     }
-    outputArray[0] = indexArray;
-    outputArray[1] = syllableArray;
+    //outputArray[0] = indexArray;
+    //outputArray[1] = syllableArray;
+    outputArray = indexesToWords(outputArray, dictionaryIndex);
     console.log("finished searching");
     outputString = "DATA: "+SIMPLEDICTIONARY[dictionaryIndex]+"\nI know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
     return outputString;
