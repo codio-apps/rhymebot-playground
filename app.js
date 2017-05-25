@@ -388,7 +388,7 @@ function receivedMessage(event) {
         else if (lc_messageText.startsWith("fuzzy")){
           intent = "fuzzy";
         } else {
-            //Do nothing, key is set to messageText
+          //Do nothing, key is set to messageText
         }
 
         // We convert the incoming message into a key, or we leave it as is and respond accordingly.
@@ -649,7 +649,6 @@ function receivedMessage(event) {
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex].split();
     var wordEndings = breakdownPhonemes(fuzzyString);
-    console.log("phonemeBuffer is "+phonemeBuffer);
     console.log("breakdownPhonemes "+wordEndings);
     var vowelCount = wordEndings.length;
     //actual searching now
@@ -662,21 +661,21 @@ function receivedMessage(event) {
           if (normalSearchArray.includes(i)){
             console.log("this is a regular match, skipping");
           } else {
-          indexArray.push(getWord(i).toLowerCase());
-          syllableArray.push(countSyllables(i));
-        }
-        }
-      } else {
-          //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(wordEndings[j-1], 0, 1);
-          if (tempArray.length!=0){
-            if (normalSearchArray.includes(i)){
-              console.log("this is a regular match, skipping");
-            } else {
             indexArray.push(getWord(i).toLowerCase());
             syllableArray.push(countSyllables(i));
           }
+        }
+      } else {
+        //append all the words that rhyme but have more syllables than the current phonemeString
+        var tempArray = searchPhonemes(wordEndings[j-1], 0, 1);
+        if (tempArray.length!=0){
+          if (normalSearchArray.includes(i)){
+            console.log("this is a regular match, skipping");
+          } else {
+            indexArray.push(getWord(i).toLowerCase());
+            syllableArray.push(countSyllables(i));
           }
+        }
       }
     }
     console.log(theWord+" fuzzy search complete");
@@ -817,11 +816,11 @@ function receivedMessage(event) {
       } else {
         //starting at the maximum syllable value and working back to the current syllable
         //for (var k = maxSyllables; k>=j; k--){
-          //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(wordEndings[j-1], 0, 0);
-          if (tempArray.length!=0){
-            COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
-          }
+        //append all the words that rhyme but have more syllables than the current phonemeString
+        var tempArray = searchPhonemes(wordEndings[j-1], 0, 0);
+        if (tempArray.length!=0){
+          COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
+        }
         //}
       }
     }
