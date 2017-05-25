@@ -661,7 +661,7 @@ function receivedMessage(event) {
     outputArray[0] = indexArray;
     outputArray[1] = syllableArray;
     console.log("finished searching");
-    outputString = "I know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
+    outputString = "DATA: "+SIMPLEDICTIONARY[dictionaryIndex]+"I know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
     return outputString;
   }
 
