@@ -132,7 +132,7 @@ for (var i = 0; i < CURRENTDICTIONARY.length; i++){
 console.log("finished whole dictionary, made "+itemsChanged+" changes");
 console.log("trying to save to simpledictionary.txt now");
 var writeBuffer = "";
-for (var i=0; i <CURRENTDICTIONARY.length; i++){
+for (var i=0; i <CURRENTDICTIONARY.length-1; i++){
   writeBuffer = writeBuffer+simpleOutput[i].toString()+"\n";
 }
 try {
