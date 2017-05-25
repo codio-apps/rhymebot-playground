@@ -451,7 +451,7 @@ function receivedMessage(event) {
           sendTypingOn(senderID);
           searchWord = lc_messageText.slice(6).toUpperCase();
           var dictionaryIndex = findTheLine(searchWord);
-          var messageString = "";
+          var messageString = "there was some error and I don't know what to say";
           if (dictionaryIndex != -1){
             messageString = messageString+fuzzyRhymes(dictionaryIndex);
           } else {
@@ -1260,7 +1260,6 @@ function receivedMessage(event) {
 
   /*
   * Send a file using the Send API.
-  *
   */
   function sendFileMessage(recipientId) {
     var messageData = {
