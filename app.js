@@ -643,6 +643,7 @@ function receivedMessage(event) {
     var theWord = getWord(dictionaryIndex);
     var outputArray = new Array();
     var indexArray = new Array();
+    var syllableArray = new Array();
     var outputString = "";
     var OGphonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
@@ -1045,10 +1046,12 @@ function receivedMessage(event) {
       console.log("CURRENTDICTIONARY selected");
       console.log("phonemeString is "+phonemeString);
       whichDictionary = CURRENTDICTIONARY;
+      var splitCase = " ";
     } else {
       console.log("SIMPLEDICTIONARY selected");
       console.log("phonemeString is "+phonemeString);
       whichDictionary = SIMPLEDICTIONARY;
+      var splitCase = ",";
     }
     var arrayBin = new Array();
     RHYMEOUTPUT.length = 0;
@@ -1058,7 +1061,7 @@ function receivedMessage(event) {
       //if the rhyme is a match
       if (whichDictionary[iX].endsWith(phonemeString)) {
         //store the word in a temp string array, then use the 0th element
-        arrayBin = whichDictionary[iX].split("  ");
+        arrayBin = whichDictionary[iX].split(splitCase);
         arrayBin[0] = arrayBin[0].toLowerCase()
         //handle zero on syllable length, return everything
         if (syllableLength == 0){
