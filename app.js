@@ -278,16 +278,20 @@ function receivedMessage(event) {
     setUpLocalVariables();
   }
 
+
   console.log("Getting user info. Name is currently " + name);
   // name = getUserInfo(senderID);
 
   request(
-    ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN)
+    ("https://graph.facebook.com/v2.6/" + senderID + "?fields=first_name,last_name,profile_pic,locale,timezone,gender,last_ad_referral&access_token=" + PAGE_ACCESS_TOKEN),
+
     function(error, response, body) {
+
       var bodyObj = JSON.parse(body);
       console.log(bodyObj);
       name = bodyObj.first_name;
       last_name = bodyObj.last_name;
+
       if (isEcho) {
         // Just logging message echoes to console
         console.log("Received echo for message %s and app %d with metadata %s",
@@ -319,12 +323,12 @@ function receivedMessage(event) {
           instant_reply = true;
         }
         // If help, set the key to "help"
-        if(StringSearch(lc_messageText, "help")){
+        if(StringSearch(lc_messageText, "--help")){
           intent = "help";
           instant_reply = true;
         }
         // If about, set the key to "help"
-        if(StringSearch(lc_messageText, "about")){
+        if(StringSearch(lc_messageText, "--about")){
           intent = "about";
           instant_reply = true;
         }
@@ -427,7 +431,7 @@ function receivedMessage(event) {
           case 'sentence':
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
-          var indexArray = new Array();
+          var indexArray = [""];
           var messageString = "";
           for (var i = 0, len = searchArray.length; i < len; i++){
             indexArray[i] = findTheLine(searchArray[i]);
@@ -435,8 +439,6 @@ function receivedMessage(event) {
               console.log("SearchArray: "+indexArray);
               messageString = messageString+searchSentence(indexArray)+"\n";
             }
-            //append fuzzy rhyme data
-            messageSting = messageString+fuzzyRhymes(indexString);
           }
           messageResponse = messageString;
           break;
@@ -496,13 +498,14 @@ function receivedMessage(event) {
               randomArray = indexAndSortInto2d(randomArray, dictionaryIndex);
               randomArray = make2dArrayPresentable(randomArray, searchWord);
               var t = totalFound-1;
-              messageResponse = "I know "+t+" words that rhyme, you asked for "+searchArray[1]+"\n"+randomArray;
+              messageResponse = "I know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
           }
 
           break;
+
           default:
           messageResponse = messageText + "?";
         }
@@ -518,6 +521,7 @@ function receivedMessage(event) {
         sendTextMessage(senderID, message);
         //sendTextMessage(senderID, ("Message with attachment received, thanks " + senderID + "."));
       }
+
       if (error) {
         name = "";
         last_name = "";
@@ -526,22 +530,30 @@ function receivedMessage(event) {
       }
       // CODE GOES HERE AFTER FUNCTION RETURNS
       console.log("Received the name from Facebook, it is: "+name +" "+last_name);
+
     });
+
   }
 
   // Read text file data and store it into local variables for string comparisons
   function setUpLocalVariables() {
+    // Assign the greetings txt file values (hey, hello, hi) to the GREETINGS variable
+    // Try to read from file
     try {
       fileBuffer = fs.readFileSync(greetings_file, "utf-8");
       GREETINGS = fileBuffer.split("\n");
     }
+    // Catch an error and set default
     catch(err) {
       console.log("Unable to parse greetings file: " + err);
     }
+    // Assign the rhyme typos txt file values (rhime, ryme) to the RHYME_TYPOS variable
+    // Try to read from file
     try {
       fileBuffer = fs.readFileSync(rhyme_typos, "utf-8");
       RHYME_TYPOS = fileBuffer.split("\n");
     }
+    // Catch an error and set default
     catch(err) {
       console.log("Unable to parse rhyme file: " + err);
     }
@@ -550,7 +562,6 @@ function receivedMessage(event) {
       CURRENTDICTIONARY = fileBuffer.split("\n");
       var dictionary_length = CURRENTDICTIONARY.length;
       var alphabetLength = 27;
-      //find out what the highest syllable number is in the dictionary
       maxSyllables = getMaxSyllables();
       for (var i = 0; i < dictionary_length; i++) {
         for (var j = 0; j < alphabetLength; j++) {
@@ -585,7 +596,7 @@ function receivedMessage(event) {
     }
   }
 
-  //function to find the word with the most syllables in the dictionary and return it's value
+  //function to return the syllable value of the item in CURRENTDICTIONARY with the most syllables
   function getMaxSyllables(){
     var mostSyllables = 0;
     var maxWord = "";
@@ -617,9 +628,12 @@ function receivedMessage(event) {
           console.log("this is a regular match, skipping");
         } else {
         indexArray.push(i);
+        //syllableArray.push(countSyllables(i));
       }
       }
     }
+    //outputArray[0] = indexArray;
+    //outputArray[1] = syllableArray;
     outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
     console.log("finished searching");
     return outputString;
