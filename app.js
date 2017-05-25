@@ -695,8 +695,8 @@ function receivedMessage(event) {
     console.log("trying to save to simpledictionary.txt now");
     //why the fuck doesn't this work?
     try {
-      var writeBuffer = simpleOutput.toString();
-      fs.writeFileSync('/public/simpledictionary.txt', writeBuffer, 'utf8');
+      var writeBuffer = "HELLOW WURLD"+simpleOutput.toString();
+      fs.writeFileSync('public/simpledictionary.txt', writeBuffer, 'utf8');
     }
     catch(err) {
       console.log('Error writing simpledictionary.txt' + err);
