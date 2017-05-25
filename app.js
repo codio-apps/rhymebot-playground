@@ -429,6 +429,7 @@ function receivedMessage(event) {
           break;
 
           case 'sentence':
+          sendTypingOn(senderID);
           searchWord = lc_messageText.slice(9).toUpperCase();
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
@@ -440,10 +441,12 @@ function receivedMessage(event) {
               messageString = messageString+searchSentence(indexArray);
             }
           }
+          sendTypingOff(senderID);
           messageResponse = messageString;
           break;
 
           case 'fuzzy':
+          sendTypingOn(senderID);
           searchWord = lc_messageText.slice(6).toUpperCase();
           var dictionaryIndex = findTheLine(searchWord);
           var messageString = "";
@@ -453,6 +456,7 @@ function receivedMessage(event) {
             messageString = "I don't know the word "+searchWord+" yet";
           }
           messageResponse = messageString;
+          sendTypingOff(senderID);
           break;
 
           //handle the question command
@@ -465,6 +469,7 @@ function receivedMessage(event) {
           break;
           //handle the random command
           case 'random':
+          sendTypingOn(senderID);
           searchWord = lc_messageText.slice(7).toUpperCase();
           var searchArray = searchWord.split(" ");
           var randomArray = new Array();
@@ -502,6 +507,7 @@ function receivedMessage(event) {
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
+            sendTypingOff(senderID);
           }
 
           break;
@@ -1581,36 +1587,8 @@ function receivedMessage(event) {
   }
 
   /*
-  * Send a message with the account linking call-to-action
-  *
-  */
-  function sendAccountLinking(recipientId) {
-    var messageData = {
-      recipient: {
-        id: recipientId
-      },
-      message: {
-        attachment: {
-          type: "template",
-          payload: {
-            template_type: "button",
-            text: "Welcome. Link your account.",
-            buttons:[{
-              type: "account_link",
-              url: SERVER_URL + "/authorize"
-            }]
-          }
-        }
-      }
-    };
-
-    callSendAPI(messageData);
-  }
-
-  /*
   * Call the Send API. The message data goes in the body. If successful, we'll
   * get the message id in a response
-  *
   */
   function callSendAPI(messageData) {
     request({
