@@ -643,19 +643,16 @@ function receivedMessage(event) {
     var theWord = getWord(dictionaryIndex);
     var outputArray = new Array();
     var indexArray = new Array();
-    var syllableArray = new Array();
     var outputString = "";
     var OGphonemeString = getPhonemes(dictionaryIndex, false).slice(1);
-    console.log("breakdownPhonemes "+breakdownPhonemes(OGphonemeString));
     var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
+
     var vowelCount = countSyllables(dictionaryIndex);
-    console.log("dindex "+SIMPLEDICTIONARY[dictionaryIndex]);
-    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
-    //AH,S,EH,NgNM,T
-    fuzzyString = fuzzyString.replace(/,/g, " ");
-    //AH S EH NgNM T
-    console.log("fuzzyString is "+fuzzyString);
-    var wordEndings = breakdownPhonemes(fuzzyString);
+
+    var syllableArray = SIMPLEDICTIONARY[dictionaryIndex].split(",")
+    var phonemeBuffer = syllableArray.split(" ");
+    console.log("phonemeBuffer is "+phonemeBuffer);
+    var wordEndings = breakdownPhonemes(phonemeBuffer);
     console.log("breakdownPhonemes "+wordEndings);
     var vowelCount = wordEndings.length;
     //actual searching now
