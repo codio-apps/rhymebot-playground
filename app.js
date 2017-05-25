@@ -623,9 +623,7 @@ function receivedMessage(event) {
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var compareString = SIMPLEDICTIONARY[i];
       if (compareString.endsWith(fuzzyString)){
-        console.log("match found at "+getWord(i));
         if (normalSearchArray.includes(i)){
-          console.log("this is a regular match, skipping");
         } else {
         indexArray.push(i);
         //syllableArray.push(countSyllables(i));
@@ -636,7 +634,8 @@ function receivedMessage(event) {
     //outputArray[1] = syllableArray;
     outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
     console.log("finished searching");
-    return outputString;
+    var presentable = make2dArrayPresentable(outputArray);
+    return presentable;
   }
 
 
@@ -708,6 +707,7 @@ function receivedMessage(event) {
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
+      //output = output+"\n"+fuzzyRhymes(i);
     }
     console.log("searchSentence() completed OK");
     //now sort the sentence breakdown? for presentation?
