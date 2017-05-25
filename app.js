@@ -445,10 +445,10 @@ function receivedMessage(event) {
 
           case 'fuzzy':
           searchWord = lc_messageText.slice(6).toUpperCase();
-          var indexString = findTheLine(searchWord);
+          var dictionaryIndex = findTheLine(searchWord);
           var messageString = "";
-          if (indexString != -1){
-            messageString = messageString+fuzzyRhymes(indexString);
+          if (dictionaryIndex != -1){
+            messageString = messageString+fuzzyRhymes(dictionaryIndex);
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
           }
@@ -609,29 +609,30 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in an index from the dictionary and return all the indexes that nearly rhymes in an array
+  //function to take in an index from the dictionary and return a nice presentable string
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
     var outputArray = new Array();
     var indexArray = new Array();
     var syllableArray = new Array();
     var outputString = "";
-    var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
-    var normalSearchArray = searchPhonemes(phonemeString, 0);
+    var phonemes = getPhonemes(dictionaryIndex, false).slice(1);
+    var normalSearchArray = searchPhonemes(phonemes, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var compareString = SIMPLEDICTIONARY[i];
       if (compareString.endsWith(fuzzyString)){
-        if (normalSearchArray.includes(i)){
+        if (ordinarySearchResults.includes(i)){
+          //skip don't add it to this array
         } else {
         indexArray.push(i);
-        //syllableArray.push(countSyllables(i));
       }
       }
     }
-    //outputArray[0] = indexArray;
-    //outputArray[1] = syllableArray;
+    if (indexArray.length = 0){
+      return "I couldn't find any fuzzy rhymes sorry";
+    }
     outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
     console.log("finished searching");
     var presentable = make2dArrayPresentable(outputArray);
@@ -643,10 +644,10 @@ function receivedMessage(event) {
   function make2dArrayPresentable(twoDarray, theWord){
     var tmp = "";
     //if there are more than 25 results trim to 25, for simplicity's sake for now
-    if (twoDarray[0].length>=50){
-      tmp = tmp +"The current limit I can show you is 50\n"
-      twoDarray[0].length=50; //[0] is words
-      twoDarray[1].length=50; //[1] is syllables
+    if (twoDarray[0].length>=40){
+      tmp = tmp +"The current limit I can show you is 40\n"
+      twoDarray[0].length=40; //[0] is words
+      twoDarray[1].length=40; //[1] is syllables
     }
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
@@ -707,7 +708,6 @@ function receivedMessage(event) {
       } else {
         outputArray[i] = ["UNKNOWN"];
       }
-      //output = output+"\n"+fuzzyRhymes(i);
     }
     console.log("searchSentence() completed OK");
     //now sort the sentence breakdown? for presentation?
