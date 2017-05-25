@@ -314,7 +314,7 @@ function receivedMessage(event) {
             intent = "stopPlaying";
           } else intent = "playing";
           console.log("current intent is "+intent);
-        }
+        } else intent = lc_messageText;
         // If we receive a text message, check to see if it matches any special
         // keywords and send back the corresponding example. Otherwise, just echo
         // the text we received.
@@ -322,7 +322,6 @@ function receivedMessage(event) {
         // Pass the message into a case-insenstivie expression for comparison purposes
         // only. Use messageText for the original text when you need to print output.
 
-        var intent = lc_messageText;
         var instant_reply = false;
 
         // If greeting, set the key to "welcome"
