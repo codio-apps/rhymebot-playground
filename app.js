@@ -743,11 +743,12 @@ function receivedMessage(event) {
     return output;
   }
 
+  //takes in a phoneme string and exports an array including every permutation of it
   function breakdownPhonemes(phonemeBuffer, vowelCount){
     var wordEndings = new Array();
     for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
       //set char to the first letter of the phoneme
-      char = phonemeBuffer[phoLen-k].charAt(0);
+      var char = phonemeBuffer[phoLen-k].charAt(0);
       //compare char to every vowel
       for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
         //if we find a vowel at the next position down, log it as the next relevant one
@@ -772,7 +773,6 @@ function receivedMessage(event) {
     var syllableArray = [""];
     var phonemeBuffer = [""];
     var wordEndings = [""];
-    var char = "";
     var COMPLEXOUTPUT = new Array();
     var FINALOUTPUT = new Array();
     var theWord = getWord(dictionaryIndex);
