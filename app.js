@@ -650,15 +650,11 @@ function receivedMessage(event) {
 
     var vowelCount = countSyllables(dictionaryIndex);
 
-    var syllableString = SIMPLEDICTIONARY[dictionaryIndex];
-    var phonemeBuffer = syllableString.split(",");
+    var syllableString = SIMPLEDICTIONARY[dictionaryIndex]; //OW, T, A
+    var phonemeBuffer = syllableString.split(","); //[OW, T, A]
     syllableString = "";
-    for (var i =0; i < phonemeBuffer.length; i++){
-      syllableString = syllableString+","+phonemeBuffer[i];
-    }
-    phonemeBuffer = syllableString.split(",");
-    console.log("phonemeBuffer is "+phonemeBuffer);
-    var wordEndings = breakdownPhonemes(phonemeBuffer);
+    console.log("phonemeBuffer is "+phonemeBuffer); //[OW, T, A]
+    var wordEndings = breakdownPhonemes(phonemeBuffer); //[OW, T],[OW, T, A]
     console.log("breakdownPhonemes "+wordEndings);
     var vowelCount = wordEndings.length;
     //actual searching now
@@ -773,7 +769,7 @@ function receivedMessage(event) {
     return output;
   }
 
-  //takes in a phoneme string and exports an array including every permutation of it
+  //takes in a set of phoneme arrays and exports an array including every permutation of it
   //broken down by syllable, backwards
   function breakdownPhonemes(phonemeArray){
     var wordEndings = new Array();
