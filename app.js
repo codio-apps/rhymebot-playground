@@ -636,7 +636,7 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in an index from the dictionary and return all the indexes that nearly rhymes in an array
+  //function to take in an index from the dictionary and return all the indexes that nearly rhyme in a string for now
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
     var theWord = getWord(dictionaryIndex);
@@ -648,7 +648,6 @@ function receivedMessage(event) {
     var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyArray = SIMPLEDICTIONARY[dictionaryIndex].split(",");
-
     var wordEndings = breakdownPhonemes(fuzzyArray);
     console.log("***WORDENDINGS***"+wordEndings);
     var vowelCount = wordEndings.length;
@@ -1034,8 +1033,10 @@ function receivedMessage(event) {
   //if syllableLength is zero, return all matches
   function searchPhonemes(phonemeString, syllableLength, whichDictionary){
     if (whichDictionary == 0){
+      console.log("CURRENTDICTIONARY selected");
       whichDictionary = CURRENTDICTIONARY;
     } else {
+      console.log("SIMPLEDICTIONARY selected");
       whichDictionary = SIMPLEDICTIONARY;
     }
     var arrayBin = new Array();
