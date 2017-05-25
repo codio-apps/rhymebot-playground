@@ -641,23 +641,24 @@ function receivedMessage(event) {
     var splitSoundalikes = new Array();
     //for every line in the dictionary
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
+      var halt = false;
+      var stopCon = false;
       var tmpString = getPhonemes(i, false).slice(1);
       var tmpArray = tmpString.split(" ");
       //console.log("tmpArray is: "+tmpArray);
       //for every line in soundalikes
-      for (var j = 0; j < SOUNDALIKES.length-1; j++){
-        var halt = false;
+      for (var j = 0; j < SOUNDALIKES.length-1 && !halt; j++){
         splitSoundalikes = SOUNDALIKES[j].split(",");
         //console.log("splitSoundalikes loop #"+j+" is: "+splitSoundalikes);
         //for every phoneme in the word we are looking at
         for (var k = 0; k < tmpArray.length && !halt; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
           for (var l = 1; l < splitSoundalikes.length && !halt; l++){
+            //stopCon = false;
             var tmpPhoArray = splitSoundalikes[l].split(" ") ;
             //console.log("tmpPhoArray is: "+tmpPhoArray);
             //for every phoneme in the tmpPhoArray
             for (var m = 0; m < tmpPhoArray.length; m++){
-              var stopCon = false;
               if (tmpArray.length-k >= tmpPhoArray.length){
                 if (tmpArray[k+m]==tmpPhoArray[m]){
                   //console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
