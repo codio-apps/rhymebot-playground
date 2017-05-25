@@ -620,6 +620,7 @@ function receivedMessage(event) {
     var ordinarySearchResults = searchPhonemes(phonemes, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
+    console.log("fuzzy logic is "+fuzzyString);
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var compareString = SIMPLEDICTIONARY[i];
       if (compareString.endsWith(fuzzyString)){
