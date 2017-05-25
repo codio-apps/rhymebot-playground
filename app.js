@@ -690,11 +690,13 @@ function receivedMessage(event) {
       //end of word is here
       simpleOutput[i]=tmpString;
     }
+    //end of dictionary is here
     console.log("finished whole dictionary");
     console.log("trying to save to simpledictionary.txt now");
+    //why the fuck doesn't this work?
     try {
-      var writeFile = simpleOutput.toString();
-      fs.writeFileSync('public/simpledictionary.txt', writeFile, 'utf8');
+      var writeBuffer = simpleOutput.toString();
+      fs.writeFileSync('/public/simpledictionary.txt', writeBuffer, 'utf8');
     }
     catch(err) {
       console.log('Error writing simpledictionary.txt' + err);
