@@ -473,12 +473,14 @@ function receivedMessage(event) {
           case 'fuzzy':
           searchWord = lc_messageText.slice(6).toUpperCase();
           var indexString = findTheLine(searchWord);
+          var messageString = "";
           if (indexString != -1){
             messageResponse = "You asked for words that fuzzy rhyme with "+searchWord.toLowerCase();
-            fuzzyRhymes(indexString);
+            messageString = messageString+fuzzyRhymes(indexString);
           } else {
-            messageResponse = "I don't know the word "+searchWord+" yet";
+            messageString = "I don't know the word "+searchWord+" yet";
           }
+          messageResponse = messageString;
           break;
 
           //handle the question command
@@ -635,11 +637,11 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in an index from the dictionary and return everything that nearly rhymes in an array
-  //DOESN'T DO MUCH TBH YET
-  //Using as a testing ground for stuff atm
+  //function to take in an index from the dictionary and return all the indexes that nearly rhymes in an array
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
+    var outputArray = new Array();
+    var outputString = "";
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
@@ -647,9 +649,12 @@ function receivedMessage(event) {
       var compareString = SIMPLEDICTIONARY[i];
       if (compareString == fuzzyString){
         console.log("match found at "+getWord(i));
+        outputArray.push(i);
       }
     }
     console.log("finished searching");
+    outputString = "I know "+outputArray.length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
+    return outputString;
   }
 
 
