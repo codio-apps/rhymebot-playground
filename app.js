@@ -650,7 +650,7 @@ function receivedMessage(event) {
     console.log("dindex "+SIMPLEDICTIONARY[dictionaryIndex]);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
     //AH,S,EH,NgNM,T
-    fuzzyString.replace(/,/, " ");
+    fuzzyString.replace(",", " ");
     console.log("fuzzyString is "+fuzzyString);
     var wordEndings = breakdownPhonemes(fuzzyString);
     console.log("breakdownPhonemes "+wordEndings);
