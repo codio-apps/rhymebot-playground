@@ -646,25 +646,25 @@ function receivedMessage(event) {
     var OGphonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var normalSearchArray = searchPhonemes(OGphonemeString, 0);
     var vowelCount = countSyllables(dictionaryIndex);
-    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex].split(",");
+    var fuzzyArray = SIMPLEDICTIONARY[dictionaryIndex].split(",");
 
-    var wordEndings = breakdownPhonemes(fuzzyString);
+    var wordEndings = breakdownPhonemes(fuzzyArray);
     console.log("***WORDENDINGS***"+wordEndings);
-
-    for (var i = 0; i < CURRENTDICTIONARY.length; i++){
-      var compareString = SIMPLEDICTIONARY[i];
-
-
-
-      if (compareString == fuzzyString){
-        console.log("match found at "+getWord(i));
-        if (normalSearchArray.includes(i)){
-          console.log("this is a regular match, skipping");
-        } else {
-        indexArray.push(getWord(i).toLowerCase());
-        syllableArray.push(countSyllables(i));
-      }
-      }
+    //for every permutation of the syllable lengths
+    for (var j =0; j < wordEndings.length; j++){
+        //look at every item in the dictionary
+        for (var i = 0; i < CURRENTDICTIONARY.length; i++){
+            var compareString = SIMPLEDICTIONARY[i];
+            if (compareString == fuzzyArray[j]){
+              console.log("match found at "+getWord(i));
+              if (normalSearchArray.includes(i)){
+                console.log("this is a regular match, skipping");
+              } else {
+              indexArray.push(getWord(i).toLowerCase());
+              syllableArray.push(countSyllables(i));
+            }
+            }
+        }
     }
     outputArray[0] = indexArray;
     outputArray[1] = syllableArray;
