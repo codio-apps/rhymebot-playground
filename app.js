@@ -649,7 +649,7 @@ function receivedMessage(event) {
 
     var vowelCount = countSyllables(dictionaryIndex);
 
-    var syllableString = SIMPLEDICTIONARY[dictionaryIndex].split(",")
+    var syllableString = SIMPLEDICTIONARY[dictionaryIndex];
     var phonemeBuffer = syllableString.split(",");
     syllableString = "";
     for (var i =0; i < phonemeBuffer.length; i++){
