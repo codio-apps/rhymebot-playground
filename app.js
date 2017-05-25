@@ -305,13 +305,20 @@ function receivedMessage(event) {
       }
 
       if (messageText) {
+        lc_messageText = messageText.toLowerCase();
+        //this is where I am starting to program some conversational abilities for playing games and such
+        if (play){
+          if (lc_messageText == "quit"){
+            intent = "stopPlaying";
+          } else intent = "playing";
+        }
         // If we receive a text message, check to see if it matches any special
         // keywords and send back the corresponding example. Otherwise, just echo
         // the text we received.
 
         // Pass the message into a case-insenstivie expression for comparison purposes
         // only. Use messageText for the original text when you need to print output.
-        lc_messageText = messageText.toLowerCase();
+
         var intent = lc_messageText;
         var instant_reply = false;
 
@@ -321,12 +328,12 @@ function receivedMessage(event) {
           instant_reply = true;
         }
         // If help, set the key to "help"
-        if(StringSearch(lc_messageText, "--help")){
+        else if(StringSearch(lc_messageText, "--help")){
           intent = "help";
           instant_reply = true;
         }
         // If about, set the key to "help"
-        if(StringSearch(lc_messageText, "--about")){
+        else if(StringSearch(lc_messageText, "--about")){
           intent = "about";
           instant_reply = true;
         }
@@ -358,6 +365,9 @@ function receivedMessage(event) {
         }
         else if (lc_messageText.startsWith("fuzzy")){
           intent = "fuzzy";
+        }
+        else if (lc_messageText.startsWith("play")){
+          intent = "startPlaying";
         } else {
             //Do nothing, key is set to messageText
         }
@@ -510,6 +520,19 @@ function receivedMessage(event) {
             }
           }
           break;
+
+          case: 'startPlaying'
+          startPlaying();
+          break;
+
+          case: 'stopPlaying'
+          stopPlaying();
+          break;
+
+          case: 'playing'
+          messageResponse = "Still, playing. Say quit to to quit."
+          break;
+
 
           default:
           sendTypingOn(senderID);
@@ -1302,6 +1325,18 @@ function receivedMessage(event) {
   function sendTextMessage(recipientId, messageText) {
     var messageArray = splitMessage(messageText);
     recursivelySendMessage(recipientId, messageArray, 0);
+  }
+
+  function startPlaying(){
+    console.log("Start playing called");
+    play = true;
+    messageResponse = "So you want to play a a game";
+  }
+
+  function stopPlaying(){
+    console.log("Stop playing called");
+    play = false;
+    messageResponse = "Game over";
   }
 
 
