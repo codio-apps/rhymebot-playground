@@ -1042,12 +1042,10 @@ function receivedMessage(event) {
       console.log("CURRENTDICTIONARY selected");
       console.log("phonemeString is "+phonemeString);
       whichDictionary = CURRENTDICTIONARY;
-      var splitCase = " ";
     } else {
       console.log("SIMPLEDICTIONARY selected");
       console.log("phonemeString is "+phonemeString);
       whichDictionary = SIMPLEDICTIONARY;
-      var splitCase = ",";
     }
     var arrayBin = new Array();
     RHYMEOUTPUT.length = 0;
@@ -1058,7 +1056,7 @@ function receivedMessage(event) {
       //console.log(whichDictionary[iX]+"*****"+phonemeString);
       if (whichDictionary[iX].endsWith(phonemeString)) {
         //store the word in a temp string array, then use the 0th element
-        arrayBin = whichDictionary[iX].split(splitCase);
+        arrayBin = CURRENTDICTIONARY[iX].split("  ");
         arrayBin[0] = arrayBin[0].toLowerCase()
         //handle zero on syllable length, return everything
         if (syllableLength == 0){
