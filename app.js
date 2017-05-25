@@ -678,13 +678,16 @@ function receivedMessage(event) {
                 tmpPhoArray = splitSoundalikes[0].split(" ");
                 tmpArray[k+n]=tmpPhoArray[n];
               }
-              console.log(tmpArray);
-              halt = true;
+
+              tmpString = tmpArray.toString();
+                            console.log(tmpArray);
+                                          halt = true;
             }
           }
         }
       }
       //end of word is here
+      outputArray[i]=tmpString;
     }
     console.log("finished whole dictionary");
     // console.log("trying to save to simpledictionary.txt now");
