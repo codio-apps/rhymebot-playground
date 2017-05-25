@@ -640,7 +640,7 @@ function receivedMessage(event) {
   //function to take in an index from the dictionary and return all the indexes that nearly rhymes in an array
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
-    var outputArray = new Array();
+    var outputArray = [][];
     var outputString = "";
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
