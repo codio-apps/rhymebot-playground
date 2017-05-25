@@ -20,7 +20,6 @@ try {
   CURRENTDICTIONARY = fileBuffer.split("\n");
   var dictionary_length = CURRENTDICTIONARY.length;
   var alphabetLength = 27;
-  maxSyllables = getMaxSyllables();
   for (var i = 0; i < dictionary_length; i++) {
     for (var j = 0; j < alphabetLength; j++) {
       if(CURRENTDICTIONARY[i].startsWith(alphabet[j])){
@@ -61,6 +60,7 @@ for (var i = 0; i < CURRENTDICTIONARY.length; i++){
   var stopCon = false;
   var tmpString = getPhonemes(i, false).slice(1);
   var tmpArray = tmpString.split(" ");
+  var arrayBuffer = new Array();
   //console.log("tmpArray is: "+tmpArray);
   //for every line in soundalikes
   for (var j = 0; j < SOUNDALIKES.length-1; j++){
@@ -78,26 +78,47 @@ for (var i = 0; i < CURRENTDICTIONARY.length; i++){
         for (var m = 0; m < tmpPhoArray.length; m++){
           if (tmpArray.length-k >= tmpPhoArray.length){
             if (tmpArray[k+m]==tmpPhoArray[m]){
+              arrayBuffer[m] = tmpArray[k+m];
               //console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
             } else {
+              arrayBuffer.length=0;
               stopCon = true;
               //console.log("stopCon is now true because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
             }
           } else {
+            arrayBuffer.length=0;
             stopCon = true;
             //console.log("stopCon is now true because: "+tmpArray.length+"!>="+tmpPhoArray.length);
           }
         }
         //if all the phonemes are found
         if (!stopCon){
-          console.log ("match found at "+getWord(i)+" transforming...");
-          console.log(tmpArray);
-          for (var n = 0; n < tmpPhoArray.length; n++){
-            tmpPhoArray = splitSoundalikes[0].split(" ");
-            tmpArray[k+n]=tmpPhoArray[n];
+          //console.log ("match found at "+getWord(i)+" transforming...");
+          //console.log(tmpArray);
+          tmpPhoArray = splitSoundalikes[0].split(" ");
+          //console.log("tmpPhoArray is "+tmpPhoArray);
+          //console.log("arrayBuffer is "+arrayBuffer);
+          //IF THE REPLACING ARRAY IS LONGER
+          if (tmpPhoArray.length > arrayBuffer.length){
+              //console.log("Displacing "+getWord(i)+"///"+tmpPhoArray+"///"+arrayBuffer);
+              tmpArray.splice(k+tmpPhoArray.length-1, 0, tmpPhoArray[tmpPhoArray.length-1]);
+              //console.log("Displaced "+getWord(i)+"///"+tmpArray);
+
+        //IF THE REPLACING ARRAY IS SHORTER
+      } else if (tmpPhoArray.length < arrayBuffer.length){
+              //console.log("Splicing "+getWord(i)+" "+arrayBuffer+" into "+tmpPhoArray);
+              tmpArray.splice(k+tmpPhoArray.length, 1);
+              //console.log("Spliced "+getWord(i)+"///"+tmpArray);
           }
+
+          //for every phoneme in the replacing string
+          for (var n = 0; n < tmpPhoArray.length; n++){
+            var phoBuffer = "";
+              //IF BOTH PHONEME SEQUENCES ARE THE SAME LENGTH
+              tmpArray[k+n]=tmpPhoArray[n];
+            }
           tmpString = tmpArray.toString();
-          console.log(tmpString);
+          //console.log(tmpString);
           halt = true;
         }
       }
