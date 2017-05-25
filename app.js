@@ -617,7 +617,7 @@ function receivedMessage(event) {
     var syllableArray = new Array();
     var outputString = "";
     var phonemes = getPhonemes(dictionaryIndex, false).slice(1);
-    var normalSearchArray = searchPhonemes(phonemes, 0);
+    var ordinarySearchResults = searchPhonemes(phonemes, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
