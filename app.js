@@ -383,19 +383,21 @@ function receivedMessage(event) {
             messageResponse = ("What's up " + name +"?");
           }
           else {
+            //just handle any eventuality for now :p
             messageResponse = ("What's up?");
           }
           break;
 
           case 'help':
-          messageResponse = "Here is some help information: \n" +
-          "Type: rhyme - get a.\n"+
-          "Type syllable - get c\n"+
-          "Type count - get d\n"+
-          "Type random - get e\n";
+          messageResponse = "Here's everything that works so far: \n" +
+          "sentence *word*... - search for properly rhyming words for however many *word*s you put in the sentence\n"+
+          "fuzzy *word* - search for closely rhyming words for *word*\n"+
+          "count *word* - find out how many syllables I think is in a *word*\n"+
+          "random *word* *number*(optional) - generate a random selection of properly rhyming words. If you give me a number along with your word I will generate that "+
+          "number of random rhymes, if you don't I'll give you ten\n";
           break;
           case 'about':
-          messageResponse = "About: \n" +
+          messageResponse =
           "This is RhymeBot version "+version+".\n" +
           "We are codio-apps \uD83D\uDC31/ajstevens && \uD83D\uDC36/ohmegamega.\n" +
           "You feel the rhythm, we feel the rhyme.";
