@@ -1070,7 +1070,6 @@ function receivedMessage(event) {
       for (var i = firstVowel; i < PHONEMES.length; i++){
         phonemeString = phonemeString+" "+PHONEMES[i];
       }
-      console.log("Constructed phoneme string: "+phonemeString);
       return phonemeString;
     }
   }
