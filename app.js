@@ -487,7 +487,7 @@ function receivedMessage(event) {
                 randomArray = indexAndSortInto2d(randomArray, dictionaryIndex);
                 randomArray = make2dArrayPresentable(randomArray, searchWord);
                 var t = totalFound-1;
-                messageResponse = "I know "+t+" words that rhyme, you asked for 10, here they are:\n"+randomArray;
+                messageResponse = "I know "+t+" word(s) that rhyme, you asked for 10, here they are:\n"+randomArray;
               }
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
@@ -504,7 +504,7 @@ function receivedMessage(event) {
               randomArray = indexAndSortInto2d(randomArray, dictionaryIndex);
               randomArray = make2dArrayPresentable(randomArray, searchWord);
               var t = totalFound-1;
-              messageResponse = "I know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
+              messageResponse = "I know "+t+" word(s) that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
@@ -643,13 +643,13 @@ function receivedMessage(event) {
     }
     outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
     console.log("finished searching");
-    return "I know "+indexArray.length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(outputArray);
+    return "I know "+indexArray.length+" word(s) that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(outputArray);
   }
 
 
   //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
   function make2dArrayPresentable(twoDarray, theWord){
-    var tmp = "";
+    var tmp = "\uD83D\uDC38";
     //if there are more than 25 results trim to 25, for simplicity's sake for now
     if (twoDarray[0].length>=40){
       tmp = tmp +"The current limit I can show you is 40\n"
