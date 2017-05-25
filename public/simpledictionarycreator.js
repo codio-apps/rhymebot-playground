@@ -54,81 +54,82 @@ if (CURRENTDICTIONARY!=""&&ALPHABET_ARRAY!=""&&SOUNDALIKES!=""&&SIMPLEDICTIONARY
 
 var simpleOutput = new Array();
 var splitSoundalikes = new Array();
+var itemsChanged = 0;
 //for every line in the dictionary
 for (var i = 0; i < CURRENTDICTIONARY.length; i++){
-  var halt = false;
-  var stopCon = false;
+  var changes=0;
   var tmpString = getPhonemes(i, false).slice(1);
   var tmpArray = tmpString.split(" ");
   var arrayBuffer = new Array();
-  //console.log("tmpArray is: "+tmpArray);
-  //for every line in soundalikes
+  //for every line in soundalikes.txt
   for (var j = 0; j < SOUNDALIKES.length-1; j++){
     splitSoundalikes = SOUNDALIKES[j].split(",");
-    halt = false;
-    //console.log("splitSoundalikes loop #"+j+" is: "+splitSoundalikes);
+    //console.log("splitSoundalikes="+splitSoundalikes);
+    //== [AA][AA0][AA1][AA2]
     //for every phoneme in the word we are looking at
     for (var k = 0; k < tmpArray.length; k++){
+      //tmpArray  = EH2,K,S,KTP,L,AH,M,EY,SH,AH,NgNM,P,OY2,NgNM,T
       //we are going to compare it and what follows it to the phoneme set in the splitup line from SOUNDALIKES
-      for (var l = 1; l < splitSoundalikes.length && !halt; l++){
-        stopCon = false;
-        var tmpPhoArray = splitSoundalikes[l].split(" ") ;
-        //console.log("tmpPhoArray is: "+tmpPhoArray);
-        //for every phoneme in the tmpPhoArray
+      //for every single soundalike
+      for (var l = 1; l < splitSoundalikes.length-1; l++){
+        var stopCon = false;
+        var tmpPhoArray = splitSoundalikes[l].split(" ");
+        //console.log(tmpPhoArray[tmpPhoArray.length-1]);
+        //compare current position phoneme to phoneme in the tmpPhoArray
         for (var m = 0; m < tmpPhoArray.length; m++){
-          if (tmpArray.length-k >= tmpPhoArray.length){
-            if (tmpArray[k+m]==tmpPhoArray[m]){
-              arrayBuffer[m] = tmpArray[k+m];
-              //console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
-            } else {
+          //if (tmpArray.length-k >= tmpPhoArray.length){
+            if (tmpArray[k+m]!=tmpPhoArray[m]){
               arrayBuffer.length=0;
               stopCon = true;
-              //console.log("stopCon is now true because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
+              //console.log("stopCon is now true because:"+tmpArray[k+m]+"!="+tmpPhoArray[m]+":");
+            } else {
+              arrayBuffer[m] = tmpArray[k+m];
+              //console.log("stopCon is now false because:"+tmpArray[k+m]+"=="+tmpPhoArray[m]+":");
             }
-          } else {
-            arrayBuffer.length=0;
-            stopCon = true;
+          //} else {
+          //  arrayBuffer.length=0;
+          //  stopCon = true;
             //console.log("stopCon is now true because: "+tmpArray.length+"!>="+tmpPhoArray.length);
-          }
+          //}
         }
         //if all the phonemes are found
         if (!stopCon){
-          //console.log ("match found at "+getWord(i)+" transforming...");
+          changes++;
+          //console.log ("match found at "+getWord(i)+", "+tmpPhoArray+" transforming...");
           //console.log(tmpArray);
           tmpPhoArray = splitSoundalikes[0].split(" ");
-          //console.log("tmpPhoArray is "+tmpPhoArray);
-          //console.log("arrayBuffer is "+arrayBuffer);
+
           //IF THE REPLACING ARRAY IS LONGER
           if (tmpPhoArray.length > arrayBuffer.length){
-              //console.log("Displacing "+getWord(i)+"///"+tmpPhoArray+"///"+arrayBuffer);
-              tmpArray.splice(k+tmpPhoArray.length-1, 0, tmpPhoArray[tmpPhoArray.length-1]);
-              //console.log("Displaced "+getWord(i)+"///"+tmpArray);
+            //console.log("Displacing "+getWord(i)+"///"+tmpPhoArray+"///"+arrayBuffer);
+            tmpArray.splice(k+tmpPhoArray.length-1, 0, tmpPhoArray[tmpPhoArray.length-1]);
+            //console.log("Displaced "+getWord(i)+"///"+tmpArray);
 
-        //IF THE REPLACING ARRAY IS SHORTER
-      } else if (tmpPhoArray.length < arrayBuffer.length){
-              //console.log("Splicing "+getWord(i)+" "+arrayBuffer+" into "+tmpPhoArray);
-              tmpArray.splice(k+tmpPhoArray.length, 1);
-              //console.log("Spliced "+getWord(i)+"///"+tmpArray);
+            //IF THE REPLACING ARRAY IS SHORTER
+          } else if (tmpPhoArray.length < arrayBuffer.length){
+            //console.log("Splicing "+getWord(i)+" "+arrayBuffer+" into "+tmpPhoArray);
+            tmpArray.splice(k+tmpPhoArray.length, 1);
+            //console.log("Spliced "+getWord(i)+"///"+tmpArray);
           }
 
           //for every phoneme in the replacing string
           for (var n = 0; n < tmpPhoArray.length; n++){
-            var phoBuffer = "";
-              //IF BOTH PHONEME SEQUENCES ARE THE SAME LENGTH
-              tmpArray[k+n]=tmpPhoArray[n];
-            }
+            tmpArray[k+n]=tmpPhoArray[n];
+            //console.log("replacing phoneme "+tmpPhoArray[n]);
+          }
           tmpString = tmpArray.toString();
           //console.log(tmpString);
-          halt = true;
+          itemsChanged++;
         }
       }
     }
   }
   //end of word is here
   simpleOutput[i]=tmpString;
+  //console.log("END OF WORD: "+changes+" changes, "+tmpString);
 }
 //end of dictionary is here
-console.log("finished whole dictionary");
+console.log("finished whole dictionary, made "+itemsChanged+" changes");
 console.log("trying to save to simpledictionary.txt now");
 var writeBuffer = "";
 for (var i=0; i <CURRENTDICTIONARY.length; i++){
