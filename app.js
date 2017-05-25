@@ -1,4 +1,4 @@
-fuzzyRhymes/* RhymeBot is a Codio Apps Production */
+/* RhymeBot is a Codio Apps Production */
 /* Signed by ajstevens and ohmegamega */
 
 /*rhymebot mk0.03 alpha */
@@ -635,97 +635,6 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to create data for simpledictionary.txt and write it to the file(eventually)
-  function spawnSimpleDictionary(){
-    var simpleOutput = new Array();
-    var splitSoundalikes = new Array();
-    //for every line in the dictionary
-    //Nb hardocoded limits atm
-    for (var i = 54580; i < 57335; i++){
-      var halt = false;
-      var stopCon = false;
-      var tmpString = getPhonemes(i, false).slice(1);
-      var tmpArray = tmpString.split(" ");
-      //console.log("tmpArray is: "+tmpArray);
-      //for every line in soundalikes
-      for (var j = 0; j < SOUNDALIKES.length-1; j++){
-        splitSoundalikes = SOUNDALIKES[j].split(",");
-        halt = false;
-        //console.log("splitSoundalikes loop #"+j+" is: "+splitSoundalikes);
-        //for every phoneme in the word we are looking at
-        for (var k = 0; k < tmpArray.length; k++){
-          //we are going to compare it and what follows it to the phoneme set in the splitup line from SOUNDALIKES
-          for (var l = 1; l < splitSoundalikes.length && !halt; l++){
-            stopCon = false;
-            var tmpPhoArray = splitSoundalikes[l].split(" ") ;
-            //console.log("tmpPhoArray is: "+tmpPhoArray);
-            //for every phoneme in the tmpPhoArray
-            for (var m = 0; m < tmpPhoArray.length; m++){
-              if (tmpArray.length-k >= tmpPhoArray.length){
-                if (tmpArray[k+m]==tmpPhoArray[m]){
-                  //console.log("stopCon is still false because: "+tmpArray[k+m]+"=="+tmpPhoArray[m]);
-                } else {
-                  stopCon = true;
-                  //console.log("stopCon is now true because: "+tmpArray[k+m]+"!="+tmpPhoArray[m]);
-                }
-              } else {
-                stopCon = true;
-                //console.log("stopCon is now true because: "+tmpArray.length+"!>="+tmpPhoArray.length);
-              }
-            }
-            //if all the phonemes are found
-            if (!stopCon){
-              console.log ("match found at "+getWord(i)+" transforming...");
-              console.log(tmpArray);
-              for (var n = 0; n < tmpPhoArray.length; n++){
-                tmpPhoArray = splitSoundalikes[0].split(" ");
-                tmpArray[k+n]=tmpPhoArray[n];
-              }
-              tmpString = tmpArray.toString();
-              console.log(tmpString);
-              halt = true;
-            }
-          }
-        }
-      }
-      //end of word is here
-      simpleOutput[i]=tmpString;
-    }
-    //end of dictionary is here
-    console.log("finished whole dictionary");
-    console.log("trying to save to public/simpledictionary.txt now");
-    var writeBuffer = "HELLOW WURLD"+simpleOutput.toString();
-
-    // Creates a new instance of the Github object exposed by Github.js
-var github = new Github({
-  username: 'ohmegamega',
-  password: 'givememyflowers23',
-  auth: 'basic'
-});
-
-// Creates an object representing the repository you want to work with
-var repository = github.getRepo('ohmegamega', 'rhymebot-playground');
-
-// Creates a new file (or updates it if the file already exists)
-// with the content provided
-repository.write(
-   'master', // e.g. 'master'
-   'public/simpledictionary.txt', // e.g. 'blog/index.md'
-   'writeBuffer', // e.g. 'Hello world, this is my new content'
-   'AUTOWIRTE', // e.g. 'Created new index'
-   function(err) {}
-);
-    // //why the fuck doesn't this work?
-    // try {
-    //
-    //   fs.writeFileSync("public/simpledict.txt", writeBuffer, 'utf8');
-    // }
-    // catch(err) {
-    //   console.log('Error writing simpledictionary.txt' + err);
-    // }
-    // console.log('Saved!');
-  }
-
   //function to take in an index from the dictionary and return everything that nearly rhymes in an array
   //DOESN'T DO MUCH TBH YET
   //Using as a testing ground for stuff atm
@@ -733,38 +642,16 @@ repository.write(
     console.log("fuzzyRhymes called on "+dictionaryIndex);
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
-    spawnSimpleDictionary();
-
-    //var wordEnding = "";
-    //var vowelFound = false;
-    // //first we need to trim off just the bit of the rhyme we need for the first comparisons
-    // for (var k = 0, phoLen = phonemeArray.length-1; !vowelFound; k++){
-    //   //set char to the first letter of the phoneme
-    //   var char = phonemeArray[phoLen-k].charAt(0);
-    //   //compare char to every vowel
-    //   for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
-    //     //if we find a vowel at the next position , log it as the last one and end the loop
-    //     if (char == vowels[j]){
-    //       var lastVowel = phoLen-k;
-    //       //now stick everything after and including the last vowel into a string
-    //       for (var l = lastVowel, restLen = phonemeArray.length; l < restLen; l++){
-    //         wordEnding = wordEnding +" "+phonemeArray[l];
-    //       }
-    //       wordEnding = wordEnding.slice(1);
-    //       vowelFound = true;
-    //     }
-    //   }
-    // }
-    // console.log("phonemeArray is "+phonemeArray+" last part is "+wordEnding);
-    //
-    // //take everything after the last vowel into an array so we can do loops
-    // //look at whole rhyme except for last vowel sound or something?
-    // var endingArray = wordEnding.split(" ");
-    // console.log("endingArray: "+endingArray);
-    //
-    // //ok, that wasn't working the way I wanted it to, go away and think about it.
-    // //I think we need to have a stream of else ifs, handling specific word endings etc etc??
+    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
+    for (var i = 0; i < CURRENTDICTIONARY.length; i++){
+      var compareString = SIMPLEDICTIONARY[i];
+      if (compareString == fuzzyString){
+        console.log("match found at "+getWord(i));
+      }
+    }
+    console.log("finished searching");
   }
+
 
   //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
   function makeArrayReadable(twoDarray, theWord){
@@ -992,7 +879,6 @@ repository.write(
     } else {
       return 0;
     }
-
   }
 
   //function to return an array of n different random elements from an array
