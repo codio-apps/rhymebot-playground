@@ -1034,9 +1034,11 @@ function receivedMessage(event) {
   function searchPhonemes(phonemeString, syllableLength, whichDictionary){
     if (whichDictionary == 0){
       console.log("CURRENTDICTIONARY selected");
+      console.log("phonemeString is "+phonemeString);
       whichDictionary = CURRENTDICTIONARY;
     } else {
       console.log("SIMPLEDICTIONARY selected");
+      console.log("phonemeString is "+phonemeString);
       whichDictionary = SIMPLEDICTIONARY;
     }
     var arrayBin = new Array();
