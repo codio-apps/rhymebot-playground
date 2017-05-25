@@ -647,14 +647,15 @@ function receivedMessage(event) {
       var tmpArray = tmpString.split(" ");
       //console.log("tmpArray is: "+tmpArray);
       //for every line in soundalikes
-      for (var j = 0; j < SOUNDALIKES.length-1 && !halt; j++){
+      for (var j = 0; j < SOUNDALIKES.length-1; j++){
         splitSoundalikes = SOUNDALIKES[j].split(",");
+        halt = false;
         //console.log("splitSoundalikes loop #"+j+" is: "+splitSoundalikes);
         //for every phoneme in the word we are looking at
         for (var k = 0; k < tmpArray.length && !halt; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
           for (var l = 1; l < splitSoundalikes.length && !halt; l++){
-            //stopCon = false;
+            stopCon = false;
             var tmpPhoArray = splitSoundalikes[l].split(" ") ;
             //console.log("tmpPhoArray is: "+tmpPhoArray);
             //for every phoneme in the tmpPhoArray
