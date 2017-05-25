@@ -653,7 +653,10 @@ function receivedMessage(event) {
     var syllableString = SIMPLEDICTIONARY[dictionaryIndex]; //OW, T, A
     var phonemeBuffer = syllableString.split(","); //[OW, T, A]
     syllableString = "";
-    console.log("phonemeBuffer is "+phonemeBuffer); //[OW, T, A]
+    for (var i=0; i< phonemeBuffer.length; i++){
+      syllableString = syllableString+phonemeBuffer[i]+" ";
+    }
+    console.log("phonemeBuffer is "+syllableString); //[OW, T, A]
     var wordEndings = breakdownPhonemes(phonemeBuffer); //[OW, T],[OW, T, A]
     console.log("breakdownPhonemes "+wordEndings);
     var vowelCount = wordEndings.length;
