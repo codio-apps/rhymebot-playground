@@ -475,7 +475,7 @@ function receivedMessage(event) {
           var indexString = findTheLine(searchWord);
           var messageString = "";
           if (indexString != -1){
-            messageResponse = "You asked for words that fuzzy rhyme with "+searchWord.toLowerCase();
+            messageString = "You asked for words that fuzzy rhyme with "+searchWord+"\n";
             messageString = messageString+fuzzyRhymes(indexString);
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
@@ -649,11 +649,12 @@ function receivedMessage(event) {
       var compareString = SIMPLEDICTIONARY[i];
       if (compareString == fuzzyString){
         console.log("match found at "+getWord(i));
-        outputArray.push(i);
+        outputArray[0].push(getWord(i));
+        outputArray[1].push(countSyllables(i));
       }
     }
     console.log("finished searching");
-    outputString = "I know "+outputArray.length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
+    outputString = "I know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
     return outputString;
   }
 
