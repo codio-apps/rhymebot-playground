@@ -670,7 +670,7 @@ function receivedMessage(event) {
                 //console.log("stopCon is now true because: "+tmpArray.length+"!>="+tmpPhoArray.length);
               }
             }
-            //if the phonemes are a match
+            //if all the phonemes are found
             if (!stopCon){
               console.log ("match found at "+getWord(i)+" transforming...");
               console.log(tmpArray);
@@ -678,16 +678,15 @@ function receivedMessage(event) {
                 tmpPhoArray = splitSoundalikes[0].split(" ");
                 tmpArray[k+n]=tmpPhoArray[n];
               }
-
               tmpString = tmpArray.toString();
-                            console.log(tmpArray);
-                                          halt = true;
+              console.log(tmpString);
+              halt = true;
             }
           }
         }
       }
       //end of word is here
-      outputArray[i]=tmpString;
+      simpleOutput[i]=tmpString;
     }
     console.log("finished whole dictionary");
     // console.log("trying to save to simpledictionary.txt now");
