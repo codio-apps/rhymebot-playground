@@ -753,6 +753,7 @@ function receivedMessage(event) {
       for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
         //if we find a vowel at the next position down, log it as the next relevant one
         if (char == vowels[j]){
+          var nextVowel = phoLen-k;
           vowelCount++
           //now stick the rest of the vowels back into the buffer
           var tempString = "";
@@ -780,6 +781,7 @@ function receivedMessage(event) {
     phonemeBuffer = syllableArray.split(" ");
     console.log("phonemeBuffer is "+phonemeBuffer);
     wordEndings = breakdownPhonemes(phonemeBuffer);
+    console.log("breakdownPhonemes "+wordEndings);
     vowelCount = wordEndings.length-1;
     //actual searching now
     //for however many vowels we found (syllables), down to the first vowel
