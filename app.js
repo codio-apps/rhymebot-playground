@@ -405,6 +405,7 @@ function receivedMessage(event) {
           // Case to handle mispellt RHYME commands
           // ************************************
           case 'rhyme_typo':
+          sendTypingOn(senderID);
           console.log("Typo time, ask for confirmation");
           messageResponse = "Are you looking for a rhyme? We'll only respond if you start your sentence with rhyme";
           break;
@@ -412,6 +413,7 @@ function receivedMessage(event) {
           // Handle the RHYME command
           // ************************************
           case 'rhyme':
+          sendTypingOn(senderID);
           var rhymeString = messageText.slice(6);
           var messageArray = rhymeString.split(" ");
           messageResponse = "Rhyme Time! You said you want to rhyme: " + messageArray;
@@ -419,6 +421,7 @@ function receivedMessage(event) {
 
           //handle the count command
           case 'count':
+          sendTypingOn(senderID);
           searchWord = lc_messageText.slice(6).toUpperCase();
           var dictionaryIndex = findTheLine(searchWord);
           if (dictionaryIndex != -1) {
@@ -441,7 +444,6 @@ function receivedMessage(event) {
               messageString = messageString+searchSentence(indexArray);
             }
           }
-          sendTypingOff(senderID);
           messageResponse = messageString;
           break;
 
@@ -456,7 +458,6 @@ function receivedMessage(event) {
             messageString = "I don't know the word "+searchWord+" yet";
           }
           messageResponse = messageString;
-          sendTypingOff(senderID);
           break;
 
           //handle the question command
@@ -507,15 +508,16 @@ function receivedMessage(event) {
             } else {
               messageResponse = "I don't recognise the word "+searchWord.toLowerCase()+" yet";
             }
-            sendTypingOff(senderID);
           }
 
           break;
 
           default:
+          sendTypingOn(senderID);
           messageResponse = messageText + "?";
         }
         if(instant_reply = true){
+          sendTypingOff();
           sendTextMessage(senderID, messageResponse);
         }
 
