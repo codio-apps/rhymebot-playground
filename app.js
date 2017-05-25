@@ -643,10 +643,10 @@ function receivedMessage(event) {
     var indexArray = new Array();
     var syllableArray = new Array();
     var outputString = "";
-    var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
-    var normalSearchArray = searchPhonemes(phonemeString, 0);
+    var OGphonemeString = getPhonemes(dictionaryIndex, false).slice(1);
+    var normalSearchArray = searchPhonemes(OGphonemeString, 0);
     var vowelCount = countSyllables(dictionaryIndex);
-    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
+    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex].split(",");
 
     var wordEndings = breakdownPhonemes(fuzzyString);
     console.log("***WORDENDINGS***"+wordEndings);
