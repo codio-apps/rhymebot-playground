@@ -640,7 +640,7 @@ function receivedMessage(event) {
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
     //for every line in the dictionary
-    for (var i = 0; i < CURRENTDICTIONARY.length; i++){
+    for (var i = 54580; i < 57335; i++){
       var halt = false;
       var stopCon = false;
       var tmpString = getPhonemes(i, false).slice(1);
@@ -704,7 +704,7 @@ var github = new Github({
 
 // Creates an object representing the repository you want to work with
 var repository = github.getRepo('ohmegamega', 'rhymebot-playground');
- 
+
 // Creates a new file (or updates it if the file already exists)
 // with the content provided
 repository.write(
