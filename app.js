@@ -640,7 +640,9 @@ function receivedMessage(event) {
   //function to take in an index from the dictionary and return all the indexes that nearly rhymes in an array
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
-    var outputArray = [][];
+    var outputArray = new Array();
+    var indexArray = new Array();
+    var syllableArray = new Array();
     var outputString = "";
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var phonemeArray = phonemeString.split(" ");
@@ -649,10 +651,13 @@ function receivedMessage(event) {
       var compareString = SIMPLEDICTIONARY[i];
       if (compareString == fuzzyString){
         console.log("match found at "+getWord(i));
-        outputArray[0].push(getWord(i));
-        outputArray[1].push(countSyllables(i));
+        indexArray.push(i);
+        syllableArray.push(countSyllables(i));
+        //outputArray[0].push(getWord(i));
+        //outputArray[1].push(countSyllables(i));
       }
     }
+    outputArray[0] = indexArray;
     console.log("finished searching");
     outputString = "I know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
     return outputString;
