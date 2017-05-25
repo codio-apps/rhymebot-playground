@@ -447,11 +447,11 @@ function receivedMessage(event) {
           messageResponse = messageString;
           break;
 
-          case 'fuzzy':
+          case 'fuzzy'://
           sendTypingOn(senderID);
           searchWord = lc_messageText.slice(6).toUpperCase();
           var dictionaryIndex = findTheLine(searchWord);
-          var messageString = "there was some error and I don't know what to say";
+          var messageString = "";
           if (dictionaryIndex != -1){
             messageString = messageString+fuzzyRhymes(dictionaryIndex);
           } else {
