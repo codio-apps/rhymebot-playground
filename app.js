@@ -648,7 +648,7 @@ function receivedMessage(event) {
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
 
-    wordEndings = breakdownPhonemes(fuzzyString);
+    var wordEndings = breakdownPhonemes(fuzzyString);
     console.log("***WORDENDINGS***"+wordEndings);
 
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
