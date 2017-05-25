@@ -652,7 +652,7 @@ function receivedMessage(event) {
         halt = false;
         //console.log("splitSoundalikes loop #"+j+" is: "+splitSoundalikes);
         //for every phoneme in the word we are looking at
-        for (var k = 0; k < tmpArray.length && !halt; k++){
+        for (var k = 0; k < tmpArray.length; k++){
           //for every phoneme set in the splitup line from SOUNDALIKES
           for (var l = 1; l < splitSoundalikes.length && !halt; l++){
             stopCon = false;
