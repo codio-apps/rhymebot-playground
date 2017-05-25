@@ -308,7 +308,9 @@ function receivedMessage(event) {
         lc_messageText = messageText.toLowerCase();
         //this is where I am starting to program some conversational abilities for playing games and such
         if (play){
+          console.log("you are playing");
           if (lc_messageText == "quit"){
+            console.log("you are quitting");
             intent = "stopPlaying";
           } else intent = "playing";
         }
@@ -530,7 +532,7 @@ function receivedMessage(event) {
           break;
 
           case 'playing':
-          messageResponse = "Still, playing. Say quit to to quit."
+          messageResponse = "You are still, playing. Say quit to to quit."
           break;
 
 
