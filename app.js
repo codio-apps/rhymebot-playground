@@ -927,7 +927,7 @@ function receivedMessage(event) {
       var tempPHONEMES = CURRENTDICTIONARY[dictionaryIndex].slice(countWord.length+2);
       //for the found word, make an array containing each phoneme sound
       var phonemes = tempPHONEMES.split(" ");
-      for (var i = 0, phoLen = PHONEMES.length; i < phoLen; i++){
+      for (var i = 0, phoLen = phonemes.length; i < phoLen; i++){
         //set char to the first letter of the phoneme
         char = phonemes[phoLen-i-1].charAt(0);
         //if the vowels array includes this character
@@ -951,7 +951,7 @@ function receivedMessage(event) {
     var phonemes = tempPHONEMES.split(" ");
     if (all){
       for (var i = 0; i < phonemes.length; i++){
-        phonemeString = phonemeString+" "+PHONEMES[i];
+        phonemeString = phonemeString+" "+phonemes[i];
       }
       return phonemeString;
     } else {
