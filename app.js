@@ -437,7 +437,7 @@ function receivedMessage(event) {
             indexArray[i] = findTheLine(searchArray[i]);
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
-              messageString = messageString+searchSentence(indexArray[i]));
+              messageString = messageString+searchSentence(indexArray[i]);
             }
           }
           messageResponse = messageString;
