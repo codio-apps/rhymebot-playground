@@ -654,9 +654,9 @@ function receivedMessage(event) {
     var phonemeBuffer = syllableString.split(",");
     syllableString = "";
     for (var i =0; i < phonemeBuffer.length; i++){
-      syllableString = syllableString+" "+phonemeBuffer[i];
+      syllableString = syllableString+","+phonemeBuffer[i];
     }
-    phonemeBuffer = syllableString.split(" ");
+    phonemeBuffer = syllableString.split(",");
     console.log("phonemeBuffer is "+phonemeBuffer);
     var wordEndings = breakdownPhonemes(phonemeBuffer);
     console.log("breakdownPhonemes "+wordEndings);
