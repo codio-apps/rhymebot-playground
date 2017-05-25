@@ -505,7 +505,7 @@ function receivedMessage(event) {
               if (randomArray.length==0){
                 messageResponse = "I don't know any rhymes for "+searchWord.toLowerCase()+" yet";
               } else {
-                randomArray = indexesToWords(randomArray, dictionaryIndex);
+                randomArray = indexAndSort(randomArray, dictionaryIndex);
                 randomArray = makeArrayReadable(randomArray, searchWord);
                 var t = totalFound-1;
                 messageResponse = "I know "+t+" words that rhyme, you asked for 10, here they are:\n"+randomArray;
@@ -522,7 +522,7 @@ function receivedMessage(event) {
                 searchArray[i]=25;
               }
               randomArray = randomRhymes(dictionaryIndex, searchArray[1]);
-              randomArray = indexesToWords(randomArray, dictionaryIndex);
+              randomArray = indexAndSort(randomArray, dictionaryIndex);
               randomArray = makeArrayReadable(randomArray, searchWord);
               var t = totalFound-1;
               messageResponse = "I know "+t+" words that rhyme, you asked for "+searchArray[1]+", here they are:\n"+randomArray;
@@ -654,14 +654,14 @@ function receivedMessage(event) {
         if (normalSearchArray.includes(i)){
           console.log("this is a regular match, skipping");
         } else {
-        indexArray.push(getWord(i).toLowerCase());
+        indexArray.push(i);
         //syllableArray.push(countSyllables(i));
       }
       }
     }
     //outputArray[0] = indexArray;
     //outputArray[1] = syllableArray;
-    outputArray = indexesToWords(outputArray, dictionaryIndex);
+    outputArray = indexAndSort(indexArray, dictionaryIndex);
     console.log("finished searching");
     outputString = "DATA: "+SIMPLEDICTIONARY[dictionaryIndex]+"\nI know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
     return outputString;
@@ -730,7 +730,7 @@ function receivedMessage(event) {
         console.log("Word number "+i);
         indexOutputArray[i] = complexSearch(indexArray[i]);
         //turn the indexarray back into words, obtain the syllables in this array as well
-        outputArray[i] = indexesToWords(indexOutputArray[i], indexArray[i]);
+        outputArray[i] = indexAndSort(indexOutputArray[i], indexArray[i]);
         console.log("Word searching completed OK");
         output = "I know "+outputArray[i][0].length+" words that rhyme with "+getWord(indexArray[i])+"\n"+makeArrayReadable(outputArray[i], getWord(indexArray[i]).toLowerCase());
       } else {
@@ -811,7 +811,7 @@ function receivedMessage(event) {
 
   //function to turn an array of indexes into a more presentable 2d array of words and syllable counts
   //includes duplicate handling
-  function indexesToWords(indexArray, dictionaryIndex){
+  function indexAndSort(indexArray, dictionaryIndex){
     //init an empty 2d array the only way I know how :/
     var FINALOUTPUT = (function(FINALOUTPUT){ while(FINALOUTPUT.push([]) < 2); return FINALOUTPUT})([]);
     //for every item in the words-that-rhyme array
