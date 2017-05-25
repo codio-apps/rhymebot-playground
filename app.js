@@ -645,6 +645,7 @@ function receivedMessage(event) {
     var outputString = "";
     var phonemeString = getPhonemes(dictionaryIndex, false).slice(1);
     var normalSearchArray = searchPhonemes(phonemeString, 0);
+    var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var compareString = SIMPLEDICTIONARY[i];
@@ -742,20 +743,8 @@ function receivedMessage(event) {
     return output;
   }
 
-  //deeper search function that returns more complex rhymes as an array
-  //uses searchPhonemes
-  function complexSearch(dictionaryIndex){
-    var syllableArray = [""];
-    var phonemeBuffer = [""];
-    var wordEndings = [""];
-    var char = "";
-    var COMPLEXOUTPUT = new Array();
-    var FINALOUTPUT = new Array();
-    var theWord = getWord(dictionaryIndex);
-    // first get the phonemes into an array
-    syllableArray = getPhonemes(dictionaryIndex, false);
-    phonemeBuffer = syllableArray.split(" ");
-    console.log("phonemeBuffer is "+phonemeBuffer);
+  function breakdownPhonemes(phonemeBuffer, vowelCount){
+    var wordEndings = new Array();
     for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
       //set char to the first letter of the phoneme
       char = phonemeBuffer[phoLen-k].charAt(0);
@@ -774,7 +763,24 @@ function receivedMessage(event) {
         }
       }
     }
-    console.log("wordEndings are "+wordEndings);
+    return wordEndings;
+  }
+
+  //deeper search function that returns more complex rhymes as an array
+  //uses searchPhonemes
+  function complexSearch(dictionaryIndex){
+    var syllableArray = [""];
+    var phonemeBuffer = [""];
+    var wordEndings = [""];
+    var char = "";
+    var COMPLEXOUTPUT = new Array();
+    var FINALOUTPUT = new Array();
+    var theWord = getWord(dictionaryIndex);
+    // first get the phonemes into an array
+    syllableArray = getPhonemes(dictionaryIndex, false);
+    phonemeBuffer = syllableArray.split(" ");
+    console.log("phonemeBuffer is "+phonemeBuffer);
+    wordEndings = breakdownPhonemes(phonemeBuffer);
     //actual searching now
     //for however many vowels we found (syllables), down to the first vowel
     for (var j = vowelCount; j > 0; j--){
