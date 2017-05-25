@@ -670,10 +670,10 @@ function receivedMessage(event) {
   function makeArrayReadable(twoDarray, theWord){
     var tmp = "";
     //if there are more than 25 results trim to 25, for simplicity's sake for now
-    if (twoDarray[0].length>=25){
-      tmp = tmp +"The current limit I can show you is 25\n"
-      twoDarray[0].length=25; //[0] is words
-      twoDarray[1].length=25; //[1] is syllables
+    if (twoDarray[0].length>=50){
+      tmp = tmp +"The current limit I can show you is 50\n"
+      twoDarray[0].length=50; //[0] is words
+      twoDarray[1].length=50; //[1] is syllables
     }
     //now, figure out how many arrays (individual syllable sets) we need
     var currentSyllable = twoDarray[1][0];
