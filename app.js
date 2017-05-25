@@ -693,15 +693,36 @@ function receivedMessage(event) {
     //end of dictionary is here
     console.log("finished whole dictionary");
     console.log("trying to save to public/simpledictionary.txt now");
-    //why the fuck doesn't this work?
-    try {
-      var writeBuffer = "HELLOW WURLD"+simpleOutput.toString();
-      fs.writeFileSync("public/simpledict.txt", writeBuffer, 'utf8');
-    }
-    catch(err) {
-      console.log('Error writing simpledictionary.txt' + err);
-    }
-    console.log('Saved!');
+    var writeBuffer = "HELLOW WURLD"+simpleOutput.toString();
+
+    // Creates a new instance of the Github object exposed by Github.js
+var github = new Github({
+  username: 'ohmegamega',
+  password: 'givememyflowers23',
+  auth: 'basic'
+});
+
+// Creates an object representing the repository you want to work with
+var repository = github.getRepo('ohmegamega', 'rhymebot-playground');
+ 
+// Creates a new file (or updates it if the file already exists)
+// with the content provided
+repository.write(
+   'master', // e.g. 'master'
+   'public/simpledictionary.txt', // e.g. 'blog/index.md'
+   'writeBuffer', // e.g. 'Hello world, this is my new content'
+   'AUTOWIRTE', // e.g. 'Created new index'
+   function(err) {}
+);
+    // //why the fuck doesn't this work?
+    // try {
+    //
+    //   fs.writeFileSync("public/simpledict.txt", writeBuffer, 'utf8');
+    // }
+    // catch(err) {
+    //   console.log('Error writing simpledictionary.txt' + err);
+    // }
+    // console.log('Saved!');
   }
 
   //function to take in an index from the dictionary and return everything that nearly rhymes in an array
