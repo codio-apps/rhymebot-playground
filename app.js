@@ -447,7 +447,7 @@ function receivedMessage(event) {
           messageResponse = messageString;
           break;
 
-          case 'fuzzy'://
+          case 'fuzzy':
           sendTypingOn(senderID);
           searchWord = lc_messageText.slice(6).toUpperCase();
           var dictionaryIndex = findTheLine(searchWord);
@@ -643,8 +643,7 @@ function receivedMessage(event) {
     }
     outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
     console.log("finished searching");
-    var presentable = "I know "+indexArray.length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(outputArray);
-    return presentable;
+    return "I know "+indexArray.length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(outputArray);
   }
 
 
