@@ -651,6 +651,7 @@ function receivedMessage(event) {
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
     //AH,S,EH,NgNM,T
     fuzzyString.replace(/,/g, " ");
+    console.log("fuzzyString is "+fuzzyString);
     var wordEndings = breakdownPhonemes(fuzzyString);
     console.log("breakdownPhonemes "+wordEndings);
     var vowelCount = wordEndings.length;
