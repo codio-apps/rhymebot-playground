@@ -453,7 +453,7 @@ function receivedMessage(event) {
           var dictionaryIndex = findTheLine(searchWord);
           var messageString = "";
           if (dictionaryIndex != -1){
-            messageString = messageString+fuzzyRhymes(dictionaryIndex);
+            messageString = fuzzyRhymes(dictionaryIndex);
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
           }
