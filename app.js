@@ -640,6 +640,7 @@ function receivedMessage(event) {
     var simpleOutput = new Array();
     var splitSoundalikes = new Array();
     //for every line in the dictionary
+    //Nb hardocoded limits atm
     for (var i = 54580; i < 57335; i++){
       var halt = false;
       var stopCon = false;
