@@ -13,14 +13,12 @@ express = require('express'),
 https = require('https'),
 request = require('request');
 
-
 // Express environment
 var app = express();
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
-
 
 // Keyword and letter initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
@@ -35,11 +33,9 @@ var SOUNDALIKES = "";
 var ALPHABET_ARRAY = new Array();
 var SIMPLEDICTIONARY = "";
 
-//file buffer
+//required by file buffer and setUpLocalVariables
 var fileBuffer = "";
 var filesBuffered = false;
-
-//counters for finders
 var maxSyllables = 0;
 
 // Graph Profile fields by senderID
@@ -47,12 +43,15 @@ var name = "NONAMESET";
 var last_name = "";
 var nameFound = false;
 
-//blank strings
+//blank strings for input parsing
 var searchWord = "";
 var lc_messageText = "";
 
 //global message response string
 var messageResponse = "";
+
+//shhhh
+var play = false;
 
 // Set up file parsing
 var fs = require("fs");
@@ -110,7 +109,6 @@ app.get('/webhook', function(req, res) {
     res.sendStatus(403);
   }
 });
-
 
 /*
 * All callbacks for Messenger are POST-ed. They will be sent to the same
@@ -240,9 +238,9 @@ function receivedAuthentication(event) {
   sendTextMessage(senderID, "Authentication successful");
 }
 
+
+
 /*
-* Message Event
-*
 * This event is called when a message is sent to your page. The 'message'
 * object format can vary depending on the kind of message that was received.
 * Read more at https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-received
@@ -307,9 +305,11 @@ function receivedMessage(event) {
       }
 
       if (messageText) {
+        if (play){} else {
         // If we receive a text message, check to see if it matches any special
         // keywords and send back the corresponding example. Otherwise, just echo
         // the text we received.
+
 
         // Pass the message into a case-insenstivie expression for comparison purposes
         // only. Use messageText for the original text when you need to print output.
@@ -540,7 +540,7 @@ function receivedMessage(event) {
       // CODE GOES HERE AFTER FUNCTION RETURNS
       console.log("Received the name from Facebook, it is: "+name +" "+last_name);
 
-    });
+    }});
 
   }
 
