@@ -646,6 +646,7 @@ function receivedMessage(event) {
     var syllableArray = new Array();
     var outputString = "";
     var OGphonemeString = getPhonemes(dictionaryIndex, false).slice(1);
+    console.log("breakdownPhonemes "+breakdownPhonemes(OGphonemeString));
     var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     console.log("dindex "+SIMPLEDICTIONARY[dictionaryIndex]);
