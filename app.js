@@ -647,8 +647,15 @@ function receivedMessage(event) {
     var normalSearchArray = searchPhonemes(phonemeString, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
+
+    wordEndings = breakdownPhonemes(fuzzyString);
+    console.log("***WORDENDINGS***"+wordEndings);
+
     for (var i = 0; i < CURRENTDICTIONARY.length; i++){
       var compareString = SIMPLEDICTIONARY[i];
+
+
+
       if (compareString == fuzzyString){
         console.log("match found at "+getWord(i));
         if (normalSearchArray.includes(i)){
@@ -664,6 +671,7 @@ function receivedMessage(event) {
     console.log("finished searching");
     outputString = "DATA: "+SIMPLEDICTIONARY[dictionaryIndex]+"\nI know "+outputArray[0].length+" words that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+makeArrayReadable(outputArray, getWord(dictionaryIndex).toLowerCase());
     return outputString;
+
   }
 
 
@@ -744,11 +752,12 @@ function receivedMessage(event) {
   }
 
   //takes in a phoneme string and exports an array including every permutation of it
-  function breakdownPhonemes(phonemeBuffer, vowelCount){
+  //broken down by syllable, backwards
+  function breakdownPhonemes(phonemeArray){
     var wordEndings = new Array();
-    for (var k = 0, vowelCount = 0, phoLen = phonemeBuffer.length-1; k < phoLen; k++){
+    for (var k = 0, vowelCount = 0, phoLen = phonemeArray.length-1; k < phoLen; k++){
       //set char to the first letter of the phoneme
-      var char = phonemeBuffer[phoLen-k].charAt(0);
+      var char = phonemeArray[phoLen-k].charAt(0);
       //compare char to every vowel
       for (var j = 0, vowLen=vowels.length; j < vowLen; j++){
         //if we find a vowel at the next position down, log it as the next relevant one
@@ -757,8 +766,8 @@ function receivedMessage(event) {
           vowelCount++
           //now stick the rest of the vowels back into the buffer
           var tempString = "";
-          for (var l = nextVowel, restLen = phonemeBuffer.length; l < restLen; l++){
-            tempString = tempString +" "+phonemeBuffer[l];
+          for (var l = nextVowel, restLen = phonemeArray.length; l < restLen; l++){
+            tempString = tempString +" "+phonemeArray[l];
             wordEndings[vowelCount-1] = tempString;
           }
         }
@@ -770,9 +779,9 @@ function receivedMessage(event) {
   //deeper search function that returns more complex rhymes as an array
   //uses searchPhonemes
   function complexSearch(dictionaryIndex){
-    var syllableArray = [""];
-    var phonemeBuffer = [""];
-    var wordEndings = [""];
+    var syllableArray = new Array();
+    var phonemeBuffer = new Array();
+    var wordEndings = new Array();
     var COMPLEXOUTPUT = new Array();
     var FINALOUTPUT = new Array();
     var theWord = getWord(dictionaryIndex);
