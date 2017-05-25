@@ -639,6 +639,7 @@ function receivedMessage(event) {
   //function to take in an index from the dictionary and return all the indexes that nearly rhymes in an array
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
+    var theWord = getWord(dictionaryIndex);
     var outputArray = new Array();
     var indexArray = new Array();
     var syllableArray = new Array();
