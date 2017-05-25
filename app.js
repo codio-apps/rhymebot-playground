@@ -636,7 +636,8 @@ function receivedMessage(event) {
     return mostSyllables;
   }
 
-  //function to take in an index from the dictionary and return all the indexes that nearly rhyme in a string for now
+  //function to take in an index from the dictionary and return something
+  //i guess it should return all the indexes that nearly rhyme but I'm parsing to a string for now
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
     var theWord = getWord(dictionaryIndex);
@@ -648,7 +649,7 @@ function receivedMessage(event) {
     var normalSearchArray = searchPhonemes(OGphonemeString, 0, 0);
     var vowelCount = countSyllables(dictionaryIndex);
     console.log("dindex "+SIMPLEDICTIONARY[dictionaryIndex]);
-    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex];
+    var fuzzyString = SIMPLEDICTIONARY[dictionaryIndex].toString();
     //AH,S,EH,NgNM,T
     fuzzyString.replace(",", " ");
     console.log("fuzzyString is "+fuzzyString);
