@@ -305,11 +305,9 @@ function receivedMessage(event) {
       }
 
       if (messageText) {
-        if (play){} else {
         // If we receive a text message, check to see if it matches any special
         // keywords and send back the corresponding example. Otherwise, just echo
         // the text we received.
-
 
         // Pass the message into a case-insenstivie expression for comparison purposes
         // only. Use messageText for the original text when you need to print output.
@@ -540,7 +538,7 @@ function receivedMessage(event) {
       // CODE GOES HERE AFTER FUNCTION RETURNS
       console.log("Received the name from Facebook, it is: "+name +" "+last_name);
 
-    }});
+    });
 
   }
 
