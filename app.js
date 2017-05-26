@@ -799,11 +799,12 @@ function receivedMessage(event) {
             //console.log("match found:"+thatLine[0]+"|"+thatPhoneme+"|");
             thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
             if (thisPhoneme.length==0){
-              console.log("Solved one: "+thisLine[0]);
               console.log(outputArray);
               //console.log(compositeIndexes);
               var tmp = findHomophones(i, k+1);
-              if (tmp != -1){}
+              if (tmp != -1){
+                outputArray.push(tmp);
+              }
               solved=true;
             }
           }
