@@ -675,11 +675,11 @@ if (err) throw err;
   // Database: users
   //Remove: all
 
-db.collection("users").remove({}, function(err, result) {
-  if (err) throw err;
-  console.log(result.name);
-  db.close();
-    });
+// db.collection("users").remove({}, function(err, result) {
+//   if (err) throw err;
+//   console.log("Data Base cleared. It is now: "  + result);
+//   db.close();
+//     });
 
 
 
