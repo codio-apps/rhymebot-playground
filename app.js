@@ -616,18 +616,30 @@ if (err) throw err;
   // Database name: users
   // Inserting: myobj
 
-  db.collection("users").insert(bodyObj, function(err, res) {
-    if (err) throw err;
-    console.log("Number of records inserted: " + res.insertedCount);
-    db.close();
-  });
+  // db.collection("users").insert(bodyObj, function(err, res) {
+  //   if (err) throw err;
+  //   console.log("Number of records inserted: " + res.insertedCount);
+  //   db.close();
+  // });
 
+  // Clears the Database
+  // Database: users
+  //Remove: all
 
 db.collection("users").find({}).toArray(function(err, result) {
   if (err) throw err;
   console.log(result);
   db.close();
 });
+
+// db.collection("users").remove({}, function(err, result) {
+//   if (err) throw err;
+//   console.log(result.name);
+//   db.close();
+//     });
+
+
+
 });
 }
 
