@@ -562,6 +562,7 @@ function receivedMessage(event) {
           break;
 
           case 'stopPlayingLose':
+          console.log("Too many guesses, losing");
           messageResponse = "Too many guesses, you lose. Word was "+getWord(winningIndex);
           stopPlaying();
           break;
@@ -569,7 +570,7 @@ function receivedMessage(event) {
           case 'playing':
           console.log(".... playing");
           var randomString = GAMEARRAY[guess];
-          messageResponse = "You are still playing. This is guess "+guess+" of 10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
+          messageResponse = "That's not the right word. That was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
           break;
 
 
@@ -1023,7 +1024,7 @@ if (err) throw err;
         for (var j=0; randArray.includes(rand); j++){
           rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         }
-        randArray[i] = rand;
+        randArray.push(rand);
       }
       console.log("Finished processing array, randomly returning: "+randArray);
     } else {
@@ -1441,19 +1442,18 @@ if (err) throw err;
         rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
         GAMEARRAY = randomRhymes(rand, 10);
       }
-    var targetWord = getWord(rand);
-    console.log("Target word is "+targetWord+", number of rhymes is "+GAMEARRAY.length);
-    messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
-    return GAMEARRAY[0];
+    console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
+    messageResponse = "\uD83D\uDC7E So you want to play a game... Guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+"\n"+
+    "If you don't get it right in ten guesses you lose.";
+    return rand;
   }
 
   function stopPlaying(){
     console.log("Stop playing called");
     play = false;
     guess=0;
-    messageResponse = messageResponse+"\nGame over";
+    messageResponse = messageResponse+"\n\uD83D\uDC7E Game over ";
   }
-
 
   /*
   * Send a button message using the Send API.
