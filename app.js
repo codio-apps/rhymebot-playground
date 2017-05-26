@@ -308,7 +308,7 @@ function receivedMessage(event) {
    ];
 
     console.log("*****************TESTING*************************************************");
-    console.log(name + " : " + last_name);
+    console.log(userObj);
 
       if (isEcho) {
         // Just logging message echoes to console
