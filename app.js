@@ -474,7 +474,7 @@ function receivedMessage(event) {
             indexArray[i] = findTheLine(searchArray[i]);
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
-              messageString = messageString+searchSentence(indexArray)+"\nYou can also consider these homophones: "+findHomophones(indexArray[i]);
+              messageString = messageString+searchSentence(indexArray)+"\nYou can also consider these homophones: "+findHomophones(indexArray[i], 0);
             }
           }
           messageResponse = messageString;
@@ -765,6 +765,7 @@ function receivedMessage(event) {
     }
 
     function findHomophones(i, startingIndex){
+      console.log("Calling findHomophones");
       var thisLine = CURRENTDICTIONARY[i].split("  ");
       //console.log("searching for "+thisLine[0]+" from "+startingIndex+" to "+CURRENTDICTIONARY.length);
       var solved = false;
