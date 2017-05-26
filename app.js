@@ -606,7 +606,8 @@ function receivedMessage(event) {
 
 function logMessageReceived_DB (senderID, name, last_name) {
 
-
+  console.log("DB entry: " + name);
+  console.log("DB entry: " + last_name);
 
   var userObj = [
     { name: name, last_name: last_name}
