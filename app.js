@@ -1348,7 +1348,7 @@ function receivedMessage(event) {
     var targetWord = getWord(rand);
     console.log("Target word is "+targetWord);
     messageResponse = "So you want to play a game. The first clue is "+getWord(randomArray[0]);
-    return targetWord;
+    return randomArray[0];
   }
 
   function stopPlaying(){
