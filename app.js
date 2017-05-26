@@ -770,6 +770,7 @@ function receivedMessage(event) {
       return mostSyllables;
     }
 
+    //function to find words or strings of words that sound the same
     function findHomophones(i, startingIndex){
       console.log("Calling findHomophones on "+getWord(i));
       var thisLine = CURRENTDICTIONARY[i].split("  ");
@@ -794,18 +795,16 @@ function receivedMessage(event) {
           var thatPhoneme = thatLine[1]; //OR
           //console.log("searching for "+thisPhoneme+" at "+thatPhoneme);
           if (thisPhoneme.startsWith(thatPhoneme) || thisPhoneme == thatPhoneme){
-            outputArray.push(getWord(k));
-            //console.log(getWord(k));
-            //console.log("match found:"+thatLine[0]+"|"+thatPhoneme+"|");
+            outputArray.push(getWord(k).toLowerCase());
             thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
             if (thisPhoneme.length==0){
-              console.log(outputArray);
-              //console.log(compositeIndexes);
               var tmp = findHomophones(i, k+1);
               if (tmp != ""){
-                outputArray.push(tmp);
+                outputArray.push(tmp.toLowerCase()+" ");
+                console.log("pushing tmp "+tmp);
               }
               solved=true;
+              return outputArray.toString();
             }
           }
         }
