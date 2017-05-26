@@ -306,6 +306,9 @@ function receivedMessage(event) {
      { name: name,
        surname: last_name}
    ];
+   console.log("1: " + userObj);
+   console.log("2: " + bodyObj);
+   logMessageReceived_DB(senderID, userObj);
 
       if (isEcho) {
         // Just logging message echoes to console
@@ -319,11 +322,7 @@ function receivedMessage(event) {
 
         sendTextMessage(senderID, "Quick reply tapped");
         return;
-      }
-
-      console.log("1: " + userObj);
-      console.log("2: " + bodyObj); 
-      logMessageReceived_DB(senderID, userObj);
+      }    
 
       if (messageText) {
         lc_messageText = messageText.toLowerCase();
