@@ -321,7 +321,8 @@ function receivedMessage(event) {
         return;
       }
 
-      console.log(userObj);  
+      console.log("1: " + userObj);
+      console.log("2: " + bodyObj); 
       logMessageReceived_DB(senderID, userObj);
 
       if (messageText) {
