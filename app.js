@@ -798,7 +798,7 @@ function receivedMessage(event) {
             outputArray.push(getWord(k).toLowerCase());
             thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
             if (thisPhoneme.length==0){
-              var tmp = findHomophones(i, k+1);
+              var tmp = findHomophones(i, (k+1));
               if (tmp != ""){
                 outputArray.push(tmp.toLowerCase()+" ");
                 console.log("pushing tmp "+tmp);
