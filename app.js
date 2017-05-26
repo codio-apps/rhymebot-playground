@@ -491,7 +491,9 @@ function receivedMessage(event) {
           var dictionaryIndex = findTheLine(searchWord);
           var messageString = "";
           if (dictionaryIndex != -1){
-            messageString = fuzzyRhymes(dictionaryIndex);
+            var fuzzyArray = fuzzyRhymes(dictionaryIndex);
+            messageString = "\uD83C\uDF99 I know "+fuzzyArray.length+" word(s) that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(fuzzyArray);
+            return
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
           }
@@ -564,6 +566,7 @@ function receivedMessage(event) {
           break;
 
           case 'stopPlayingWin':
+          guess++;
           console.log("Player won on guess "+guess);
           points = points+(countSyllables(winningIndex)*(10-guess));
           messageResponse = "\uD83D\uDC4D You won on guess "+guess+"\nYou have "+points+" points";
@@ -579,8 +582,13 @@ function receivedMessage(event) {
 
           case 'playing':
           console.log(".... playing");
+          messageResponse = ""
           var randomString = GAMEARRAY[guess];
-          messageResponse = "\uD83E\uDD14 That's not the right word.\nThat was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
+          var guessIndex = findTheLine(lc_messageText);
+          if (guessIndex==-1){
+            messageResponse = "To be honest, I don't actually know the word "+lc_messageText.toUpperCase()+" yet \uD83D\uDE15";
+          }
+          messageResponse = "\uD83E\uDD14 That's not the right word.\n"+messageResponse+"\nThat was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to give up";
           break;
 
 
@@ -754,7 +762,7 @@ if (err) throw err;
     return mostSyllables;
   }
 
-  //function to take in an index from the dictionary and return a nice presentable string
+  //function to take in an index from the dictionary and return an array of results
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
     var outputArray = new Array();
@@ -777,11 +785,11 @@ if (err) throw err;
       }
     }
     if (indexArray.length == 0){
-      return "I couldn't find any fuzzy rhymes sorry";
+      return "";
     }
-    outputArray = indexAndSortInto2d(indexArray, dictionaryIndex);
     console.log("finished searching");
-    return "\uD83C\uDF99 I know "+indexArray.length+" word(s) that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(outputArray);
+    return indexAndSortInto2d(indexArray, dictionaryIndex);
+
   }
 
 
@@ -1457,7 +1465,7 @@ if (err) throw err;
     console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
     messageResponse = "\uD83D\uDC7E So you want to play a game... "+
     "Try to guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+" and has "+countSyllables(rand)+" syllable(s)\n"+
-    "You have ten attempts to get it right.";
+    "You have ten attempts to get it right.\nYou have "+points+" points so far";
     return rand;
   }
 
