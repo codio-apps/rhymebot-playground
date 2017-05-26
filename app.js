@@ -1357,10 +1357,15 @@ function receivedMessage(event) {
     play = true;
     var rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
     GAMEARRAY = randomRhymes(rand, 10);
+      for (GAMEARRAY.length < 10){
+        rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
+        GAMEARRAY = randomRhymes(rand, 10);  
+      }
+
     var targetWord = getWord(rand);
     console.log("Target word is "+targetWord);
     messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
-    return randomArray[0];
+    return GAMEARRAY[0];
   }
 
   function stopPlaying(){
