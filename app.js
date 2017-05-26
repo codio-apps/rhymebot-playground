@@ -490,8 +490,9 @@ function receivedMessage(event) {
           var dictionaryIndex = findTheLine(searchWord);
           var messageString = "";
           if (dictionaryIndex != -1){
-            var fuzzyArray = fuzzyRhymes(dictionaryIndex);
-            messageString = "\uD83C\uDF99 I know "+fuzzyArray.length+" word(s) that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(fuzzyArray);
+            var fuzzyArray = indexAndSortInto2d(fuzzyRhymes(dictionaryIndex, dictionaryIndex);
+            console.log("fuzzyArray is "+fuzzyArray);
+            messageString = "\uD83C\uDF99 I know "+fuzzyArray[0].length+" word(s) that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(fuzzyArray);
             return
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
@@ -764,10 +765,8 @@ if (err) throw err;
   //function to take in an index from the dictionary and return an array of results
   function fuzzyRhymes(dictionaryIndex){
     console.log("fuzzyRhymes called on "+dictionaryIndex);
-    var outputArray = new Array();
     var indexArray = new Array();
     var syllableArray = new Array();
-    var outputString = "";
     var phonemes = getPhonemes(dictionaryIndex, false).slice(1);
     var ordinarySearchResults = searchPhonemes(phonemes, 0);
     var vowelCount = countSyllables(dictionaryIndex);
@@ -787,8 +786,7 @@ if (err) throw err;
       return "";
     }
     console.log("finished searching");
-    return indexAndSortInto2d(indexArray, dictionaryIndex);
-
+    return indexArray;
   }
 
 
