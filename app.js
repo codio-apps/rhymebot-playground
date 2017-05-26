@@ -64,6 +64,7 @@ var play = false;
 winningIndex = "";
 var GAMEARRAY = new Array();
 var guess = 0;
+var points = 0;
 
 // Set up file parsing
 var fs = require("fs");
@@ -325,13 +326,11 @@ function receivedMessage(event) {
         //this is where I am starting to program some conversational abilities for playing games and such
         if (play){
           var targetWord = getWord(winningIndex).toLowerCase();
-          console.log("guess was "+lc_messageText+" answer is "+targetWord);
           if (lc_messageText == "quit"){
             intent = "stopPlayingQuit";
           } else if (lc_messageText==targetWord){
             intent = "stopPlayingWin";
           } else if (guess==9) {
-            console.log("too many guesses, game lost");
             intent = "stopPlayingLose";
           } else {
             intent = "playing";
@@ -561,13 +560,15 @@ function receivedMessage(event) {
 
           case 'stopPlayingWin':
           console.log("Player won on guess "+guess);
-          messageResponse = "\uD83D\uDC4D You won on guess "+guess;
+          points = points+(countSyllables(winningIndex)*(10-guess));
+          messageResponse = "\uD83D\uDC4D You won on guess "+guess+"\nYou have "+points+" points";
           stopPlaying();
           break;
 
           case 'stopPlayingLose':
           console.log("Too many guesses, losing");
-          messageResponse = "\uD83D\uDC80 Too many guesses, you lose. The answer was "+getWord(winningIndex);
+          points = points-10;
+          messageResponse = "\uD83D\uDC80 Too many guesses, you lose. The answer was "+getWord(winningIndex)+"\nYou have "+points+" points";
           stopPlaying();
           break;
 
