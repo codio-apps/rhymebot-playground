@@ -490,7 +490,8 @@ function receivedMessage(event) {
           var dictionaryIndex = findTheLine(searchWord);
           var messageString = "";
           if (dictionaryIndex != -1){
-            messageString = "\uD83C\uDF99 I know "+indexArray.length+" word(s) that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(fuzzyRhymes(dictionaryIndex));
+            var fuzzyArray = fuzzyRhymes(dictionaryIndex);
+            messageString = "\uD83C\uDF99 I know "+fuzzyArray.length+" word(s) that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(fuzzyArray);
             return
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
