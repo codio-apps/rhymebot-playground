@@ -757,6 +757,19 @@ function receivedMessage(event) {
       }
     }
 
+    //function to return the syllable value of the item in CURRENTDICTIONARY with the most syllables
+    function getMaxSyllables(){
+      var mostSyllables = 0;
+      var maxWord = "";
+      for (var i=0, len = CURRENTDICTIONARY.length; i < len; i++){
+        if (mostSyllables < countSyllables(i)){
+          mostSyllables = countSyllables(i);
+        }
+      }
+      console.log("Highest syllable count in currentdictionary is: "+mostSyllables);
+      return mostSyllables;
+    }
+
     //function to find words or strings of words that sound the same
     function findHomophones(i, startingIndex){
       console.log("Calling findHomophones on "+getWord(i));
