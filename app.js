@@ -625,6 +625,11 @@ function logMessageReceived_DB (senderID, bodyObj) {
   console.log("**********Entered logMessageReceived_DB**********");
   console.log(bodyObj);
 
+  var userEntry [
+    {name: bodyObj.first_name,
+    surname: bodyObj.last_name}
+  ];
+
 //   var userObj = [
 //     { name: name,
 //       last_name: last_name}
@@ -643,7 +648,7 @@ if (err) throw err;
   // Inserting: myobj
 
 
-  db.collection("users").insert(bodyObj, function(err, res) {
+  db.collection("users").insert(userEntry, function(err, res) {
     if (err) throw err;
     console.log("*********************DATABASE*********************");
     console.log("Number of records inserted: " + res.insertedCount);
@@ -670,11 +675,11 @@ if (err) throw err;
   // Database: users
   //Remove: all
 
-// db.collection("users").remove({}, function(err, result) {
-//   if (err) throw err;
-//   console.log(result.name);
-//   db.close();
-//     });
+db.collection("users").remove({}, function(err, result) {
+  if (err) throw err;
+  console.log(result.name);
+  db.close();
+    });
 
 
 
