@@ -307,9 +307,6 @@ function receivedMessage(event) {
        surname: last_name}
    ];
 
-    console.log("*****************TESTING*************************************************");
-    console.log(userObj);
-
       if (isEcho) {
         // Just logging message echoes to console
         console.log("Received echo for message %s and app %d with metadata %s",
@@ -613,6 +610,8 @@ function receivedMessage(event) {
 // Add Entry to the data base for each message received
 
 function logMessageReceived_DB (senderID, userObj) {
+
+  console.log("*******BEFORE THE DB. OBJ" + userObj + " and senderID: " + senderID + "*************");
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
 
