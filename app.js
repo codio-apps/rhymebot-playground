@@ -318,6 +318,7 @@ function receivedMessage(event) {
           } else if (lc_messageText==targetWord){
             intent = "stopPlayingWin";
           } else if (guess==10) {
+            console.log("too many guesses, game lost");
             intent = "stopPlayingLose";
           } else {
             intent = "playing";
@@ -1361,7 +1362,6 @@ function receivedMessage(event) {
         rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
         GAMEARRAY = randomRhymes(rand, 10);
       }
-
     var targetWord = getWord(rand);
     console.log("Target word is "+targetWord);
     messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
