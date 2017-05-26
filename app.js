@@ -302,6 +302,10 @@ function receivedMessage(event) {
       name = bodyObj.first_name;
       last_name = bodyObj.last_name;
 
+      var userObj = [
+     { name: name, surname: last_name}
+   ];
+
       if (isEcho) {
         // Just logging message echoes to console
         console.log("Received echo for message %s and app %d with metadata %s",
@@ -316,7 +320,7 @@ function receivedMessage(event) {
         return;
       }
 
-      logMessageReceived_DB(senderID, bodyObj);
+      logMessageReceived_DB(senderID, userObj);
 
       if (messageText) {
         lc_messageText = messageText.toLowerCase();
@@ -604,7 +608,7 @@ function receivedMessage(event) {
 
 // Add Entry to the data base for each message received
 
-function logMessageReceived_DB (senderID, bodyObj) {
+function logMessageReceived_DB (senderID, userObj) {
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
 
@@ -616,7 +620,7 @@ if (err) throw err;
   // Database name: users
   // Inserting: myobj
 
-  db.collection("users").insert(bodyObj, function(err, result) {
+  db.collection("users").insert(userObj, function(err, result) {
     if (err) throw err;
     console.log("*********************DATABASE*********************");
     console.log("Number of records inserted: " + result.insertedCount);
@@ -629,21 +633,21 @@ if (err) throw err;
   // Database name: users
   // Results: result
 
-  // db.collection("users").find({}).toArray(function(err, result) {
-  //   if (err) throw err;
-  //   console.log(" The database now consists of: " + result);
-  //   db.close();
-  // });
+  db.collection("users").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(" The database now consists of: " + result);
+    db.close();
+  });
 
   // Clears the Database
   // Database: users
   //Remove: all
 
-db.collection("users").find({}).toArray(function(err, result) {
-  if (err) throw err;
-  console.log(result);
-  db.close();
-});
+// db.collection("users").find({}).toArray(function(err, result) {
+//   if (err) throw err;
+//   console.log(result);
+//   db.close();
+// });
 
 // db.collection("users").remove({}, function(err, result) {
 //   if (err) throw err;
