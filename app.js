@@ -802,7 +802,7 @@ function receivedMessage(event) {
               console.log(outputArray);
               //console.log(compositeIndexes);
               var tmp = findHomophones(i, k+1);
-              if (tmp != -1){
+              if (tmp != ""){
                 outputArray.push(tmp);
               }
               solved=true;
