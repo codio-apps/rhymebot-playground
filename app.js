@@ -1440,7 +1440,7 @@ if (err) throw err;
         GAMEARRAY = randomRhymes(rand, 10);
       }
     var targetWord = getWord(rand);
-    console.log("Target word is "+targetWord+", number of rhymes is "+GAMEARRAY.length;);
+    console.log("Target word is "+targetWord+", number of rhymes is "+GAMEARRAY.length);
     messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
     return GAMEARRAY[0];
   }
