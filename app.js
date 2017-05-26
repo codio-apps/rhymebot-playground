@@ -569,7 +569,7 @@ function receivedMessage(event) {
           case 'playing':
           console.log(".... playing");
           var randomString = GAMEARRAY[guess];
-          messageResponse = "That's not the right word. That was guess "+guess+" of 10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
+          messageResponse = "That's not the right word. That was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
           break;
 
 
@@ -1442,7 +1442,8 @@ if (err) throw err;
         GAMEARRAY = randomRhymes(rand, 10);
       }
     console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
-    messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
+    messageResponse = "\uD83D\uDC7E So you want to play a game... Guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0]+"\n"+
+    "If you don't get it right in ten guesses you lose.");
     return rand;
   }
 
@@ -1450,9 +1451,8 @@ if (err) throw err;
     console.log("Stop playing called");
     play = false;
     guess=0;
-    messageResponse = messageResponse+"\nGame over";
+    messageResponse = messageResponse+"\n\uD83D\uDC7E Game over ";
   }
-
 
   /*
   * Send a button message using the Send API.
