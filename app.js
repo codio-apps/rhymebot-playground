@@ -620,34 +620,35 @@ if (err) throw err;
   // Database name: users
   // Inserting: myobj
 
-  db.collection("users").insert(userObj, function(err, result) {
-    if (err) throw err;
-    console.log("*********************DATABASE*********************");
-    console.log("Number of records inserted: " + result.insertedCount);
-
-    db.close();
-  });
-
-
-  // Read all entries from the database - the find() method returns all occurrences in the selection
-  // Database name: users
-  // Results: result
-
-  db.collection("users").find({}).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(" The database now consists of: " + result);
-    db.close();
-  });
+  // db.collection("users").insert(userObj, function(err, result) {
+  //   if (err) throw err;
+  //   console.log("*********************DATABASE*********************");
+  //   console.log("Number of records inserted: " + result.insertedCount);
+  //
+  //   db.close();
+  // });
+  //
+  //
+  // // Read all entries from the database - the find() method returns all occurrences in the selection
+  // // Database name: users
+  // // Results: result
+  //
+  // db.collection("users").find({}).toArray(function(err, result) {
+  //   if (err) throw err;
+  //   console.log("Number of records equals: " + result.insertedCount);
+  //   console.log(" The database now consists of: " + result);
+  //   db.close();
+  // });
 
   // Clears the Database
   // Database: users
   //Remove: all
 
-// db.collection("users").find({}).toArray(function(err, result) {
-//   if (err) throw err;
-//   console.log(result);
-//   db.close();
-// });
+db.collection("users").find({}).toArray(function(err, result) {
+  if (err) throw err;
+  console.log(result);
+  db.close();
+});
 
 // db.collection("users").remove({}, function(err, result) {
 //   if (err) throw err;
