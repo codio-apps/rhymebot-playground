@@ -552,19 +552,21 @@ function receivedMessage(event) {
           break;
 
           case 'stopPlayingQuit':
-          messageResponse = "You quit";
+          console.log("Stopped playing: quit");
+          messageResponse = "You quit. The answer was "+getWord(winningIndex);
           stopPlaying();
 
           break;
 
           case 'stopPlayingWin':
+          console.log("Player won on guess "+guess);
           messageResponse = "You won in "+guess+" attempts!";
           stopPlaying();
           break;
 
           case 'stopPlayingLose':
           console.log("Too many guesses, losing");
-          messageResponse = "Too many guesses, you lose. Word was ";
+          messageResponse = "Too many guesses, you lose. The answer was "+getWord(winningIndex);
           stopPlaying();
           break;
 
