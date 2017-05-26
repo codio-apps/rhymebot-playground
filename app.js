@@ -757,19 +757,6 @@ function receivedMessage(event) {
       }
     }
 
-    //function to return the syllable value of the item in CURRENTDICTIONARY with the most syllables
-    function getMaxSyllables(){
-      var mostSyllables = 0;
-      var maxWord = "";
-      for (var i=0, len = CURRENTDICTIONARY.length; i < len; i++){
-        if (mostSyllables < countSyllables(i)){
-          mostSyllables = countSyllables(i);
-        }
-      }
-      console.log("Highest syllable count in currentdictionary is: "+mostSyllables);
-      return mostSyllables;
-    }
-
     //function to find words or strings of words that sound the same
     function findHomophones(i, startingIndex){
       console.log("Calling findHomophones on "+getWord(i));
@@ -798,7 +785,7 @@ function receivedMessage(event) {
             outputArray.push(getWord(k).toLowerCase());
             thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
             if (thisPhoneme.length==0){
-              var tmp = findHomophones(i, (k+1));
+              var tmp = findHomophones(i, k+1);
               if (tmp != ""){
                 outputArray.push(tmp.toLowerCase()+" ");
                 console.log("pushing tmp "+tmp);
@@ -812,6 +799,9 @@ function receivedMessage(event) {
           failed = true;
         }
       }
+      if (solved){
+        return outputArray.toString();
+      } else return "";
     }
 
     //function to take in an index from the dictionary and return an array of results
