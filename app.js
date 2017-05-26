@@ -303,10 +303,10 @@ function receivedMessage(event) {
       name = bodyObj.first_name;
       last_name = bodyObj.last_name;
 
-  console.log("BEFORE THE DB entry object: " + bodyObj);
-    console.log(bodyObj);
-    console.log("8888888888888888888888888888888888888888888888888888888888888888888888888888");
-   logMessageReceived_DB(senderID, name, last_name, bodyObj);
+      console.log("BEFORE THE DB entry object: " + bodyObj);
+      console.log(bodyObj);
+      console.log("8888888888888888888888888888888888888888888888888888888888888888888888888888");
+      logMessageReceived_DB(senderID, name, last_name, bodyObj);
 
       if (isEcho) {
         // Just logging message echoes to console
@@ -479,7 +479,7 @@ function receivedMessage(event) {
             indexArray[i] = findTheLine(searchArray[i]);
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
-              messageString = messageString+searchSentence(indexArray);
+              messageString = messageString+searchSentence(indexArray)+"\nYou can also consider these homophones: "+findHomophones(indexArray[i]);
             }
           }
           messageResponse = messageString;
@@ -623,67 +623,67 @@ function receivedMessage(event) {
 
   }
 
-// Add Entry to the data base for each message received
+  // Add Entry to the data base for each message received
 
-function logMessageReceived_DB (senderID, name, last_name, bodyObj) {
+  function logMessageReceived_DB (senderID, name, last_name, bodyObj) {
 
-  console.log("DB entry: " + name);
-  console.log("DB entry: " + last_name);
-  console.log("DB entry object: " + bodyObj);
+    console.log("DB entry: " + name);
+    console.log("DB entry: " + last_name);
+    console.log("DB entry object: " + bodyObj);
 
-  var userObj = [
-    { name: name, last_name: last_name}
-  ]
+    var userObj = [
+      { name: name, last_name: last_name}
+    ]
 
     console.log("*******BEFORE THE DB. OBJ" + userObj.name + " and senderID: " + senderID + "*************");
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
+    // Use connect method to connect to the server
+    MongoClient.connect(url, function(err, db) {
 
-  //console.log(db);
-if (err) throw err;
-
-
-  // Insert an object into the database
-  // Database name: users
-  // Inserting: myobj
+      //console.log(db);
+      if (err) throw err;
 
 
-  db.collection("users").insert(userObj, function(err, res) {
-    if (err) throw err;
-    console.log("*********************DATABASE*********************");
-    console.log("Number of records inserted: " + res.insertedCount);
-    db.close();
-  });
+      // Insert an object into the database
+      // Database name: users
+      // Inserting: myobj
 
 
-  // Read all entries from the database - the find() method returns all occurrences in the selection
-  // Database name: users
-  // Results: result
-
-  // db.collection("users").find({}).toArray(function(err, result) {
-  //   if (err) throw err;
-  //   console.log("Number of records equals: " + result.insertedCount);
-  //   console.log(" The database now consists of: " + result);
-  //   db.close();
-  // });
+      db.collection("users").insert(userObj, function(err, res) {
+        if (err) throw err;
+        console.log("*********************DATABASE*********************");
+        console.log("Number of records inserted: " + res.insertedCount);
+        db.close();
+      });
 
 
+      // Read all entries from the database - the find() method returns all occurrences in the selection
+      // Database name: users
+      // Results: result
 
-
-  // Clears the Database
-  // Database: users
-  //Remove: all
-
-// db.collection("users").remove({}, function(err, result) {
-//   if (err) throw err;
-//   console.log(result.name);
-//   db.close();
-//     });
+      // db.collection("users").find({}).toArray(function(err, result) {
+      //   if (err) throw err;
+      //   console.log("Number of records equals: " + result.insertedCount);
+      //   console.log(" The database now consists of: " + result);
+      //   db.close();
+      // });
 
 
 
-});
-}
+
+      // Clears the Database
+      // Database: users
+      //Remove: all
+
+      // db.collection("users").remove({}, function(err, result) {
+      //   if (err) throw err;
+      //   console.log(result.name);
+      //   db.close();
+      //     });
+
+
+
+    });
+  }
 
 
 
@@ -1053,8 +1053,6 @@ if (err) throw err;
     return randArray;
   }
 
-
-
   function randomRhymes(dictionaryIndex, elements){
     var inputArray = new Array();
     var arrayBuffer = complexSearch(dictionaryIndex);
@@ -1065,6 +1063,52 @@ if (err) throw err;
       messageResponse = "I don't know any words that rhyme sorry";
       return "UNKNOWN";
     }
+  }
+
+  //function to find words or strings of words that sound the same
+  function findHomophones(i, startingIndex){
+    var thisLine = CURRENTDICTIONARY[i].split("  ");
+    //console.log("searching for "+thisLine[0]+" from "+startingIndex+" to "+CURRENTDICTIONARY.length);
+    var solved = false;
+    var failed = false;
+    var outputArray = new Array();
+    //compare phonemes
+    var counter = startingIndex;
+    var thisPhoneme = thisLine[1];
+    //console.log("this phoneme now|"+thisPhoneme+"|");
+    while (!failed){
+      //console.log("called from the top");
+      solved=false;
+      //console.log("starting search");
+      for (var k = counter; k < CURRENTDICTIONARY.length; k++) {
+        if (k==i){
+          k++;
+        }
+        var thatLine = CURRENTDICTIONARY[k].split("  ");
+        //var thatWord = thatLine[0];
+        var thatPhoneme = thatLine[1]; //OR
+        //console.log("searching for "+thisPhoneme+" at "+thatPhoneme);
+        if (thisPhoneme.startsWith(thatPhoneme) || thisPhoneme == thatPhoneme){
+          outputArray.push(getWord(k));
+          //console.log(getWord(k));
+          //console.log("match found:"+thatLine[0]+"|"+thatPhoneme+"|");
+          thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
+          if (thisPhoneme.length==0){
+            console.log("Solved one: "+thisLine[0]);
+            console.log(outputArray);
+            //console.log(compositeIndexes);
+            findHomophones(i, k+1);
+            solved=true;
+          }
+        }
+      }
+      if (!solved){
+        failed = true;
+      }
+    }
+    if (solved){
+      return outputArray.toString();
+    } else return -1;
   }
 
   //function to calculate how many syllables there are in a word and return that number
@@ -1453,12 +1497,12 @@ if (err) throw err;
     var rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
     var targetWord = "";
     GAMEARRAY = randomRhymes(rand, 20);
-      //ensure that we have selected a word with plenty of rhymes
-      while (GAMEARRAY.length < 20 || targetWord.includes("\'")){
-        rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
-        GAMEARRAY = randomRhymes(rand, 20);
-        targetWord = getWord(rand);
-      }
+    //ensure that we have selected a word with plenty of rhymes
+    while (GAMEARRAY.length < 20 || targetWord.includes("\'")){
+      rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
+      GAMEARRAY = randomRhymes(rand, 20);
+      targetWord = getWord(rand);
+    }
     console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
     messageResponse = "\uD83D\uDC7E So you want to play a game... "+
     "Try to guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+" and has "+countSyllables(rand)+" syllable(s)\n"+
