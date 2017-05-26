@@ -616,11 +616,14 @@ if (err) throw err;
   // Database name: users
   // Inserting: myobj
 
-  // db.collection("users").insert(bodyObj, function(err, res) {
-  //   if (err) throw err;
-  //   console.log("Number of records inserted: " + res.insertedCount);
-  //   db.close();
-  // });
+  db.collection("users").insert(bodyObj, function(err, res) {
+    if (err) throw err;
+    console.log("*********************DATABASE*********************");
+    console.log("Number of records inserted: " + res.insertedCount);
+    console.log("Database is now: " + res);
+
+    db.close();
+  });
 
   // Clears the Database
   // Database: users
@@ -632,11 +635,11 @@ if (err) throw err;
 //   db.close();
 // });
 
-db.collection("users").remove({}, function(err, result) {
-  if (err) throw err;
-  console.log(result.name);
-  db.close();
-    });
+// db.collection("users").remove({}, function(err, result) {
+//   if (err) throw err;
+//   console.log(result.name);
+//   db.close();
+//     });
 
 
 
