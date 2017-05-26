@@ -423,17 +423,19 @@ function receivedMessage(event) {
 
           case 'help':
           messageResponse = "Here's everything that works so far: \n" +
-          "sentence *word*... - search for properly rhyming words for however many *word*s you put in the sentence\n"+
-          "fuzzy *word* - search for closely rhyming words for *word*\n"+
-          "count *word* - find out how many syllables I think is in a *word*\n"+
-          "random *word* *number*(optional) - generate a random selection of properly rhyming words. If you give me a number along with your word I will generate that "+
-          "number of random rhymes, if you don't I'll give you ten\n";
+          "sentence *word*(s)- find properly rhyming words for every *word* you put in the sentence\n\n"+
+          "fuzzy *word* - find closely rhyming words for *word*\n\n"+
+          "count *word* - find out how many syllables I think is in *word*\n\n"+
+          "random *word* *number* - generate a random selection of properly rhyming words. If you give me a number along with your word I will find that "+
+          "many random rhymes, otherwise I'll try to find ten\n\n"+
+          "play - play a guessing game with me";
           break;
           case 'about':
           messageResponse =
-          "This is RhymeBot version "+version+".\n" +
-          "We are codio-apps \uD83D\uDC31/ajstevens && \uD83D\uDC36/ohmegamega.\n" +
-          "You feel the rhythm, we feel the rhyme.";
+          "I am RhymeBot version "+version+".\n" +
+          "My parents are\n"+
+          "\uD83D\uDC31/ajstevens && \uD83D\uDC36/ohmegamega.\n" +
+          "You feel the rhythm, I feel the rhyme.";
           break;
 
 
@@ -639,7 +641,6 @@ if (err) throw err;
     if (err) throw err;
     console.log("*********************DATABASE*********************");
     console.log("Number of records inserted: " + res.insertedCount);
-
     db.close();
   });
 
@@ -648,12 +649,12 @@ if (err) throw err;
   // Database name: users
   // Results: result
 
-  db.collection("users").find({}).toArray(function(err, result) {
-    if (err) throw err;
-    console.log("Number of records equals: " + result.insertedCount);
-    console.log(" The database now consists of: " + result);
-    db.close();
-  });
+  // db.collection("users").find({}).toArray(function(err, result) {
+  //   if (err) throw err;
+  //   console.log("Number of records equals: " + result.insertedCount);
+  //   console.log(" The database now consists of: " + result);
+  //   db.close();
+  // });
 
 
 
@@ -1453,7 +1454,7 @@ if (err) throw err;
     console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
     messageResponse = "\uD83D\uDC7E So you want to play a game... "+
     "Try to guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+" and has "+countSyllables(rand)+" syllable(s)\n"+
-    "If you don't get it right in ten guesses you lose.";
+    "You have ten attempts to get it right.";
     return rand;
   }
 
