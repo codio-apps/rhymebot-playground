@@ -305,6 +305,7 @@ function receivedMessage(event) {
 
   console.log("BEFORE THE DB entry object: " + bodyObj);
     console.log(bodyObj);
+    console.log("8888888888888888888888888888888888888888888888888888888888888888888888888888");
    logMessageReceived_DB(senderID, name, last_name, bodyObj);
 
       if (isEcho) {
