@@ -302,13 +302,7 @@ function receivedMessage(event) {
       name = bodyObj.first_name;
       last_name = bodyObj.last_name;
 
-      var userObj = [
-     { name: name,
-       surname: last_name}
-   ];
-   console.log("1: " + userObj.name);
-   console.log("2: " + bodyObj.last_name);
-   logMessageReceived_DB(senderID, userObj);
+   logMessageReceived_DB(senderID, name, last_name);
 
       if (isEcho) {
         // Just logging message echoes to console
@@ -610,9 +604,13 @@ function receivedMessage(event) {
 
 // Add Entry to the data base for each message received
 
-function logMessageReceived_DB (senderID, userObj) {
+function logMessageReceived_DB (senderID, name, last_name) {
 
   console.log("*******BEFORE THE DB. OBJ" + userObj + " and senderID: " + senderID + "*************");
+
+  var userObj [
+    { name: name, last_name: last_name}
+  ]
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
 
