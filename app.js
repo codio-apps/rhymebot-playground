@@ -640,21 +640,27 @@ if (err) throw err;
   //   db.close();
   // });
 
+
+  // Read all entries from the database - the find() method returns all occurrences in the selection
+  // Database name: users
+  // Results: result
+
+  // db.collection("users").find({}).toArray(function(err, result) {
+  //   if (err) throw err;
+  //   console.log(result);
+  //   db.close();
+  // });
+
+
   // Clears the Database
   // Database: users
   //Remove: all
 
-db.collection("users").find({}).toArray(function(err, result) {
+db.collection("users").remove({}, function(err, result) {
   if (err) throw err;
-  console.log(result);
+  console.log(result.name);
   db.close();
-});
-
-// db.collection("users").remove({}, function(err, result) {
-//   if (err) throw err;
-//   console.log(result.name);
-//   db.close();
-//     });
+    });
 
 
 
