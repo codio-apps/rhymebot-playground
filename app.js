@@ -476,7 +476,7 @@ function receivedMessage(event) {
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
               var homophones = findHomophones(indexArray[i], 0);
-              if (homophones != -1){
+              if (homophones != ""){
                 homophoneString = +"\nYou can also consider these homophones: "+findHomophones(indexArray[i], 0);
               }
               messageString = messageString+searchSentence(indexArray)+homophoneString;
@@ -802,6 +802,7 @@ function receivedMessage(event) {
               console.log(outputArray);
               //console.log(compositeIndexes);
               var tmp = findHomophones(i, k+1);
+              if (tmp != -1){}
               solved=true;
             }
           }
