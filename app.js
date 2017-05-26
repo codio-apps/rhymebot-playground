@@ -330,7 +330,7 @@ function receivedMessage(event) {
             intent = "stopPlayingQuit";
           } else if (lc_messageText==targetWord){
             intent = "stopPlayingWin";
-          } else if (guess==10) {
+          } else if (guess==9) {
             console.log("too many guesses, game lost");
             intent = "stopPlayingLose";
           } else {
@@ -549,6 +549,7 @@ function receivedMessage(event) {
 
           case 'startPlaying':
           winningIndex = startPlaying();
+          guess = 0;
           break;
 
           case 'stopPlayingQuit':
