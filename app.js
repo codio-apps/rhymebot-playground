@@ -1451,7 +1451,7 @@ if (err) throw err;
       }
     console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
     messageResponse = "\uD83D\uDC7E So you want to play a game... "+
-    "Try to guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+" and has "+countSyllables(rand)+" syllables\n"+
+    "Try to guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+" and has "+countSyllables(rand)+" syllable(s)\n"+
     "If you don't get it right in ten guesses you lose.";
     return rand;
   }
