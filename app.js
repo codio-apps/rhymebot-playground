@@ -52,6 +52,7 @@ var messageResponse = "";
 
 //shhhh
 var play = false;
+winningWord = "";
 
 // Set up file parsing
 var fs = require("fs");
@@ -310,6 +311,8 @@ function receivedMessage(event) {
         if (play){
           if (lc_messageText == "quit"){
             intent = "stopPlaying";
+          } else if (lc_messageText.toUpperCase==winningWord){
+            intent = "stopPlaying";
           } else intent = "playing";
         } else intent = lc_messageText;
         // If we receive a text message, check to see if it matches any special
@@ -521,7 +524,7 @@ function receivedMessage(event) {
           break;
 
           case 'startPlaying':
-          startPlaying();
+          winningWord = startPlaying();
           break;
 
           case 'stopPlaying':
@@ -1334,7 +1337,9 @@ function receivedMessage(event) {
     var rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
     var randomArray = randomRhymes(rand, 1);
     var targetWord = getWord(rand);
-    messageResponse = "So you want to play a game. The word is "+getWord(randomArray[0]);
+    console.log("Target word is "+targetWord);
+    messageResponse = "So you want to play a game. The first clue is "+getWord(randomArray[0]);
+    return targetWord;
   }
 
   function stopPlaying(){
