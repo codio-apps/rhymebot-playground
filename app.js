@@ -1357,9 +1357,9 @@ function receivedMessage(event) {
     play = true;
     var rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
     GAMEARRAY = randomRhymes(rand, 10);
-      for (GAMEARRAY.length < 10){
+      while (GAMEARRAY.length < 10){
         rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
-        GAMEARRAY = randomRhymes(rand, 10);  
+        GAMEARRAY = randomRhymes(rand, 10);
       }
 
     var targetWord = getWord(rand);
