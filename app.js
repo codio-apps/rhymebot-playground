@@ -303,8 +303,12 @@ function receivedMessage(event) {
       last_name = bodyObj.last_name;
 
       var userObj = [
-     { name: name, surname: last_name}
+     { name: name,
+       surname: last_name}
    ];
+
+    console.log("*****************TESTING*************************************************");
+    console.log(name + " : " + surname);
 
       if (isEcho) {
         // Just logging message echoes to console
@@ -641,15 +645,6 @@ if (err) throw err;
   });
 
 
-  // Read all entries from the database - the find() method returns all occurrences in the selection
-  // Database name: users
-  // Results: result
-
-  // db.collection("users").find({}).toArray(function(err, result) {
-  //   if (err) throw err;
-  //   console.log(result);
-  //   db.close();
-  // });
 
 
   // Clears the Database
