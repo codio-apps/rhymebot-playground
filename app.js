@@ -476,6 +476,7 @@ function receivedMessage(event) {
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
               var homophones = findHomophones(indexArray[i], 0);
+              console.log("homophones="+homophones);
               if (homophones != ""){
                 homophoneString = +"\nYou can also consider these homophones: "+findHomophones(indexArray[i], 0);
               }
