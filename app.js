@@ -626,17 +626,17 @@ if (err) throw err;
   // Database: users
   //Remove: all
 
-db.collection("users").find({}).toArray(function(err, result) {
-  if (err) throw err;
-  console.log(result);
-  db.close();
-});
-
-// db.collection("users").remove({}, function(err, result) {
+// db.collection("users").find({}).toArray(function(err, result) {
 //   if (err) throw err;
-//   console.log(result.name);
+//   console.log(result);
 //   db.close();
-//     });
+// });
+
+db.collection("users").remove({}, function(err, result) {
+  if (err) throw err;
+  console.log(result.name);
+  db.close();
+    });
 
 
 
