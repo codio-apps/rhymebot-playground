@@ -542,7 +542,6 @@ function receivedMessage(event) {
           case 'playing':
           console.log(".... playing");
           var randomArray = randomRhymes(winningIndex, 1);
-          var targetWord = getWord(rand);
           messageResponse = "You are still playing. The next clue is "+getWord(randomArray[0]+"\nSay quit to quit");
           break;
 
@@ -1333,8 +1332,8 @@ function receivedMessage(event) {
   }
 
   //used to send a text message using the Send API.
-  //now I'm trying to make it do it recursively to avoid the message getting jumbled up
-  //takes in a string, turns it into an array and passes it to recursivelySendMessage
+  //splits a string into sendable chunks and processes them recursively to try to avoid the message getting jumbled up
+  //.... which doesn't work
   function sendTextMessage(recipientId, messageText) {
     var messageArray = splitMessage(messageText);
     recursivelySendMessage(recipientId, messageArray, 0);
