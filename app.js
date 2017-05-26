@@ -625,7 +625,7 @@ function logMessageReceived_DB (senderID, bodyObj) {
   console.log("**********Entered logMessageReceived_DB**********");
   console.log(bodyObj);
 
-  var userEntry [
+  var userEntry = [
     {name: bodyObj.first_name,
     surname: bodyObj.last_name}
   ];
