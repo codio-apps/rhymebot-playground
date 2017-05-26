@@ -552,6 +552,7 @@ function receivedMessage(event) {
           case 'stopPlayingQuit':
           messageResponse = "You quit";
           stopPlaying();
+
           break;
 
           case 'stopPlayingWin':
@@ -567,7 +568,7 @@ function receivedMessage(event) {
           case 'playing':
           console.log(".... playing");
           var randomString = GAMEARRAY[guess];
-          messageResponse = "You are still playing. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
+          messageResponse = "You are still playing. This is guess "+guess+" of 10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
           break;
 
 
@@ -1439,7 +1440,7 @@ if (err) throw err;
         GAMEARRAY = randomRhymes(rand, 10);
       }
     var targetWord = getWord(rand);
-    console.log("Target word is "+targetWord);
+    console.log("Target word is "+targetWord+", number of rhymes is "+GAMEARRAY.length;);
     messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
     return GAMEARRAY[0];
   }
@@ -1447,6 +1448,7 @@ if (err) throw err;
   function stopPlaying(){
     console.log("Stop playing called");
     play = false;
+    guess=0;
     messageResponse = messageResponse+"\nGame over";
   }
 
