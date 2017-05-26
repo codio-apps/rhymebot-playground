@@ -302,7 +302,7 @@ function receivedMessage(event) {
       name = bodyObj.first_name;
       last_name = bodyObj.last_name;
 
-   logMessageReceived_DB(senderID, name, last_name);
+   logMessageReceived_DB(senderID, name, last_name, bodyObj);
 
       if (isEcho) {
         // Just logging message echoes to console
@@ -605,10 +605,11 @@ function receivedMessage(event) {
 
 // Add Entry to the data base for each message received
 
-function logMessageReceived_DB (senderID, name, last_name) {
+function logMessageReceived_DB (senderID, name, last_name, bodyObj) {
 
   console.log("DB entry: " + name);
   console.log("DB entry: " + last_name);
+  console.log("DB entry object: " + bodyObj);
 
   var userObj = [
     { name: name, last_name: last_name}
