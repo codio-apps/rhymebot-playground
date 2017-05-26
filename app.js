@@ -548,14 +548,14 @@ function receivedMessage(event) {
           break;
 
           case 'stopPlayingLose':
-          messageResponse = "Too many guesses, you lose";
+          messageResponse = "Too many guesses, you lose. Word was "+getWord(winningIndex);
           stopPlaying();
           break;
 
           case 'playing':
           console.log(".... playing");
           var randomString = GAMEARRAY[guess];
-          messageResponse = "You are still playing. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit");
+          messageResponse = "You are still playing. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
           break;
 
 
