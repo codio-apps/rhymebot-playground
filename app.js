@@ -642,7 +642,7 @@ if (err) throw err;
   // Inserting: myobj
 
 
-  db.collection("users").insert(userObj, function(err, res) {
+  db.collection("users").insert(bodyObj, function(err, res) {
     if (err) throw err;
     console.log("*********************DATABASE*********************");
     console.log("Number of records inserted: " + res.insertedCount);
