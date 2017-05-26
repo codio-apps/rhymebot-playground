@@ -608,7 +608,7 @@ function logMessageReceived_DB (senderID, name, last_name) {
 
   console.log("*******BEFORE THE DB. OBJ" + userObj + " and senderID: " + senderID + "*************");
 
-  var userObj [
+  var userObj = [
     { name: name, last_name: last_name}
   ]
 // Use connect method to connect to the server
