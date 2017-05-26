@@ -574,7 +574,7 @@ function receivedMessage(event) {
           case 'playing':
           console.log(".... playing");
           var randomString = GAMEARRAY[guess];
-          messageResponse = "\uD83E\uDD14 That's not the right word. That was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
+          messageResponse = "\uD83E\uDD14 That's not the right word.\nThat was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
           break;
 
 
@@ -1460,7 +1460,7 @@ if (err) throw err;
     console.log("Stop playing called");
     play = false;
     guess=0;
-    messageResponse = messageResponse+"Game over";
+    messageResponse = messageResponse+"\nGame over";
   }
 
   /*
