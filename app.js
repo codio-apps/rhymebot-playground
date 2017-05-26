@@ -622,6 +622,7 @@ function receivedMessage(event) {
 
 function logMessageReceived_DB (senderID, bodyObj) {
 
+  console.log("**********Entered logMessageReceived_DB**********");
   console.log(bodyObj);
 
 //   var userObj = [
