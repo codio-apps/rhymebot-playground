@@ -309,10 +309,11 @@ function receivedMessage(event) {
         lc_messageText = messageText.toLowerCase();
         //this is where I am starting to program some conversational abilities for playing games and such
         if (play){
+          console.log("guess was "+lc_messageText+" answer is "+winningWord);
           if (lc_messageText == "quit"){
             intent = "stopPlaying";
-          } else if (lc_messageText.toUpperCase==winningWord){
-            intent = "stopPlaying";
+          } else if (lc_messageText==winningWord.toLowerCase()){
+            intent = "stopPlayingWin";
           } else intent = "playing";
         } else intent = lc_messageText;
         // If we receive a text message, check to see if it matches any special
@@ -528,8 +529,13 @@ function receivedMessage(event) {
           break;
 
           case 'stopPlaying':
+          messageResponse = "You quit";
           stopPlaying();
+          break;
 
+          case 'stopPlayingWin':
+          messageResponse = "You win";
+          stopPlaying();
           break;
 
           case 'playing':
@@ -1345,7 +1351,7 @@ function receivedMessage(event) {
   function stopPlaying(){
     console.log("Stop playing called");
     play = false;
-    messageResponse = "Game over";
+    messageResponse = messageResponse+"\nGame over";
   }
 
 
