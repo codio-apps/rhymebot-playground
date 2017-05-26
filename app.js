@@ -52,7 +52,7 @@ var messageResponse = "";
 
 //shhhh
 var play = false;
-winningWord = "";
+winningIndex = "";
 
 // Set up file parsing
 var fs = require("fs");
@@ -309,10 +309,11 @@ function receivedMessage(event) {
         lc_messageText = messageText.toLowerCase();
         //this is where I am starting to program some conversational abilities for playing games and such
         if (play){
-          console.log("guess was "+lc_messageText+" answer is "+winningWord);
+          var targetWord = getWord(winningIndex).toLowerCase();
+          console.log("guess was "+lc_messageText+" answer is "+targetWord);
           if (lc_messageText == "quit"){
             intent = "stopPlaying";
-          } else if (lc_messageText==winningWord.toLowerCase()){
+          } else if (lc_messageText==targetWord){
             intent = "stopPlayingWin";
           } else intent = "playing";
         } else intent = lc_messageText;
@@ -525,7 +526,7 @@ function receivedMessage(event) {
           break;
 
           case 'startPlaying':
-          winningWord = startPlaying();
+          winningIndex = startPlaying();
           break;
 
           case 'stopPlaying':
@@ -540,7 +541,9 @@ function receivedMessage(event) {
 
           case 'playing':
           console.log(".... playing");
-          messageResponse = "You are still playing. Say quit to to quit."
+          var randomArray = randomRhymes(winningIndex, 1);
+          var targetWord = getWord(rand);
+          messageResponse = "You are still playing. The next clue is "+getWord(randomArray[0]+"\nSay quit to quit");
           break;
 
 
