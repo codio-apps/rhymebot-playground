@@ -312,7 +312,7 @@ function receivedMessage(event) {
           var targetWord = getWord(winningIndex).toLowerCase();
           console.log("guess was "+lc_messageText+" answer is "+targetWord);
           if (lc_messageText == "quit"){
-            intent = "stopPlaying";
+            intent = "stopPlayingQuit";
           } else if (lc_messageText==targetWord){
             intent = "stopPlayingWin";
           } else intent = "playing";
@@ -529,7 +529,7 @@ function receivedMessage(event) {
           winningIndex = startPlaying();
           break;
 
-          case 'stopPlaying':
+          case 'stopPlayingQuit':
           messageResponse = "You quit";
           stopPlaying();
           break;
@@ -542,7 +542,7 @@ function receivedMessage(event) {
           case 'playing':
           console.log(".... playing");
           var randomArray = randomRhymes(winningIndex, 1);
-          messageResponse = "You are still playing. The next clue is "+getWord(randomArray[0]+"\nSay quit to quit");
+          messageResponse = "You are still playing. The next clue is "+getWord(randomArray[0])+"\nSay quit to quit");
           break;
 
 
