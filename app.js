@@ -630,6 +630,8 @@ function logMessageReceived_DB (senderID, bodyObj) {
     surname: bodyObj.last_name}
   ];
 
+  console.log(userEntry);
+
 //   var userObj = [
 //     { name: name,
 //       last_name: last_name}
