@@ -11,7 +11,9 @@ config = require('config'),
 crypto = require('crypto'),
 express = require('express'),
 https = require('https'),
-request = require('request');
+request = require('request')
+MongoClient = require('mongodb').MongoClient,
+assert = require('assert');
 
 // Express environment
 var app = express();
@@ -19,6 +21,13 @@ app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
+
+// Database connections
+// Database Namespace: messageData
+// Connection URL
+var dataBaseNamespace = "messageData";
+var url = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/" +  dataBaseNamespace + "?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
+
 
 // Keyword and letter initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
@@ -307,6 +316,8 @@ function receivedMessage(event) {
         return;
       }
 
+      logMessageReceived_DB(senderID, bodyObj);
+
       if (messageText) {
         lc_messageText = messageText.toLowerCase();
         //this is where I am starting to program some conversational abilities for playing games and such
@@ -590,6 +601,38 @@ function receivedMessage(event) {
     });
 
   }
+
+// Add Entry to the data base for each message received
+
+function logMessageReceived_DB (senderID, bodyObj) {
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, db) {
+
+  //console.log(db);
+if (err) throw err;
+
+
+  // Insert an object into the database
+  // Database name: users
+  // Inserting: myobj
+
+  db.collection("users").insert(bodyObj, function(err, res) {
+    if (err) throw err;
+    console.log("Number of records inserted: " + res.insertedCount);
+    db.close();
+  });
+
+
+db.collection("users").find({}).toArray(function(err, result) {
+  if (err) throw err;
+  console.log(result);
+  db.close();
+});
+});
+}
+
+
+
 
   // Read text file data and store it into local variables for string comparisons
   function setUpLocalVariables() {
