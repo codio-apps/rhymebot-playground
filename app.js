@@ -624,10 +624,11 @@ if (err) throw err;
   // Database name: users
   // Inserting: myobj
 
-  db.collection("users").insert(userObj, function(err, result) {
+
+  db.collection("users").insert(userObj, function(err, res) {
     if (err) throw err;
     console.log("*********************DATABASE*********************");
-    console.log("Number of records inserted: " + result.insertedCount);
+    console.log("Number of records inserted: " + res.insertedCount);
 
     db.close();
   });
