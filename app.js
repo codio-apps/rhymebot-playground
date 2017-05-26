@@ -53,6 +53,8 @@ var messageResponse = "";
 //shhhh
 var play = false;
 winningIndex = "";
+var GAMEARRAY = new Array();
+var guess = 0;
 
 // Set up file parsing
 var fs = require("fs");
@@ -315,7 +317,13 @@ function receivedMessage(event) {
             intent = "stopPlayingQuit";
           } else if (lc_messageText==targetWord){
             intent = "stopPlayingWin";
-          } else intent = "playing";
+          } else if (guess==10) {
+            intent = "stopPlayingLose";
+          } else {
+            intent = "playing";
+            guess++;
+          }
+
         } else intent = lc_messageText;
         // If we receive a text message, check to see if it matches any special
         // keywords and send back the corresponding example. Otherwise, just echo
@@ -373,7 +381,7 @@ function receivedMessage(event) {
         else if (lc_messageText.startsWith("play")){
           intent = "startPlaying";
         } else {
-            //Do nothing, key is set to messageText
+          //Do nothing, key is set to messageText
         }
 
         // We convert the incoming message into a key, or we leave it as is and respond accordingly.
@@ -539,10 +547,15 @@ function receivedMessage(event) {
           stopPlaying();
           break;
 
+          case 'stopPlayingLose':
+          messageResponse = "Too many guesses, you lose";
+          stopPlaying();
+          break;
+
           case 'playing':
           console.log(".... playing");
-          var randomArray = randomRhymes(winningIndex, 1);
-          messageResponse = "You are still playing. The next clue is "+getWord(randomArray[0])+"\nSay quit to quit");
+          var randomString = GAMEARRAY[guess];
+          messageResponse = "You are still playing. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit");
           break;
 
 
@@ -669,8 +682,8 @@ function receivedMessage(event) {
         if (ordinarySearchResults.includes(i)){
           //skip don't add it to this array
         } else {
-        indexArray.push(i);
-      }
+          indexArray.push(i);
+        }
       }
     }
     if (indexArray.length == 0){
@@ -811,11 +824,11 @@ function receivedMessage(event) {
       } else {
         //starting at the maximum syllable value and working back to the current syllable
         //for (var k = maxSyllables; k>=j; k--){
-          //append all the words that rhyme but have more syllables than the current phonemeString
-          var tempArray = searchPhonemes(wordEndings[j-1], 0);
-          if (tempArray.length!=0){
-            COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
-          }
+        //append all the words that rhyme but have more syllables than the current phonemeString
+        var tempArray = searchPhonemes(wordEndings[j-1], 0);
+        if (tempArray.length!=0){
+          COMPLEXOUTPUT = COMPLEXOUTPUT.concat(tempArray);
+        }
         //}
       }
     }
@@ -1343,10 +1356,10 @@ function receivedMessage(event) {
     console.log("Start playing called");
     play = true;
     var rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
-    var randomArray = randomRhymes(rand, 1);
+    GAMEARRAY = randomRhymes(rand, 10);
     var targetWord = getWord(rand);
     console.log("Target word is "+targetWord);
-    messageResponse = "So you want to play a game. The first clue is "+getWord(randomArray[0]);
+    messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
     return randomArray[0];
   }
 
