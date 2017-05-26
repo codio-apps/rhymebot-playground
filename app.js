@@ -1332,7 +1332,9 @@ function receivedMessage(event) {
     console.log("Start playing called");
     play = true;
     var rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
-    messageResponse = "So you want to play a a game. My random index is "+rand;
+    var randomArray = randomRhymes(rand, 1);
+    messageResponse = "So you want to play a a game. The word is "+randomArray[0];
+
   }
 
   function stopPlaying(){
