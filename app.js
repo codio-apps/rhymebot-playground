@@ -806,7 +806,7 @@ function receivedMessage(event) {
                 //console.log("pushing tmp "+tmp);
               }
               solved=true;
-              outputArray.push("|"+parent);
+              outputArray.push("*"+parent);
               //console.log("|"+parent+"|");
               return outputArray.toString();
             }
