@@ -612,7 +612,7 @@ function logMessageReceived_DB (senderID, name, last_name) {
     { name: name, last_name: last_name}
   ]
 
-    console.log("*******BEFORE THE DB. OBJ" + userObj[0] + " and senderID: " + senderID + "*************");
+    console.log("*******BEFORE THE DB. OBJ" + userObj.name + " and senderID: " + senderID + "*************");
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
 
