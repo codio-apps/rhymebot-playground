@@ -800,7 +800,6 @@ function receivedMessage(event) {
         }
       }
       if (solved){
-        return outputArray.toString();
       } else return "";
     }
 
