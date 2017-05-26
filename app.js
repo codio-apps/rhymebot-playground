@@ -578,8 +578,13 @@ function receivedMessage(event) {
 
           case 'playing':
           console.log(".... playing");
+          messageResponse = ""
           var randomString = GAMEARRAY[guess];
-          messageResponse = "\uD83E\uDD14 That's not the right word.\nThat was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
+          var guessIndex = findTheLine(lc_messageText);
+          if (guessIndex==-1){
+            messageResponse = "\nI don't actually know the word "+lc_messageText.toUpperCase()+" yet";
+          }
+          messageResponse = "\uD83E\uDD14 That's not the right word.\nThat was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to give up"+messageResponse;
           break;
 
 
@@ -1456,7 +1461,7 @@ if (err) throw err;
     console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
     messageResponse = "\uD83D\uDC7E So you want to play a game... "+
     "Try to guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+" and has "+countSyllables(rand)+" syllable(s)\n"+
-    "You have ten attempts to get it right.";
+    "You have ten attempts to get it right.\nYou have "+points+" points so far";
     return rand;
   }
 
