@@ -1444,7 +1444,7 @@ if (err) throw err;
     var targetWord = "";
     GAMEARRAY = randomRhymes(rand, 20);
       //ensure that we have selected a word with plenty of rhymes
-      while (GAMEARRAY.length < 20 || targetWord.contains("\'")){
+      while (GAMEARRAY.length < 20 || targetWord.includes("\'")){
         rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
         GAMEARRAY = randomRhymes(rand, 20);
         targetWord = getWord(rand);
