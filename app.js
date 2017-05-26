@@ -300,13 +300,15 @@ function receivedMessage(event) {
 
       var bodyObj = JSON.parse(body);
       console.log(bodyObj);
-      name = bodyObj.first_name;
-      last_name = bodyObj.last_name;
 
+<<<<<<< HEAD
       console.log("BEFORE THE DB entry object: " + bodyObj);
       console.log(bodyObj);
       console.log("8888888888888888888888888888888888888888888888888888888888888888888888888888");
       logMessageReceived_DB(senderID, name, last_name, bodyObj);
+=======
+   logMessageReceived_DB(senderID, bodyObj);
+>>>>>>> d06bdd31a06a10836cf6577498967dbd205f522f
 
       if (isEcho) {
         // Just logging message echoes to console
@@ -625,6 +627,7 @@ function receivedMessage(event) {
 
   // Add Entry to the data base for each message received
 
+<<<<<<< HEAD
   function logMessageReceived_DB (senderID, name, last_name, bodyObj) {
 
     console.log("DB entry: " + name);
@@ -638,6 +641,28 @@ function receivedMessage(event) {
     console.log("*******BEFORE THE DB. OBJ" + userObj.name + " and senderID: " + senderID + "*************");
     // Use connect method to connect to the server
     MongoClient.connect(url, function(err, db) {
+=======
+function logMessageReceived_DB (senderID, bodyObj) {
+
+  console.log("**********Entered logMessageReceived_DB**********");
+  console.log(bodyObj);
+
+  var userEntry = [
+    {name: bodyObj.first_name,
+    surname: bodyObj.last_name}
+  ];
+
+  console.log(userEntry);
+
+//   var userObj = [
+//     { name: name,
+//       last_name: last_name}
+//   ]
+// console.log(userObj);
+
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, db) {
+>>>>>>> d06bdd31a06a10836cf6577498967dbd205f522f
 
       //console.log(db);
       if (err) throw err;
@@ -648,24 +673,42 @@ function receivedMessage(event) {
       // Inserting: myobj
 
 
+<<<<<<< HEAD
       db.collection("users").insert(userObj, function(err, res) {
         if (err) throw err;
         console.log("*********************DATABASE*********************");
         console.log("Number of records inserted: " + res.insertedCount);
         db.close();
       });
+=======
+  db.collection("users").insert(userEntry, function(err, res) {
+    if (err) throw err;
+    console.log("*********************DATABASE*********************");
+    console.log("Number of records inserted: " + res.insertedCount);
+    db.close();
+  });
+>>>>>>> d06bdd31a06a10836cf6577498967dbd205f522f
 
 
       // Read all entries from the database - the find() method returns all occurrences in the selection
       // Database name: users
       // Results: result
 
+<<<<<<< HEAD
       // db.collection("users").find({}).toArray(function(err, result) {
       //   if (err) throw err;
       //   console.log("Number of records equals: " + result.insertedCount);
       //   console.log(" The database now consists of: " + result);
       //   db.close();
       // });
+=======
+  db.collection("users").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log("Number of records equals: " + result.insertedCount);
+    console.log(result);
+    db.close();
+  });
+>>>>>>> d06bdd31a06a10836cf6577498967dbd205f522f
 
 
 
@@ -674,11 +717,19 @@ function receivedMessage(event) {
       // Database: users
       //Remove: all
 
+<<<<<<< HEAD
       // db.collection("users").remove({}, function(err, result) {
       //   if (err) throw err;
       //   console.log(result.name);
       //   db.close();
       //     });
+=======
+// db.collection("users").remove({}, function(err, result) {
+//   if (err) throw err;
+//   console.log("Data Base cleared. It is now: "  + result);
+//   db.close();
+//     });
+>>>>>>> d06bdd31a06a10836cf6577498967dbd205f522f
 
 
 
