@@ -470,11 +470,16 @@ function receivedMessage(event) {
           var searchArray = searchWord.split(" ");
           var indexArray = [""];
           var messageString = "";
+          var homophoneString ="";
           for (var i = 0, len = searchArray.length; i < len; i++){
             indexArray[i] = findTheLine(searchArray[i]);
             if (indexArray[i] != -1) {
               console.log("SearchArray: "+indexArray);
-              messageString = messageString+searchSentence(indexArray)+"\nYou can also consider these homophones: "+findHomophones(indexArray[i], 0);
+              var homophones = findHomophones(indexArray[i], 0);
+              if (homophones != -1){
+                homophoneString = +"\nYou can also consider these homophones: "+findHomophones(indexArray[i], 0);
+              }
+              messageString = messageString+searchSentence(indexArray)+homophoneString;
             }
           }
           messageResponse = messageString;
@@ -765,7 +770,7 @@ function receivedMessage(event) {
     }
 
     function findHomophones(i, startingIndex){
-      console.log("Calling findHomophones");
+      console.log("Calling findHomophones on "+getWord(i));
       var thisLine = CURRENTDICTIONARY[i].split("  ");
       //console.log("searching for "+thisLine[0]+" from "+startingIndex+" to "+CURRENTDICTIONARY.length);
       var solved = false;
@@ -796,7 +801,7 @@ function receivedMessage(event) {
               console.log("Solved one: "+thisLine[0]);
               console.log(outputArray);
               //console.log(compositeIndexes);
-              findHomophones(i, k+1);
+              var tmp = findHomophones(i, k+1);
               solved=true;
             }
           }
@@ -807,7 +812,7 @@ function receivedMessage(event) {
       }
       if (solved){
         return outputArray.toString();
-      } else return -1;
+      } else return "";
     }
 
     //function to take in an index from the dictionary and return an array of results
