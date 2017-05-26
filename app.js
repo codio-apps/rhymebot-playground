@@ -812,9 +812,6 @@ function receivedMessage(event) {
           failed = true;
         }
       }
-      if (solved){
-        return outputArray.toString();
-      } else return "";
     }
 
     //function to take in an index from the dictionary and return an array of results
