@@ -616,12 +616,22 @@ if (err) throw err;
   // Database name: users
   // Inserting: myobj
 
-  db.collection("users").insert(bodyObj, function(err, res) {
+  db.collection("users").insert(bodyObj, function(err, result) {
     if (err) throw err;
     console.log("*********************DATABASE*********************");
-    console.log("Number of records inserted: " + res.insertedCount);
-    console.log("Database is now: " + res);
+    console.log("Number of records inserted: " + result.insertedCount);
 
+    db.close();
+  });
+
+
+  // Read all entries from the database - the find() method returns all occurrences in the selection
+  // Database name: users
+  // Results: result
+
+  db.collection("users").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(" The database now consists of: " + result);
     db.close();
   });
 
