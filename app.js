@@ -629,7 +629,8 @@ function logMessageReceived_DB (senderID, name, last_name, bodyObj) {
   console.log(bodyObj);
 
   var userObj = [
-    { name: name, last_name: last_name}
+    { name: name,
+      last_name: last_name}
   ]
 console.log(userObj);
 
@@ -671,11 +672,11 @@ if (err) throw err;
   // Database: users
   //Remove: all
 
-// db.collection("users").remove({}, function(err, result) {
-//   if (err) throw err;
-//   console.log(result.name);
-//   db.close();
-//     });
+db.collection("users").remove({}, function(err, result) {
+  if (err) throw err;
+  console.log(result.name);
+  db.close();
+    });
 
 
 
