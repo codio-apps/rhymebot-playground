@@ -549,6 +549,7 @@ function receivedMessage(event) {
           break;
 
           case 'startPlaying':
+          sendTypingOn(senderID);
           winningIndex = startPlaying();
           guess = 0;
           break;
