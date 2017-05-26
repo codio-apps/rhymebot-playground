@@ -303,6 +303,7 @@ function receivedMessage(event) {
       last_name = bodyObj.last_name;
 
   console.log("BEFORE THE DB entry object: " + bodyObj);
+    console.log(bodyObj);
    logMessageReceived_DB(senderID, name, last_name, bodyObj);
 
       if (isEcho) {
