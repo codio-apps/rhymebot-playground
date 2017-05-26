@@ -561,6 +561,7 @@ function receivedMessage(event) {
           break;
 
           case 'stopPlayingLose':
+          console.log("Too many guesses, losing");
           messageResponse = "Too many guesses, you lose. Word was "+getWord(winningIndex);
           stopPlaying();
           break;
@@ -1440,11 +1441,9 @@ if (err) throw err;
         rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
         GAMEARRAY = randomRhymes(rand, 10);
       }
-    var targetWord = getWord(rand);
-    winningIndex = rand;
-    console.log("Target word is "+targetWord+", number of rhymes is "+GAMEARRAY.length);
+    console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
     messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
-    return GAMEARRAY[0];
+    return rand;
   }
 
   function stopPlaying(){
