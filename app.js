@@ -568,7 +568,7 @@ function receivedMessage(event) {
           case 'playing':
           console.log(".... playing");
           var randomString = GAMEARRAY[guess];
-          messageResponse = "You are still playing. This is guess "+guess+" of 10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
+          messageResponse = "That's not the right word. That was guess "+guess+" of 10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
           break;
 
 
