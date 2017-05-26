@@ -1333,8 +1333,8 @@ function receivedMessage(event) {
     play = true;
     var rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
     var randomArray = randomRhymes(rand, 1);
-    messageResponse = "So you want to play a a game. The word is "+randomArray[0];
-
+    var targetWord = getWord(rand);
+    messageResponse = "So you want to play a game. The word is "+getWord(randomArray[0]);
   }
 
   function stopPlaying(){
