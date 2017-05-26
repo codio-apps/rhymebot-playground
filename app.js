@@ -303,9 +303,6 @@ function receivedMessage(event) {
       name = bodyObj.first_name;
       last_name = bodyObj.last_name;
 
-  console.log("BEFORE THE DB entry object: " + bodyObj);
-    console.log(bodyObj);
-    console.log("8888888888888888888888888888888888888888888888888888888888888888888888888888");
    logMessageReceived_DB(senderID, name, last_name, bodyObj);
 
       if (isEcho) {
@@ -629,13 +626,13 @@ function logMessageReceived_DB (senderID, name, last_name, bodyObj) {
 
   console.log("DB entry: " + name);
   console.log("DB entry: " + last_name);
-  console.log("DB entry object: " + bodyObj);
+  console.log(bodyObj);
 
   var userObj = [
     { name: name, last_name: last_name}
   ]
+console.log(userObj);
 
-    console.log("*******BEFORE THE DB. OBJ" + userObj.name + " and senderID: " + senderID + "*************");
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
 
