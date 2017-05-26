@@ -1021,7 +1021,7 @@ if (err) throw err;
         for (var j=0; randArray.includes(rand); j++){
           rand =  inputArray[Math.floor(Math.random() * inputArray.length)];
         }
-        randArray[i] = rand;
+        randArray.push(rand);
       }
       console.log("Finished processing array, randomly returning: "+randArray);
     } else {
@@ -1440,6 +1440,7 @@ if (err) throw err;
         GAMEARRAY = randomRhymes(rand, 10);
       }
     var targetWord = getWord(rand);
+    winningIndex = rand;
     console.log("Target word is "+targetWord+", number of rhymes is "+GAMEARRAY.length);
     messageResponse = "So you want to play a game. The first clue is "+getWord(GAMEARRAY[0]);
     return GAMEARRAY[0];
