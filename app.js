@@ -308,12 +308,9 @@ function receivedMessage(event) {
         lc_messageText = messageText.toLowerCase();
         //this is where I am starting to program some conversational abilities for playing games and such
         if (play){
-          console.log("you are playing");
           if (lc_messageText == "quit"){
-            console.log("you are quitting");
             intent = "stopPlaying";
           } else intent = "playing";
-          console.log("current intent is "+intent);
         } else intent = lc_messageText;
         // If we receive a text message, check to see if it matches any special
         // keywords and send back the corresponding example. Otherwise, just echo
@@ -534,7 +531,7 @@ function receivedMessage(event) {
 
           case 'playing':
           console.log(".... playing");
-          messageResponse = "You are still, playing. Say quit to to quit."
+          messageResponse = "You are still playing. Say quit to to quit."
           break;
 
 
@@ -1334,7 +1331,8 @@ function receivedMessage(event) {
   function startPlaying(){
     console.log("Start playing called");
     play = true;
-    messageResponse = "So you want to play a a game";
+    var rand = Math.floor(Math.random() * CURRENTDICTIONARY[i].length) + 0
+    messageResponse = "So you want to play a a game. My random index is "+rand;
   }
 
   function stopPlaying(){
