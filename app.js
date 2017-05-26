@@ -777,6 +777,7 @@ function receivedMessage(event) {
       var solved = false;
       var failed = false;
       var outputArray = new Array();
+      var parent = new Array();
       //compare phonemes
       var counter = startingIndex;
       var thisPhoneme = thisLine[1];
@@ -795,16 +796,18 @@ function receivedMessage(event) {
 
           //console.log("searching for "+thisPhoneme+" at "+thatPhoneme);
           if (thisPhoneme.startsWith(thatPhoneme) || thisPhoneme == thatPhoneme){
-            outputArray.push(getWord(k).toLowerCase());
+            parent.push(getWord(k).toLowerCase());
             thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
 
             if (thisPhoneme.length==0){
               var tmp = findHomophones(i, k+1);
               if (tmp != ""){
-                outputArray.push(tmp.toLowerCase());
+                parent.push(tmp.toLowerCase());
                 //console.log("pushing tmp "+tmp);
               }
               solved=true;
+              outputArray.push("|"+parent);
+              //console.log("|"+parent+"|");
               return outputArray.toString();
             }
           }
@@ -813,13 +816,12 @@ function receivedMessage(event) {
           failed = true;
         }
       }
-      if (solved){
+      if (!solved){
         //return "("+outputArray.toString()+")";
-      } else {
-          return "";
+        return "";
       }
     }
-    
+
     //function to take in an index from the dictionary and return an array of results
     function fuzzyRhymes(dictionaryIndex){
       console.log("fuzzyRhymes called on "+dictionaryIndex);
