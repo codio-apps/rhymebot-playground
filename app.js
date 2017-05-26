@@ -598,7 +598,6 @@ function receivedMessage(event) {
           messageResponse = messageText + "?";
         }
         if(instant_reply = true){
-          sendTypingOff(senderID);
           sendTextMessage(senderID, messageResponse);
         }
 
@@ -793,10 +792,12 @@ function receivedMessage(event) {
           var thatLine = CURRENTDICTIONARY[k].split("  ");
           //var thatWord = thatLine[0];
           var thatPhoneme = thatLine[1]; //OR
+
           //console.log("searching for "+thisPhoneme+" at "+thatPhoneme);
           if (thisPhoneme.startsWith(thatPhoneme) || thisPhoneme == thatPhoneme){
             outputArray.push(getWord(k).toLowerCase());
             thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
+
             if (thisPhoneme.length==0){
               var tmp = findHomophones(i, k+1);
               if (tmp != ""){
@@ -814,9 +815,11 @@ function receivedMessage(event) {
       }
       if (solved){
         //return "("+outputArray.toString()+")";
-      } else return "";
+      } else {
+          return "";
+      }
     }
-
+    
     //function to take in an index from the dictionary and return an array of results
     function fuzzyRhymes(dictionaryIndex){
       console.log("fuzzyRhymes called on "+dictionaryIndex);
@@ -1500,6 +1503,7 @@ function receivedMessage(event) {
     function sendTextMessage(recipientId, messageText) {
       var messageArray = splitMessage(messageText);
       recursivelySendMessage(recipientId, messageArray, 0);
+      sendTypingOff(recipientId);
     }
 
     function startPlaying(){
