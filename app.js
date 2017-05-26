@@ -556,7 +556,7 @@ function receivedMessage(event) {
 
           case 'stopPlayingQuit':
           console.log("Stopped playing: quit");
-          points=points-guesses;
+          points=points-guess;
           messageResponse = "\uD83D\uDE20 You quit. The answer was "+getWord(winningIndex)+"\nYou have "+points+" points";
           stopPlaying();
 
