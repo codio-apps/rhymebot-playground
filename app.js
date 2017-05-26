@@ -658,12 +658,12 @@ if (err) throw err;
   // Database name: users
   // Results: result
 
-  // db.collection("users").find({}).toArray(function(err, result) {
-  //   if (err) throw err;
-  //   console.log("Number of records equals: " + result.insertedCount);
-  //   console.log(" The database now consists of: " + result);
-  //   db.close();
-  // });
+  db.collection("users").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log("Number of records equals: " + result.insertedCount);
+    console.log(" The database now consists of: " + result);
+    db.close();
+  });
 
 
 
@@ -672,11 +672,11 @@ if (err) throw err;
   // Database: users
   //Remove: all
 
-db.collection("users").remove({}, function(err, result) {
-  if (err) throw err;
-  console.log(result.name);
-  db.close();
-    });
+// db.collection("users").remove({}, function(err, result) {
+//   if (err) throw err;
+//   console.log(result.name);
+//   db.close();
+//     });
 
 
 
