@@ -494,7 +494,6 @@ function receivedMessage(event) {
             var fuzzyArray = indexAndSortInto2d(fuzzyRhymes(dictionaryIndex), dictionaryIndex);
             console.log("fuzzyArray is "+fuzzyArray);
             messageString = "\uD83C\uDF99 I know "+fuzzyArray[0].length+" word(s) that fuzzy rhyme with "+getWord(dictionaryIndex)+"\n"+make2dArrayPresentable(fuzzyArray, getWord(dictionaryIndex).toLowerCase());
-            return
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
           }
