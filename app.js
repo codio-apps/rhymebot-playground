@@ -772,7 +772,7 @@ function receivedMessage(event) {
 
     //function to find words or strings of words that sound the same
     function findHomophones(i, startingIndex){
-      console.log("Calling findHomophones on "+getWord(i));
+      //console.log("Calling findHomophones on "+getWord(i));
       var thisLine = CURRENTDICTIONARY[i].split("  ");
       //console.log("searching for "+thisLine[0]+" from "+startingIndex+" to "+CURRENTDICTIONARY.length);
       var solved = false;
@@ -800,8 +800,8 @@ function receivedMessage(event) {
             if (thisPhoneme.length==0){
               var tmp = findHomophones(i, k+1);
               if (tmp != ""){
-                outputArray.push(tmp.toLowerCase()+" ");
-                console.log("pushing tmp "+tmp);
+                outputArray.push(tmp.toLowerCase());
+                //console.log("pushing tmp "+tmp);
               }
               solved=true;
               return outputArray.toString();
@@ -813,7 +813,7 @@ function receivedMessage(event) {
         }
       }
       if (solved){
-        return outputArray.toString();
+        //return "("+outputArray.toString()+")";
       } else return "";
     }
 
