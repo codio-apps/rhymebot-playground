@@ -582,9 +582,9 @@ function receivedMessage(event) {
           var randomString = GAMEARRAY[guess];
           var guessIndex = findTheLine(lc_messageText);
           if (guessIndex==-1){
-            messageResponse = "\nI don't actually know the word "+lc_messageText.toUpperCase()+" yet";
+            messageResponse = "\nTo be honest, I don't actually know the word "+lc_messageText.toUpperCase()+" yet \uD83D\uDE15";
           }
-          messageResponse = "\uD83E\uDD14 That's not the right word.\nThat was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to give up"+messageResponse;
+          messageResponse = "\uD83E\uDD14 That's not the right word.\n"+messageResponse+"\nThat was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to give up";
           break;
 
 
