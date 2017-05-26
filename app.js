@@ -554,27 +554,27 @@ function receivedMessage(event) {
 
           case 'stopPlayingQuit':
           console.log("Stopped playing: quit");
-          messageResponse = "You quit. The answer was "+getWord(winningIndex);
+          messageResponse = "\uD83D\uDE20 You quit. The answer was "+getWord(winningIndex);
           stopPlaying();
 
           break;
 
           case 'stopPlayingWin':
           console.log("Player won on guess "+guess);
-          messageResponse = "You won in "+guess+" attempts!";
+          messageResponse = "\uD83D\uDC4D You won on guess "+guess;
           stopPlaying();
           break;
 
           case 'stopPlayingLose':
           console.log("Too many guesses, losing");
-          messageResponse = "Too many guesses, you lose. The answer was "+getWord(winningIndex);
+          messageResponse = "\uD83D\uDC80 Too many guesses, you lose. The answer was "+getWord(winningIndex);
           stopPlaying();
           break;
 
           case 'playing':
           console.log(".... playing");
           var randomString = GAMEARRAY[guess];
-          messageResponse = "That's not the right word. That was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
+          messageResponse = "\uD83E\uDD14 That's not the right word. That was guess "+guess+"/10. The next clue is "+getWord(GAMEARRAY[guess])+"\nSay quit to quit";
           break;
 
 
@@ -1441,13 +1441,17 @@ if (err) throw err;
     console.log("Start playing called");
     play = true;
     var rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
-    GAMEARRAY = randomRhymes(rand, 10);
-      while (GAMEARRAY.length < 10){
+    var targetWord = "";
+    GAMEARRAY = randomRhymes(rand, 20);
+      //ensure that we have selected a word with plenty of rhymes
+      while (GAMEARRAY.length < 20 || targetWord.contains("\'")){
         rand = Math.floor(Math.random() * CURRENTDICTIONARY.length) + 0;
-        GAMEARRAY = randomRhymes(rand, 10);
+        GAMEARRAY = randomRhymes(rand, 20);
+        targetWord = getWord(rand);
       }
     console.log("Target word is "+getWord(rand)+", number of rhymes is "+GAMEARRAY.length);
-    messageResponse = "\uD83D\uDC7E So you want to play a game... Guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+"\n"+
+    messageResponse = "\uD83D\uDC7E So you want to play a game... "+
+    "Try to guess the word I'm thinking of, it rhymes with "+getWord(GAMEARRAY[0])+" and has "+countSyllables(rand)+" syllables\n"+
     "If you don't get it right in ten guesses you lose.";
     return rand;
   }
@@ -1456,7 +1460,7 @@ if (err) throw err;
     console.log("Stop playing called");
     play = false;
     guess=0;
-    messageResponse = messageResponse+"\n\uD83D\uDC7E Game over ";
+    messageResponse = messageResponse+"Game over";
   }
 
   /*
