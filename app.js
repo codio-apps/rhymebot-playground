@@ -675,6 +675,7 @@ function receivedMessage(event) {
           }
           console.log("FOUND");
           console.log(result);
+          console.log("1111111222222222345678io9");
           var messageCount = result.messageCount;
           console.log("MESSAGE COUNT: " + result.name);
           var newMessageCount = messageCount + 1;
