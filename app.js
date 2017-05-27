@@ -712,6 +712,7 @@ var DB = "users";
             if (delOK) console.log("Table deleted");
             db.close();
           });
+        }
     }
 
 
