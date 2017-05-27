@@ -646,7 +646,7 @@ function receivedMessage(event) {
       { senderID: senderID,
         name: bodyObj.first_name,
         surname: bodyObj.last_name,
-        messageCount: "1"}
+        messageCount: 1}
       ];
 
 
@@ -673,8 +673,9 @@ function receivedMessage(event) {
             });
 
           }
-
+          console.log("FOUND");
           var messageCount = result.messageCount;
+          console.log("MESSAGE COUNT: " + messageCount);
           var newMessageCount = messageCount + 1;
           var myquery = { senderID: senderID };
             var newvalues = { $set: { messageCount: newMessageCount } };
