@@ -640,14 +640,14 @@ function receivedMessage(event) {
     console.log("**********Entered logMessageReceived_DB**********");
     var DB = "users";
 
-    // var userEntry = [
-    //   { senderID: senderID,
-    //     name: bodyObj.first_name,
-    //     surname: bodyObj.last_name,
-    //     messageCount: 1}
-    //   ];
-    //
-    //   console.log(userEntry);
+    var userEntry = [
+      { senderID: senderID,
+        name: bodyObj.first_name,
+        surname: bodyObj.last_name,
+        messageCount: 1}
+      ];
+
+       console.log(userEntry);
 
       //   var userObj = [
       //     { name: name,
@@ -662,16 +662,22 @@ function receivedMessage(event) {
         if (err) throw err;
 
 
-        // LOGIC
-        // CHECK THE SENDERID TO SEE IF THERE IS A LOGIC
 
-        // IF EXISTS, GET N AND + 1
-        // IF NOT, Add
-
-        var dbQuery = { senderID: senderID };
+        var dbQuery = {
+          senderID: senderID
+        };
         db.collection(DB).find(dbQuery).toArray(function(err, result) {
           if (err) {
             console.log("NOT FOUND");
+
+            // Insert an object into the database
+            // Database name: users
+            // Inserting: userEntry
+
+            db.collection(DB).insert(userEntry, function(err, res) {
+              if (err) throw err;
+              db.close();
+            });
 
             throw err;
           }
@@ -692,16 +698,6 @@ function receivedMessage(event) {
 
 
 
-
-
-        // Insert an object into the database
-        // Database name: users
-        // Inserting: userEntry
-
-        db.collection(DB).insert(userEntry, function(err, res) {
-          if (err) throw err;
-          db.close();
-        });
 
 
         // Read all entries from the database - the find() method returns all occurrences in the selection
@@ -743,6 +739,7 @@ function receivedMessage(event) {
             db.close();
           });
         }
+
       });
     }
 
