@@ -713,8 +713,6 @@ var DB = "users";
             db.close();
           });
         });
-
-      });
     }
 
 
