@@ -640,14 +640,14 @@ function receivedMessage(event) {
     console.log("**********Entered logMessageReceived_DB**********");
     var DB = "users";
 
-    var userEntry = [
-      { senderID: senderID,
-        name: bodyObj.first_name,
-        surname: bodyObj.last_name,
-        messageCount: 1}
-      ];
-
-      console.log(userEntry);
+    // var userEntry = [
+    //   { senderID: senderID,
+    //     name: bodyObj.first_name,
+    //     surname: bodyObj.last_name,
+    //     messageCount: 1}
+    //   ];
+    //
+    //   console.log(userEntry);
 
       //   var userObj = [
       //     { name: name,
@@ -660,6 +660,38 @@ function receivedMessage(event) {
 
         //console.log(db);
         if (err) throw err;
+
+
+        // LOGIC
+        // CHECK THE SENDERID TO SEE IF THERE IS A LOGIC
+
+        // IF EXISTS, GET N AND + 1
+        // IF NOT, Add
+
+        var dbQuery = { senderID: senderID };
+        db.collection(DB).find(dbQuery).toArray(function(err, result) {
+          if (err) {
+            console.log("NOT FOUND");
+
+            throw err;
+          }
+          var messageCount = result.messageCount;
+          var newMessageCount = messageCount + 1;
+          var myquery = { senderID: senderID };
+            var newvalues = { $set: { messageCount: newMessageCount } };
+            db.collection("customers").update(myquery, newvalues, function(err, res) {
+
+            });
+
+
+          console.log("*********************DATABASE SPECIFIC*********************");
+          console.log(result);
+          db.close();
+        });
+
+
+
+
 
 
         // Insert an object into the database
@@ -686,13 +718,13 @@ function receivedMessage(event) {
         // Search for field value from the database - the find(value) method returns all occurrences of value
         // Database name: users
         // Results: result
-        var dbQuery = { surname: "Stevens" };
-        db.collection(DB).find(dbQuery).toArray(function(err, result) {
-          if (err) throw err;
-          console.log("*********************DATABASE SPECIFIC*********************");
-          console.log(result);
-          db.close();
-        });
+        // var dbQuery = { surname: "Stevens" };
+        // db.collection(DB).find(dbQuery).toArray(function(err, result) {
+        //   if (err) throw err;
+        //   console.log("*********************DATABASE SPECIFIC*********************");
+        //   console.log(result);
+        //   db.close();
+        // });
 
         // Clears the Database
         // Database: users
