@@ -712,7 +712,9 @@ var DB = "users";
             if (delOK) console.log("Table deleted");
             db.close();
           });
+        });
 
+      });
     }
 
 
@@ -913,6 +915,7 @@ var DB = "users";
       console.log("finished searching");
       return indexArray;
     }
+
 
 
     //function to take in a 2d array of 0[words] with their 1[syllable count], and return a nicely structured string for sending to the user
