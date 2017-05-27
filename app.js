@@ -639,16 +639,21 @@ function receivedMessage(event) {
 
     console.log("**********Entered logMessageReceived_DB**********");
     var DB = "users";
-    var dbQuery = {
-      senderID: 11212
-    };
-    var userEntry = [
-      { senderID: senderID,
-        name: bodyObj.first_name,
-        surname: bodyObj.last_name,
-        messageCount: 1}
-      ];
 
+    // var userEntry = [
+    //   { senderID: senderID,
+    //     name: bodyObj.first_name,
+    //     surname: bodyObj.last_name,
+    //     messageCount: 1}
+    //   ];
+    //
+    //   console.log(userEntry);
+
+      //   var userObj = [
+      //     { name: name,
+      //       last_name: last_name}
+      //   ]
+      // console.log(userObj);
 
       // Use connect method to connect to the server
       MongoClient.connect(url, function(err, db) {
@@ -657,67 +662,47 @@ function receivedMessage(event) {
         if (err) throw err;
 
 
+        // LOGIC
+        // CHECK THE SENDERID TO SEE IF THERE IS A LOGIC
 
-        db.collection(DB).find(dbQuery).toArray(function(err, result) {
-          if (err) {
-            console.log("NOT FOUND");
-
-            // Insert an object into the database
-            // Database name: users
-            // Inserting: userEntry
+        // IF EXISTS, GET N AND + 1
+        // IF NOT, ADD
 
 
-            db.collection(DB).insert(userEntry, function(err, res) {
-              if (err) throw err;
-              db.close();
-            });
-            throw err;
-          }
-          console.log("FOUND");
-          console.log(result);
-          console.log("1111111222222222345678io9");
-          var messageCount = result.messageCount;
-          console.log("MESSAGE COUNT: " + result.name);
-          var newMessageCount = messageCount + 1;
-          var myquery = { senderID: senderID };
-            var newvalues = { $set: { messageCount: newMessageCount } };
-            db.collection("customers").update(myquery, newvalues, function(err, res) {
 
-              if (err) throw err;
 
-            });
 
-          console.log("*********************DATABASE SPECIFIC*********************");
-          console.log(result);
+        // Insert an object into the database
+        // Database name: users
+        // Inserting: userEntry
+
+        db.collection(DB).insert(userEntry, function(err, res) {
+          if (err) throw err;
           db.close();
         });
-
-
-
-
 
 
         // Read all entries from the database - the find() method returns all occurrences in the selection
         // Database name: users
         // Results: result
 
-        // db.collection(DB).find({}).toArray(function(err, result) {
-        //   if (err) throw err;
-        //   console.log("*********************DATABASE ALL*********************");
-        //   console.log(result);
-        //   db.close();
-        // });
+        db.collection(DB).find({}).toArray(function(err, result) {
+          if (err) throw err;
+          console.log("*********************DATABASE ALL*********************");
+          console.log(result);
+          db.close();
+        });
 
         // Search for field value from the database - the find(value) method returns all occurrences of value
         // Database name: users
         // Results: result
-        // var dbQuery = { surname: "Stevens" };
-        // db.collection(DB).find(dbQuery).toArray(function(err, result) {
-        //   if (err) throw err;
-        //   console.log("*********************DATABASE SPECIFIC*********************");
-        //   console.log(result);
-        //   db.close();
-        // });
+        var dbQuery = { surname: "Stevens" };
+        db.collection(DB).find(dbQuery).toArray(function(err, result) {
+          if (err) throw err;
+          console.log("*********************DATABASE SPECIFIC*********************");
+          console.log(result);
+          db.close();
+        });
 
         // Clears the Database
         // Database: users
@@ -736,7 +721,6 @@ function receivedMessage(event) {
             db.close();
           });
         }
-
       });
     }
 
