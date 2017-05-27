@@ -671,7 +671,7 @@ function receivedMessage(event) {
               if (err) throw err;
               db.close();
             });
-
+            throw err;
           }
           console.log("FOUND");
           console.log(result);
