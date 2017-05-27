@@ -27,7 +27,7 @@ app.use(express.static('public'));
 // Connection URL
 var dataBaseNamespace = "messageData";
 var url = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/" +  dataBaseNamespace + "?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-var clearDB = true;
+var clearDB = false;
 
 // Keyword and letter initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
@@ -628,7 +628,6 @@ function receivedMessage(event) {
   function logMessageReceived_DB (senderID, bodyObj) {
 
     console.log("**********Entered logMessageReceived_DB**********");
-    console.log(bodyObj);
 
     var userEntry = [
       { senderID: senderID,
@@ -658,8 +657,6 @@ function receivedMessage(event) {
 
         db.collection("users").insert(userEntry, function(err, res) {
           if (err) throw err;
-          console.log("*********************DATABASE*********************");
-          console.log("Number of records inserted: " + res.insertedCount);
           db.close();
         });
 
@@ -670,6 +667,7 @@ function receivedMessage(event) {
 
         db.collection("users").find({}).toArray(function(err, result) {
           if (err) throw err;
+          console.log("*********************DATABASE*********************");
           console.log("Number of records equals: " + result.insertedCount);
           console.log(result);
           db.close();
