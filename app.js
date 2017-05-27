@@ -27,7 +27,7 @@ app.use(express.static('public'));
 // Connection URL
 var dataBaseNamespace = "messageData";
 var url = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/" +  dataBaseNamespace + "?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-
+var clearDB = true;
 
 // Keyword and letter initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
@@ -681,12 +681,13 @@ function receivedMessage(event) {
         // Clears the Database
         // Database: users
         //Remove: all
-
-        // db.collection("users").remove({}, function(err, result) {
-        //   if (err) throw err;
-        //   console.log("Data Base cleared. It is now: "  + result);
-        //   db.close();
-        //     });
+        if(clearDB) {
+        db.collection("users").remove({}, function(err, result) {
+          if (err) throw err;
+          console.log("Data Base cleared. It is now: "  + result);
+          db.close();
+            });
+          }
 
 
 
