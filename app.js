@@ -711,8 +711,8 @@ function receivedMessage(event) {
             if (err) throw err;
             if (delOK) console.log("Table deleted");
             db.close();
-          }
-        });
+          });
+        }
       });
 
     });
