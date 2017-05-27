@@ -631,7 +631,8 @@ function receivedMessage(event) {
     console.log(bodyObj);
 
     var userEntry = [
-      {name: bodyObj.first_name,
+      { senderID: senderID,
+        name: bodyObj.first_name,
         surname: bodyObj.last_name}
       ];
 
