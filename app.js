@@ -480,7 +480,7 @@ function receivedMessage(event) {
               var homophones = findHomophones(indexArray[i], 0);
               console.log("homophones="+homophones);
               if (homophones != ""){
-                homophoneString = "\nYou can also consider these homophones: "+findHomophones(indexArray[i], 0);
+                homophoneString = "\nYou can also consider these homophones: "+findHomophones(indexArray[i], 0)+"*";
               }
               messageString = messageString+searchSentence(indexArray)+homophoneString;
             }
@@ -506,7 +506,7 @@ function receivedMessage(event) {
           } else {
             console.log("trying to add to messageString");
             var homophoneParts = findHomophones(dictionaryIndex, 0);
-            messageString = messageString+"\nYou can also consider breaking the word down and rhyming it in smaller parts: "+homophoneParts+" and rhyming them, like this:\n"+fuzzyHomos;
+            messageString = messageString+"\nYou can also consider breaking the word down into homophones "+homophoneParts+"* and rhyming them, like this:\n"+fuzzyHomos;
           }
           messageResponse = messageString;
           break;
