@@ -639,6 +639,15 @@ function receivedMessage(event) {
 
     console.log("**********Entered logMessageReceived_DB**********");
     var DB = "users";
+    var dbQuery = {
+      senderID: senderID
+    };
+    var userEntry = [
+      { senderID: senderID,
+        name: bodyObj.first_name,
+        surname: bodyObj.last_name,
+        messageCount: "1"}
+      ];
 
 
       // Use connect method to connect to the server
@@ -649,10 +658,6 @@ function receivedMessage(event) {
 
 
 
-        var dbQuery = {
-          senderID: senderID
-        };
-
         db.collection(DB).find(dbQuery).toArray(function(err, result) {
           if (err) {
             console.log("NOT FOUND");
@@ -660,14 +665,7 @@ function receivedMessage(event) {
             // Insert an object into the database
             // Database name: users
             // Inserting: userEntry
-            var userEntry = [
-              { senderID: senderID,
-                name: bodyObj.first_name,
-                surname: bodyObj.last_name,
-                messageCount: "1"}
-              ];
 
-               console.log(userEntry);
 
             db.collection(DB).insert(userEntry, function(err, res) {
               if (err) throw err;
@@ -675,6 +673,7 @@ function receivedMessage(event) {
             });
 
           }
+
           var messageCount = result.messageCount;
           var newMessageCount = messageCount + 1;
           var myquery = { senderID: senderID };
@@ -684,7 +683,6 @@ function receivedMessage(event) {
               if (err) throw err;
 
             });
-
 
           console.log("*********************DATABASE SPECIFIC*********************");
           console.log(result);
@@ -700,12 +698,12 @@ function receivedMessage(event) {
         // Database name: users
         // Results: result
 
-        db.collection(DB).find({}).toArray(function(err, result) {
-          if (err) throw err;
-          console.log("*********************DATABASE ALL*********************");
-          console.log(result);
-          db.close();
-        });
+        // db.collection(DB).find({}).toArray(function(err, result) {
+        //   if (err) throw err;
+        //   console.log("*********************DATABASE ALL*********************");
+        //   console.log(result);
+        //   db.close();
+        // });
 
         // Search for field value from the database - the find(value) method returns all occurrences of value
         // Database name: users
