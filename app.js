@@ -848,10 +848,10 @@ function receivedMessage(event) {
       }
     }
 
-    //function to search for homophone rhymes in a more interesting way
+    //function to search for a homophone rhyme in a slightly more interesting way and return a string
     function searchHomophones(dictionaryIndex){
       var string = findHomophones(dictionaryIndex, 0);
-      if (j!=""){
+      if (string!=""){
         var arrayBuffer = new Array();
         string = string.slice(1);
         arrayBuffer = string.split("*");
