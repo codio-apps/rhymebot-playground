@@ -42,6 +42,7 @@ var GREETINGS = "";
 var SOUNDALIKES = "";
 var ALPHABET_ARRAY = new Array();
 var SIMPLEDICTIONARY = "";
+var firstA = 0;
 
 //required by file buffer and setUpLocalVariables
 var fileBuffer = "";
@@ -737,9 +738,13 @@ function receivedMessage(event) {
             if(CURRENTDICTIONARY[i].startsWith(alphabet[j])){
               //log the position of the last instance of letter in file
               ALPHABET_ARRAY[j] = [CURRENTDICTIONARY[i].charAt(0), i];
+              if (j==0 && firstA==0){
+                firstA = i;
+              }
             }
           }
         }
+        console.log("Position of first A in dictionary is "+firstA);
       }
       catch(err) {
         console.log("Unable to parse dictionary and alphabet index: " + err);
@@ -1058,7 +1063,7 @@ function receivedMessage(event) {
       for(var i = 0; ALPHABET_ARRAY[i][0] != letter; i++){
       }
       if(letter == "A"){
-        var letterLeftIndex = 0;
+        var letterLeftIndex = firstA;
       }
       else {
         var letterLeftIndex = (ALPHABET_ARRAY[i-1][1]) + 1;
