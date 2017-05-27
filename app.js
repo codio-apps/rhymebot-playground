@@ -27,6 +27,7 @@ app.use(express.static('public'));
 // Connection URL
 var dataBaseNamespace = "messageData";
 var url = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/" +  dataBaseNamespace + "?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
+// Variable to clear the DB when you need
 var clearDB = false;
 
 // Keyword and letter initialisation
@@ -659,8 +660,7 @@ function receivedMessage(event) {
 
         // Insert an object into the database
         // Database name: users
-        // Inserting: myobj
-
+        // Inserting: userEntry
 
         db.collection("users").insert(userEntry, function(err, res) {
           if (err) throw err;
@@ -674,12 +674,23 @@ function receivedMessage(event) {
 
         db.collection("users").find({}).toArray(function(err, result) {
           if (err) throw err;
-          console.log("*********************DATABASE*********************");
+          console.log("*********************DATABASE ALL*********************");
           console.log("Number of records equals: " + result.insertedCount);
           console.log(result);
           db.close();
         });
 
+        // Search for field value from the database - the find(value) method returns all occurrences of value
+        // Database name: users
+        // Results: result
+        var dbQuery = { surname: "Stevens" };
+        db.collection("users").find(dbQuery).toArray(function(err, result) {
+          if (err) throw err;
+          console.log("*********************DATABASE SPECIFIC*********************");
+          console.log("Number of surnames matching dbQuery equals: " + result.insertedCount);
+          console.log(result);
+          db.close();
+        });
 
 
 
@@ -693,8 +704,6 @@ function receivedMessage(event) {
           db.close();
             });
           }
-
-
 
       });
     }
