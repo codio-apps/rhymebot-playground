@@ -640,14 +640,14 @@ function receivedMessage(event) {
     console.log("**********Entered logMessageReceived_DB**********");
     var DB = "users";
 
-    // var userEntry = [
-    //   { senderID: senderID,
-    //     name: bodyObj.first_name,
-    //     surname: bodyObj.last_name,
-    //     messageCount: 1}
-    //   ];
-    //
-    //   console.log(userEntry);
+    var userEntry = [
+      { senderID: senderID,
+        name: bodyObj.first_name,
+        surname: bodyObj.last_name,
+        messageCount: 1}
+      ];
+
+      console.log(userEntry);
 
       //   var userObj = [
       //     { name: name,
@@ -660,16 +660,6 @@ function receivedMessage(event) {
 
         //console.log(db);
         if (err) throw err;
-
-
-        // LOGIC
-        // CHECK THE SENDERID TO SEE IF THERE IS A LOGIC
-
-        // IF EXISTS, GET N AND + 1
-        // IF NOT, ADD
-
-
-
 
 
         // Insert an object into the database
