@@ -638,11 +638,13 @@ function receivedMessage(event) {
   function logMessageReceived_DB (senderID, bodyObj) {
 
     console.log("**********Entered logMessageReceived_DB**********");
+var DB = "users";
 
     var userEntry = [
       { senderID: senderID,
         name: bodyObj.first_name,
-        surname: bodyObj.last_name}
+        surname: bodyObj.last_name,
+        messageCount: 1}
       ];
 
       console.log(userEntry);
@@ -664,7 +666,7 @@ function receivedMessage(event) {
         // Database name: users
         // Inserting: userEntry
 
-        db.collection("users").insert(userEntry, function(err, res) {
+        db.collection(DB).insert(userEntry, function(err, res) {
           if (err) throw err;
           db.close();
         });
@@ -674,10 +676,9 @@ function receivedMessage(event) {
         // Database name: users
         // Results: result
 
-        db.collection("users").find({}).toArray(function(err, result) {
+        db.collection(DB).find({}).toArray(function(err, result) {
           if (err) throw err;
           console.log("*********************DATABASE ALL*********************");
-          console.log("Number of records equals: " + result.insertedCount);
           console.log(result);
           db.close();
         });
@@ -686,10 +687,9 @@ function receivedMessage(event) {
         // Database name: users
         // Results: result
         var dbQuery = { surname: "Stevens" };
-        db.collection("users").find(dbQuery).toArray(function(err, result) {
+        db.collection(DB).find(dbQuery).toArray(function(err, result) {
           if (err) throw err;
           console.log("*********************DATABASE SPECIFIC*********************");
-          console.log("Number of surnames matching dbQuery equals: " + result.insertedCount);
           console.log(result);
           db.close();
         });
@@ -698,14 +698,21 @@ function receivedMessage(event) {
 
         // Clears the Database
         // Database: users
-        //Remove: all
+        //Remove: a particular query
+        //
+        // db.collection("users").remove({}, function(err, result) {
+        //   if (err) throw err;
+        //   console.log("Data Base cleared. It is now: "  + result);
+        //   db.close();
+        //     });
+
         if(clearDB) {
-        db.collection("users").remove({}, function(err, result) {
-          if (err) throw err;
-          console.log("Data Base cleared. It is now: "  + result);
-          db.close();
-            });
-          }
+          db.collection(DB).drop(function(err, delOK) {
+            if (err) throw err;
+            if (delOK) console.log("Table deleted");
+            db.close();
+          });
+        });
 
       });
     }
