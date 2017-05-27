@@ -28,7 +28,7 @@ app.use(express.static('public'));
 var dataBaseNamespace = "messageData";
 var url = "mongodb://ajstevens:beatbrothers1!@cluster0-shard-00-00-7fr6a.mongodb.net:27017,cluster0-shard-00-01-7fr6a.mongodb.net:27017,cluster0-shard-00-02-7fr6a.mongodb.net:27017/" +  dataBaseNamespace + "?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
 // Variable to clear the DB when you need
-var clearDB = true;
+var clearDB = false;
 
 // Keyword and letter initialisation
 var KEYWORD = "rhyme"; // **TO DO ** : Chnage this to a file structure later
