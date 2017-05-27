@@ -504,6 +504,7 @@ function receivedMessage(event) {
           if (fuzzyHomos == 0 || fuzzyHomos == 1){
             console.log("no fuzzy homophones to add");
           } else {
+            console.log("trying to add to messageString");
             messageString = messageString+"\nYou can also consider breaking the word down and rhyming it's constituent parts:\n"+fuzzyHomos;
           }
           messageResponse = messageString;
@@ -794,8 +795,10 @@ function receivedMessage(event) {
       //console.log("Calling findHomophones on "+getWord(i));
       var thisLine = CURRENTDICTIONARY[i].split("  ");
       thisLine[1] = thisLine[1].replace(/1/g, "0");
-      thisLine[1] = thisLine[1].replace(/2/g, "0");
-      var thatPhoneme = "";
+      thisLine[1] = thisLine[1].replace(/2/g, "0")+"|";
+      thisLine[1] = thisLine[1].slice(0, thisLine[1].length-1);
+      var thatPhoneme = new String();
+      var thisPhoneme = thisLine[1].toString();
       //console.log("searching for "+thisLine[1]+" from "+startingIndex+" to "+CURRENTDICTIONARY.length);
       var solved = false;
       var failed = false;
@@ -803,47 +806,47 @@ function receivedMessage(event) {
       var parent = new Array();
       //compare phonemes
       var counter = startingIndex;
-      var thisPhoneme = thisLine[1];
-      //console.log("this phoneme now|"+thisPhoneme+"|");
+      //console.log("searching for|"+thisPhoneme);
       while (!failed){
         //console.log("called from the top");
         solved=false;
         //console.log("starting search");
-        for (var k = counter; k < CURRENTDICTIONARY.length; k++) {
+        for (var k = counter; k < CURRENTDICTIONARY.length-1; k++) {
           if (k==i){
             k++;
           }
+          //console.log("k is "+k);
           var thatLine = CURRENTDICTIONARY[k].split("  ");
-          //var thatWord = thatLine[0];
-          thatPhoneme = ""+thatLine[1]; //OR
-          thatPhoneme = thatPhoneme.replace(/1/g, "0");
-          thatPhoneme = thatPhoneme.replace(/2/g, "0");
-          //console.log(thatPhoneme);
+          thatLine[1] = thatLine[1].replace(/1/g, "0");
+          thatLine[1] = thatLine[1].replace(/2/g, "0");
+          thatLine[1] = thatLine[1].slice(0, thatLine[1].length-1);
+          thatPhoneme = thatLine[1]; //OR
 
-          //console.log("searching for "+thisPhoneme+" at "+thatPhoneme);
-          if (thisPhoneme.startsWith(thatPhoneme) || thisPhoneme == thatPhoneme){
+          //console.log("checking at|"+thatPhoneme);
+          if (thisPhoneme.startsWith(thatPhoneme)){
             parent.push(getWord(k).toLowerCase());
+            //console.log("found="+getWord(k));
             thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
-
+            //console.log("sliced to="+thisPhoneme);
             if (thisPhoneme.length==0){
+              console.log("solved="+getWord(i));
+              solved=true;
               var tmp = findHomophones(i, k+1);
               if (tmp != ""){
                 parent.push(tmp.toLowerCase());
-                //console.log("pushing tmp "+tmp);
               }
-              solved=true;
               outputArray.push("*"+parent);
-              //console.log("|"+parent+"|");
+              console.log("returning="+outputArray.toString().replace(/,/g, " "))
               return outputArray.toString().replace(/,/g, " ");
             }
           }
         }
-        if (!solved){
+        if (k==CURRENTDICTIONARY.length-1){
+          //console.log("got to the end of the dictionary without solving autofailing");
           failed = true;
         }
       }
       if (!solved){
-        //return "("+outputArray.toString()+")";
         return "";
       }
     }
