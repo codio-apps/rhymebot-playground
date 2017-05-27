@@ -675,7 +675,7 @@ function receivedMessage(event) {
           }
           console.log("FOUND");
           var messageCount = result.messageCount;
-          console.log("MESSAGE COUNT: " + messageCount);
+          console.log("MESSAGE COUNT: " + result.name);
           var newMessageCount = messageCount + 1;
           var myquery = { senderID: senderID };
             var newvalues = { $set: { messageCount: newMessageCount } };
