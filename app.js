@@ -638,7 +638,7 @@ function receivedMessage(event) {
   function logMessageReceived_DB (senderID, bodyObj) {
 
     console.log("**********Entered logMessageReceived_DB**********");
-var DB = "users";
+    var DB = "users";
 
     var userEntry = [
       { senderID: senderID,
@@ -711,9 +711,12 @@ var DB = "users";
             if (err) throw err;
             if (delOK) console.log("Table deleted");
             db.close();
-          });
-        }
-    }
+          }
+        });
+      });
+
+    });
+  }
 
 
 
