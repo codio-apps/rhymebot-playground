@@ -640,7 +640,7 @@ function receivedMessage(event) {
     console.log("**********Entered logMessageReceived_DB**********");
     var DB = "users";
     var dbQuery = {
-      senderID: senderID
+      senderID: 11212
     };
     var userEntry = [
       { senderID: senderID,
