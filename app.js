@@ -500,6 +500,13 @@ function receivedMessage(event) {
           } else {
             messageString = "I don't know the word "+searchWord+" yet";
           }
+          var fuzzyHomos = searchHomophones(dictionaryIndex);
+          if (fuzzyHomos == 0 || fuzzyHomos == 1){
+            console.log("no fuzzy homophones to add");
+          } else {
+            console.log("trying to add to messageString");
+            messageString = messageString+"\nYou can also consider breaking the word down and rhyming it's constituent parts:\n"+fuzzyHomos;
+          }
           messageResponse = messageString;
           break;
 
@@ -794,53 +801,91 @@ var DB = "users";
     function findHomophones(i, startingIndex){
       //console.log("Calling findHomophones on "+getWord(i));
       var thisLine = CURRENTDICTIONARY[i].split("  ");
-      //console.log("searching for "+thisLine[0]+" from "+startingIndex+" to "+CURRENTDICTIONARY.length);
+      thisLine[1] = thisLine[1].replace(/1/g, "0");
+      thisLine[1] = thisLine[1].replace(/2/g, "0")+"|";
+      thisLine[1] = thisLine[1].slice(0, thisLine[1].length-1);
+      var thatPhoneme = new String();
+      var thisPhoneme = thisLine[1].toString();
+      //console.log("searching for "+thisLine[1]+" from "+startingIndex+" to "+CURRENTDICTIONARY.length);
       var solved = false;
       var failed = false;
       var outputArray = new Array();
       var parent = new Array();
       //compare phonemes
       var counter = startingIndex;
-      var thisPhoneme = thisLine[1];
-      //console.log("this phoneme now|"+thisPhoneme+"|");
+      //console.log("searching for|"+thisPhoneme);
       while (!failed){
         //console.log("called from the top");
         solved=false;
         //console.log("starting search");
-        for (var k = counter; k < CURRENTDICTIONARY.length; k++) {
+        for (var k = counter; k < CURRENTDICTIONARY.length-1; k++) {
           if (k==i){
             k++;
           }
+          //console.log("k is "+k);
           var thatLine = CURRENTDICTIONARY[k].split("  ");
-          //var thatWord = thatLine[0];
-          var thatPhoneme = thatLine[1]; //OR
+          thatLine[1] = thatLine[1].replace(/1/g, "0");
+          thatLine[1] = thatLine[1].replace(/2/g, "0");
+          thatLine[1] = thatLine[1].slice(0, thatLine[1].length-1);
+          thatPhoneme = thatLine[1]; //OR
 
-          //console.log("searching for "+thisPhoneme+" at "+thatPhoneme);
-          if (thisPhoneme.startsWith(thatPhoneme) || thisPhoneme == thatPhoneme){
+          //console.log("checking at|"+thatPhoneme);
+          if (thisPhoneme.startsWith(thatPhoneme)){
             parent.push(getWord(k).toLowerCase());
+            //console.log("found="+getWord(k));
             thisPhoneme = thisPhoneme.slice(thatPhoneme.length+1);//L D EH G
-
+            //console.log("sliced to="+thisPhoneme);
             if (thisPhoneme.length==0){
+              console.log("solved="+getWord(i));
+              solved=true;
               var tmp = findHomophones(i, k+1);
               if (tmp != ""){
                 parent.push(tmp.toLowerCase());
-                //console.log("pushing tmp "+tmp);
               }
-              solved=true;
               outputArray.push("*"+parent);
-              //console.log("|"+parent+"|");
-              return outputArray.toString();
+              console.log("returning="+outputArray.toString().replace(/,/g, " "))
+              return outputArray.toString().replace(/,/g, " ");
             }
           }
         }
-        if (!solved){
+        if (k==CURRENTDICTIONARY.length-1){
+          //console.log("got to the end of the dictionary without solving autofailing");
           failed = true;
         }
       }
       if (!solved){
-        //return "("+outputArray.toString()+")";
         return "";
       }
+    }
+
+    //function to search for a homophone rhyme in a slightly more interesting way and return a string
+    function searchHomophones(dictionaryIndex){
+      var string = findHomophones(dictionaryIndex, 0);
+      if (string!=""){
+        var arrayBuffer = new Array();
+        string = string.slice(1);
+        arrayBuffer = string.split("*");
+        arrayBuffer = arrayBuffer[0].split(" ");
+        var tmpString = "";
+        var outputArray = new Array();
+        //console.log("arrayBuffer="+arrayBuffer+"="+arrayBuffer.length)
+        for (var i = 0; i < arrayBuffer.length; i++){
+          var outputBufRhymes = new Array();
+          var thisIndex = findTheLine(arrayBuffer[i]);
+          var thisWord = getWord(thisIndex);
+          var thisSyllableCount = countSyllables(thisIndex);
+          if (thisWord !=0){
+
+            var phonemeBuffer = getPhonemes(thisIndex, false);
+            outputBufRhymes = searchPhonemes(phonemeBuffer, thisSyllableCount);
+            outputBufRhymes = getWord(outputBufRhymes[Math.floor(Math.random() * outputBufRhymes.length)]);
+            outputArray[i] = outputBufRhymes;
+          }
+        }
+        if (outputArray.length >= 2){
+          return outputArray;
+        } else return 0;
+      } else return 1;
     }
 
     //function to take in an index from the dictionary and return an array of results
