@@ -505,7 +505,8 @@ function receivedMessage(event) {
             console.log("no fuzzy homophones to add");
           } else {
             console.log("trying to add to messageString");
-            messageString = messageString+"\nYou can also consider breaking the word down and rhyming it's constituent parts:\n"+fuzzyHomos;
+            var homophoneParts = findHomophones(dictionaryIndex, 0);
+            messageString = messageString+"\nYou can also consider breaking the word down and rhyming it in smaller parts: "+homophoneParts+" and rhyming them, like this:\n"+fuzzyHomos;
           }
           messageResponse = messageString;
           break;
@@ -872,7 +873,7 @@ function receivedMessage(event) {
             var phonemeBuffer = getPhonemes(thisIndex, false);
             outputBufRhymes = searchPhonemes(phonemeBuffer, thisSyllableCount);
             outputBufRhymes = getWord(outputBufRhymes[Math.floor(Math.random() * outputBufRhymes.length)]);
-            outputArray[i] = outputBufRhymes;
+            outputArray[i] = outputBufRhymes.toLowerCase();
           }
         }
         if (outputArray.length >= 2){
