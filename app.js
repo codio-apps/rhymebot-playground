@@ -666,11 +666,11 @@ function receivedMessage(event) {
           if(result.length){
             console.log("WE FOUND THE SENDERID SO UPDATE");
 
-            var currentMessageCount = obj[0].messageCount;
+            var currentMessageCount = result[0].messageCount;
             var newMessageCount = currentMessageCount + 1;
 
             var newElement = { $set: { messageCount: newMessageCount } };
-            db.collection("users").update(lookUp, newElement, function(err, res) {
+            db.collection(DB).update(lookUp, newElement, function(err, res) {
 
               if (err) throw err;
 
