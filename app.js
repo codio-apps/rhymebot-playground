@@ -669,6 +669,14 @@ function receivedMessage(event) {
           } else {
 
             console.log("WE DIDN'T FIND THE SENDERID SO ADD");
+            // Insert an object into the database
+            // Database name: users
+            // Inserting: userEntry
+
+            db.collection(DB).insert(userEntry, function(err, res) {
+              if (err) throw err;
+              db.close();
+            });
 
           }
           db.close();
