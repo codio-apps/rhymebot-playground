@@ -662,7 +662,7 @@ function receivedMessage(event) {
           if (err) throw err;
           console.log("**********RESULT OF LOOKUP**********");
           console.log(result);
-          if(result == null){
+          if(result == "[]"){
             console.log("AIUASIUASIUASIUASUHASUHUHAUSHUHASUHASUHASUHASUHASUH");
           }
           db.close();
