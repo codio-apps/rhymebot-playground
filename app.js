@@ -662,8 +662,15 @@ function receivedMessage(event) {
           if (err) throw err;
           console.log("**********RESULT OF LOOKUP**********");
           console.log(result);
+          // If the senderID was not found (the result is []
           if(result == "[]"){
-            console.log("AIUASIUASIUASIUASUHASUHUHAUSHUHASUHASUHASUHASUHASUH");
+            console.log("WE DIDN'T FIND THE SENDERID SO ADD");
+            // We should add a new entry here
+          } else {
+
+            console.log("WE FOUND THE SENDERID SO UPDATE");
+
+
           }
           db.close();
         });
