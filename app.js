@@ -637,7 +637,7 @@ function receivedMessage(event) {
 
   function logMessageReceived_DB (senderID, bodyObj) {
 
-    console.log("**********Entered logMessageReceived_DB**********");
+
     var DB = "users";
 
     var lookUp = {
@@ -651,9 +651,6 @@ function receivedMessage(event) {
         messageCount: 1}
       ];
 
-      console.log(userEntry);
-
-
       // Use connect method to connect to the server
       MongoClient.connect(url, function(err, db) {
 
@@ -663,6 +660,7 @@ function receivedMessage(event) {
         // Looup the senderID in the database first_name
         db.collection(DB).find(lookUp).toArray(function(err, result) {
           if (err) throw err;
+              console.log("**********RESULT OF LOOKUP**********");
           console.log(result);
           db.close();
         });
