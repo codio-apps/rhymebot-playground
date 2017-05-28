@@ -663,7 +663,7 @@ function receivedMessage(event) {
           console.log("**********RESULT OF LOOKUP**********");
           console.log(result);
           // If the senderID was not found (the result is []
-          if(result == "[]"){
+          if(result == []){
             console.log("WE DIDN'T FIND THE SENDERID SO ADD");
             // We should add a new entry here
           } else {
