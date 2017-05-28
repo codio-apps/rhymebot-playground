@@ -665,6 +665,18 @@ function receivedMessage(event) {
           // If the senderID was not found (the result is []
           if(result.length){
             console.log("WE FOUND THE SENDERID SO UPDATE");
+
+            var currentMessageCount = obj[0].messageCount;
+            var newMessageCount = currentMessageCount + 1;
+
+            var newElement = { $set: { messageCount: newMessageCount } };
+            db.collection("users").update(lookUp, newElement, function(err, res) {
+
+              if (err) throw err;
+
+             db.close();
+           });
+
             // We should add a new entry here
           } else {
 

@@ -4,9 +4,12 @@ var MongoClient = require('mongodb').MongoClient,
 
 
     var myobj = [
-   { name: 'Adam1', surname: 'Stevens1'},
-   { name: 'Adam2', surname: 'Stevens2'}
+   { name: 'Adam1', surname: 'Stevens1', messageCount: 1}
  ];
+
+ var lookUp = {
+   name: 'Adam1'
+   };
 
 // Connection URL
 var dataBaseNamespace = "messageData";
@@ -45,9 +48,30 @@ if (err) throw err;
 // Database name: users
 // Results: result
 
-db.collection("users").find({}).toArray(function(err, result) {
+db.collection("users").find(lookUp).toArray(function(err, obj) {
   if (err) throw err;
-  console.log(result);
+
+  if(obj) {
+
+    console.log(obj);
+    console.log("FOUND");
+    
+  var currentMessageCount = obj[0].messageCount;
+  var newMessageCount = currentMessageCount + 1;
+
+
+
+  var newElement = { $set: { messageCount: newMessageCount } };
+  db.collection("users").update(lookUp, newElement, function(err, res) {
+
+    if (err) throw err;
+
+   db.close();
+ });
+
+} else {
+
+}
   db.close();
 });
 
