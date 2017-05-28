@@ -675,6 +675,7 @@ function receivedMessage(event) {
 
             db.collection(DB).insert(userEntry, function(err, res) {
               if (err) throw err;
+              console.log("ENTRY INSERTED");
               db.close();
             });
 
