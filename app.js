@@ -662,6 +662,9 @@ function receivedMessage(event) {
           if (err) throw err;
           console.log("**********RESULT OF LOOKUP**********");
           console.log(result);
+          if(result == null){
+            console.log("AIUASIUASIUASIUASUHASUHUHAUSHUHASUHASUHASUHASUHASUH");
+          }
           db.close();
         });
 
@@ -707,7 +710,7 @@ function receivedMessage(event) {
         //   db.close();
         //     });
 
-        if(clearDB) {
+        if(clearDB {
           db.collection(DB).drop(function(err, delOK) {
             if (err) throw err;
             if (delOK) console.log("Table deleted");
