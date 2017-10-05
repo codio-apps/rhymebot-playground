@@ -1,0 +1,13 @@
+/CLONING
+git clone https://github.com/codio-apps/rhymebot-playground.git
+
+/PULLING
+git pull
+
+/PUSHING
+git add app.js
+git commit -m "First Upload"
+git push origin master
+
+/FIX
+git reset --hard origin/master
