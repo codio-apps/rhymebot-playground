@@ -1,3 +1,0 @@
-mLab account for ref
-login: codio-apps
-password: beatbrothers1
